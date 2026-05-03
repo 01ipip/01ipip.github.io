@@ -1,0 +1,13 @@
+<nav class="nav__list">
+  <h3 class="nav__title">카테고리</h3>
+  <ul>
+    {% assign categories = site.categories | sort %}
+    {% for category in categories %}
+    <li>
+      <a href="/categories/{{ category[0] }}/">
+        {{ category[0] }} ({{ category[1].size }})
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</nav>
