@@ -20,7 +20,7 @@ direction                : # "ltr" (default), "rtl" # set the direction of the p
 title                    : "Sunshine"
 title_separator          : "Have a good one"
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : ""
+name                     : "Have a good one"
 description              : ""
 url                      : "https://01ipip.github.io/"
 baseurl                  : # the subpath of your site, e.g. "/blog"
