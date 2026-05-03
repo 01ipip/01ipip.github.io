@@ -18,7 +18,7 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 locale                   : "en-US"
 direction                : # "ltr" (default), "rtl" # set the direction of the page
 title                    : "Sunshine"
-title_separator          : "-"
+title_separator          : "Have a good one"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : ""
 description              : ""
@@ -114,7 +114,7 @@ analytics:
 
 # Site Author
 author:
-  name             : "Sunshine"
+  name             : "anonimus"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : ""
   location         : "Korea"
@@ -331,4 +331,5 @@ defaults:
       comments: # true
       share: true
       related: true
+      show_date : true
 
