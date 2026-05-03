@@ -8,45 +8,21 @@ search: false
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
-.layout--single .page {
-  width: 87% !important;
-  max-width: 87% !important;
-}
-
 .sidebar {
   float: right !important;
   clear: right !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 .page {
   float: left !important;
   width: 75% !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 .page__title {
   margin-top: 0 !important;
   padding-top: 0 !important;
-}
-
-.page__hero {
-  display: none !important;
-}
-
-.masthead {
-  margin-bottom: 0 !important;
-}
-
-.page__content {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-.page {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-.sidebar.sticky {
-  top: 1em !important;
-  margin-top: 0 !important;
 }
