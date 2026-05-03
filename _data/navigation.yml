@@ -4,10 +4,10 @@ sidebar-category:
       - title: "메모"
         url: /categories/메모/
       - title: "기업 분석"
-        url: /categories/기업-분석/
+        url: /categories/기업분석/
 
 main:
   - title: "메모"
     url: /categories/메모/
   - title: "기업분석"
-    url: /categories/기업-분석/
+    url: /categories/기업분석/
