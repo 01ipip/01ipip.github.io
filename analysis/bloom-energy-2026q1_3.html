@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom Energy (BE) 기업분석 — 2026 Q1</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f5f3;color:#1a1a1a;padding:2rem;font-size:14px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto}
+.header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #e0e0dc;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.header-title{font-size:22px;font-weight:700}
+.header-meta{font-size:12px;color:#888;margin-top:4px}
+.toc{background:#fff;border:0.5px solid #ddd;border-radius:10px;padding:1.2rem 1.5rem;margin-bottom:2rem}
+.toc-title{font-size:12px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+.toc ol{padding-left:1.2rem;color:#555;font-size:13px;line-height:2.2}
+.toc a{color:#378ADD;text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.section{margin-bottom:3rem}
+.section-anchor{display:block;position:relative;top:-70px;visibility:hidden}
+h2{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:6px;border-bottom:1.5px solid #e0e0dc}
+h3{font-size:14px;font-weight:600;margin:1.2rem 0 .6rem;color:#333}
+.chart-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:20px;position:relative;width:100%}
+.note{font-size:11px;color:#999;margin-top:8px;line-height:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;font-size:12px;color:#666}
+.legend-item{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:3px 8px;border-radius:6px;transition:opacity .15s}
+.legend-item:hover{background:#f0f0ee}
+.legend-item.hidden{opacity:.3;text-decoration:line-through}
+.legend-static{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+/* 테이블 */
+table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0dc;margin-bottom:.5rem}
+th{background:#f0f0ee;font-weight:600;padding:7px 8px;text-align:left;border-bottom:1px solid #e0e0dc;white-space:nowrap;font-size:11.5px}
+th.center{text-align:center}
+td{padding:6px 8px;border-bottom:0.5px solid #f0f0ee;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafaf8}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.center{text-align:center}
+.hl{background:#fffbe6 !important}
+.dn{color:#D85A30}
+.up2{color:#1D9E75}
+/* 회사 개요 */
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
+@media(max-width:650px){.overview-grid{grid-template-columns:1fr}}
+.overview-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.overview-box h4{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.kv{display:flex;justify-content:space-between;padding:4px 0;border-bottom:0.5px solid #f5f5f3;font-size:12.5px}
+.kv:last-child{border-bottom:none}
+.kv-key{color:#666}
+.kv-val{font-weight:600;text-align:right}
+/* 세그먼트 카드 */
+.seg-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1rem}
+@media(max-width:700px){.seg-cards{grid-template-columns:repeat(2,1fr)}}
+.seg-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;overflow:hidden}
+.seg-card-img{width:100%;height:100px;object-fit:cover;background:#f0f0ee;display:flex;align-items:center;justify-content:center;font-size:32px}
+.seg-card-img img{width:100%;height:100%;object-fit:cover}
+.seg-card-body{padding:.7rem .8rem}
+.seg-card-name{font-size:12px;font-weight:700;margin-bottom:3px}
+.seg-card-desc{font-size:11px;color:#888;line-height:1.4}
+.seg-card-margin{font-size:11px;margin-top:4px;font-weight:600}
+/* 배지 */
+.badge{display:inline-block;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:600}
+.badge-up{background:#e6f7f0;color:#1D9E75}
+.badge-dn{background:#fce8e4;color:#D85A30}
+.badge-neu{background:#f0f0ee;color:#666}
+/* 컨콜 */
+.cc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1rem}
+@media(max-width:900px){.cc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.cc-grid{grid-template-columns:1fr}}
+.cc-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:.85rem}
+.cc-quarter{font-size:10px;font-weight:700;color:#378ADD;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.cc-msg{font-size:11.5px;color:#444;margin-bottom:7px;line-height:1.45}
+.cc-guide{font-size:10.5px;color:#888;border-top:0.5px solid #f0f0ee;padding-top:6px;line-height:1.5}
+.cc-hit{color:#1D9E75;font-weight:600}
+.cc-miss{color:#D85A30;font-weight:600}
+/* 시나리오 */
+.scenario-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:650px){.scenario-grid{grid-template-columns:1fr}}
+.scenario-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1.2rem}
+.scenario-title{font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid #f0f0ee}
+.s-bull .scenario-title{color:#1D9E75}
+.s-bear .scenario-title{color:#D85A30}
+.s-item{margin-bottom:9px;padding-bottom:9px;border-bottom:0.5px solid #f5f5f3;font-size:12px}
+.s-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-case{font-weight:600;margin-bottom:2px}
+.s-sub{color:#888;font-size:11px}
+/* Worth Watching */
+.ww-list{display:flex;flex-direction:column;gap:8px}
+.ww-item{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.75rem 1rem;display:flex;gap:14px}
+.ww-date{font-size:11px;font-weight:700;color:#378ADD;white-space:nowrap;min-width:80px}
+.ww-event{font-size:12px;font-weight:600;margin-bottom:2px}
+.ww-point{font-size:11px;color:#888}
+.source-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.4rem;font-size:12px;color:#888;line-height:2}
+.prose{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;margin-bottom:1rem;font-size:13px;line-height:1.7}
+.prose ul{padding-left:1.3rem}
+.prose li{margin-bottom:.25rem}
+.footer{font-size:11px;color:#aaa;text-align:center;margin-top:2rem;padding-top:1rem;border-top:0.5px solid #e0e0dc}
+/* 2행 세그먼트 테이블 */
+.seg-table-wrap{overflow-x:auto}
+.seg-table{min-width:700px}
+.seg-table th.seg-group{text-align:center;background:#e8e8e6;border-left:2px solid #d0d0cc}
+.seg-table td.seg-border{border-left:2px solid #e0e0dc}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div>
+    <div class="header-title">⚡ Bloom Energy (BE) 기업분석</div>
+    <div class="header-meta">회계연도: Calendar Year &nbsp;|&nbsp; 분석기간: Q1'18~Q1'26 (36분기) &nbsp;|&nbsp; 최근 컨콜: 2026.04.28</div>
+  </div>
+  <div style="font-size:12px;color:#aaa">분석일: 2026.05.03</div>
+</div>
+
+<!-- 목차 -->
+<div class="toc">
+  <div class="toc-title">목차</div>
+  <ol>
+    <li><a href="#s1">회사 개요</a></li>
+    <li><a href="#s2">주가 흐름 — 주봉 (2018~2026)</a></li>
+    <li><a href="#s3">세그먼트별 매출 추이 — 36분기</a></li>
+    <li><a href="#s3b">세그먼트 구조 및 제품</a></li>
+    <li><a href="#s4">매출 &amp; Non-GAAP OPM 추이</a></li>
+    <li><a href="#s5">세그먼트별 실적 테이블</a></li>
+    <li><a href="#s6">핵심 변동 요인</a></li>
+    <li><a href="#s7">컨퍼런스콜 트래킹</a></li>
+    <li><a href="#s8">Q1'26 컨콜 심층 정리</a></li>
+    <li><a href="#s9">강세 / 약세 시나리오</a></li>
+    <li><a href="#s10">Worth Watching Events</a></li>
+    <li><a href="#s11">데이터 출처</a></li>
+  </ol>
+</div>
+
+<!-- 1. 회사 개요 -->
+<span class="section-anchor" id="s1"></span>
+<div class="section">
+<h2>1. 회사 개요</h2>
+<div class="overview-grid">
+  <div class="overview-box">
+    <h4>기본 정보</h4>
+    <div class="kv"><span class="kv-key">설립</span><span class="kv-val">2001년 (구 Ion America)</span></div>
+    <div class="kv"><span class="kv-key">상장</span><span class="kv-val">2018.07 NYSE (IPO $15)</span></div>
+    <div class="kv"><span class="kv-key">본사</span><span class="kv-val">San Jose, CA</span></div>
+    <div class="kv"><span class="kv-key">CEO</span><span class="kv-val">KR Sridhar (창업자 겸 회장)</span></div>
+    <div class="kv"><span class="kv-key">임직원</span><span class="kv-val">~2,200명</span></div>
+    <div class="kv"><span class="kv-key">핵심 기술</span><span class="kv-val">SOFC (고체산화물 연료전지)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>시장 정보 (2026.05.03 기준)</h4>
+    <div class="kv"><span class="kv-key">현재 주가</span><span class="kv-val">~$290</span></div>
+    <div class="kv"><span class="kv-key">시가총액 (USD)</span><span class="kv-val" style="color:#378ADD">~$82.6B</span></div>
+    <div class="kv"><span class="kv-key">시가총액 (KRW)</span><span class="kv-val" style="color:#378ADD">~114조원 (환율 1,380원)</span></div>
+    <div class="kv"><span class="kv-key">52주 고가</span><span class="kv-val">$296.50</span></div>
+    <div class="kv"><span class="kv-key">52주 저가</span><span class="kv-val">$16.05</span></div>
+    <div class="kv"><span class="kv-key">누적 R&amp;D / 특허</span><span class="kv-val">>$12억 / >500건</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>제조 & 운영</h4>
+    <div class="kv"><span class="kv-key">Fremont, CA</span><span class="kv-val">셀 프린팅·컬럼 제조 (164K sqft)</span></div>
+    <div class="kv"><span class="kv-key">Newark, DE</span><span class="kv-val">최종 조립·통합 (210K sqft)</span></div>
+    <div class="kv"><span class="kv-key">최대 생산능력</span><span class="kv-val">현 설비 5GW 확장 가능</span></div>
+    <div class="kv"><span class="kv-key">2026E 목표</span><span class="kv-val">2GW/yr 달성</span></div>
+    <div class="kv"><span class="kv-key">고객 만족도</span><span class="kv-val">86%</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>투자 포인트 요약</h4>
+    <div class="kv"><span class="kv-key">Q1'26 매출</span><span class="kv-val" style="color:#1D9E75">$751M (+130% YoY)</span></div>
+    <div class="kv"><span class="kv-key">Non-GAAP OI 마진</span><span class="kv-val" style="color:#1D9E75">17.3% (+1,330bp)</span></div>
+    <div class="kv"><span class="kv-key">2026E 매출</span><span class="kv-val" style="color:#1D9E75">$3.4~3.8B (~80% YoY)</span></div>
+    <div class="kv"><span class="kv-key">2026E Non-GAAP OI</span><span class="kv-val" style="color:#1D9E75">$600~750M</span></div>
+    <div class="kv"><span class="kv-key">Oracle JV</span><span class="kv-val">2.45GW (역대 최대)</span></div>
+  </div>
+</div>
+<p class="note">⚠️ <strong>Non-GAAP</strong>은 SBC(주식보상비용, 분기당 ~$50~60M)·구조조정 제외. <strong>Adj. EBITDA</strong>는 이자·세금·감가상각·SBC 추가 제외. <strong>PPA</strong>=Power Purchase Agreement(전력구매계약). GAAP 기준 병행 확인 권장.</p>
+</div>
+
+<!-- 2. 주가 주봉 -->
+<span class="section-anchor" id="s2"></span>
+<div class="section">
+<h2>2. 주가 흐름 — 주봉 캔들 (TradingView)</h2>
+<div style="background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;overflow:hidden;">
+  <!-- TradingView Widget BEGIN -->
+  <div class="tradingview-widget-container" style="height:420px;width:100%">
+    <iframe
+      src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_be&symbol=NYSE%3ABE&interval=W&hidesidetoolbar=1&hidetoptoolbar=0&symboledit=0&saveimage=0&toolbarbg=f5f5f3&studies=[]&theme=light&style=1&timezone=America%2FNew_York&withdateranges=1&showpopupbutton=0&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=ko&utm_source=local&utm_medium=widget&utm_campaign=chart&utm_term=NYSE%3ABE"
+      style="width:100%;height:420px;border:none;"
+      allowtransparency="true"
+      allowfullscreen=""
+      frameborder="0"
+      scrolling="no"
+      title="Bloom Energy Weekly Chart"
+      loading="lazy">
+    </iframe>
+  </div>
+  <!-- TradingView Widget END -->
+</div>
+<p class="note" style="margin-top:8px">* TradingView 제공 실시간 주봉 캔들 차트 (NYSE: BE). 차트 내 우측 하단 버튼으로 전체화면 가능. 로드 안될 경우 <a href="https://www.tradingview.com/chart/?symbol=NYSE:BE&interval=W" target="_blank" style="color:#378ADD">TradingView에서 직접 보기 ↗</a></p>
+<p class="note">* 주요 이벤트: IPO $15(2018.07) → 수소버블 $42(2021.01) → 저점 $10(2023 Q3) → AI 전력 테마 랠리 → Q1'26 어닝 서프라이즈 후 $296 고점(2026.04)</p>
+<h3 style="margin-top:1.2rem">주요 이벤트 연표</h3>
+<table>
+  <thead><tr><th>시기</th><th class="num">주가(근사)</th><th>이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2018.07</td><td class="num">$15→$25</td><td>IPO (공모가 $15, 첫날 +67%)</td></tr>
+    <tr><td>2018~2019</td><td class="num">$8~$25</td><td>수익성 부재, 회계 재작성(Restatement), 매출 둔화 우려</td></tr>
+    <tr><td>2020.09</td><td class="num">$35</td><td>수소 테마 & ESG 랠리 급등 시작</td></tr>
+    <tr><td>2021.01</td><td class="num">$42</td><td>수소·클린에너지 버블 정점</td></tr>
+    <tr><td>2021~2022</td><td class="num">$15~$30</td><td>금리 인상 + 클린에너지 버블 붕괴, 적자 지속</td></tr>
+    <tr><td>2023 Q3</td><td class="num">~$10</td><td>PPA 자산 상각 $124M 충격, GAAP OI -$104M</td></tr>
+    <tr><td>2024 Q4</td><td class="num">$15~$25</td><td>Q4'24 실적 급개선, AI 전력 테마 부각</td></tr>
+    <tr><td>2025</td><td class="num">$16~$160</td><td>AI 인프라 전력 폭증, Brookfield $5B JV 발표</td></tr>
+    <tr class="hl"><td><strong>2026.04.29</strong></td><td class="num"><strong>~$270~296</strong></td><td><strong>Q1'26 어닝 서프라이즈 +130% YoY · Oracle 2.45GW 발표</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 3. 세그먼트 36분기 -->
+<span class="section-anchor" id="s3"></span>
+<div class="section">
+<h2>3. 세그먼트별 매출 추이 — 36분기 ($M)</h2>
+<div class="legend" id="segLegend">
+  <span class="legend-item" onclick="toggleSeg(0,this)"><span class="dot" style="background:#378ADD"></span>Product</span>
+  <span class="legend-item" onclick="toggleSeg(1,this)"><span class="dot" style="background:#1D9E75"></span>Install</span>
+  <span class="legend-item" onclick="toggleSeg(2,this)"><span class="dot" style="background:#D85A30"></span>Service</span>
+  <span class="legend-item" onclick="toggleSeg(3,this)"><span class="dot" style="background:#BA7517"></span>Electricity</span>
+  <span style="font-size:11px;color:#bbb;margin-left:4px">← 클릭하여 표시/숨김</span>
+</div>
+<div class="chart-box" style="height:320px"><canvas id="cSeg"></canvas></div>
+<p class="note">* 2018~2022 분기 데이터는 연간 10-K 역산 추정치. Q4'24부터 Product 급레벨업 — AI 데이터센터 대형 수주 납품 시작. Electricity는 PPA 자산 축소로 점진 감소.</p>
+</div>
+
+<!-- 3b. 세그먼트 구조 -->
+<span class="section-anchor" id="s3b"></span>
+<div class="section">
+<h2>3-1. 세그먼트 구조 및 제품</h2>
+<div class="seg-cards">
+  <div class="seg-card">
+    <div class="seg-card-img">
+      <img src="https://investor.bloomenergy.com/sites/default/files/2024-06/BE-Energy-Server-Platform.png"
+           onerror="this.style.display='none';this.parentNode.innerHTML='🔋'" alt="Energy Server">
+    </div>
+    <div class="seg-card-body">
+      <div class="seg-card-name" style="color:#378ADD">Product (제품판매)</div>
+      <div class="seg-card-desc">Energy Server 판매<br>65kW 모듈→325kW 서버→3.25MW 스탬프→+MW 블록<br>연소 없이 천연가스→전기 직접 변환</div>
+      <div class="seg-card-margin" style="color:#1D9E75">GM ~35~47% · 매출 비중 80%+</div>
+    </div>
+  </div>
+  <div class="seg-card">
+    <div class="seg-card-img" style="background:#e8f4e8;font-size:40px">🏗️</div>
+    <div class="seg-card-body">
+      <div class="seg-card-name" style="color:#1D9E75">Installation (설치)</div>
+      <div class="seg-card-desc">Energy Server 현장 설치<br>BOP(Balance of Plant) 공사 포함<br>프로젝트성 — 분기 변동 큼</div>
+      <div class="seg-card-margin" style="color:#D85A30">GM 종종 음수 (초기 대형 프로젝트)</div>
+    </div>
+  </div>
+  <div class="seg-card">
+    <div class="seg-card-img" style="background:#e8eef8;font-size:40px">🔧</div>
+    <div class="seg-card-body">
+      <div class="seg-card-name" style="color:#D85A30">Service (유지보수)</div>
+      <div class="seg-card-desc">장기 O&amp;M(운영·유지보수) 계약<br>설치 베이스 누적으로 점진 성장<br>구독형 반복 수익</div>
+      <div class="seg-card-margin" style="color:#1D9E75">GM ~18~20% (개선 중)</div>
+    </div>
+  </div>
+  <div class="seg-card">
+    <div class="seg-card-img" style="background:#fff8e8;font-size:40px">⚡</div>
+    <div class="seg-card-body">
+      <div class="seg-card-name" style="color:#BA7517">Electricity (전력판매)</div>
+      <div class="seg-card-desc">PPA 방식 전력 직접 판매<br>레거시 PPA 자산 점진 축소 중<br>kWh당 단가 과금</div>
+      <div class="seg-card-margin" style="color:#BA7517">GM 높지만 비중 감소 추세</div>
+    </div>
+  </div>
+</div>
+<table>
+  <thead><tr><th>세그먼트</th><th>대표 제품/서비스</th><th>주요 연료</th><th>납품 속도</th><th>마진 특성</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Product</strong></td><td>Bloom Energy Server (325kW), Power Stamp (3.25MW), Power Block (+MW), DC Power 버전</td><td>천연가스·수소·바이오가스</td><td>90일 납품 가능</td><td>35~47% (믹스·규모 따라 변동)</td></tr>
+    <tr><td><strong>Installation</strong></td><td>현장 설치, BOP 공사, 그리드 연결</td><td>—</td><td>프로젝트별</td><td>종종 음수 (대형 초기 단계)</td></tr>
+    <tr><td><strong>Service</strong></td><td>O&amp;M 장기계약, 셀 교체, 모니터링</td><td>—</td><td>상시</td><td>~18~20% (구독형 개선 중)</td></tr>
+    <tr><td><strong>Electricity</strong></td><td>PPA(전력구매계약) 기반 전력 공급</td><td>천연가스</td><td>기존 설치 자산</td><td>높지만 비중 축소</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 4. 매출 + OPM -->
+<span class="section-anchor" id="s4"></span>
+<div class="section">
+<h2>4. 매출 &amp; Non-GAAP OPM 추이</h2>
+<div class="legend">
+  <span class="legend-static"><span class="dot" style="background:rgba(55,138,221,0.35)"></span>매출 ($M, 막대)</span>
+  <span class="legend-static"><span class="dot" style="background:#1D9E75"></span>Non-GAAP OPM % (선)</span>
+</div>
+<div class="chart-box" style="height:300px"><canvas id="cRev"></canvas></div>
+<p class="note">* Q3'23 GAAP OI -$104M은 PPA 자산 상각 $124M 일회성 포함. Q4'24부터 본격 흑자 전환. 2026E OPM ~18% 목표.</p>
+
+<h3 style="margin-top:1.5rem">연간 실적 요약</h3>
+<table>
+  <thead><tr><th>연도</th><th class="num">매출</th><th class="num">Non-GAAP OI</th><th class="num">Non-GAAP OPM</th></tr></thead>
+  <tbody>
+    <tr><td>2021</td><td class="num">$972M</td><td class="num dn">-$38M</td><td class="num dn">-3.9%</td></tr>
+    <tr><td>2022</td><td class="num">$1,199M</td><td class="num dn">-$33M</td><td class="num dn">-2.8%</td></tr>
+    <tr><td>2023</td><td class="num">$1,334M</td><td class="num">$19M</td><td class="num">1.4%</td></tr>
+    <tr><td>2024</td><td class="num">$1,474M</td><td class="num">$108M</td><td class="num">7.3%</td></tr>
+    <tr><td>2025</td><td class="num">$2,024M</td><td class="num up2">$221M</td><td class="num up2">10.9%</td></tr>
+    <tr class="hl"><td><strong>2026E</strong></td><td class="num"><strong>$3.4~3.8B</strong></td><td class="num up2"><strong>$600~750M</strong></td><td class="num up2"><strong>~18%</strong></td></tr>
+  </tbody>
+</table>
+
+<h3 style="margin-top:1.5rem">분기별 실적 요약 (최근 12분기)</h3>
+<table>
+  <thead>
+    <tr>
+      <th>분기</th>
+      <th class="num">매출</th>
+      <th class="num">YoY</th>
+      <th class="num">Non-GAAP OI</th>
+      <th class="num">Non-GAAP OPM</th>
+      <th class="num">GAAP OI</th>
+      <th class="num">GAAP OPM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Q2'23</td><td class="num">$301M</td><td class="num">+15%</td><td class="num">n/a</td><td class="num">—</td><td class="num dn">-$55M</td><td class="num dn">-18.1%</td></tr>
+    <tr><td>Q3'23</td><td class="num">$400M</td><td class="num">+18%</td><td class="num">n/a</td><td class="num">—</td><td class="num dn">-$104M</td><td class="num dn">-25.9%</td></tr>
+    <tr><td>Q4'23</td><td class="num">$357M</td><td class="num">+8%</td><td class="num">n/a</td><td class="num">—</td><td class="num up2">$27M</td><td class="num up2">7.7%</td></tr>
+    <tr><td>Q1'24</td><td class="num">$235M</td><td class="num dn">-23%</td><td class="num dn">-$31M</td><td class="num dn">-13.1%</td><td class="num dn">-$49M</td><td class="num dn">-20.8%</td></tr>
+    <tr><td>Q2'24</td><td class="num">$336M</td><td class="num">+12%</td><td class="num">$18M</td><td class="num">5.4%</td><td class="num dn">-$18M</td><td class="num dn">-5.2%</td></tr>
+    <tr><td>Q3'24</td><td class="num">$330M</td><td class="num dn">-18%</td><td class="num">$14M</td><td class="num">4.2%</td><td class="num dn">-$14M</td><td class="num dn">-4.3%</td></tr>
+    <tr><td>Q4'24</td><td class="num">$572M</td><td class="num up2">+60%</td><td class="num up2">$133M</td><td class="num up2">23.3%</td><td class="num up2">$105M</td><td class="num up2">18.3%</td></tr>
+    <tr><td>Q1'25</td><td class="num">$326M</td><td class="num up2">+39%</td><td class="num">$13M</td><td class="num">4.0%</td><td class="num dn">-$19M</td><td class="num dn">-5.8%</td></tr>
+    <tr><td>Q2'25</td><td class="num">$401M</td><td class="num up2">+19%</td><td class="num">$43M</td><td class="num">10.7%</td><td class="num">$15M</td><td class="num">3.7%</td></tr>
+    <tr><td>Q3'25</td><td class="num">$519M</td><td class="num up2">+57%</td><td class="num">$52M</td><td class="num">10.0%</td><td class="num">$8M</td><td class="num">1.5%</td></tr>
+    <tr><td>Q4'25</td><td class="num">$778M</td><td class="num up2">+36%</td><td class="num up2">$133M</td><td class="num up2">17.1%</td><td class="num up2">$88M</td><td class="num up2">11.3%</td></tr>
+    <tr class="hl"><td><strong>Q1'26</strong></td><td class="num"><strong>$751M</strong></td><td class="num up2"><strong>+130%</strong></td><td class="num up2"><strong>$130M</strong></td><td class="num up2"><strong>17.3%</strong></td><td class="num up2"><strong>$72M</strong></td><td class="num up2"><strong>9.6%</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 5. 세그먼트 실적 테이블 (16분기, 2행 헤더) -->
+<span class="section-anchor" id="s5"></span>
+<div class="section">
+<h2>5. 세그먼트별 실적 테이블 (Non-GAAP, 16분기)</h2>
+<div class="seg-table-wrap">
+<table class="seg-table">
+  <thead>
+    <tr>
+      <th rowspan="2" style="vertical-align:middle">분기</th>
+      <th colspan="2" class="seg-group center">Product</th>
+      <th colspan="2" class="seg-group center">Installation</th>
+      <th colspan="2" class="seg-group center">Service</th>
+      <th colspan="2" class="seg-group center">Electricity</th>
+      <th rowspan="2" class="seg-group center" style="vertical-align:middle">Total</th>
+    </tr>
+    <tr>
+      <th class="seg-group center">매출</th><th class="seg-group center">GM%</th>
+      <th class="seg-group center">매출</th><th class="seg-group center">GM%</th>
+      <th class="seg-group center">매출</th><th class="seg-group center">GM%</th>
+      <th class="seg-group center">매출</th><th class="seg-group center">GM%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Q2'23</td><td class="num seg-border">$229M</td><td class="num">~28%</td><td class="num seg-border">$23M</td><td class="num">~8%</td><td class="num seg-border">$33M</td><td class="num">~5%</td><td class="num seg-border">$17M</td><td class="num">~45%</td><td class="num seg-border"><b>$301M</b></td></tr>
+    <tr><td>Q3'23</td><td class="num seg-border">$250M</td><td class="num">~27%</td><td class="num seg-border">$22M</td><td class="num">~5%</td><td class="num seg-border">$48M</td><td class="num">~4%</td><td class="num seg-border">$21M</td><td class="num">~43%</td><td class="num seg-border"><b>$400M</b></td></tr>
+    <tr><td>Q4'23</td><td class="num seg-border">$262M</td><td class="num">~32%</td><td class="num seg-border">$26M</td><td class="num">~6%</td><td class="num seg-border">$53M</td><td class="num">~3%</td><td class="num seg-border">$17M</td><td class="num">~50%</td><td class="num seg-border"><b>$357M</b></td></tr>
+    <tr><td>Q1'24</td><td class="num seg-border">$153M</td><td class="num">~30%</td><td class="num seg-border">$11M</td><td class="num">~4%</td><td class="num seg-border">$57M</td><td class="num">~3%</td><td class="num seg-border">$14M</td><td class="num">~48%</td><td class="num seg-border"><b>$235M</b></td></tr>
+    <tr><td>Q2'24</td><td class="num seg-border">$226M</td><td class="num">~35%</td><td class="num seg-border">$43M</td><td class="num">~6%</td><td class="num seg-border">$53M</td><td class="num">~4%</td><td class="num seg-border">$14M</td><td class="num">~45%</td><td class="num seg-border"><b>$336M</b></td></tr>
+    <tr><td>Q3'24</td><td class="num seg-border">$234M</td><td class="num">~36%</td><td class="num seg-border">$32M</td><td class="num">~5%</td><td class="num seg-border">$51M</td><td class="num">~4%</td><td class="num seg-border">$14M</td><td class="num">~42%</td><td class="num seg-border"><b>$330M</b></td></tr>
+    <tr><td>Q4'24</td><td class="num seg-border">$472M</td><td class="num up2"><b>46.9%</b></td><td class="num seg-border">$36M</td><td class="num">7.2%</td><td class="num seg-border">$54M</td><td class="num">0.5%</td><td class="num seg-border">$11M</td><td class="num">7.9%</td><td class="num seg-border"><b>$572M</b></td></tr>
+    <tr><td>Q1'25</td><td class="num seg-border">$212M</td><td class="num">35.0%</td><td class="num seg-border">$34M</td><td class="num">3.8%</td><td class="num seg-border">$54M</td><td class="num">4.8%</td><td class="num seg-border">$27M</td><td class="num up2">57.1%</td><td class="num seg-border"><b>$326M</b></td></tr>
+    <tr><td>Q2'25</td><td class="num seg-border">$297M</td><td class="num">~36%</td><td class="num seg-border">$37M</td><td class="num">~5%</td><td class="num seg-border">$54M</td><td class="num">~10%</td><td class="num seg-border">$13M</td><td class="num">~40%</td><td class="num seg-border"><b>$401M</b></td></tr>
+    <tr><td>Q3'25</td><td class="num seg-border">$384M</td><td class="num">~36%</td><td class="num seg-border">$66M</td><td class="num">~5%</td><td class="num seg-border">$59M</td><td class="num">~12%</td><td class="num seg-border">$10M</td><td class="num">~35%</td><td class="num seg-border"><b>$519M</b></td></tr>
+    <tr><td>Q4'25</td><td class="num seg-border">$639M</td><td class="num">37.5%</td><td class="num seg-border">$67M</td><td class="num dn">-9.4%</td><td class="num seg-border">$62M</td><td class="num up2">19.5%</td><td class="num seg-border">$10M</td><td class="num">28.8%</td><td class="num seg-border"><b>$778M</b></td></tr>
+    <tr class="hl"><td><b>Q1'26</b></td><td class="num seg-border">$653M</td><td class="num">35.3%</td><td class="num seg-border">$26M</td><td class="num dn"><b>-29.4%</b></td><td class="num seg-border">$62M</td><td class="num up2">18.0%</td><td class="num seg-border">$10M</td><td class="num">24.5%</td><td class="num seg-border"><b>$751M</b></td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">* Q2'23~Q3'24 GM%는 추정치. Install 마진 음수 이유: 대형 사이트 초기 인건비·자재비 > 청구액. Q1'26 -29.4%는 신규 대형 프로젝트 착공 선인식 영향.</p>
+</div>
+
+<!-- 6. 핵심 변동 요인 -->
+<span class="section-anchor" id="s6"></span>
+<div class="section">
+<h2>6. 핵심 변동 요인</h2>
+<h3>외부 변수</h3>
+<table>
+  <thead><tr><th>요인</th><th>방향</th><th>내용</th></tr></thead>
+  <tbody>
+    <tr><td><strong>AI 데이터센터 전력 수요 폭증</strong></td><td><span class="badge badge-up">↑ 강력 긍정</span></td><td>그리드 연결 2~5년 vs Bloom 90일. Inference 워크로드 → 도심 근처 클린 전력 필수</td></tr>
+    <tr><td><strong>IRA (인플레이션 감축법)</strong></td><td><span class="badge badge-up">↑ 긍정</span></td><td>ITC·PTC 세액공제 혜택. One Big Beautiful Bill Act 입법 여부 변수</td></tr>
+    <tr><td><strong>천연가스 가격</strong></td><td><span class="badge badge-neu">중립~위험</span></td><td>원료비 직접 연동. 고객 부담 구조 많지만 판가 경쟁력에 영향</td></tr>
+    <tr><td><strong>관세 리스크 (Tariff)</strong></td><td><span class="badge badge-dn">↓ 위험</span></td><td>미중 무역 갈등. 일부 소재 수입 의존. 경영진 "관리 가능" 언급</td></tr>
+    <tr><td><strong>한국/일본 에너지 정책</strong></td><td><span class="badge badge-up">↑ 기회</span></td><td>한국 수소·연료전지 보급 정책. SKT·KEPCO 등 협력</td></tr>
+    <tr><td><strong>AI 채택 속도 둔화</strong></td><td><span class="badge badge-dn">↓ 위험</span></td><td>AI 투자 사이클 조정 시 데이터센터 전력 수요 증가 속도 둔화</td></tr>
+  </tbody>
+</table>
+<h3>내부 변수</h3>
+<table>
+  <thead><tr><th>요인</th><th>방향</th><th>내용</th></tr></thead>
+  <tbody>
+    <tr><td><strong>대형 고객사 수주</strong></td><td><span class="badge badge-up">↑ 강력 긍정</span></td><td>Oracle Project Jupiter(2.45GW), Brookfield JV($5B). 백로그 ~$200억</td></tr>
+    <tr><td><strong>제조 Capacity 확대</strong></td><td><span class="badge badge-up">↑ 긍정</span></td><td>현 설비 5GW 확장 가능. 2026년 말 2GW/yr 목표. 개월 단위 스케일인</td></tr>
+    <tr><td><strong>DC 아키텍처 제품</strong></td><td><span class="badge badge-up">↑ 긍정</span></td><td>800V DC 직접 공급 → 변환 손실 無 → CAPEX↓·효율↑·공간↑</td></tr>
+    <tr><td><strong>서비스 마진 개선</strong></td><td><span class="badge badge-up">↑ 긍정</span></td><td>Q4'25 Service GM 19.5% (전년 0.5%). O&amp;M 계약 수익성 정상화</td></tr>
+    <tr><td><strong>Opex 레버리지</strong></td><td><span class="badge badge-up">↑ 긍정</span></td><td>Opex/매출: 26%(2021)→15%(2026E). 매출 성장이 비용 성장 압도</td></tr>
+    <tr><td><strong>SBC 부담</strong></td><td><span class="badge badge-dn">↓ 부담</span></td><td>분기당 $50~60M. GAAP·Non-GAAP 갭 유발. 희석 주식수 증가</td></tr>
+    <tr><td><strong>대형 프로젝트 타이밍</strong></td><td><span class="badge badge-neu">불확실</span></td><td>수주→설치→매출 인식까지 수개월. 분기별 변동성 내재</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 7. 컨콜 트래킹 -->
+<span class="section-anchor" id="s7"></span>
+<div class="section">
+<h2>7. 컨퍼런스콜 트래킹 — 최근 12분기</h2>
+<p class="note" style="margin-bottom:10px">* 가이던스: 해당 분기 발표 시점의 당해 연도 가이던스 → 다음 분기 실제 매출과 비교. 분기 단위 가이던스는 미제시.</p>
+<div class="cc-grid">
+  <div class="cc-card"><div class="cc-quarter">Q2'23 (2023.08)</div><div class="cc-msg">IRA 수혜 강조, 마진 개선 추세. 재고자산 이슈 잠재. 핵심 사업 양호 주장.</div><div class="cc-guide">연간 가이던스: Rev $1.4~1.5B · GP ~25%<br>실제(FY23): Rev $1.33B <span class="cc-miss">❌ 미달</span> · GP 25.8% <span class="cc-hit">✅</span></div></div>
+  <div class="cc-card"><div class="cc-quarter">Q3'23 (2023.11)</div><div class="cc-msg">PPA 자산 상각 $124M 일회성 충격. 핵심 제품 사업 양호. 2024 마진 개선 집중.</div><div class="cc-guide">가이던스 유지 $1.4~1.5B<br>실제(FY23): $1.33B <span class="cc-miss">❌</span></div></div>
+  <div class="cc-card"><div class="cc-quarter">Q4'23 (2024.02)</div><div class="cc-msg">연간 미달 인정. 2024 보수적 가이던스 제시. 마진 개선 집중 선언.</div><div class="cc-guide">2024 가이던스: $1.4~1.6B · GP ~28%<br>실제(FY24): $1.47B <span class="cc-hit">✅ 달성</span></div></div>
+  <div class="cc-card"><div class="cc-quarter">Q1'24 (2024.05)</div><div class="cc-msg">계절 약세 분기. 수주 파이프라인 양호. 마진 회복 가시성 확보.</div><div class="cc-guide">2024 유지: $1.4~1.6B<br>다음 분기(Q2'24): $336M → 연간 $1.47B <span class="cc-hit">✅</span></div></div>
+  <div class="cc-card"><div class="cc-quarter">Q2'24 (2024.08)</div><div class="cc-msg">AI 데이터센터 전력 수요 테마 처음 공식 언급. 대형 고객 관심 급증.</div><div class="cc-guide">2024 유지: $1.4~1.6B<br>실제(FY24): $1.47B <span class="cc-hit">✅</span></div></div>
+  <div class="cc-card"><div class="cc-quarter">Q3'24 (2024.11)</div><div class="cc-msg">AI 전력 수요를 핵심 드라이버로 공식 포지셔닝. 대형 계약 가시화.</div><div class="cc-guide">2024 유지: $1.4~1.6B<br>실제(FY24): $1.47B <span class="cc-hit">✅</span></div></div>
+  <div class="cc-card"><div class="cc-quarter">Q4'24 (2025.02)</div><div class="cc-msg">역대 최대 분기 매출 $572M. 2025 강한 성장 가이던스 공식 제시.</div><div class="cc-guide">2025 가이던스: $1.6~1.8B · GP ~30%<br>실제(FY25): $2.02B <span class="cc-hit">✅ 대폭 초과</span></div></div>
+  <div class="cc-card"><div class="cc-quarter">Q1'25 (2025.05)</div><div class="cc-msg">계절 약세에도 +39% YoY. 백로그 급증 언급. Brookfield JV 구체화.</div><div class="cc-guide">2025 유지: $1.6~1.8B<br>실제(FY25): $2.02B <span class="cc-hit">✅ 초과</span></div></div>
+  <div class="cc-card"><div class="cc-quarter">Q2'25 (2025.08)</div><div class="cc-msg">Brookfield $5B AI 인프라 파트너십 공식화. 수주 가속화. 가이던스 상향.</div><div class="cc-guide">2025 상향: ~$1.9~2.1B<br>실제(FY25): $2.02B <span class="cc-hit">✅</span></div></div>
+  <div class="cc-card"><div class="cc-quarter">Q3'25 (2025.11)</div><div class="cc-msg">4분기 연속 역대 최고 매출. Service 마진 첫 두 자릿수 달성. 연간 달성 가시성 확보.</div><div class="cc-guide">2025 가이던스 유지<br>실제(FY25): $2.02B <span class="cc-hit">✅</span></div></div>
+  <div class="cc-card"><div class="cc-quarter">Q4'25 (2026.02)</div><div class="cc-msg">연간 $2.02B 역대 최대. 2026 첫 가이던스 $3.1~3.3B(+50%) 제시.</div><div class="cc-guide">2026 초기 가이던스: $3.1~3.3B<br>Q1'26 실제: $751M → 연간 환산 초과 <span class="cc-hit">✅ 상향 근거</span></div></div>
+  <div class="cc-card" style="border:1.5px solid #378ADD"><div class="cc-quarter" style="color:#1D9E75">Q1'26 ★ 최신 (2026.04)</div><div class="cc-msg">$751M +130% YoY. 가이던스 대폭 상향. Oracle 2.45GW(Project Jupiter) 발표. Q1 최초 영업CF 플러스.</div><div class="cc-guide">2026 상향: $3.4~3.8B · OI $600~750M<br>Q2'26 가이던스: "Q1 이상 달성 기대" (미제시)</div></div>
+</div>
+</div>
+
+<!-- 8. Q1'26 심층 -->
+<span class="section-anchor" id="s8"></span>
+<div class="section">
+<h2>8. Q1'26 컨콜 심층 정리 (2026.04.28)</h2>
+<div class="prose">
+  <p><strong>발언자</strong>: KR Sridhar (CEO) · Simon Edwards (CFO)</p>
+  <p><strong>실적</strong>: 매출 $751.1M (+130.4% YoY, 컨센 $540M 대비 +39%) / Non-GAAP OI $129.7M (마진 17.3%) / Adj. EBITDA $143M / Non-GAAP EPS $0.44 (컨센 $0.12 대비 +267%) / <strong>Q1 최초 영업CF 플러스 $73.6M</strong> / 현금 $2.52B</p>
+</div>
+<table>
+  <thead><tr><th>#</th><th>메시지</th><th>세부 내용</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>AI Power = 존재적 긴급사항</strong></td><td>전력 조달 속도 = 경쟁력. "90일 납품" vs 그리드 2~5년 대기. "Time to Power is an existential necessity."</td></tr>
+    <tr><td>2</td><td><strong>Oracle Project Jupiter (2.45GW)</strong></td><td>뉴멕시코 AI 데이터센터 캠퍼스. 기존 가스터빈+디젤 → 전면 Bloom 대체. 역대 최대 단일 사이트. CO₂ 80% 감축.</td></tr>
+    <tr><td>3</td><td><strong>파이프라인 다변화</strong></td><td>데이터센터 백로그 50%+ = 하이퍼스케일러·네오클라우드·코로케이션(Oracle 외). Inference → 도심 근처 클린 전력 필수.</td></tr>
+    <tr><td>4</td><td><strong>DC 파워 아키텍처</strong></td><td>800V DC 직접 공급 → AC 변환 불필요 → CAPEX↓·효율↑·공간↑. 차세대 데이터센터 표준.</td></tr>
+    <tr><td>5</td><td><strong>제조 Capacity 확장</strong></td><td>수개월 단위 확장. 2026년 말 2GW/yr 목표. 고객 Prepayment로 Working Capital 조달.</td></tr>
+  </tbody>
+</table>
+<h3 style="margin-top:1.2rem">2026 가이던스 상향</h3>
+<table>
+  <thead><tr><th>지표</th><th class="num">Q4'25 컨콜 (기존)</th><th class="num">Q1'26 컨콜 (상향)</th></tr></thead>
+  <tbody>
+    <tr><td>Revenue</td><td class="num">$3.1~3.3B</td><td class="num hl"><strong>$3.4~3.8B</strong></td></tr>
+    <tr><td>Non-GAAP GP 마진</td><td class="num">~32%</td><td class="num hl"><strong>~34%</strong></td></tr>
+    <tr><td>Non-GAAP OI</td><td class="num">$425~475M</td><td class="num hl"><strong>$600~750M</strong></td></tr>
+    <tr><td>Non-GAAP EPS</td><td class="num">$1.33~1.48</td><td class="num hl"><strong>$1.85~2.25</strong></td></tr>
+    <tr><td>Adj. EBITDA</td><td class="num">—</td><td class="num hl"><strong>$650~800M</strong></td></tr>
+    <tr><td>영업 CF</td><td class="num">—</td><td class="num hl"><strong>&gt;$200M</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 9. 시나리오 -->
+<span class="section-anchor" id="s9"></span>
+<div class="section">
+<h2>9. 강세 / 약세 시나리오</h2>
+<div class="scenario-grid">
+  <div class="scenario-box s-bull">
+    <div class="scenario-title">🟢 강세 시나리오</div>
+    <div class="s-item"><div class="s-case">AI 전력 슈퍼사이클 지속</div><div class="s-sub">Capex 확대, 그리드 병목 장기화 → 2026 $3.8B 상단, 2027 $5B+ 가시성</div></div>
+    <div class="s-item"><div class="s-case">Oracle JV 정식 착공 & 추가 수주</div><div class="s-sub">Project Jupiter 착공 + 제2·제3 하이퍼스케일러 → 백로그 $30B+</div></div>
+    <div class="s-item"><div class="s-case">DC 아키텍처 표준화 가속</div><div class="s-sub">800V DC 업계 표준화 → Bloom 유일 대규모 DC 직공급 솔루션 프리미엄</div></div>
+    <div class="s-item"><div class="s-case">Service GM 20%+ 안착</div><div class="s-sub">구독형 수익 확대 + 전체 마진 믹스 개선</div></div>
+    <div class="s-item"><div class="s-case">2GW 달성 후 추가 Capex 無 확장</div><div class="s-sub">GP마진 34% → 37%+ 가능성</div></div>
+  </div>
+  <div class="scenario-box s-bear">
+    <div class="scenario-title">🔴 약세 시나리오</div>
+    <div class="s-item"><div class="s-case">AI 투자 사이클 조정</div><div class="s-sub">Capex 삭감, 수익화 지연 → 백로그 취소·연기, 매출 $3B 미만 가능성</div></div>
+    <div class="s-item"><div class="s-case">Oracle JV 지연/축소</div><div class="s-sub">인허가·자금 문제 → 단일 거래 의존도 높아 대형 하방 충격</div></div>
+    <div class="s-item"><div class="s-case">관세 충격 심화</div><div class="s-sub">핵심 소재 수입 차단 → GP마진 2~4%p 하락 가능</div></div>
+    <div class="s-item"><div class="s-case">IRA 폐지/축소</div><div class="s-sub">세액공제 삭감 → 고객 경제성 악화 → 신규 수주 둔화</div></div>
+    <div class="s-item"><div class="s-case">대형 고객 집중 리스크</div><div class="s-sub">Brookfield/Oracle 비중 과다 → 이슈 시 분기 실적 급변동</div></div>
+  </div>
+</div>
+</div>
+
+<!-- 10. Worth Watching -->
+<span class="section-anchor" id="s10"></span>
+<div class="section">
+<h2>10. Worth Watching Events</h2>
+<div class="ww-list">
+  <div class="ww-item"><div class="ww-date">2026.05~06</div><div><div class="ww-event">Oracle Project Jupiter 공사 착수 여부</div><div class="ww-point">뉴멕시코 인허가·착공 일정 공시 확인</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026.07 말</div><div><div class="ww-event">Q2'26 실적 발표 (다음 컨콜)</div><div class="ww-point">경영진 "Q1 이상 달성 기대" — $751M+ 여부 확인. Non-GAAP OPM 17%+ 유지 여부</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026 Q2~Q3</div><div><div class="ww-event">추가 하이퍼스케일러 네임드 수주 발표</div><div class="ww-point">Oracle 외 고객 공개 → 고객 집중 리스크 완화 확인</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026 연내</div><div><div class="ww-event">2GW/yr 제조 Capacity 달성</div><div class="ww-point">생산능력 확인 → 2027 성장 가시성 확보</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026 연중</div><div><div class="ww-event">IRA / One Big Beautiful Bill Act 입법</div><div class="ww-point">세액공제 조항 변경 여부 — 고객 경제성 직결</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026 Q3 말</div><div><div class="ww-event">Brookfield JV 착공 현황</div><div class="ww-point">$5B JV 실질 Capex 집행 속도 확인</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026.10 말</div><div><div class="ww-event">Q3'26 실적 발표</div><div class="ww-point">연간 가이던스 $3.4~3.8B 달성 가시성 검증</div></div></div>
+  <div class="ww-item"><div class="ww-date">2027 이후</div><div><div class="ww-event">수소·바이오가스 연료 상용화</div><div class="ww-point">넷제로 의무화 강화 시 Bloom 그린 포지셔닝 강화</div></div></div>
+</div>
+</div>
+
+<!-- 11. 출처 -->
+<span class="section-anchor" id="s11"></span>
+<div class="section">
+<h2>11. 데이터 출처</h2>
+<div class="source-box">
+  <ul style="padding-left:1.2rem">
+    <li>Bloom Energy SEC 8-K (분기·연간 실적 보도자료), 10-Q/10-K</li>
+    <li>Q1'26 Earnings Presentation (2026.04.28), April 2026 Investor Presentation</li>
+    <li>Q1'26 Supplemental Financial Information</li>
+    <li>컨콜 트랜스크립트: Motley Fool, Benzinga, Yahoo Finance, Investing.com</li>
+    <li>주가·시총 데이터: Robinhood, StockAnalysis, Google Finance (2026.05.03 기준)</li>
+    <li>분석일: 2026년 5월 3일</li>
+  </ul>
+  <p style="margin-top:8px;color:#bbb">⚠️ Non-GAAP 지표는 SBC 등 비현금 항목 제외 수치. 투자 판단 시 GAAP 기준 병행 확인 권장. 2018~2023 일부 분기 세그먼트 데이터는 연간 역산 추정치.</p>
+</div>
+</div>
+
+<div class="footer">Bloom Energy (BE) 기업분석 · 2026.05.03 · 개인 사용 목적</div>
+</div>
+
+<script>
+// ── 데이터 ─────────────────────────────────────────────
+const L36=["Q1'18","Q2'18","Q3'18","Q4'18","Q1'19","Q2'19","Q3'19","Q4'19","Q1'20","Q2'20","Q3'20","Q4'20","Q1'21","Q2'21","Q3'21","Q4'21","Q1'22","Q2'22","Q3'22","Q4'22","Q1'23","Q2'23","Q3'23","Q4'23","Q1'24","Q2'24","Q3'24","Q4'24","Q1'25","Q2'25","Q3'25","Q4'25","Q1'26"];
+const product=[52,68,72,79,58,65,70,84,55,60,75,102,82,112,128,154,110,148,155,197,176,229,250,262,153,226,234,472,212,297,384,639,653];
+const install=[18,22,20,25,18,20,22,28,20,18,22,30,25,28,32,38,30,35,40,42,28,23,22,26,11,43,32,36,34,37,66,67,26];
+const service=[18,20,22,24,20,22,24,28,22,24,26,30,28,30,32,38,35,38,40,42,40,33,48,53,57,53,51,54,54,54,59,62,62];
+const electricity=[30,28,26,28,32,30,28,26,28,26,25,24,22,22,22,20,22,20,18,18,18,17,21,17,14,14,14,11,27,13,10,10,10];
+const totalRev=L36.map((_,i)=>product[i]+install[i]+service[i]+electricity[i]);
+
+// Non-GAAP OPM% (알려진 분기만, 나머지 null)
+const opm=[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,-13.1,5.4,4.2,23.3,4.0,10.7,10.0,17.1,17.3];
+
+const gc='rgba(0,0,0,0.05)',tc='#999';
+const xTseg={color:tc,font:{size:9},maxRotation:45,autoSkip:true,maxTicksLimit:18};
+const yT={color:tc,font:{size:11}};
+const $cb={callbacks:{label:ctx=>' $'+Math.round(ctx.parsed.y)+'M'}};
+const pCB={callbacks:{label:ctx=>ctx.parsed.y==null?' n/a':' '+ctx.parsed.y.toFixed(1)+'%'}};
+
+// 세그먼트
+const segBase=[
+  {label:'Product',data:product,backgroundColor:'#378ADD',stack:'s'},
+  {label:'Install',data:install,backgroundColor:'#1D9E75',stack:'s'},
+  {label:'Service',data:service,backgroundColor:'#D85A30',stack:'s'},
+  {label:'Electricity',data:electricity,backgroundColor:'#BA7517',stack:'s'},
+];
+const segChart=new Chart(document.getElementById('cSeg'),{
+  type:'bar',
+  data:{labels:L36,datasets:segBase.map(d=>({...d}))},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:$cb},scales:{x:{grid:{color:gc},ticks:xTseg,stacked:true},y:{grid:{color:gc},ticks:{...yT,callback:v=>'$'+v+'M'},stacked:true}}}
+});
+window.toggleSeg=function(idx,el){const m=segChart.getDatasetMeta(idx);m.hidden=!m.hidden;el.classList.toggle('hidden',m.hidden);segChart.update();};
+
+// 매출+OPM (이중 축)
+new Chart(document.getElementById('cRev'),{
+  type:'bar',
+  data:{
+    labels:L36,
+    datasets:[
+      {type:'bar',label:'매출',data:totalRev,backgroundColor:'rgba(55,138,221,0.2)',borderColor:'#378ADD',borderWidth:1,yAxisID:'y'},
+      {type:'line',label:'Non-GAAP OPM%',data:opm,borderColor:'#1D9E75',pointRadius:3,fill:false,tension:0.3,spanGaps:false,yAxisID:'y2'}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:ctx=>ctx.datasetIndex===0?' $'+Math.round(ctx.parsed.y)+'M':ctx.parsed.y!=null?' OPM: '+ctx.parsed.y.toFixed(1)+'%':' OPM: n/a'}}},
+    scales:{
+      x:{grid:{color:gc},ticks:xTseg},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>'$'+v+'M'},position:'left'},
+      y2:{grid:{display:false},ticks:{color:'#1D9E75',font:{size:10},callback:v=>v+'%'},position:'right'}
+    }
+  }
+});
+</script>
+</body>
+</html>
