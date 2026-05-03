@@ -1,0 +1,5 @@
+.wide .page {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 2em !important;
+}
