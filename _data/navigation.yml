@@ -1,12 +1,7 @@
-# main links
-main:
-  - title: "Quick-Start Guide"
-    url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
-  # - title: "About"
-  #   url: https://mmistakes.github.io/minimal-mistakes/about/
-  # - title: "Sample Posts"
-  #   url: /year-archive/
-  # - title: "Sample Collections"
-  #   url: /collection-archive/
-  # - title: "Sitemap"
-  #   url: /sitemap/
+sidebar-category:
+  - title: "카테고리"
+    children:
+      - title: "메모"
+        url: /categories/메모/
+      - title: "기업 분석"
+        url: /categories/기업-분석/
