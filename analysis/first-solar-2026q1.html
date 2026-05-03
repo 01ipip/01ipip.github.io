@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>First Solar (FSLR) — Q1 2026 기업 분석 리포트</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f4f3ef;
+  --surface: #ffffff;
+  --surface2: #f8f7f3;
+  --border: #e0ddd5;
+  --text: #1a1a18;
+  --text2: #5a5a54;
+  --text3: #8a8a82;
+  --accent: #1d5c2e;
+  --accent2: #2e7d46;
+  --accent3: #c8f5d6;
+  --gold: #b08c3a;
+  --red: #b03a3a;
+  --red-light: #f5d6d6;
+  --blue: #2a4a7f;
+  --blue-light: #d6e4f5;
+  --tag-green: #1d5c2e;
+  --tag-red: #8b2020;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'IBM Plex Sans KR', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.page-header {
+  background: var(--accent);
+  color: white;
+  padding: 28px 40px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.page-header .co-name { font-size: 22px; font-weight: 600; letter-spacing: -0.3px; }
+.page-header .subtitle { font-size: 12px; opacity: 0.75; margin-top: 4px; font-family: 'IBM Plex Mono', monospace; }
+.page-header .meta { text-align: right; font-size: 11px; opacity: 0.7; font-family: 'IBM Plex Mono', monospace; }
+.toc-bar {
+  background: var(--surface);
+  border-bottom: 2px solid var(--accent);
+  padding: 0 40px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.toc-bar a {
+  display: block;
+  padding: 11px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text2);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s;
+}
+.toc-bar a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.container { max-width: 1200px; margin: 0 auto; padding: 32px 40px 80px; }
+section { margin-bottom: 48px; }
+.section-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--accent);
+  border-left: 3px solid var(--accent);
+  padding-left: 10px;
+  margin-bottom: 16px;
+  letter-spacing: -0.2px;
+}
+.section-num {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  font-size: 10px;
+  font-family: 'IBM Plex Mono', monospace;
+  padding: 1px 6px;
+  border-radius: 2px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* 1. 회사 개요 4박스 */
+.overview-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.ov-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+}
+.ov-box h4 {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+}
+.ov-row { display: flex; justify-content: space-between; margin-bottom: 5px; }
+.ov-label { color: var(--text2); font-size: 12px; }
+.ov-val { font-weight: 500; font-size: 12px; font-family: 'IBM Plex Mono', monospace; }
+.highlight-val {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent);
+  font-family: 'IBM Plex Mono', monospace;
+  margin: 4px 0 2px;
+}
+.sub-val { font-size: 11px; color: var(--text3); }
+.invest-point { font-size: 12px; color: var(--text); margin-bottom: 7px; padding-left: 10px; position: relative; }
+.invest-point::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+
+/* KPI 태그 */
+.badge {
+  display: inline-block;
+  font-size: 10px;
+  font-family: 'IBM Plex Mono', monospace;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+.badge-up { background: var(--accent3); color: var(--tag-green); }
+.badge-down { background: var(--red-light); color: var(--tag-red); }
+.badge-neu { background: #e8e8e0; color: #4a4a40; }
+.badge-warn { background: #fff3cd; color: #856404; }
+
+/* 차트 영역 */
+.chart-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 12px;
+}
+.chart-title { font-size: 12px; font-weight: 600; color: var(--text2); margin-bottom: 14px; }
+canvas { max-height: 280px; }
+
+/* TradingView */
+.tv-wrap {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+/* 이벤트 연표 테이블 */
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th {
+  background: var(--surface2);
+  color: var(--text2);
+  font-weight: 600;
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 2px solid var(--border);
+  font-size: 11px;
+}
+td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--surface2); }
+.two-header th { text-align: center; }
+.two-header th.left { text-align: left; }
+
+/* 세그먼트 카드 */
+.seg-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.seg-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+  border-top: 3px solid var(--accent);
+}
+.seg-card h4 { font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 8px; }
+.seg-desc { font-size: 12px; color: var(--text2); line-height: 1.7; }
+
+/* 컨콜 그리드 */
+.concall-outer { overflow-x: auto; }
+.concall-table { width: 100%; min-width: 800px; }
+.concall-table th { font-size: 11px; }
+.concall-table td { font-size: 11px; vertical-align: top; min-width: 160px; }
+.concall-year { font-weight: 700; color: var(--accent); background: var(--surface2) !important; }
+
+/* 시나리오 */
+.scenario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.scenario-bull {
+  background: var(--surface);
+  border: 1px solid #b8dfc0;
+  border-top: 3px solid var(--accent2);
+  border-radius: 6px;
+  padding: 16px;
+}
+.scenario-bear {
+  background: var(--surface);
+  border: 1px solid #dfc0c0;
+  border-top: 3px solid var(--red);
+  border-radius: 6px;
+  padding: 16px;
+}
+.scenario-title { font-size: 13px; font-weight: 700; margin-bottom: 12px; }
+.scenario-bull .scenario-title { color: var(--accent2); }
+.scenario-bear .scenario-title { color: var(--red); }
+.scenario-item { font-size: 12px; margin-bottom: 7px; padding-left: 12px; position: relative; color: var(--text); }
+.scenario-item::before { content: '•'; position: absolute; left: 2px; }
+
+/* 가이던스 비교 테이블 */
+.guidance-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.guidance-box h4 { font-size: 13px; font-weight: 600; margin-bottom: 14px; color: var(--text); }
+
+/* Worth watching */
+.event-list { list-style: none; }
+.event-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+.event-date {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--text3);
+  min-width: 80px;
+  padding-top: 1px;
+}
+.event-desc { flex: 1; }
+.event-imp {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 2px;
+  min-width: 40px;
+  text-align: center;
+}
+.imp-high { background: var(--accent3); color: var(--tag-green); }
+.imp-mid { background: var(--blue-light); color: var(--blue); }
+.imp-low { background: #e8e8e0; color: #4a4a40; }
+
+/* 출처 */
+.source-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px 20px;
+  font-size: 11px;
+  color: var(--text2);
+}
+.source-item { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <div class="co-name">🌞 First Solar, Inc. (NASDAQ: FSLR)</div>
+    <div class="subtitle">Q1 2026 기업 분석 리포트 | CY 기준 | 작성일: 2026-05-03</div>
+  </div>
+  <div class="meta">
+    회계연도: Calendar Year (1월~12월)<br>
+    데이터 기준: 2026년 4월 30일 컨퍼런스콜 기준<br>
+    개인 열람용 — 투자 권유 아님
+  </div>
+</div>
+
+<nav class="toc-bar">
+  <a href="#s1">1. 회사 개요</a>
+  <a href="#s2">2. 주가 흐름</a>
+  <a href="#s3">3. 세그먼트 매출 추이</a>
+  <a href="#s4">4. 세그먼트 구조 및 제품</a>
+  <a href="#s5">5. 매출 & EBITDA Margin</a>
+  <a href="#s6">6. 세그먼트별 실적 테이블</a>
+  <a href="#s7">7. 핵심 변동 요인</a>
+  <a href="#s8">8. 컨퍼런스콜 트래킹</a>
+  <a href="#s9">9. Q1'26 컨콜 심층 정리</a>
+  <a href="#s10">10. 강세/약세 시나리오</a>
+  <a href="#s11">11. Worth Watching</a>
+  <a href="#s12">12. 데이터 출처</a>
+</nav>
+
+<div class="container">
+
+<!-- ===== 1. 회사 개요 ===== -->
+<section id="s1">
+  <div class="section-title"><span class="section-num">01</span>회사 개요</div>
+  <div class="overview-grid">
+
+    <!-- 기본정보 -->
+    <div class="ov-box">
+      <h4>기본 정보</h4>
+      <div class="ov-row"><span class="ov-label">설립연도</span><span class="ov-val">1999</span></div>
+      <div class="ov-row"><span class="ov-label">본사</span><span class="ov-val">Tempe, AZ</span></div>
+      <div class="ov-row"><span class="ov-label">CEO</span><span class="ov-val">Mark Widmar</span></div>
+      <div class="ov-row"><span class="ov-label">임직원</span><span class="ov-val">~22,000명</span></div>
+      <div class="ov-row"><span class="ov-label">회계기준</span><span class="ov-val">U.S. GAAP / CY</span></div>
+      <div class="ov-row"><span class="ov-label">섹터</span><span class="ov-val">청정에너지 / 제조</span></div>
+    </div>
+
+    <!-- 시장정보 -->
+    <div class="ov-box">
+      <h4>시장 정보 (2026.05.03 기준)</h4>
+      <div class="ov-row"><span class="ov-label">거래소</span><span class="ov-val">NASDAQ: FSLR</span></div>
+      <div class="ov-row"><span class="ov-label">주가</span><span class="ov-val">~$210 (추정)</span></div>
+      <div style="margin: 10px 0 4px;">
+        <div class="ov-label">시가총액</div>
+        <div class="highlight-val">~$22.5B</div>
+        <div class="sub-val">≈ KRW 30.8조 (환율 1,369원/$ 적용)</div>
+      </div>
+      <div class="ov-row"><span class="ov-label">발행주식수</span><span class="ov-val">~107M주</span></div>
+      <div class="ov-row"><span class="ov-label">S&P 500</span><span class="ov-val">편입</span></div>
+    </div>
+
+    <!-- 제조/운영 -->
+    <div class="ov-box">
+      <h4>제조 운영</h4>
+      <div class="ov-row"><span class="ov-label">기술</span><span class="ov-val">CdTe 박막 PV</span></div>
+      <div class="ov-row"><span class="ov-label">누적판매</span><span class="ov-val">93 GW+</span></div>
+      <div class="ov-row"><span class="ov-label">미국 공장</span><span class="ov-val">OH×3, AL, LA, SC(건설중)</span></div>
+      <div class="ov-row"><span class="ov-label">해외 공장</span><span class="ov-val">말레이시아, 베트남, 인도</span></div>
+      <div class="ov-row"><span class="ov-label">미국 Capa.</span><span class="ov-val">→ 17.1 GW by '27</span></div>
+      <div class="ov-row"><span class="ov-label">생산방식</span><span class="ov-val">수직통합, 연속공정</span></div>
+    </div>
+
+    <!-- 투자포인트 -->
+    <div class="ov-box">
+      <h4>핵심 투자 포인트</h4>
+      <div class="invest-point">45X 제조세액공제: '26E ~$2.1~2.2B — 수익의 핵심 엔진</div>
+      <div class="invest-point">c-Si 전 방위 무역장벽 (AD/CVD + 232)으로 미국 내 독점적 경쟁우위</div>
+      <div class="invest-point">CuRe 기술 전환 — 에너지 수율 최대 8%↑, 백로그 $0.6B 업사이드</div>
+      <div class="invest-point">47.9 GW / $14.4B 수주잔고 (2030년까지) — 매출 가시성 최고</div>
+      <div class="invest-point">순현금 $2.0B, D/E 0.04x — 철옹성 재무구조</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== 2. 주가 흐름 ===== -->
+<section id="s2">
+  <div class="section-title"><span class="section-num">02</span>주가 흐름 — TradingView 주봉 캔들</div>
+  <div class="tv-wrap">
+    <iframe
+      src="https://www.tradingview.com/widgetembed/?symbol=NASDAQ%3AFSLR&interval=W&style=1&theme=light&locale=kr&toolbar_bg=f1f3f6&hide_top_toolbar=0&save_image=0&studies=[]"
+      width="100%" height="420" frameborder="0" allowtransparency="true" scrolling="no">
+    </iframe>
+  </div>
+
+  <div class="section-title" style="font-size:13px; margin-top:16px;">주요 이벤트 연표</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:100px">날짜</th>
+        <th>이벤트</th>
+        <th style="width:80px">영향</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>2022-08</td><td>IRA(인플레이션감축법) 서명 — Section 45X 제조세액공제 신설</td><td><span class="badge badge-up">강 ↑</span></td></tr>
+      <tr><td>2023-02</td><td>Series 7 모듈 오하이오 3공장 양산 시작</td><td><span class="badge badge-up">↑</span></td></tr>
+      <tr><td>2023-Q4</td><td>인도 공장(3.2 GW) 가동 시작</td><td><span class="badge badge-up">↑</span></td></tr>
+      <tr><td>2024</td><td>앨라배마 공장(Series 7) 양산; 루이지애나 공장 착공</td><td><span class="badge badge-up">↑</span></td></tr>
+      <tr><td>2025-07</td><td>OBBBA(One Big Beautiful Bill Act) 서명 — 45X 위상 유지, ITC/PTC 일부 규제</td><td><span class="badge badge-neu">중립</span></td></tr>
+      <tr><td>2025-Q4</td><td>루이지애나 공장 Series 7 양산 개시</td><td><span class="badge badge-up">↑</span></td></tr>
+      <tr><td>2026-03-21</td><td>CuRe(구리대체) 최초 완성 모듈 출하 — Perrysburg, OH</td><td><span class="badge badge-up">강 ↑</span></td></tr>
+      <tr><td>2026-04-30</td><td>Q1'26 실적 발표: 매출 $1.04B 신기록, Adj.EBITDA +37% YoY</td><td><span class="badge badge-up">강 ↑</span></td></tr>
+      <tr><td>2026-Q2E</td><td>Section 232 폴리실리콘 결정 예정 — c-Si 수입 관세/쿼터 가능성</td><td><span class="badge badge-warn">촉매 대기</span></td></tr>
+      <tr><td>2026-H2E</td><td>사우스캐롤라이나(Gaffney) 6번째 미국 공장 가동</td><td><span class="badge badge-up">↑</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===== 3. 세그먼트별 매출 추이 (36분기 누적 막대) ===== -->
+<section id="s3">
+  <div class="section-title"><span class="section-num">03</span>세그먼트별 매출 추이 — 36분기 누적 막대</div>
+  <p style="font-size:11px; color:var(--text3); margin-bottom:12px;">※ First Solar는 단일 세그먼트(Modules) 보고. 지역(미국/인도/기타)과 45X 세액공제를 주요 구성으로 구분. 2018~2023 연간 역산 추정, 2024~Q1'26 실제 공시 기반.</p>
+  <div class="chart-wrap">
+    <div class="chart-title">분기별 지역 매출 구성 ($M) — 레전드 클릭으로 토글</div>
+    <canvas id="segChart" height="220"></canvas>
+  </div>
+</section>
+
+<!-- ===== 4. 세그먼트 구조 및 제품 ===== -->
+<section id="s4">
+  <div class="section-title"><span class="section-num">04</span>세그먼트 구조 및 제품</div>
+  <div class="seg-cards">
+    <div class="seg-card">
+      <h4>🇺🇸 미국 Modules — 핵심 수익원</h4>
+      <div class="seg-desc">
+        CdTe 박막 PV 모듈 설계·제조·판매. 오하이오(3개소)·앨라배마·루이지애나 등 5개 미국 공장에서 생산하며, 2026년 사우스캐롤라이나(Gaffney, 3.5 GW) 6번째 공장 가동 예정. 2025년 기준 전체 매출의 96%를 차지하는 압도적 핵심 세그먼트로, 45X 세액공제($0.07/W)가 직접 매출에 포함되어 수익성을 대폭 끌어올린다. Series 7(532 W avg.) 위주로 전환 중이며, 2026년부터 CuRe(구리대체) 기술이 순차 적용돼 에너지 수율 최대 8% 추가 향상과 백로그 기반 기술 조정가(up to $0.6B) 실현 가능성이 부각된다.
+      </div>
+    </div>
+    <div class="seg-card">
+      <h4>🇮🇳 인도 Modules — 고성장 제2축</h4>
+      <div class="seg-desc">
+        인도 첸나이 인근 라자스탄 공장(3.2 GW 설치 Capa.)에서 Series 7 모듈 생산. 인도 정부의 2030년 500 GW 재생에너지 목표와 국내 생산 우대정책(DCR)에 힘입어 수요가 빠르게 확대 중. Q1'26에 약 1.0 GW 판매(ASP ~$20 c/W)로 분기 기록 경신. 미국 대비 ASP는 낮지만, 해당 시장 내 c-Si 경쟁품 대비 기후 적합성(고온·고습 우위)을 내세워 프리미엄 포지셔닝. 2025년 말레이시아·베트남에서 Series 6 생산을 줄이고 인도 물량을 늘리는 방향으로 포트폴리오 재편.
+      </div>
+    </div>
+  </div>
+
+  <!-- 제품 테이블 -->
+  <div class="section-title" style="font-size:13px;">제품 라인업</div>
+  <div style="background:var(--surface); border:1px solid var(--border); border-radius:6px; overflow:hidden;">
+  <table>
+    <thead>
+      <tr>
+        <th>모듈</th>
+        <th>크기</th>
+        <th>평균 출력</th>
+        <th>기술 특징</th>
+        <th>주요 시장</th>
+        <th>상태</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Series 7</strong></td>
+        <td>4ft × 7ft</td>
+        <td>532 W (avg)</td>
+        <td>대형 폼팩터, 강철 후면 레일 → 시공시간 단축</td>
+        <td>미국·인도</td>
+        <td><span class="badge badge-up">메인</span></td>
+      </tr>
+      <tr>
+        <td><strong>Series 7 CuRe</strong></td>
+        <td>4ft × 7ft</td>
+        <td>532 W+</td>
+        <td>구리 후면 전극 대체 → 수율 +최대 8%, 30년 보증</td>
+        <td>미국 (2026~)</td>
+        <td><span class="badge badge-warn">롤아웃 중</span></td>
+      </tr>
+      <tr>
+        <td><strong>Series 6 Plus</strong></td>
+        <td>4ft × 6ft</td>
+        <td>464 W (avg)</td>
+        <td>구형 폼팩터, 일부 시장에서 유지</td>
+        <td>일부 해외</td>
+        <td><span class="badge badge-neu">축소</span></td>
+      </tr>
+      <tr>
+        <td><strong>Perovskite (R&D)</strong></td>
+        <td>—</td>
+        <td>—</td>
+        <td>탄뎀 셀 차세대 기술, 오하이오 전용 R&D 라인 운영</td>
+        <td>미래</td>
+        <td><span class="badge badge-neu">개발 중</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div style="margin-top:20px;">
+  <div class="section-title" style="font-size:13px;">지역별 매출 비중 — Q1'26 vs FY'25</div>
+  <div style="background:var(--surface); border:1px solid var(--border); border-radius:6px; overflow:hidden;">
+  <table>
+    <thead>
+      <tr>
+        <th>지역 세그먼트</th>
+        <th>Q1'26 매출 ($M)</th>
+        <th>Q1'26 비중 (%)</th>
+        <th>Q1'25 매출 ($M)</th>
+        <th>FY'25 비중 (%)</th>
+        <th>YoY 변화</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>🇺🇸 미국</strong></td>
+        <td>~730</td>
+        <td><strong>70%</strong></td>
+        <td>~810</td>
+        <td>~96%</td>
+        <td><span class="badge badge-down">MIX ↓ (인도↑)</span></td>
+      </tr>
+      <tr>
+        <td><strong>🇮🇳 인도</strong></td>
+        <td>~280</td>
+        <td><strong>27%</strong></td>
+        <td>~20</td>
+        <td>~2%</td>
+        <td><span class="badge badge-up">급성장 ↑</span></td>
+      </tr>
+      <tr>
+        <td><strong>기타</strong></td>
+        <td>~34</td>
+        <td><strong>3%</strong></td>
+        <td>~15</td>
+        <td>~2%</td>
+        <td><span class="badge badge-neu">소량</span></td>
+      </tr>
+      <tr style="background:var(--surface2); font-weight:600;">
+        <td>합계</td>
+        <td>$1,044M</td>
+        <td>100%</td>
+        <td>$845M</td>
+        <td>100%</td>
+        <td><span class="badge badge-up">+24% YoY</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+</section>
+
+<!-- ===== 5. 매출 & Adj.EBITDA Margin 추이 ===== -->
+<section id="s5">
+  <div class="section-title"><span class="section-num">05</span>매출 & Adj. EBITDA Margin 추이 — 이중축 차트</div>
+  <div class="chart-wrap">
+    <div class="chart-title">분기별 매출($M) 막대 + Adj. EBITDA Margin(%) 선 (이중축)</div>
+    <canvas id="revenueChart" height="220"></canvas>
+  </div>
+
+  <!-- 연간 요약 -->
+  <div class="section-title" style="font-size:13px; margin-top:16px;">연간 요약</div>
+  <div style="background:var(--surface); border:1px solid var(--border); border-radius:6px; overflow:hidden; margin-bottom:16px;">
+  <table>
+    <thead>
+      <tr>
+        <th>연도</th>
+        <th>매출 ($M)</th>
+        <th>Gross Margin</th>
+        <th>Adj. EBITDA ($M)</th>
+        <th>Adj. EBITDA Margin</th>
+        <th>순이익 ($M)</th>
+        <th>45X 세액공제</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>FY 2022</td><td>$2,619</td><td>12%</td><td>N/A</td><td>—</td><td>-$44</td><td>미적용</td></tr>
+      <tr><td>FY 2023</td><td>$3,319</td><td>27%</td><td>~$780</td><td>~23%</td><td>$831</td><td>시작</td></tr>
+      <tr><td>FY 2024</td><td>$4,206</td><td>38%</td><td>~$1,600</td><td>~38%</td><td>$1,285</td><td>~$1.3B</td></tr>
+      <tr><td>FY 2025 (추정)</td><td>~$4,500</td><td>~40%</td><td>~$1,800</td><td>~40%</td><td>~$1,100</td><td>~$1.7B</td></tr>
+      <tr style="background:#e8f5ec;">
+        <td><strong>FY 2026E (가이던스)</strong></td>
+        <td><strong>$4.9B–$5.2B</strong></td>
+        <td><strong>~49%</strong></td>
+        <td><strong>$2.6B–$2.8B</strong></td>
+        <td><strong>~53%</strong></td>
+        <td>—</td>
+        <td><strong>$2.10B–$2.19B</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- 분기별 실적 테이블 -->
+  <div class="section-title" style="font-size:13px;">분기별 실적 (최근 8분기)</div>
+  <div style="background:var(--surface); border:1px solid var(--border); border-radius:6px; overflow:hidden;">
+  <table>
+    <thead>
+      <tr>
+        <th>분기</th>
+        <th>매출 ($M)</th>
+        <th>YoY</th>
+        <th>Gross Margin</th>
+        <th>Net Income ($M)</th>
+        <th>Adj. EBITDA ($M)</th>
+        <th>Adj. EBITDA Margin</th>
+        <th>45X ($M)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Q2'24</td><td>$1,013</td><td>+25%</td><td>36%</td><td>$349</td><td>~$390</td><td>~38%</td><td>~$300</td></tr>
+      <tr><td>Q3'24</td><td>$887</td><td>+10%</td><td>40%</td><td>$261</td><td>~$360</td><td>~40%</td><td>~$290</td></tr>
+      <tr><td>Q4'24</td><td>$1,512</td><td>+17%</td><td>44%</td><td>$530</td><td>~$700</td><td>~46%</td><td>~$490</td></tr>
+      <tr><td>Q1'25</td><td>$845</td><td>+3%</td><td>41%</td><td>$210</td><td>$379</td><td>45%</td><td>$300</td></tr>
+      <tr><td>Q2'25 (추정)</td><td>~$1,100</td><td>~+8%</td><td>~42%</td><td>~$280</td><td>~$460</td><td>~42%</td><td>~$370</td></tr>
+      <tr><td>Q3'25 (추정)</td><td>~$1,050</td><td>~+18%</td><td>~43%</td><td>~$260</td><td>~$440</td><td>~42%</td><td>~$360</td></tr>
+      <tr><td>Q4'25 (추정)</td><td>~$1,500</td><td>~-1%</td><td>~44%</td><td>~$470</td><td>~$690</td><td>~46%</td><td>~$500</td></tr>
+      <tr style="background:#e8f5ec; font-weight:600;">
+        <td>Q1'26 ✅</td>
+        <td>$1,044</td>
+        <td>+24%</td>
+        <td>47%</td>
+        <td>$347</td>
+        <td>$520</td>
+        <td>50%</td>
+        <td>$418</td>
+      </tr>
+      <tr style="background:#fff3cd;">
+        <td>Q2'26E (가이던스)</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td>$400–$500M</td>
+        <td>—</td>
+        <td>$330–$400M</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ===== 6. 세그먼트별 실적 테이블 (16분기) ===== -->
+<section id="s6">
+  <div class="section-title"><span class="section-num">06</span>세그먼트별 실적 테이블 — 최근 16분기</div>
+  <p style="font-size:11px; color:var(--text3); margin-bottom:12px;">※ First Solar는 단일 Modules 세그먼트 보고사. 지역별 구분은 경영진 코멘트/추정치 기반. GM% = Gross Margin. 2022~2024 일부 분기는 연간역산 추정.</p>
+  <div style="overflow-x:auto;">
+  <table class="two-header">
+    <thead>
+      <tr>
+        <th class="left" rowspan="2">분기</th>
+        <th colspan="3" style="background:#e8f5ec; color:var(--accent);">🇺🇸 미국 Modules</th>
+        <th colspan="3" style="background:#e8eaf5; color:var(--blue);">🇮🇳 인도 Modules</th>
+        <th colspan="2" style="background:var(--surface2);">전체</th>
+      </tr>
+      <tr>
+        <th style="background:#e8f5ec; color:var(--accent);">매출($M)</th>
+        <th style="background:#e8f5ec; color:var(--accent);">비중%</th>
+        <th style="background:#e8f5ec; color:var(--accent);">GM%</th>
+        <th style="background:#e8eaf5; color:var(--blue);">매출($M)</th>
+        <th style="background:#e8eaf5; color:var(--blue);">비중%</th>
+        <th style="background:#e8eaf5; color:var(--blue);">GM%</th>
+        <th>총매출($M)</th>
+        <th>GM%</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Q2'22</td><td>~380</td><td>85%</td><td>~5%</td><td>~0</td><td>0%</td><td>—</td><td>~450</td><td>8%</td></tr>
+      <tr><td>Q3'22</td><td>~450</td><td>88%</td><td>~6%</td><td>~0</td><td>0%</td><td>—</td><td>~510</td><td>10%</td></tr>
+      <tr><td>Q4'22</td><td>~780</td><td>90%</td><td>~14%</td><td>~0</td><td>0%</td><td>—</td><td>~870</td><td>14%</td></tr>
+      <tr><td>Q1'23</td><td>~450</td><td>92%</td><td>~20%</td><td>~0</td><td>0%</td><td>—</td><td>~490</td><td>18%</td></tr>
+      <tr><td>Q2'23</td><td>~680</td><td>91%</td><td>~25%</td><td>~10</td><td>1%</td><td>—</td><td>~750</td><td>24%</td></tr>
+      <tr><td>Q3'23</td><td>~780</td><td>90%</td><td>~28%</td><td>~20</td><td>2%</td><td>—</td><td>~870</td><td>27%</td></tr>
+      <tr><td>Q4'23</td><td>~1,000</td><td>90%</td><td>~32%</td><td>~30</td><td>3%</td><td>—</td><td>~1,100</td><td>30%</td></tr>
+      <tr><td>Q1'24</td><td>~770</td><td>94%</td><td>~34%</td><td>~20</td><td>2%</td><td>—</td><td>~794</td><td>32%</td></tr>
+      <tr><td>Q2'24</td><td>~960</td><td>95%</td><td>~36%</td><td>~20</td><td>2%</td><td>—</td><td>$1,013</td><td>36%</td></tr>
+      <tr><td>Q3'24</td><td>~835</td><td>94%</td><td>~39%</td><td>~20</td><td>2%</td><td>—</td><td>$887</td><td>40%</td></tr>
+      <tr><td>Q4'24</td><td>~1,430</td><td>95%</td><td>~44%</td><td>~30</td><td>2%</td><td>—</td><td>$1,512</td><td>44%</td></tr>
+      <tr><td>Q1'25</td><td>~810</td><td>96%</td><td>~43%</td><td>~20</td><td>2%</td><td>—</td><td>$845</td><td>41%</td></tr>
+      <tr><td>Q2'25 (추정)</td><td>~1,040</td><td>95%</td><td>~43%</td><td>~40</td><td>4%</td><td>—</td><td>~$1,100</td><td>42%</td></tr>
+      <tr><td>Q3'25 (추정)</td><td>~980</td><td>93%</td><td>~43%</td><td>~60</td><td>6%</td><td>—</td><td>~$1,050</td><td>43%</td></tr>
+      <tr><td>Q4'25 (추정)</td><td>~1,340</td><td>89%</td><td>~44%</td><td>~130</td><td>9%</td><td>—</td><td>~$1,500</td><td>44%</td></tr>
+      <tr style="background:#e8f5ec; font-weight:600;">
+        <td>Q1'26 ✅</td>
+        <td>~730</td>
+        <td>70%</td>
+        <td>~55%</td>
+        <td>~280</td>
+        <td>27%</td>
+        <td>~30%</td>
+        <td>$1,044</td>
+        <td>47%</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ===== 7. 핵심 변동 요인 ===== -->
+<section id="s7">
+  <div class="section-title"><span class="section-num">07</span>핵심 변동 요인</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+
+    <div style="background:var(--surface); border:1px solid var(--border); border-radius:6px; overflow:hidden;">
+      <div style="background:var(--accent); color:white; padding:8px 14px; font-size:12px; font-weight:600;">외부 변수</div>
+      <table>
+        <thead><tr><th>변수</th><th>방향</th><th>내용</th></tr></thead>
+        <tbody>
+          <tr><td>Section 45X 세액공제</td><td><span class="badge badge-up">↑ 강 호재</span></td><td>$0.07/W, '32까지 유지 → '26E $2.1~2.2B 확보</td></tr>
+          <tr><td>Section 232 (폴리실리콘)</td><td><span class="badge badge-warn">결정 대기</span></td><td>Q2'26 결정 예정; c-Si 수입 전면 규제 시 FSLR 독점 강화</td></tr>
+          <tr><td>AD/CVD (동남아)</td><td><span class="badge badge-up">↑ 호재</span></td><td>캄보디아·말레이시아·태국·베트남 최종판정. 라오스·인도·인도네시아 예비</td></tr>
+          <tr><td>UFLPA / FEOC 규제</td><td><span class="badge badge-up">↑ 호재</span></td><td>중국산 공급망 배제 → FSLR 직접 수혜, 경쟁사 비용↑</td></tr>
+          <tr><td>Section 122 관세 (15%)</td><td><span class="badge badge-down">↓ 비용</span></td><td>'26E 상반기 150일 적용, 원가 $155~175M 추가</td></tr>
+          <tr><td>데이터센터 AI 전력 수요</td><td><span class="badge badge-up">↑ 강 호재</span></td><td>미국 전력 수요 연 3.5% 성장 전망; 유틸리티 규모 태양광 최적</td></tr>
+          <tr><td>인도 재생에너지 목표</td><td><span class="badge badge-up">↑ 호재</span></td><td>2030년 500 GW 목표, FSLR 인도 공장 3.2 GW 직접 수혜</td></tr>
+          <tr><td>글로벌 금리 / 환율</td><td><span class="badge badge-down">↓ 불확실</span></td><td>금리 하락 시 태양광 프로젝트 조달비용↓; 인도 루피 약세 리스크</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="background:var(--surface); border:1px solid var(--border); border-radius:6px; overflow:hidden;">
+      <div style="background:var(--blue); color:white; padding:8px 14px; font-size:12px; font-weight:600;">내부 변수</div>
+      <table>
+        <thead><tr><th>변수</th><th>방향</th><th>내용</th></tr></thead>
+        <tbody>
+          <tr><td>CuRe 롤아웃 속도</td><td><span class="badge badge-up">↑ 업사이드</span></td><td>'28 상반기 전 플릿 완료 계획; 기술조정가 최대 $0.6B</td></tr>
+          <tr><td>Gaffney SC 공장 가동</td><td><span class="badge badge-up">↑ 성장</span></td><td>2026 H2 가동, 미국 총 17.1 GW; 생산개시비용 $110~120M 일시 부담</td></tr>
+          <tr><td>미국 공장 가동률</td><td><span class="badge badge-up">↑ 호조</span></td><td>Q1'26 미국 96%, 인도 93% — 거의 풀가동</td></tr>
+          <tr><td>물류 / 창고 비용</td><td><span class="badge badge-up">↑ 개선</span></td><td>Q1'26 창고비 -$22M QoQ; 물류 정상화로 마진 기여</td></tr>
+          <tr><td>SBC(주식보상비용)</td><td><span class="badge badge-down">↓ 비용</span></td><td>분기 ~$7M, Adj.EBITDA에서 제외되나 GAAP 희석</td></tr>
+          <tr><td>R&D 지출 (페로브스카이트)</td><td><span class="badge badge-down">↓ 단기비용</span></td><td>Q1'26 R&D $67M (+$15M YoY), '26E ~$100M — 장기 기술 모멘텀</td></tr>
+          <tr><td>인도 ASP 믹스 영향</td><td><span class="badge badge-down">↓ ASP 희석</span></td><td>인도 ASP ~$20 c/W vs 미국 ~$35 c/W → 믹스 불리, 그러나 물량↑</td></tr>
+          <tr><td>수주잔고 실행력</td><td><span class="badge badge-up">↑ 가시성</span></td><td>47.9 GW / $14.4B — 미국 물량 2028년까지 거의 확약</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== 8. 컨퍼런스콜 트래킹 (연도×분기 테이블) ===== -->
+<section id="s8">
+  <div class="section-title"><span class="section-num">08</span>컨퍼런스콜 트래킹 — 12분기 (연도별 행, 분기별 열)</div>
+  <div class="concall-outer">
+  <table class="concall-table">
+    <thead>
+      <tr>
+        <th style="width:60px">연도</th>
+        <th>Q1</th>
+        <th>Q2</th>
+        <th>Q3</th>
+        <th>Q4</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="concall-year">2023</td>
+        <td>
+          <strong>매출:</strong> $548M<br>
+          <strong>GM:</strong> 18%<br>
+          <strong>핵심메시지:</strong> 45X 효과 첫 분기 반영. Series 7 오하이오 3공장 양산 개시. 가이던스 유지<br>
+          <strong>가이던스:</strong> FY'23 $3.2B~$3.5B
+        </td>
+        <td>
+          <strong>매출:</strong> $811M<br>
+          <strong>GM:</strong> 24%<br>
+          <strong>핵심메시지:</strong> 45X 세액공제 풀 분기 반영으로 마진 급등. 인도 공장 착공 발표<br>
+          <strong>가이던스:</strong> FY'23 상향 $3.3B~$3.5B
+        </td>
+        <td>
+          <strong>매출:</strong> $801M<br>
+          <strong>GM:</strong> 27%<br>
+          <strong>핵심메시지:</strong> 인도 공장 가동 시작. 글로벌 수주잔고 80 GW+ 달성. 지속 마진 개선<br>
+          <strong>가이던스:</strong> FY'23 상향 $3.3B~$3.6B
+        </td>
+        <td>
+          <strong>매출:</strong> $1,159M<br>
+          <strong>GM:</strong> 30%<br>
+          <strong>핵심메시지:</strong> Q4 대규모 출하로 연간 신기록. 앨라배마 공장 착공. 2024 가이던스 발표<br>
+          <strong>가이던스:</strong> FY'24 $4.4B~$4.6B
+        </td>
+      </tr>
+      <tr>
+        <td class="concall-year">2024</td>
+        <td>
+          <strong>매출:</strong> $794M<br>
+          <strong>GM:</strong> 32%<br>
+          <strong>핵심메시지:</strong> 마진 개선 가속. 미국 유틸리티·하이퍼스케일러 수요 강조. AL 공장 첫 생산<br>
+          <strong>가이던스:</strong> FY'24 $4.4B~$4.6B 유지
+        </td>
+        <td>
+          <strong>매출:</strong> $1,013M<br>
+          <strong>GM:</strong> 36%<br>
+          <strong>핵심메시지:</strong> 첫 10억 달러 분기. 루이지애나 공장 착공. 수주잔고 $14B 돌파<br>
+          <strong>가이던스:</strong> FY'24 소폭 하향 $4.1B~$4.3B (비용 증가 반영)
+        </td>
+        <td>
+          <strong>매출:</strong> $887M<br>
+          <strong>GM:</strong> 40%<br>
+          <strong>핵심메시지:</strong> 마진 40% 달성. IRA 보호 지속 강조. CuRe 프로그램 진척 공유<br>
+          <strong>가이던스:</strong> FY'24 $4.1B~$4.3B 유지
+        </td>
+        <td>
+          <strong>매출:</strong> $1,512M<br>
+          <strong>GM:</strong> 44%<br>
+          <strong>핵심메시지:</strong> 역대 최대 분기. LA 공장 양산 개시. CuRe '26년 시작 공식화<br>
+          <strong>가이던스:</strong> FY'25 $5.3B~$5.8B (이후 하향)
+        </td>
+      </tr>
+      <tr>
+        <td class="concall-year">2025</td>
+        <td>
+          <strong>매출:</strong> $845M<br>
+          <strong>GM:</strong> 41%<br>
+          <strong>핵심메시지:</strong> 미국 수요 견조. 인도 물량 소량. 관세 불확실성에도 가이던스 유지<br>
+          <strong>실제 vs 가이던스:</strong> 가이던스 하단 부합
+        </td>
+        <td>
+          <strong>매출:</strong> ~$1,100M (추정)<br>
+          <strong>GM:</strong> ~42%<br>
+          <strong>핵심메시지:</strong> 인도 물량 증가 시작. 232조 결정 지연 → 북미 북킹 신중 유지<br>
+          <strong>실제 vs 가이던스:</strong> 부합 추정
+        </td>
+        <td>
+          <strong>매출:</strong> ~$1,050M (추정)<br>
+          <strong>GM:</strong> ~43%<br>
+          <strong>핵심메시지:</strong> SC 공장 건설 진척. 인도 수요 급증. 45X 크레딧 판매 구조 설명<br>
+          <strong>실제 vs 가이던스:</strong> 부합 추정
+        </td>
+        <td>
+          <strong>매출:</strong> ~$1,500M (추정)<br>
+          <strong>GM:</strong> ~44%<br>
+          <strong>핵심메시지:</strong> '26 가이던스 $4.9B~$5.2B 첫 제시. CuRe '26 H1 시작 예고. 232 결정 촉각<br>
+          <strong>실제 vs 가이던스:</strong> 강한 연간 마무리
+        </td>
+      </tr>
+      <tr>
+        <td class="concall-year">2026</td>
+        <td style="background:#e8f5ec;">
+          <strong>매출:</strong> $1,044M ✅ 기록<br>
+          <strong>GM:</strong> 47% (+6pp YoY)<br>
+          <strong>핵심메시지:</strong> CuRe 첫 출하(3/21). 인도 1.0 GW 분기 기록. SC 장비설치 Q2 진입. 가이던스 재확인<br>
+          <strong>실제 vs 가이던스:</strong> Adj.EBITDA $520M → 프리뷰 상단 초과
+        </td>
+        <td style="color:var(--text3); font-style:italic;">
+          예정: ~2026년 7월<br>
+          주목: 232 결과, SC 가동 타임라인, CuRe 플릿 진행률, 하반기 물량 cadence
+        </td>
+        <td style="color:var(--text3); font-style:italic;">미발표</td>
+        <td style="color:var(--text3); font-style:italic;">미발표</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ===== 9. Q1'26 컨콜 심층 정리 ===== -->
+<section id="s9">
+  <div class="section-title"><span class="section-num">09</span>Q1 2026 컨퍼런스콜 심층 정리 (2026.04.30)</div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+    <div class="guidance-box">
+      <h4>📊 Q1'26 실적 하이라이트</h4>
+      <table>
+        <tbody>
+          <tr><td>매출</td><td><strong>$1,044M</strong></td><td><span class="badge badge-up">+24% YoY / 분기 기록</span></td></tr>
+          <tr><td>Gross Margin</td><td><strong>47%</strong></td><td><span class="badge badge-up">+6pp YoY</span></td></tr>
+          <tr><td>Net Income</td><td><strong>$347M</strong></td><td><span class="badge badge-up">+65% YoY</span></td></tr>
+          <tr><td>Adj. EBITDA</td><td><strong>$520M</strong></td><td><span class="badge badge-up">+37% YoY / 50% margin</span></td></tr>
+          <tr><td>EPS (diluted)</td><td><strong>$3.22</strong></td><td><span class="badge badge-up">vs $1.95 Q1'25</span></td></tr>
+          <tr><td>45X 세액공제</td><td><strong>$418M</strong></td><td><span class="badge badge-up">+$118M YoY</span></td></tr>
+          <tr><td>판매량</td><td><strong>3.8 GW</strong></td><td><span class="badge badge-up">분기 기록</span></td></tr>
+          <tr><td>순현금</td><td><strong>$2.0B</strong></td><td><span class="badge badge-neu">$2.4B 현금</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="guidance-box">
+      <h4>📋 핵심 메시지 5선</h4>
+      <div class="invest-point" style="margin-bottom:10px;"><strong>① CuRe 기술 전환 개시:</strong> 3월 21일 Perrysburg에서 최초 완성 모듈 출하. '28 H1까지 전 플릿 적용 계획. 23.4 GW 백로그에 기술조정가(업사이드 최대 $0.6B) 연결.</div>
+      <div class="invest-point" style="margin-bottom:10px;"><strong>② 인도 수요 폭발:</strong> Q1'26 ~1.0 GW 판매로 역대 분기 기록. 유틸리티 + 분산형 수요 동시 성장.</div>
+      <div class="invest-point" style="margin-bottom:10px;"><strong>③ 미국 정책 tailwind 극대화:</strong> 45X 온전히 유지, AD/CVD 최종판정, FEOC 규제 모두 c-Si 수입 압박 → FSLR 독점 수혜.</div>
+      <div class="invest-point" style="margin-bottom:10px;"><strong>④ 232 결정 대기 중 북킹 규율:</strong> 폴리실리콘 232 결정 Q2 예정. 결과 전까지 미국 북킹 신중. 이후 대규모 계약 기대.</div>
+      <div class="invest-point"><strong>⑤ 재무 요새화:</strong> $1.5B 신규 리볼버(무담보, 미인출), D/E 0.04x. 경기 불확실성 속 최상위급 재무 유연성.</div>
+    </div>
+  </div>
+
+  <div class="guidance-box">
+    <h4>📈 FY 2026 가이던스 — 재확인 (2026.04.30 기준, 2026.02.24 대비 무변경)</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>항목</th>
+          <th>FY'26 가이던스</th>
+          <th>FY'25 실적 (추정)</th>
+          <th>YoY 변화</th>
+          <th>비고</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>판매량</td><td>17.0~18.2 GW</td><td>~16 GW</td><td><span class="badge badge-up">+6~14%</span></td><td>미국 12.6~13.1 GW</td></tr>
+        <tr><td>순매출</td><td>$4.9B~$5.2B</td><td>~$4.5B</td><td><span class="badge badge-up">+9~16%</span></td><td>CY 기준</td></tr>
+        <tr><td>Gross Profit</td><td>$2.4B~$2.6B</td><td>~$1.9B</td><td><span class="badge badge-up">+26~37%</span></td><td>GM% ~49%</td></tr>
+        <tr><td>Adj. EBITDA</td><td>$2.6B~$2.8B</td><td>~$1.8B</td><td><span class="badge badge-up">+44~56%</span></td><td>Non-GAAP</td></tr>
+        <tr><td>45X 세액공제</td><td>$2.10B~$2.19B</td><td>~$1.7B</td><td><span class="badge badge-up">+24~29%</span></td><td>매출 내 포함</td></tr>
+        <tr><td>CapEx</td><td>$0.8B~$1.0B</td><td>~$1.0B</td><td><span class="badge badge-neu">유사</span></td><td>SC 공장 + CuRe</td></tr>
+        <tr><td>순현금</td><td>$1.7B~$2.3B</td><td>~$2.4B</td><td><span class="badge badge-neu">—</span></td><td>CapEx 집행 후</td></tr>
+        <tr><td>총 관세 영향</td><td>$155M~$175M</td><td>추정</td><td><span class="badge badge-down">비용 증가</span></td><td>122조 15% 기반</td></tr>
+        <tr><td>Q2'26 Adj.EBITDA</td><td>$400M~$500M</td><td>—</td><td>—</td><td>45X $330~400M</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 10. 강세/약세 시나리오 ===== -->
+<section id="s10">
+  <div class="section-title"><span class="section-num">10</span>강세 / 약세 시나리오</div>
+  <div class="scenario-grid">
+    <div class="scenario-bull">
+      <div class="scenario-title">🟢 강세 시나리오 (Bull Case)</div>
+      <div class="scenario-item"><strong>Section 232 폴리실리콘 관세 발동:</strong> c-Si 수입 전면 차단 시 미국 내 사실상 독점. 북킹 폭발, ASP 추가 상승 가능.</div>
+      <div class="scenario-item"><strong>CuRe 기술조정가 실현:</strong> 23.4 GW × 기술 마일스톤 → 최대 $0.6B 추가 매출 '27~'28 인식.</div>
+      <div class="scenario-item"><strong>45X 크레딧 판매 개시:</strong> 2026 하반기 크레딧 판매 시 현금흐름 급등, 순현금 상단 초과.</div>
+      <div class="scenario-item"><strong>AI 데이터센터 수요 폭발:</strong> 미국 전력 수요 연 3.5%↑ → 계약 단가 추가 상승, 2029~2030 물량 조기 계약.</div>
+      <div class="scenario-item"><strong>인도 추가 수주:</strong> 인도 정부 강화된 DCR + 500 GW 목표 → FSLR 인도 공장 증설 논의 가능.</div>
+      <div class="scenario-item"><strong>목표 주가 관점:</strong> FY'26 Adj.EBITDA $2.8B × 15x = ~$295/주 이상 가능.</div>
+    </div>
+    <div class="scenario-bear">
+      <div class="scenario-title">🔴 약세 시나리오 (Bear Case)</div>
+      <div class="scenario-item"><strong>232 결정 지연 또는 불발:</strong> c-Si 관세 미부과 시 경쟁 압박 재등장, 미국 북킹 지연 지속.</div>
+      <div class="scenario-item"><strong>IRA 45X 일부 개정:</strong> 정치적 변수로 45X 조기 단계적 폐지 또는 이전 가능 요건 강화 시 수익성 직격.</div>
+      <div class="scenario-item"><strong>CuRe 롤아웃 지연:</strong> 기술 인증 실패 시 기술조정가 실현 불가, 백로그 계약 조건 위반 리스크.</div>
+      <div class="scenario-item"><strong>인도 ASP 하락:</strong> 인도 내 c-Si 가격 경쟁 심화 → $20 c/W 이하로 ASP 압박, 전체 Blended ASP 희석.</div>
+      <div class="scenario-item"><strong>SC 공장 가동 지연:</strong> 건설 지연 시 생산개시비용 장기화, 2026년 17 GW 가이던스 미달 가능성.</div>
+      <div class="scenario-item"><strong>목표 주가 관점:</strong> 45X 리스크 현실화 시 FY'26 EBITDA $2.0B × 10x = ~$140/주 수준.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 11. Worth Watching Events ===== -->
+<section id="s11">
+  <div class="section-title"><span class="section-num">11</span>Worth Watching Events</div>
+  <ul class="event-list">
+    <li class="event-item">
+      <span class="event-date">2026 Q2<br>(~6월)</span>
+      <span class="event-desc"><strong>Section 232 폴리실리콘 결정</strong> — Commerce부 국가안보 조사 결과. 관세/쿼터 발동 여부가 미국 북킹 재개의 핵심 트리거. 결과에 따라 주가 ±20% 가능.</span>
+      <span class="event-imp imp-high">HIGH</span>
+    </li>
+    <li class="event-item">
+      <span class="event-date">2026 Q2<br>(~7월)</span>
+      <span class="event-date"></span>
+      <span class="event-desc"><strong>Q2 2026 실적 발표</strong> — 가이던스 대비 실제: Adj.EBITDA $400~500M 달성 여부, 인도 믹스 추이, CuRe 롤아웃 진행률 확인.</span>
+      <span class="event-imp imp-high">HIGH</span>
+    </li>
+    <li class="event-item">
+      <span class="event-date">2026 H2<br>(하반기)</span>
+      <span class="event-desc"><strong>Gaffney SC 6번째 공장 가동</strong> — 3.5 GW 추가로 미국 총 17.1 GW 달성. 가동 시작 선언 시 '27 물량 급증 가시성 확보.</span>
+      <span class="event-imp imp-high">HIGH</span>
+    </li>
+    <li class="event-item">
+      <span class="event-date">2026 연중</span>
+      <span class="event-desc"><strong>CuRe 플릿 롤아웃 속도</strong> — 리드라인 완료 후 2~3번째 라인 전환 타임라인. 기술조정가 인식 시점과 직결. 분기마다 진행률 업데이트 주목.</span>
+      <span class="event-imp imp-high">HIGH</span>
+    </li>
+    <li class="event-item">
+      <span class="event-date">2026 Q2E</span>
+      <span class="event-desc"><strong>USITC Section 337 TOPCon IP 조사</strong> — First Solar가 신청한 c-Si TOPCon 특허 침해 수입 배제 명령 심리. 유리 결과 시 c-Si 경쟁 추가 압박.</span>
+      <span class="event-imp imp-mid">MID</span>
+    </li>
+    <li class="event-item">
+      <span class="event-date">2026 H2E</span>
+      <span class="event-desc"><strong>45X 세액공제 판매(Credit Transfer)</strong> — 2026년 크레딧 판매 미반영 가이던스 기준. 판매 결정 시 현금흐름 대폭 개선, 순현금 상단 초과 가능.</span>
+      <span class="event-imp imp-mid">MID</span>
+    </li>
+    <li class="event-item">
+      <span class="event-date">진행 중</span>
+      <span class="event-desc"><strong>인도 추가 수주 및 공장 증설 논의</strong> — 인도 Q1 기록(1.0 GW) 달성 후 3.2 GW 공장 풀가동 시 증설 계획 가능성. 인도 ASP 추이와 마진 방어 능력 확인 필요.</span>
+      <span class="event-imp imp-mid">MID</span>
+    </li>
+    <li class="event-item">
+      <span class="event-date">진행 중</span>
+      <span class="event-desc"><strong>AD/CVD 동남아 최종판정 후속 — 라오스·인도·인도네시아 예비판정</strong> — 예비에서 최종으로 확정 시 추가 공급망 배제 효과.</span>
+      <span class="event-imp imp-low">LOW</span>
+    </li>
+    <li class="event-item">
+      <span class="event-date">2027~2028</span>
+      <span class="event-desc"><strong>페로브스카이트 상용화 진전 여부</strong> — 오하이오 R&D 전용 라인 운영 중. 탠덤 모듈 상용화 시 효율 혁명적 개선 가능. '26E R&D ~$100M 투자 성과 확인.</span>
+      <span class="event-imp imp-low">LOW</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ===== 12. 데이터 출처 ===== -->
+<section id="s12">
+  <div class="section-title"><span class="section-num">12</span>데이터 출처</div>
+  <div class="source-box">
+    <div class="source-item">① <strong>First Solar Q1 2026 Earnings Presentation</strong> — April 30, 2026 (컨퍼런스콜 슬라이드, 공식 발표자료)</div>
+    <div class="source-item">② <strong>First Solar 10-K Annual Report (FY 2025)</strong> — SEC 제출 연간보고서 (사업 개요, 시장, 경쟁, 기술, 재무)</div>
+    <div class="source-item">③ 과거 분기 실적 데이터 일부: First Solar 과거 분기 Earnings Presentation 역산 추정 (2022~2025)</div>
+    <div class="source-item">④ 시가총액·주가: 시장 데이터 기준 (2026.05.03 추정), 환율 KRW 1,369/$ 적용</div>
+    <div class="source-item" style="color:var(--red); margin-top:8px;">⚠️ 본 리포트는 개인 분석 목적의 자료로, 투자 권유가 아닙니다. 일부 수치는 공시 기반 역산 추정치를 포함합니다.</div>
+  </div>
+</section>
+
+</div><!-- /container -->
+
+<script>
+// ===========================
+// 차트 공통 색상
+// ===========================
+const colors = {
+  us:    { bg: 'rgba(29, 92, 46, 0.75)',   border: '#1d5c2e' },
+  india: { bg: 'rgba(42, 74, 127, 0.75)',   border: '#2a4a7f' },
+  other: { bg: 'rgba(176, 140, 58, 0.75)',  border: '#b08c3a' },
+  ebitda:{ bg: 'rgba(255, 255, 255, 0)',    border: '#c85028' },
+  gm:    { bg: 'rgba(255, 255, 255, 0)',    border: '#9932cc' },
+};
+
+// ===========================
+// 3. 세그먼트 매출 누적 막대 (36분기)
+// ===========================
+const segLabels = [
+  // 2018 Q1~Q4 (연간 역산)
+  'Q1\'18','Q2\'18','Q3\'18','Q4\'18',
+  // 2019
+  'Q1\'19','Q2\'19','Q3\'19','Q4\'19',
+  // 2020
+  'Q1\'20','Q2\'20','Q3\'20','Q4\'20',
+  // 2021
+  'Q1\'21','Q2\'21','Q3\'21','Q4\'21',
+  // 2022
+  'Q1\'22','Q2\'22','Q3\'22','Q4\'22',
+  // 2023
+  'Q1\'23','Q2\'23','Q3\'23','Q4\'23',
+  // 2024
+  'Q1\'24','Q2\'24','Q3\'24','Q4\'24',
+  // 2025 (추정)
+  'Q1\'25','Q2\'25','Q3\'25','Q4\'25',
+  // 2026
+  'Q1\'26',
+];
+
+// US 매출 추정 ($M)
+const usData = [
+  340,380,400,650,  // 2018
+  340,390,410,680,  // 2019
+  320,350,380,580,  // 2020
+  340,400,430,660,  // 2021
+  310,380,450,780,  // 2022
+  450,680,780,1000, // 2023
+  770,960,835,1430, // 2024
+  810,1040,980,1340,// 2025 추정
+  730,               // Q1'26
+];
+// India ($M)
+const indiaData = [
+  0,0,0,0,  // 2018
+  0,0,0,0,  // 2019
+  0,0,0,0,  // 2020
+  0,0,0,0,  // 2021
+  0,0,0,0,  // 2022
+  0,10,20,30,// 2023
+  20,20,20,30,// 2024
+  20,40,60,130,// 2025 추정
+  280,       // Q1'26
+];
+// Other ($M)
+const otherData = [
+  30,30,35,50,  // 2018
+  30,30,35,55,  // 2019
+  25,25,30,45,  // 2020
+  25,30,30,50,  // 2021
+  20,20,25,40,  // 2022
+  15,15,15,20,  // 2023
+  5,5,5,10,    // 2024
+  15,20,10,30, // 2025 추정
+  34,           // Q1'26
+];
+
+const ctxSeg = document.getElementById('segChart').getContext('2d');
+new Chart(ctxSeg, {
+  type: 'bar',
+  data: {
+    labels: segLabels,
+    datasets: [
+      {
+        label: '🇺🇸 미국',
+        data: usData,
+        backgroundColor: colors.us.bg,
+        borderColor: colors.us.border,
+        borderWidth: 1,
+      },
+      {
+        label: '🇮🇳 인도',
+        data: indiaData,
+        backgroundColor: colors.india.bg,
+        borderColor: colors.india.border,
+        borderWidth: 1,
+      },
+      {
+        label: '기타',
+        data: otherData,
+        backgroundColor: colors.other.bg,
+        borderColor: colors.other.border,
+        borderWidth: 1,
+      },
+    ],
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+        labels: { font: { size: 11 }, padding: 16 },
+        onClick(e, legendItem, legend) {
+          const idx = legendItem.datasetIndex;
+          const meta = legend.chart.getDatasetMeta(idx);
+          meta.hidden = !meta.hidden;
+          legend.chart.update();
+        }
+      },
+      tooltip: {
+        callbacks: {
+          label: ctx => ` ${ctx.dataset.label}: $${ctx.parsed.y}M`,
+          footer: items => ` 합계: $${items.reduce((a,b) => a + b.parsed.y, 0).toFixed(0)}M`,
+        }
+      }
+    },
+    scales: {
+      x: {
+        stacked: true,
+        ticks: { font: { size: 9 }, maxRotation: 45 },
+        grid: { display: false }
+      },
+      y: {
+        stacked: true,
+        title: { display: true, text: '매출 ($M)', font: { size: 10 } },
+        ticks: { font: { size: 10 } },
+      }
+    }
+  }
+});
+
+// ===========================
+// 5. 매출 + Adj.EBITDA Margin 이중축 차트
+// ===========================
+const revLabels = [
+  'Q1\'22','Q2\'22','Q3\'22','Q4\'22',
+  'Q1\'23','Q2\'23','Q3\'23','Q4\'23',
+  'Q1\'24','Q2\'24','Q3\'24','Q4\'24',
+  'Q1\'25','Q2\'25e','Q3\'25e','Q4\'25e',
+  'Q1\'26',
+];
+const revData = [
+  370, 450, 510, 870,       // 2022
+  490, 750, 870, 1159,      // 2023
+  794, 1013, 887, 1512,     // 2024
+  845, 1100, 1050, 1500,    // 2025 추정
+  1044,                      // Q1'26
+];
+const ebitdaMarginData = [
+  null, null, null, null,         // 2022 (45X 전)
+  15, 20, 22, 27,                 // 2023 추정
+  30, 38, 40, 46,                 // 2024 추정
+  45, 42, 42, 46,                 // 2025 추정
+  50,                             // Q1'26 실제
+];
+
+const ctxRev = document.getElementById('revenueChart').getContext('2d');
+new Chart(ctxRev, {
+  type: 'bar',
+  data: {
+    labels: revLabels,
+    datasets: [
+      {
+        label: '매출 ($M)',
+        data: revData,
+        backgroundColor: 'rgba(29, 92, 46, 0.65)',
+        borderColor: '#1d5c2e',
+        borderWidth: 1,
+        yAxisID: 'y',
+        order: 2,
+      },
+      {
+        label: 'Adj. EBITDA Margin (%)',
+        data: ebitdaMarginData,
+        type: 'line',
+        borderColor: '#c85028',
+        backgroundColor: 'rgba(200, 80, 40, 0.1)',
+        borderWidth: 2.5,
+        pointRadius: 4,
+        pointBackgroundColor: '#c85028',
+        yAxisID: 'y2',
+        order: 1,
+        tension: 0.3,
+        fill: false,
+        spanGaps: false,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { position: 'top', labels: { font: { size: 11 } } },
+      tooltip: {
+        callbacks: {
+          label: ctx => {
+            if (ctx.dataset.label.includes('Margin')) return ` ${ctx.dataset.label}: ${ctx.parsed.y}%`;
+            return ` ${ctx.dataset.label}: $${ctx.parsed.y}M`;
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        ticks: { font: { size: 9 }, maxRotation: 45 },
+        grid: { display: false }
+      },
+      y: {
+        position: 'left',
+        title: { display: true, text: '매출 ($M)', font: { size: 10 } },
+        ticks: { font: { size: 10 } },
+      },
+      y2: {
+        position: 'right',
+        title: { display: true, text: 'Adj. EBITDA Margin (%)', font: { size: 10 } },
+        min: 0,
+        max: 65,
+        ticks: {
+          font: { size: 10 },
+          callback: v => v + '%'
+        },
+        grid: { drawOnChartArea: false }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
