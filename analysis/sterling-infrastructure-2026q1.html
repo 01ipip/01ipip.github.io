@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sterling Infrastructure (STRL) 기업분석 — 2026 Q1</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f3ef;color:#1a1a1a;padding:2rem;font-size:14px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto}
+.header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #e0e0dc;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.header-title{font-size:22px;font-weight:700}
+.header-meta{font-size:12px;color:#888;margin-top:4px}
+.toc{margin-bottom:2rem}
+.toc-title{font-size:12px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;font-size:13px}
+@media(max-width:650px){.toc-grid{grid-template-columns:1fr}}
+.toc-item{padding:5px 0;border-bottom:0.5px dashed #e0e0dc}
+.toc-item a{color:#444;text-decoration:none}
+.toc-item a:hover{color:#378ADD}
+.toc-num{display:inline-block;color:#aaa;font-weight:600;min-width:32px;font-variant-numeric:tabular-nums}
+.toc-sub{padding-left:20px;color:#777;font-size:12.5px}
+.section{margin-bottom:3rem}
+.section-anchor{display:block;position:relative;top:-70px;visibility:hidden}
+h2{font-size:17px;font-weight:700;margin-bottom:14px;padding-bottom:6px;border-bottom:1.5px solid #d8d6d0;color:#222}
+h3{font-size:14px;font-weight:600;margin:1.2rem 0 .6rem;color:#333}
+.chart-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:20px;position:relative;width:100%}
+.note{font-size:11px;color:#999;margin-top:8px;line-height:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;font-size:12px;color:#666}
+.legend-item{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:3px 8px;border-radius:6px;transition:opacity .15s}
+.legend-item:hover{background:#ebebe6}
+.legend-item.hidden{opacity:.3;text-decoration:line-through}
+.legend-static{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0dc;margin-bottom:.5rem}
+th{background:#ebebe6;font-weight:600;padding:7px 8px;text-align:left;border-bottom:1px solid #e0e0dc;white-space:nowrap;font-size:11.5px}
+th.center{text-align:center}
+td{padding:6px 8px;border-bottom:0.5px solid #f0f0ee;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#faf9f5}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.center{text-align:center}
+.hl{background:#fffbe6 !important}
+.dn{color:#D85A30}
+.up2{color:#1D9E75}
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
+@media(max-width:650px){.overview-grid{grid-template-columns:1fr}}
+.overview-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.overview-box h4{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.kv{display:flex;justify-content:space-between;padding:4px 0;border-bottom:0.5px solid #f5f5f3;font-size:12.5px;gap:10px}
+.kv:last-child{border-bottom:none}
+.kv-key{color:#666;min-width:90px}
+.kv-val{font-weight:600;text-align:right}
+.seg-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:1rem}
+.seg-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:.9rem 1.1rem}
+.seg-card-name{font-size:13px;font-weight:700;margin-bottom:5px}
+.seg-card-desc{font-size:12px;color:#555;line-height:1.5;margin-bottom:6px}
+.seg-card-margin{font-size:11.5px;font-weight:600}
+.badge{display:inline-block;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:600}
+.badge-up{background:#e6f7f0;color:#1D9E75}
+.badge-dn{background:#fce8e4;color:#D85A30}
+.badge-neu{background:#f0f0ee;color:#666}
+.cc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1rem}
+@media(max-width:900px){.cc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.cc-grid{grid-template-columns:1fr}}
+.cc-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:.85rem}
+.cc-quarter{font-size:10px;font-weight:700;color:#378ADD;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.cc-msg{font-size:11.5px;color:#444;margin-bottom:7px;line-height:1.45}
+.cc-guide{font-size:10.5px;color:#888;border-top:0.5px solid #f0f0ee;padding-top:6px;line-height:1.5}
+.cc-hit{color:#1D9E75;font-weight:600}
+.cc-miss{color:#D85A30;font-weight:600}
+.cc-latest{border:1.5px solid #378ADD !important}
+.scenario-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:650px){.scenario-grid{grid-template-columns:1fr}}
+.scenario-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1.2rem}
+.scenario-title{font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid #f0f0ee}
+.s-bull .scenario-title{color:#1D9E75}
+.s-bear .scenario-title{color:#D85A30}
+.s-item{margin-bottom:9px;padding-bottom:9px;border-bottom:0.5px solid #f5f5f3;font-size:12px}
+.s-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-case{font-weight:600;margin-bottom:2px}
+.s-sub{color:#888;font-size:11px}
+.ww-list{display:flex;flex-direction:column;gap:8px}
+.ww-item{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.75rem 1rem;display:flex;gap:14px}
+.ww-date{font-size:11px;font-weight:700;color:#378ADD;white-space:nowrap;min-width:80px}
+.ww-event{font-size:12px;font-weight:600;margin-bottom:2px}
+.ww-point{font-size:11px;color:#888}
+.source-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.4rem;font-size:12px;color:#555;line-height:2}
+.prose{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;margin-bottom:1rem;font-size:13px;line-height:1.7}
+.prose ul{padding-left:1.3rem}
+.prose li{margin-bottom:.25rem}
+.footer{font-size:11px;color:#aaa;text-align:center;margin-top:2rem;padding-top:1rem;border-top:0.5px solid #e0e0dc}
+.seg-table-wrap{overflow-x:auto}
+.seg-table{min-width:700px}
+.seg-table th.seg-group{text-align:center;background:#e3e2dc;border-left:2px solid #d0d0cc}
+.seg-table td.seg-border{border-left:2px solid #e0e0dc}
+.tv-wrap{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:0;overflow:hidden;height:480px}
+.tv-wrap iframe{width:100%;height:100%;border:0}
+.ref-list{display:flex;flex-direction:column;gap:6px}
+.ref-item{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.5rem .85rem;display:flex;align-items:center;gap:10px;font-size:12px}
+.ref-item a{color:#378ADD;text-decoration:none;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ref-item a:hover{text-decoration:underline}
+.ref-tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap}
+.tag-official{background:#dcecfb;color:#2873b8}
+.tag-broker{background:#fef0d8;color:#a86c0e}
+.tag-news{background:#e6f7f0;color:#1D9E75}
+.tag-wiki{background:#f0e6f7;color:#7a3fba}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div>
+    <div class="header-title">🏗️ Sterling Infrastructure (STRL) 기업분석</div>
+    <div class="header-meta">회계연도: Calendar Year &nbsp;|&nbsp; 분석기간: Q1'18~Q1'26 (33분기) &nbsp;|&nbsp; 최근 컨콜: 2026.05.05</div>
+  </div>
+  <div style="font-size:12px;color:#aaa">분석일: 2026.05.05</div>
+</div>
+
+<div class="toc">
+  <div class="toc-title">목차</div>
+  <div class="toc-grid">
+    <div class="toc-item"><span class="toc-num">01.</span> <a href="#s1">회사 개요</a></div>
+    <div class="toc-item"><span class="toc-num">05.</span> <a href="#s5">핵심 투자아이디어</a></div>
+    <div class="toc-item"><span class="toc-num">02.</span> <a href="#s2">주가 흐름 — 주봉</a></div>
+    <div class="toc-item toc-sub"><span class="toc-num">5-1.</span> <a href="#s5-1">핵심 변동 요인</a></div>
+    <div class="toc-item"><span class="toc-num">03.</span> <a href="#s3">세그먼트별 매출 추이 — 33분기</a></div>
+    <div class="toc-item toc-sub"><span class="toc-num">5-2.</span> <a href="#s5-2">컨퍼런스콜 트래킹</a></div>
+    <div class="toc-item toc-sub"><span class="toc-num">3-1.</span> <a href="#s3-1">세그먼트 구조 및 제품</a></div>
+    <div class="toc-item toc-sub"><span class="toc-num">5-3.</span> <a href="#s5-3">Q1'26 컨콜 심층 정리</a></div>
+    <div class="toc-item toc-sub"><span class="toc-num">3-2.</span> <a href="#s3-2">매출 &amp; Adj. EBITDA 마진</a></div>
+    <div class="toc-item toc-sub"><span class="toc-num">5-4.</span> <a href="#s5-4">강세/약세 시나리오</a></div>
+    <div class="toc-item toc-sub"><span class="toc-num">3-3.</span> <a href="#s3-3">세그먼트별 실적 테이블</a></div>
+    <div class="toc-item"><span class="toc-num">06.</span> <a href="#s6">Worth Watching Events</a></div>
+    <div class="toc-item"><span class="toc-num">04.</span> <a href="#s4">재무제표 개요</a></div>
+    <div class="toc-item"><span class="toc-num">07.</span> <a href="#s7">데이터 출처</a></div>
+    <div class="toc-item">&nbsp;</div>
+    <div class="toc-item toc-sub"><span class="toc-num">7-1.</span> <a href="#s7-1">Reference</a></div>
+  </div>
+</div>
+
+<span class="section-anchor" id="s1"></span>
+<div class="section">
+<h2>1. 회사 개요</h2>
+<div class="overview-grid">
+  <div class="overview-box">
+    <h4>기본 정보</h4>
+    <div class="kv"><span class="kv-key">설립</span><span class="kv-val">1955년</span></div>
+    <div class="kv"><span class="kv-key">상장</span><span class="kv-val">NASDAQ: STRL</span></div>
+    <div class="kv"><span class="kv-key">본사</span><span class="kv-val">The Woodlands, Texas</span></div>
+    <div class="kv"><span class="kv-key">CEO</span><span class="kv-val">Joseph Cutillo</span></div>
+    <div class="kv"><span class="kv-key">CFO</span><span class="kv-val">Nick Grindstaff (2025.07~)</span></div>
+    <div class="kv"><span class="kv-key">임직원</span><span class="kv-val">~4,400명</span></div>
+    <div class="kv"><span class="kv-key">사명 변경</span><span class="kv-val">2022.06 (Construction → Infrastructure)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>시장 정보 (2026.05.04)</h4>
+    <div class="kv"><span class="kv-key">현재 주가</span><span class="kv-val">~$529</span></div>
+    <div class="kv"><span class="kv-key">애프터마켓</span><span class="kv-val" style="color:#1D9E75">~$649 (+22.6%)</span></div>
+    <div class="kv"><span class="kv-key">시총 (USD)</span><span class="kv-val" style="color:#378ADD">~$16.3B</span></div>
+    <div class="kv"><span class="kv-key">시총 (KRW)</span><span class="kv-val" style="color:#378ADD">~22.5조원 (1,380)</span></div>
+    <div class="kv"><span class="kv-key">52주 고가</span><span class="kv-val">$653.97</span></div>
+    <div class="kv"><span class="kv-key">52주 저가</span><span class="kv-val">$161.20</span></div>
+    <div class="kv"><span class="kv-key">발행주식수</span><span class="kv-val">~31M (희석)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>사업 구조 &amp; 지역</h4>
+    <div class="kv"><span class="kv-key">사업 부문</span><span class="kv-val">3개 (E-Infra, Trans, Building)</span></div>
+    <div class="kv"><span class="kv-key">주력 지역</span><span class="kv-val">남부, 북동부, 록키마운틴</span></div>
+    <div class="kv"><span class="kv-key">핵심 시장</span><span class="kv-val">데이터센터, 반도체 Fab, 제조</span></div>
+    <div class="kv"><span class="kv-key">2025 매출</span><span class="kv-val">$2.49B (+32% YoY)</span></div>
+    <div class="kv"><span class="kv-key">백로그</span><span class="kv-val">$3.80B (+78% YoY)</span></div>
+    <div class="kv"><span class="kv-key">결합 백로그</span><span class="kv-val">$5.15B (+131% YoY)</span></div>
+    <div class="kv"><span class="kv-key">총 작업 풀</span><span class="kv-val">~$6.5B (Pipeline 포함)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>투자 포인트 요약</h4>
+    <div class="kv"><span class="kv-key">Q1'26 매출</span><span class="kv-val" style="color:#1D9E75">$825.7M (+92% YoY)</span></div>
+    <div class="kv"><span class="kv-key">Adj. EBITDA M</span><span class="kv-val" style="color:#1D9E75">20.2% (+150bp)</span></div>
+    <div class="kv"><span class="kv-key">Adj. EPS</span><span class="kv-val" style="color:#1D9E75">$3.59 (+120% YoY)</span></div>
+    <div class="kv"><span class="kv-key">2026E 매출</span><span class="kv-val" style="color:#1D9E75">$3.7~3.8B (+51%)</span></div>
+    <div class="kv"><span class="kv-key">2026E Adj.EPS</span><span class="kv-val" style="color:#1D9E75">$18.40~19.05</span></div>
+    <div class="kv"><span class="kv-key">CEC 인수 완료</span><span class="kv-val">2025.09 ($505M)</span></div>
+    <div class="kv"><span class="kv-key">Mission-critical</span><span class="kv-val">E-Infra 백로그 90%+</span></div>
+  </div>
+</div>
+<p class="note">⚠️ <strong>Adjusted Net Income / Adj. EPS</strong>: GAAP에서 SBC(주식보상비용), 무형자산상각, 인수관련비용, earn-out 비용 등 제외. <strong>Adj. EBITDA</strong>: 이자·세금·감가상각·SBC 추가 제외. <strong>Backlog</strong>=서명된 잔여 수행의무(RPO). <strong>Combined Backlog</strong>=Backlog+Unsigned Awards. <strong>RHB</strong>: Sterling 50% 자회사로 2024년 말 deconsolidated, 2025부터 매출 미연결.</p>
+</div>
+
+<span class="section-anchor" id="s2"></span>
+<div class="section">
+<h2>2. 주가 흐름 — 주봉 (TradingView)</h2>
+<div class="tv-wrap">
+  <iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tv_strl&symbol=NASDAQ%3ASTRL&interval=W&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=f4f3ef&studies=%5B%5D&theme=light&style=1&timezone=Asia%2FSeoul&withdateranges=1&showpopupbutton=0&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=en" allowtransparency="true" scrolling="no" allowfullscreen="true"></iframe>
+</div>
+<p class="note">* TradingView NASDAQ:STRL 주봉 캔들 위젯. 차트가 표시되지 않는 경우 직접 <a href="https://www.tradingview.com/symbols/NASDAQ-STRL/" target="_blank" style="color:#378ADD">TradingView STRL 페이지</a> 참고.</p>
+
+<h3 style="margin-top:1.2rem">주요 이벤트 연표</h3>
+<table>
+  <thead><tr><th>시기</th><th class="num">주가(근사)</th><th>이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2018~2019</td><td class="num">$10~$15</td><td>전통적 토목·건축, Heavy Highway 중심, 저마진 구조</td></tr>
+    <tr><td>2020.03</td><td class="num">$5</td><td>코로나 저점 — 인프라 활동 둔화</td></tr>
+    <tr><td>2021~2022</td><td class="num">$15~$30</td><td>2022.06 사명 변경 (Construction → Infrastructure), 사업 재포지셔닝</td></tr>
+    <tr><td>2023</td><td class="num">$40~$80</td><td>E-Infrastructure 본격 성장, 데이터센터 수요 부각</td></tr>
+    <tr><td>2024</td><td class="num">$80~$170</td><td>AI 데이터센터 테마 본격 부각, 백로그 급증</td></tr>
+    <tr><td>2025.06</td><td class="num">$210</td><td>CEC Facilities Group 인수 발표 ($505M)</td></tr>
+    <tr><td>2025.09</td><td class="num">$280</td><td>CEC 인수 완료, E-Infra에 통합</td></tr>
+    <tr><td>2025.11</td><td class="num">$411</td><td>Q3'25 어닝 서프라이즈 +32% 매출 성장</td></tr>
+    <tr><td>2025.12~2026.02</td><td class="num">$326~$430</td><td>변동성 확대 후 Q4'25 어닝으로 반등</td></tr>
+    <tr><td>2026.04</td><td class="num">$510~530</td><td>KeyBanc Overweight $572, Argus Buy $510 커버리지 개시</td></tr>
+    <tr class="hl"><td><strong>2026.05.04</strong></td><td class="num"><strong>$649 (애프터)</strong></td><td><strong>Q1'26 어닝 서프라이즈 +92% YoY · 가이던스 +20% 상향, +21.6% 급등</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<span class="section-anchor" id="s3"></span>
+<div class="section">
+<h2>3. 세그먼트별 매출 추이 — 33분기 ($M)</h2>
+<div class="legend" id="segLegend">
+  <span class="legend-item" onclick="toggleSeg(0,this)"><span class="dot" style="background:#378ADD"></span>E-Infrastructure</span>
+  <span class="legend-item" onclick="toggleSeg(1,this)"><span class="dot" style="background:#1D9E75"></span>Transportation</span>
+  <span class="legend-item" onclick="toggleSeg(2,this)"><span class="dot" style="background:#BA7517"></span>Building</span>
+  <span style="font-size:11px;color:#bbb;margin-left:4px">← 클릭하여 표시/숨김</span>
+</div>
+<div class="chart-box" style="height:460px"><canvas id="cSeg"></canvas></div>
+<p class="note">* 2018~2024 분기 데이터는 10-K 연간 자료 역산 추정치 (RHB 제외 조정). Q3'25부터 CEC 인수 효과 반영. Q1'26 E-Infra $597.7M(+174% YoY)는 CEC $156.1M 포함 + 사이트 개발 단독 +102% 합산. Building Solutions는 주거 시장 침체로 약세 지속.</p>
+</div>
+
+<span class="section-anchor" id="s3-1"></span>
+<div class="section">
+<h2>3-1. 세그먼트 구조 및 제품</h2>
+<div class="seg-cards">
+  <div class="seg-card">
+    <div class="seg-card-name" style="color:#378ADD">E-Infrastructure Solutions (사업의 핵심)</div>
+    <div class="seg-card-desc">대규모 사이트 개발(Site Development) + 미션 크리티컬 전기/기계 서비스. 데이터센터·반도체 Fab·첨단 제조·물류센터·창고·발전소 등에 토목 부지 정지, 그레이딩, 콘크리트, 전기/기계 시스템 통합 시공. CEC(2025.09 인수)로 800V DC 전기 모듈, 프리팹 모듈러 제조 능력 확보. 4개 상위 고객이 매출 31% (집중 위험).</div>
+    <div class="seg-card-margin" style="color:#1D9E75">Q1'26 매출 $597.7M (72%) · Adj. OPM ~23.5% · 백로그 90%+ Mission-Critical</div>
+  </div>
+  <div class="seg-card">
+    <div class="seg-card-name" style="color:#1D9E75">Transportation Solutions</div>
+    <div class="seg-card-desc">고속도로·교량·공항·항만·철도·배수 시스템 시공 및 보수. Heavy Highway(저단가)에서 Alternative Delivery·항공·철도(고마진)로 믹스 전환 중. 텍사스 저단가 사업 점진 축소, Rocky Mountain·Arizona 핵심. 4개 주 DOT가 매출 47%. 연방 IIJA(인프라투자법) 2년차 본격 발주.</div>
+    <div class="seg-card-margin" style="color:#1D9E75">Q1'26 매출 $132.9M (16%) · Adj. OPM 12.9% · 백로그 $1.04B</div>
+  </div>
+  <div class="seg-card">
+    <div class="seg-card-name" style="color:#BA7517">Building Solutions</div>
+    <div class="seg-card-desc">단독·다세대 주택 콘크리트 슬래브, 주차구조물, 배관 서비스, 측량. 텍사스(Dallas-Fort Worth, Houston) 중심. PPG 배관 인수(2023), Drake Concrete 인수(2025 Q1 $25M). 금리·주택 가격 부담으로 신축 시장 약세 지속, 2026년 침체 지속 전망.</div>
+    <div class="seg-card-margin" style="color:#D85A30">Q1'26 매출 $95.1M (12%) · Adj. OPM 8.7% · 분기 OI -50% YoY</div>
+  </div>
+</div>
+<table>
+  <thead><tr><th>세그먼트</th><th>핵심 서비스</th><th>주요 시장</th><th>고객 집중</th><th>마진 특성</th></tr></thead>
+  <tbody>
+    <tr><td><strong>E-Infrastructure</strong></td><td>Site Development + Electrical/Mechanical (CEC) + Modular</td><td>데이터센터, 반도체 Fab, 첨단 제조</td><td>상위 4개 고객 31%</td><td>Adj. OPM 23~24% (가장 높음)</td></tr>
+    <tr><td><strong>Transportation</strong></td><td>고속도로, 공항, 항만, 철도, 배수</td><td>Rocky Mountain, Arizona, 텍사스</td><td>4개 주 DOT 47%</td><td>Adj. OPM ~10~13% (믹스 개선 중)</td></tr>
+    <tr><td><strong>Building</strong></td><td>주거/상업 콘크리트, 배관, 측량</td><td>텍사스 (DFW, Houston)</td><td>지역 빌더 다수</td><td>Adj. OPM ~7~10% (시장 약세)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<span class="section-anchor" id="s3-2"></span>
+<div class="section">
+<h2>3-2. 매출 &amp; Adj. EBITDA 마진 추이</h2>
+<div class="legend">
+  <span class="legend-static"><span class="dot" style="background:rgba(55,138,221,0.35)"></span>매출 ($M, 막대)</span>
+  <span class="legend-static"><span class="dot" style="background:#1D9E75"></span>Adj. EBITDA 마진 % (선)</span>
+</div>
+<div class="chart-box" style="height:420px"><canvas id="cRev"></canvas></div>
+<p class="note">* 2024년 데이터는 RHB 제외 조정 기준. Q4'24부터 본격적 마진 도약, Q1'26 Adj. EBITDA 마진 20.2% 신기록. 2026E 가이던스 마진 ~22~23%.</p>
+
+<h3 style="margin-top:1.5rem">연간 실적 요약</h3>
+<table>
+  <thead><tr><th>연도</th><th class="num">매출</th><th class="num">Adj. EBITDA</th><th class="num">Adj. EBITDA M</th><th class="num">Adj. EPS</th></tr></thead>
+  <tbody>
+    <tr><td>2021</td><td class="num">$1,415M</td><td class="num">$155M</td><td class="num">11.0%</td><td class="num">$1.99</td></tr>
+    <tr><td>2022</td><td class="num">$1,769M</td><td class="num">$203M</td><td class="num">11.5%</td><td class="num">$3.19</td></tr>
+    <tr><td>2023</td><td class="num">$1,972M</td><td class="num">$260M</td><td class="num">13.2%</td><td class="num">$4.47</td></tr>
+    <tr><td>2024</td><td class="num">$2,116M</td><td class="num">$320M</td><td class="num">15.1%</td><td class="num">$6.10</td></tr>
+    <tr><td>2025*</td><td class="num">$2,490M</td><td class="num">$504M</td><td class="num">20.2%</td><td class="num">$10.88</td></tr>
+    <tr class="hl"><td><strong>2026E</strong></td><td class="num"><strong>$3.70~3.80B</strong></td><td class="num up2"><strong>$843~873M</strong></td><td class="num up2"><strong>~22.7%</strong></td><td class="num up2"><strong>$18.40~19.05</strong></td></tr>
+  </tbody>
+</table>
+<p class="note">* 2025는 RHB 제외 조정 기준 (2024 비교: $1.84B). 2026E는 Q1'26 컨콜에서 상향한 가이던스 ($3.13B → $3.75B 중간값, +20%).</p>
+
+<h3 style="margin-top:1.5rem">분기별 실적 요약 (최근 12분기)</h3>
+<table>
+  <thead>
+    <tr>
+      <th>분기</th>
+      <th class="num">매출</th>
+      <th class="num">YoY</th>
+      <th class="num">Adj. EBITDA</th>
+      <th class="num">Adj. EBITDA M</th>
+      <th class="num">Adj. EPS</th>
+      <th class="num">GAAP OPM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Q2'23</td><td class="num">$487M</td><td class="num">+12%</td><td class="num">$56M</td><td class="num">11.6%</td><td class="num">$0.92</td><td class="num">8.9%</td></tr>
+    <tr><td>Q3'23</td><td class="num">$609M</td><td class="num">+12%</td><td class="num">$80M</td><td class="num">13.1%</td><td class="num">$1.26</td><td class="num">10.5%</td></tr>
+    <tr><td>Q4'23</td><td class="num">$486M</td><td class="num">+11%</td><td class="num">$72M</td><td class="num">14.8%</td><td class="num">$1.30</td><td class="num">11.7%</td></tr>
+    <tr><td>Q1'24</td><td class="num">$393M</td><td class="num">+8%</td><td class="num">$45M</td><td class="num">11.5%</td><td class="num">$0.79</td><td class="num">8.4%</td></tr>
+    <tr><td>Q2'24</td><td class="num">$509M</td><td class="num">+4%</td><td class="num">$93M</td><td class="num">18.3%</td><td class="num">$1.67</td><td class="num">14.2%</td></tr>
+    <tr><td>Q3'24</td><td class="num">$522M</td><td class="num dn">-14%*</td><td class="num">$106M</td><td class="num">20.4%</td><td class="num">$2.21</td><td class="num">17.5%</td></tr>
+    <tr><td>Q4'24</td><td class="num">$498M</td><td class="num">+2%</td><td class="num">$84M</td><td class="num">16.9%</td><td class="num">$1.73</td><td class="num">13.0%</td></tr>
+    <tr><td>Q1'25</td><td class="num">$431M</td><td class="num up2">+10%</td><td class="num">$80M</td><td class="num">18.5%</td><td class="num">$1.63</td><td class="num">13.4%</td></tr>
+    <tr><td>Q2'25</td><td class="num">$614M</td><td class="num up2">+21%</td><td class="num">$126M</td><td class="num">20.5%</td><td class="num">$2.29</td><td class="num">15.7%</td></tr>
+    <tr><td>Q3'25</td><td class="num">$689M</td><td class="num up2">+32%</td><td class="num">$156M</td><td class="num">22.6%</td><td class="num">$3.48</td><td class="num">18.2%</td></tr>
+    <tr><td>Q4'25</td><td class="num">$756M</td><td class="num up2">+52%</td><td class="num">$142M</td><td class="num">18.8%</td><td class="num">$3.08</td><td class="num">14.5%</td></tr>
+    <tr class="hl"><td><strong>Q1'26</strong></td><td class="num"><strong>$826M</strong></td><td class="num up2"><strong>+92%</strong></td><td class="num up2"><strong>$167M</strong></td><td class="num up2"><strong>20.2%</strong></td><td class="num up2"><strong>$3.59</strong></td><td class="num up2"><strong>16.7%</strong></td></tr>
+  </tbody>
+</table>
+<p class="note">* Q3'24 YoY 음수는 RHB deconsolidation 영향. 2024 분기는 RHB 제외 조정 기준 (분기별 $51M~$112M 정도가 빠짐).</p>
+</div>
+
+<span class="section-anchor" id="s3-3"></span>
+<div class="section">
+<h2>3-3. 세그먼트별 실적 테이블 (12분기, RHB 제외 조정)</h2>
+<div class="seg-table-wrap">
+<table class="seg-table">
+  <thead>
+    <tr>
+      <th rowspan="2" style="vertical-align:middle">분기</th>
+      <th colspan="2" class="seg-group center">E-Infrastructure</th>
+      <th colspan="2" class="seg-group center">Transportation</th>
+      <th colspan="2" class="seg-group center">Building</th>
+      <th rowspan="2" class="seg-group center" style="vertical-align:middle">Total</th>
+    </tr>
+    <tr>
+      <th class="seg-group center">매출</th><th class="seg-group center">Adj. OPM</th>
+      <th class="seg-group center">매출</th><th class="seg-group center">Adj. OPM</th>
+      <th class="seg-group center">매출</th><th class="seg-group center">Adj. OPM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Q2'23</td><td class="num seg-border">$215M</td><td class="num">~17%</td><td class="num seg-border">$155M</td><td class="num">~6%</td><td class="num seg-border">$117M</td><td class="num">~10%</td><td class="num seg-border"><b>$487M</b></td></tr>
+    <tr><td>Q3'23</td><td class="num seg-border">$280M</td><td class="num">~19%</td><td class="num seg-border">$200M</td><td class="num">~7%</td><td class="num seg-border">$129M</td><td class="num">~9%</td><td class="num seg-border"><b>$609M</b></td></tr>
+    <tr><td>Q4'23</td><td class="num seg-border">$220M</td><td class="num">~22%</td><td class="num seg-border">$155M</td><td class="num">~10%</td><td class="num seg-border">$111M</td><td class="num">~12%</td><td class="num seg-border"><b>$486M</b></td></tr>
+    <tr><td>Q1'24</td><td class="num seg-border">$185M</td><td class="num">~17%</td><td class="num seg-border">$110M</td><td class="num">~6%</td><td class="num seg-border">$98M</td><td class="num">~10%</td><td class="num seg-border"><b>$393M</b></td></tr>
+    <tr><td>Q2'24</td><td class="num seg-border">$241M</td><td class="num">~17%</td><td class="num seg-border">$159M</td><td class="num">~9%</td><td class="num seg-border">$109M</td><td class="num">~12%</td><td class="num seg-border"><b>$509M</b></td></tr>
+    <tr><td>Q3'24</td><td class="num seg-border">$251M</td><td class="num">~24%</td><td class="num seg-border">$166M</td><td class="num">~10%</td><td class="num seg-border">$104M</td><td class="num">~13%</td><td class="num seg-border"><b>$522M</b></td></tr>
+    <tr><td>Q4'24</td><td class="num seg-border">$235M</td><td class="num up2">~24%</td><td class="num seg-border">$160M</td><td class="num">~10%</td><td class="num seg-border">$103M</td><td class="num">~14%</td><td class="num seg-border"><b>$498M</b></td></tr>
+    <tr><td>Q1'25</td><td class="num seg-border">$218M</td><td class="num up2">23.0%</td><td class="num seg-border">$121M</td><td class="num">11.4%</td><td class="num seg-border">$92M</td><td class="num">14.4%</td><td class="num seg-border"><b>$431M</b></td></tr>
+    <tr><td>Q2'25</td><td class="num seg-border">$310M</td><td class="num up2">~24%</td><td class="num seg-border">$197M</td><td class="num">~11%</td><td class="num seg-border">$107M</td><td class="num">~12%</td><td class="num seg-border"><b>$614M</b></td></tr>
+    <tr><td>Q3'25</td><td class="num seg-border">$390M</td><td class="num up2">~25%</td><td class="num seg-border">$201M</td><td class="num">~12%</td><td class="num seg-border">$98M</td><td class="num">~10%</td><td class="num seg-border"><b>$689M</b></td></tr>
+    <tr><td>Q4'25</td><td class="num seg-border">$487M</td><td class="num up2">23.5%</td><td class="num seg-border">$165M</td><td class="num">~12%</td><td class="num seg-border">$103M</td><td class="num">~10%</td><td class="num seg-border"><b>$756M</b></td></tr>
+    <tr class="hl"><td><b>Q1'26</b></td><td class="num seg-border">$598M</td><td class="num up2">23.5%</td><td class="num seg-border">$133M</td><td class="num">12.9%</td><td class="num seg-border">$95M</td><td class="num">8.7%</td><td class="num seg-border"><b>$826M</b></td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">* 2023~Q4'24 일부 분기 OPM은 추정치. Q1'26 E-Infra +174% YoY (CEC $156.1M + 사이트개발 단독 +102%). Building 신규 주문 위축으로 OI -50%, OPM -42% YoY.</p>
+</div>
+
+<span class="section-anchor" id="s4"></span>
+<div class="section">
+<h2>4. 재무제표 개요</h2>
+<table>
+  <thead><tr><th>항목</th><th class="num">2022</th><th class="num">2023</th><th class="num">2024</th><th class="num">2025</th><th class="num">Q1'26</th></tr></thead>
+  <tbody>
+    <tr><td><strong>매출</strong></td><td class="num">$1,769M</td><td class="num">$1,972M</td><td class="num">$2,116M</td><td class="num">$2,490M</td><td class="num">$826M</td></tr>
+    <tr><td>매출총이익률</td><td class="num">~17%</td><td class="num">~19%</td><td class="num">~21%</td><td class="num">~23.5%</td><td class="num up2">23.5%</td></tr>
+    <tr><td><strong>영업이익 (GAAP)</strong></td><td class="num">$167M</td><td class="num">$222M</td><td class="num">$285M</td><td class="num">$420M</td><td class="num">$138M</td></tr>
+    <tr><td>영업이익률</td><td class="num">9.4%</td><td class="num">11.3%</td><td class="num">13.5%</td><td class="num">16.9%</td><td class="num up2">16.7%</td></tr>
+    <tr><td><strong>당기순이익 (GAAP)</strong></td><td class="num">$97M</td><td class="num">$139M</td><td class="num">$258M</td><td class="num">$290M</td><td class="num">$96M</td></tr>
+    <tr><td>희석 EPS</td><td class="num">$3.16</td><td class="num">$4.44</td><td class="num">$8.27</td><td class="num">$9.36</td><td class="num">$3.09</td></tr>
+    <tr><td>Adj. EPS</td><td class="num">$3.19</td><td class="num">$4.47</td><td class="num">$6.10</td><td class="num">$10.88</td><td class="num up2">$3.59</td></tr>
+    <tr><td><strong>영업현금흐름</strong></td><td class="num">$166M</td><td class="num">$309M</td><td class="num">$497M</td><td class="num">$440M</td><td class="num">$166M</td></tr>
+    <tr><td>CAPEX</td><td class="num">-$18M</td><td class="num">-$31M</td><td class="num">-$51M</td><td class="num">-$77M</td><td class="num">-</td></tr>
+    <tr><td>현금 &amp; 등가물</td><td class="num">$362M</td><td class="num">$439M</td><td class="num">$643M</td><td class="num">$370M*</td><td class="num up2">$512M</td></tr>
+    <tr><td>총 백로그</td><td class="num">$1,690M</td><td class="num">$2,070M</td><td class="num">$1,690M**</td><td class="num">$3,010M</td><td class="num up2">$3,800M</td></tr>
+    <tr><td>결합 백로그</td><td class="num">—</td><td class="num">$2,370M</td><td class="num">—</td><td class="num">$3,310M</td><td class="num up2">$5,150M</td></tr>
+  </tbody>
+</table>
+<p class="note">* 2025년 말 현금: CEC 인수 $450M 현금 지급 영향. Q1'26 다시 $512M (영업CF $166M 회복). ** 2024 백로그 감소: RHB deconsolidation으로 $491M 제외. <strong>2024 EPS $8.27</strong>은 RHB 처분이익 $87M 일회성 포함, 정상화 Adj.EPS $6.10 기준이 비교 적절.</p>
+<h3 style="margin-top:1rem">재무 건전성 요약</h3>
+<table>
+  <tbody>
+    <tr><td><strong>부채 구조</strong></td><td>$300M Term Loan (5년) + $150M Revolving Credit Facility (현재 미사용). 순현금 ~$224M (2026.03.31)</td></tr>
+    <tr><td><strong>자본 효율</strong></td><td>ROE 32.8%, 순이익률 11.7% (2025). 5년 EPS CAGR 48.2%, 매출 CAGR 14.8%</td></tr>
+    <tr><td><strong>주주환원</strong></td><td>배당 없음. 자사주 매입 Q1'26 $12.3M 집행, 이사회 추가 매입 권한 인가</td></tr>
+    <tr><td><strong>M&amp;A 이력</strong></td><td>2023 PPG ($57M, 배관) → 2024 RHB deconsolidation → 2025 Drake ($25M, 콘크리트) → 2025.09 CEC ($505M, 전기/기계)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<span class="section-anchor" id="s5"></span>
+<div class="section">
+<h2>5. 핵심 투자아이디어</h2>
+<div class="prose">
+  <strong>📌 한 줄 요약:</strong> AI 데이터센터 + 반도체 Fab 부지 개발 슈퍼사이클의 가장 직접적 수혜주. 시공 능력·고객 관계·지역 점유 모두 진입장벽으로 작동, CEC 인수로 부지→전기까지 풀 라이프사이클 통합.
+  <ul style="margin-top:8px">
+    <li><strong>구조적 수요</strong>: 데이터센터가 E-Infra 백로그 90%+ Mission-Critical. AI Capex가 GPU에서 인프라(전력·부지)로 확장하는 구간 진입</li>
+    <li><strong>마진 도약</strong>: Adj. EBITDA 마진 11%(2021) → 20%(2025) → 22%+(2026E). E-Infra 비중 확대 + Heavy Highway 축소가 동시 진행</li>
+    <li><strong>가시성</strong>: 결합 백로그 $5.15B + Pipeline $1.3B = 총 $6.5B 작업 풀. 2026 매출 대부분 Q1 시점에 락인. Book-to-burn 2.1x</li>
+    <li><strong>CEC 시너지</strong>: Sterling 부지 + CEC 전기 통합 시공 2개 데이터센터 캠퍼스 진행 중, Cross-sell 본격화</li>
+    <li><strong>리스크</strong>: 데이터센터 Capex 사이클·고객 집중도(상위 4개 31%)·Building 부문 부진·관세·반도체 Fab 발주 지연 가능성</li>
+  </ul>
+</div>
+</div>
+
+<span class="section-anchor" id="s5-1"></span>
+<div class="section">
+<h2>5-1. 핵심 변동 요인</h2>
+<h3>외부 변수</h3>
+<table>
+  <thead><tr><th>요인</th><th>방향</th><th>내용</th></tr></thead>
+  <tbody>
+    <tr><td><strong>AI 데이터센터 Capex</strong></td><td><span class="badge badge-up">↑ 강력 긍정</span></td><td>하이퍼스케일러 Capex 확대 지속. Inference 워크로드 증가로 Tier 2 도시까지 확장</td></tr>
+    <tr><td><strong>반도체 Fab Onshoring</strong></td><td><span class="badge badge-up">↑ 긍정</span></td><td>CHIPS Act 후 미국 내 Fab 건설 본격화. Q1'26 메이저 Fab 캠퍼스 사이트 개발 첫 phase 수주</td></tr>
+    <tr><td><strong>IIJA (인프라투자법)</strong></td><td><span class="badge badge-up">↑ 긍정</span></td><td>연방 5년 인프라 자금 2년차 발주 본격화. Transportation 백로그 +81% YoY</td></tr>
+    <tr><td><strong>주거 시장 침체</strong></td><td><span class="badge badge-dn">↓ 위험</span></td><td>고금리·주택 가격 부담으로 신축 수요 위축. Building 부문 매출 정체, OPM 하락</td></tr>
+    <tr><td><strong>관세 리스크</strong></td><td><span class="badge badge-neu">중립~위험</span></td><td>철강·전기 부품 일부 수입 의존. 경영진 "현재 가시 영향 제한적"</td></tr>
+    <tr><td><strong>AI 투자 사이클 조정</strong></td><td><span class="badge badge-dn">↓ 위험</span></td><td>하이퍼스케일러 ROI 의문 시 백로그 신규 추가 둔화 가능성</td></tr>
+    <tr><td><strong>경쟁사 (Quanta, EMCOR)</strong></td><td><span class="badge badge-neu">중립</span></td><td>대형사 대비 STRL은 부지+전기 통합·텍사스 집중·중규모 프로젝트 강점</td></tr>
+  </tbody>
+</table>
+<h3>내부 변수</h3>
+<table>
+  <thead><tr><th>요인</th><th>방향</th><th>내용</th></tr></thead>
+  <tbody>
+    <tr><td><strong>CEC 인수 통합</strong></td><td><span class="badge badge-up">↑ 강력 긍정</span></td><td>Q1'26 매출 $156M 기여, 전년 동기 대비 78% 성장. Cross-sell 본격화. 2개 캠퍼스 통합 시공 중</td></tr>
+    <tr><td><strong>Modular/Prefab 확장</strong></td><td><span class="badge badge-up">↑ 긍정</span></td><td>CEC 텍사스 379K sqft 모듈러 제조 허브 임대 (2026.03). 데이터센터 전기 모듈 사전 제작 → 시공 가속</td></tr>
+    <tr><td><strong>지역 확장</strong></td><td><span class="badge badge-up">↑ 긍정</span></td><td>북동부·태평양 북서부 진출 가속 중. 2027부터 추가 지역 매출 기여 예상</td></tr>
+    <tr><td><strong>마진 믹스 개선</strong></td><td><span class="badge badge-up">↑ 긍정</span></td><td>Heavy Highway(저마진) → Alternative Delivery·E-Infra(고마진) 전환. Q1'26 GP 23.5%</td></tr>
+    <tr><td><strong>고객 집중 리스크</strong></td><td><span class="badge badge-dn">↓ 부담</span></td><td>E-Infra 상위 4개 고객이 매출 31%. 단일 프로젝트 지연 시 분기 변동성 大</td></tr>
+    <tr><td><strong>Building 부문 부진</strong></td><td><span class="badge badge-dn">↓ 부담</span></td><td>Q1'26 OI -50%, OPM 8.7%. 2026 침체 지속 전망. 매출 12% 비중이지만 마진 희석</td></tr>
+    <tr><td><strong>Working Capital</strong></td><td><span class="badge badge-up">↑ 긍정</span></td><td>고객 Prepayment 구조 + Q1'26 영업CF $166M (역대 최고). 자체 자금 조달 가능</td></tr>
+  </tbody>
+</table>
+</div>
+
+<span class="section-anchor" id="s5-2"></span>
+<div class="section">
+<h2>5-2. 컨퍼런스콜 트래킹 — 최근 12분기</h2>
+<p class="note" style="margin-bottom:10px">* 가이던스: 해당 분기 발표 시점의 당해 연도 가이던스 → 연말 실제 매출과 비교. STRL은 분기 단위 가이던스 미제시.</p>
+<div class="cc-grid">
+  <div class="cc-card"><div class="cc-quarter">Q2'23 (2023.08)</div><div class="cc-msg">E-Infra 데이터센터 수요 본격 확대 언급. 마진 개선 추세. 백로그 견조.</div><div class="cc-guide">FY23 가이던스: $1.95~2.05B<br>실제(FY23): $1.97B <span class="cc-hit">✅ 달성</span></div></div>
+  <div class="cc-card"><div class="cc-quarter">Q3'23 (2023.11)</div><div class="cc-msg">Heavy Highway 축소 가속. E-Infra 마진 24% 진입. Transportation Q3 +39% 어닝 호조.</div><div class="cc-guide">FY23 가이던스 유지<br>실제(FY23): $1.97B <span class="cc-hit">✅</span></div></div>
+  <div class="cc-card"><div class="cc-quarter">Q4'23 (2024.02)</div><div class="cc-msg">FY23 마무리. 2024 보수적 가이던스 (한 자리 매출 성장). 마진 우선 전략.</div><div class="cc-guide">FY24 가이던스: $1.95~2.05B (RHB 포함)<br>실제(FY24): $2.12B <span class="cc-hit">✅ 초과</span></div></div>
+  <div class="cc-card"><div class="cc-quarter">Q1'24 (2024.05)</div><div class="cc-msg">Q1 약세 (계절성). E-Infra 백로그 35% 증가. 데이터센터 본격 부각.</div><div class="cc-guide">FY24 유지<br>실제(FY24): $2.12B <span class="cc-hit">✅</span></div></div>
+  <div class="cc-card"><div class="cc-quarter">Q2'24 (2024.08)</div><div class="cc-msg">데이터센터 매출 +50% 가속. E-Infra 백로그 60%가 데이터센터 비중 진입.</div><div class="cc-guide">FY24 가이던스 상향<br>실제(FY24): $2.12B <span class="cc-hit">✅</span></div></div>
+  <div class="cc-card"><div class="cc-quarter">Q3'24 (2024.11)</div><div class="cc-msg">RHB deconsolidation 결정 발표. 2025 가이던스 RHB 제외 기준 재산정 예고.</div><div class="cc-guide">FY24 유지<br>실제(FY24): $2.12B <span class="cc-hit">✅</span></div></div>
+  <div class="cc-card"><div class="cc-quarter">Q4'24 (2025.02)</div><div class="cc-msg">FY24 Adj. EPS $6.10 기록. 2025 가이던스 첫 제시 (RHB 제외 기준).</div><div class="cc-guide">FY25 가이던스: $1.95~2.05B<br>실제(FY25): $2.49B <span class="cc-hit">✅ 대폭 초과</span></div></div>
+  <div class="cc-card"><div class="cc-quarter">Q1'25 (2025.05)</div><div class="cc-msg">+10% 매출 성장 (RHB 제외). E-Infra +18% 견조. GP 마진 22% 신기록.</div><div class="cc-guide">FY25 유지<br>실제(FY25): $2.49B <span class="cc-hit">✅ 초과</span></div></div>
+  <div class="cc-card"><div class="cc-quarter">Q2'25 (2025.08)</div><div class="cc-msg">CEC 인수 6월 발표. Drake Concrete 인수 마무리. 가이던스 상향.</div><div class="cc-guide">FY25 상향: $2.10~2.15B<br>실제(FY25): $2.49B <span class="cc-hit">✅</span></div></div>
+  <div class="cc-card"><div class="cc-quarter">Q3'25 (2025.11)</div><div class="cc-msg">CEC 인수 완료. Q3 매출 +32%. 백로그 49% 증가. 가이던스 큰 폭 상향.</div><div class="cc-guide">FY25 상향: $2.375~2.39B<br>실제(FY25): $2.49B <span class="cc-hit">✅</span></div></div>
+  <div class="cc-card"><div class="cc-quarter">Q4'25 (2026.02)</div><div class="cc-msg">FY25 매출 +32%, Adj. EPS $10.88. 2026 첫 가이던스 $3.05~3.20B 제시. 백로그 $3.01B (+78%).</div><div class="cc-guide">2026 초기 가이던스: $3.05~3.20B<br>Q1'26 실제: $826M → 연환산 초과 <span class="cc-hit">✅ 상향 근거</span></div></div>
+  <div class="cc-card cc-latest"><div class="cc-quarter" style="color:#1D9E75">Q1'26 ★ 최신 (2026.05)</div><div class="cc-msg">$826M +92% YoY. 가이던스 +20% 상향. 결합 백로그 $5.15B (+131%). 메이저 반도체 Fab 캠퍼스 첫 phase 수주.</div><div class="cc-guide">2026 상향: $3.7~3.8B · Adj. EBITDA $843~873M<br>Adj. EPS: $13.45~14.05 → <strong>$18.40~19.05</strong></div></div>
+</div>
+</div>
+
+<span class="section-anchor" id="s5-3"></span>
+<div class="section">
+<h2>5-3. Q1'26 컨퍼런스콜 심층 정리 (2026.05.05)</h2>
+<div class="prose">
+  <p><strong>발언자</strong>: Joe Cutillo (CEO) · Nick Grindstaff (CFO)</p>
+  <p><strong>실적</strong>: 매출 $825.7M (+92% YoY, 컨센 $592M 대비 +39%) / Adj. EBITDA $166.6M (마진 20.2%) / Adj. EPS $3.59 (컨센 $2.19 대비 +64%) / GAAP EPS $3.09 / 영업CF $165.6M / 현금 $511.9M / 자사주 매입 $12.3M</p>
+</div>
+<table>
+  <thead><tr><th>#</th><th>메시지</th><th>세부 내용</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>"Exceptional Start to 2026"</strong></td><td>Q1 매출 +92%, 유기적 성장만 +55%. 백로그+Pipeline 합산 작업 풀 $6.5B로 연초 대비 +$2B 확대. 2026 매출 대부분 Q1 시점에 락인.</td></tr>
+    <tr><td>2</td><td><strong>E-Infra +174% 성장</strong></td><td>매출 $597.7M (CEC $156.1M + 사이트개발 +102%). 미션크리티컬 비중 백로그 90%+. Adj. OI +177% YoY. 메이저 반도체 Fab 캠퍼스 첫 phase 수주.</td></tr>
+    <tr><td>3</td><td><strong>CEC 통합 본격화</strong></td><td>Q1 추가 대형 계약으로 결합 백로그에 $1.2B 추가 기여. Sterling 부지 + CEC 전기 통합 시공 2개 캠퍼스 진행 중. Cross-sell 가시화.</td></tr>
+    <tr><td>4</td><td><strong>지역 확장 가속</strong></td><td>북동부 데이터센터 활동 활발. 2026 자산·인력 일부 태평양 북서부 이동. 2027 추가 지역 발주 기대. 텍사스 사이트 개발 본격 진입.</td></tr>
+    <tr><td>5</td><td><strong>Modular 허브 가동</strong></td><td>CEC 텍사스 그랜드 프레리 379K sqft 모듈러 제조 허브 임대 (2026.03). 차세대 프리팹 전기 모듈 사전 제작으로 시공 속도 강화.</td></tr>
+  </tbody>
+</table>
+<h3 style="margin-top:1.2rem">2026 가이던스 상향</h3>
+<table>
+  <thead><tr><th>지표</th><th class="num">Q4'25 컨콜 (기존)</th><th class="num">Q1'26 컨콜 (상향)</th><th class="num">상향 폭</th></tr></thead>
+  <tbody>
+    <tr><td>Revenue</td><td class="num">$3.05~3.20B</td><td class="num hl"><strong>$3.70~3.80B</strong></td><td class="num up2">+20%</td></tr>
+    <tr><td>Net Income</td><td class="num">$365~384M</td><td class="num hl"><strong>$513~533M</strong></td><td class="num up2">+39%</td></tr>
+    <tr><td>Diluted EPS</td><td class="num">$11.65~12.25</td><td class="num hl"><strong>$16.50~17.15</strong></td><td class="num up2">+41%</td></tr>
+    <tr><td>EBITDA</td><td class="num">$587~620M</td><td class="num hl"><strong>$801~831M</strong></td><td class="num up2">+35%</td></tr>
+    <tr><td>Adj. EBITDA</td><td class="num">$626~659M</td><td class="num hl"><strong>$843~873M</strong></td><td class="num up2">+34%</td></tr>
+    <tr><td>Adj. Diluted EPS</td><td class="num">$13.45~14.05</td><td class="num hl"><strong>$18.40~19.05</strong></td><td class="num up2">+36%</td></tr>
+  </tbody>
+</table>
+<p class="note">* 중간값 기준 2026 가이던스: 매출 +51% YoY, Adj. EPS +72% YoY, Adj. EBITDA +70% YoY. 1분기 만에 가이던스 +20%~+41% 상향은 매우 이례적.</p>
+</div>
+
+<span class="section-anchor" id="s5-4"></span>
+<div class="section">
+<h2>5-4. 강세 / 약세 시나리오</h2>
+<div class="scenario-grid">
+  <div class="scenario-box s-bull">
+    <div class="scenario-title">🟢 강세 시나리오</div>
+    <div class="s-item"><div class="s-case">AI 데이터센터 슈퍼사이클 지속</div><div class="s-sub">하이퍼스케일러 Capex 확대 + Tier 2 지역 확산 → 2026 $3.8B 상단, 2027 $5B+ 가시성</div></div>
+    <div class="s-item"><div class="s-case">반도체 Fab 발주 본격화</div><div class="s-sub">CHIPS Act 후속 Fab 사이트 개발 다수 → 추가 메이저 캠퍼스 phase 수주 확대</div></div>
+    <div class="s-item"><div class="s-case">CEC 통합 시너지 가속</div><div class="s-sub">부지+전기 통합 시공 캠퍼스 5개+ 확대 → Cross-sell 매출 분기 $200M+</div></div>
+    <div class="s-item"><div class="s-case">Modular 표준화</div><div class="s-sub">텍사스 모듈러 허브 가동률 90%+ → 시공 속도 30% 단축, 마진 추가 확장</div></div>
+    <div class="s-item"><div class="s-case">Adj. EBITDA 마진 25%+ 안착</div><div class="s-sub">E-Infra 비중 75%+ 도달 시 회사 전체 마진 25% 가능 → EPS 상단 돌파</div></div>
+  </div>
+  <div class="scenario-box s-bear">
+    <div class="scenario-title">🔴 약세 시나리오</div>
+    <div class="s-item"><div class="s-case">AI 투자 사이클 조정</div><div class="s-sub">하이퍼스케일러 ROI 의문 → Capex 삭감 → 백로그 신규 추가 둔화, 2027 가이던스 하향</div></div>
+    <div class="s-item"><div class="s-case">상위 고객 프로젝트 지연</div><div class="s-sub">상위 4개 고객이 E-Infra 매출 31%. 단일 프로젝트 인허가/자금 지연 시 분기 큰 변동</div></div>
+    <div class="s-item"><div class="s-case">CEC 통합 비용 초과</div><div class="s-sub">인수 통합 비용·인력 이탈 → 마진 압박, 시너지 지연</div></div>
+    <div class="s-item"><div class="s-case">Building 부문 회복 지연</div><div class="s-sub">고금리 장기화 → 주거 시장 침체 지속 → Building OI 적자 전환 시 -1%p 마진 희석</div></div>
+    <div class="s-item"><div class="s-case">관세·자재비 충격</div><div class="s-sub">철강·전기 부품 수입 차단 → GP 마진 1~2%p 하락 가능</div></div>
+  </div>
+</div>
+</div>
+
+<span class="section-anchor" id="s6"></span>
+<div class="section">
+<h2>6. Worth Watching Events</h2>
+<div class="ww-list">
+  <div class="ww-item"><div class="ww-date">2026.05~06</div><div><div class="ww-event">반도체 Fab 캠퍼스 phase 1 착공</div><div class="ww-point">Q1'26 발표한 메이저 Fab 사이트 개발 첫 phase 진척도 공시 확인</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026.07 말</div><div><div class="ww-event">Q2'26 실적 발표 (다음 컨콜)</div><div class="ww-point">매출 분기 흐름 확인. Q1 $826M 이후 Q2 $900M+ 가능성. CEC 풀 분기 기여 본격화</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026 Q2~Q3</div><div><div class="ww-event">추가 데이터센터 캠퍼스 발주</div><div class="ww-point">하이퍼스케일러 외 네오클라우드 신규 고객 등장 → 고객 집중도 완화 확인</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026 Q3~Q4</div><div><div class="ww-event">태평양 북서부 진출 본격화</div><div class="ww-point">2026 자산 이동 → 2027 매출 기여 가시화 여부</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026 연중</div><div><div class="ww-event">CEC 모듈러 허브 가동률</div><div class="ww-point">379K sqft 텍사스 허브 가동률 60%+ 도달 여부. Cross-sell 시공 캠퍼스 5개+ 확대</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026 Q4</div><div><div class="ww-event">IIJA 후속 인프라 법안</div><div class="ww-point">연방 인프라 예산 갱신/축소 여부 → Transportation 백로그 영향</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026.11 초</div><div><div class="ww-event">Q3'26 실적 발표</div><div class="ww-point">2026 가이던스 $3.7~3.8B 달성 가시성 검증. 2027 사전 코멘트</div></div></div>
+  <div class="ww-item"><div class="ww-date">2027 이후</div><div><div class="ww-event">CEC earn-out 진척</div><div class="ww-point">2029까지 운영이익 목표 달성 시 추가 지급 → 인수 성공 평가 확정</div></div></div>
+</div>
+</div>
+
+<span class="section-anchor" id="s7"></span>
+<div class="section">
+<h2>7. 데이터 출처</h2>
+<div class="source-box">
+  <ul style="padding-left:1.2rem">
+    <li>Sterling Infrastructure SEC 8-K (분기·연간 실적 보도자료), 10-Q/10-K</li>
+    <li>Q1'26 Earnings Presentation (2026.05.05), Q4'25 Earnings Presentation</li>
+    <li>Q1'26 PR Newswire 보도자료 (2026.05.04 16:00 ET)</li>
+    <li>컨콜 트랜스크립트: Motley Fool, Investing.com, Globe and Mail, AOL</li>
+    <li>주가·시총 데이터: Robinhood, Google Finance, TradingView, StockAnalysis (2026.05.04 기준)</li>
+    <li>분석일: 2026년 5월 5일</li>
+  </ul>
+  <p style="margin-top:8px;color:#bbb">⚠️ Adjusted (Non-GAAP) 지표는 SBC, 무형자산상각, 인수관련비용 등 비현금 항목 제외 수치. 투자 판단 시 GAAP 기준 병행 확인 권장. 2018~2024 일부 분기 세그먼트 데이터는 RHB 제외 조정 후 추정치.</p>
+</div>
+</div>
+
+<span class="section-anchor" id="s7-1"></span>
+<div class="section">
+<h2>7-1. Reference</h2>
+<div class="ref-list">
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.strlco.com/" target="_blank">Sterling Infrastructure 홈페이지</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.strlco.com/investor-relations/overview/" target="_blank">Sterling IR Overview</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.strlco.com/investor-relations/events-presentations/" target="_blank">Sterling Events &amp; Presentations</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.prnewswire.com/news-releases/sterling-reports-record-first-quarter-results-and-raises-full-year-2026-guidance-302761760.html" target="_blank">Q1'26 PR Newswire 실적 보도</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&amp;CIK=0000874238&amp;type=10-K&amp;dateb=&amp;owner=include&amp;count=40" target="_blank">SEC EDGAR — Sterling 10-K/10-Q</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.strlco.com/news/sterling-announces-agreement-to-acquire-cec-facilities-group/" target="_blank">CEC Facilities Group 인수 발표</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://seekingalpha.com/article/4897482-sterling-infrastructure-why-the-growth-story-isnt-over-earnings-preview" target="_blank">Seeking Alpha — STRL Growth Story (2026.05)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.trefis.com/data/companies/STRL" target="_blank">Trefis — Sterling Infrastructure 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://stockanalysis.com/stocks/strl/" target="_blank">StockAnalysis — STRL 종합</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://finance.yahoo.com/markets/stocks/articles/sterling-infrastructure-strl-q1-earnings-215008586.html" target="_blank">Yahoo Finance — Q1'26 어닝 비트 (2026.05.04)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://stockstory.org/us/stocks/nasdaq/strl/news/earnings/sterling-nasdaqstrl-beats-expectations-in-strong-q1-cy2026-stock-jumps-216percent" target="_blank">StockStory — Q1'26 +21.6% 급등 (2026.05.04)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.fool.com/earnings/call-transcripts/2026/05/04/sterling-strl-q4-2025-earnings-call-transcript/" target="_blank">Motley Fool — Q4'25 컨콜 트랜스크립트</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.investing.com/news/transcripts/earnings-call-transcript-sterling-infrastructure-beats-q4-2025-expectations-93CH-4528627" target="_blank">Investing.com — Q4'25 컨콜 트랜스크립트</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://ts2.tech/en/sterling-infrastructure-stock-jumps-as-data-center-work-drives-q1-beat-2026-outlook-raise/" target="_blank">TS2 — Sterling Q1'26 데이터센터 호조</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://cecfg.com/2025/09/01/cecaquisition/" target="_blank">CEC Facilities Group — Sterling 합류 발표</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://en.wikipedia.org/wiki/Sterling_Infrastructure" target="_blank">Wikipedia — Sterling Infrastructure</a></div>
+</div>
+</div>
+
+<div class="footer">Sterling Infrastructure (STRL) 기업분석 · 2026.05.05 · 개인 사용 목적</div>
+</div>
+
+<script>
+const L33=["Q1'18","Q2'18","Q3'18","Q4'18","Q1'19","Q2'19","Q3'19","Q4'19","Q1'20","Q2'20","Q3'20","Q4'20","Q1'21","Q2'21","Q3'21","Q4'21","Q1'22","Q2'22","Q3'22","Q4'22","Q1'23","Q2'23","Q3'23","Q4'23","Q1'24","Q2'24","Q3'24","Q4'24","Q1'25","Q2'25","Q3'25","Q4'25","Q1'26"];
+
+const einfra=[55,68,82,90,75,90,105,115,90,95,110,130,120,140,160,175,150,180,200,210,165,215,280,220,185,241,251,235,218,310,390,487,598];
+const trans=[120,130,140,135,125,135,145,140,110,120,130,135,115,125,140,150,135,145,160,170,140,155,200,155,110,159,166,160,121,197,201,165,133];
+const build=[40,55,60,55,50,60,65,55,45,55,60,55,80,90,95,100,90,100,105,110,90,117,129,111,98,109,104,103,92,107,98,103,95];
+
+const totalRev=L33.map((_,i)=>einfra[i]+trans[i]+build[i]);
+
+const ebitdaMargin=[
+  null,null,null,null,null,null,null,null,
+  6,7,8,9,
+  9,10,10,11,
+  10,11,12,12,
+  11,11.6,13.1,14.8,
+  11.5,18.3,20.4,16.9,
+  18.5,20.5,22.6,18.8,
+  20.2
+];
+
+const gc='rgba(0,0,0,0.05)',tc='#999';
+const xTseg={color:tc,font:{size:9},maxRotation:45,autoSkip:true,maxTicksLimit:18};
+const yT={color:tc,font:{size:11}};
+const $cb={callbacks:{label:ctx=>' $'+Math.round(ctx.parsed.y)+'M'}};
+
+const segBase=[
+  {label:'E-Infrastructure',data:einfra,backgroundColor:'#378ADD',stack:'s'},
+  {label:'Transportation',data:trans,backgroundColor:'#1D9E75',stack:'s'},
+  {label:'Building',data:build,backgroundColor:'#BA7517',stack:'s'},
+];
+const segChart=new Chart(document.getElementById('cSeg'),{
+  type:'bar',
+  data:{labels:L33,datasets:segBase.map(d=>({...d}))},
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:$cb},
+    scales:{
+      x:{grid:{color:gc},ticks:xTseg,stacked:true},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>'$'+v+'M'},stacked:true}
+    }
+  }
+});
+window.toggleSeg=function(idx,el){
+  const m=segChart.getDatasetMeta(idx);
+  m.hidden=!m.hidden;
+  el.classList.toggle('hidden',m.hidden);
+  segChart.update();
+};
+
+new Chart(document.getElementById('cRev'),{
+  type:'bar',
+  data:{
+    labels:L33,
+    datasets:[
+      {type:'bar',label:'매출',data:totalRev,backgroundColor:'rgba(55,138,221,0.3)',borderColor:'#378ADD',borderWidth:1,yAxisID:'y'},
+      {type:'line',label:'Adj. EBITDA M%',data:ebitdaMargin,borderColor:'#1D9E75',pointRadius:3,fill:false,tension:0.3,spanGaps:false,yAxisID:'y2',borderWidth:2}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{
+        mode:'index',intersect:false,
+        callbacks:{
+          label:ctx=>ctx.datasetIndex===0
+            ?' $'+Math.round(ctx.parsed.y)+'M'
+            :ctx.parsed.y!=null?' Margin: '+ctx.parsed.y.toFixed(1)+'%':' Margin: n/a'
+        }
+      }
+    },
+    scales:{
+      x:{grid:{color:gc},ticks:xTseg},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>'$'+v+'M'},position:'left'},
+      y2:{grid:{display:false},ticks:{color:'#1D9E75',font:{size:10},callback:v=>v+'%'},position:'right',suggestedMin:0,suggestedMax:25}
+    }
+  }
+});
+</script>
+</body>
+</html>
