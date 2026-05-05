@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Quanta Services (PWR) Q1'26 기업분석"
 date: 2026-05-05
 categories: 기업분석
