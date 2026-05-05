@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Monolithic Power Systems (MPWR) Q1'26 기업분석"
+title: "Monolithic Power Systems (MPWR)"
 date: 2026-05-05
 categories: 기업분석
 ---
