@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>후성 (093370) 기업분석 — 2026 Q1</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',sans-serif;background:#f4f3ef;color:#1a1a1a;padding:2rem;font-size:14px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto}
+.header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #e0e0dc;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.header-title{font-size:22px;font-weight:700}
+.header-meta{font-size:12px;color:#888;margin-top:4px}
+/* 목차 — 2열 그리드, N자 순서 (좌→우), 번호 표시 */
+.toc{margin-bottom:2.5rem;padding:0 .2rem}
+.toc-title{font-size:11px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;grid-auto-flow:column;grid-template-rows:repeat(8,auto)}
+@media(max-width:650px){.toc-grid{grid-template-columns:1fr;grid-auto-flow:row;grid-template-rows:none}}
+.toc-item{font-size:13px;color:#444;display:flex;gap:10px;line-height:1.7}
+.toc-num{color:#aaa;font-variant-numeric:tabular-nums;flex-shrink:0;font-weight:600;min-width:30px}
+.toc-item a{color:#444;text-decoration:none}
+.toc-item a:hover{color:#378ADD}
+.toc-sub{padding-left:18px;font-size:12.5px;color:#666}
+/* IR 미제공 박스 */
+.ir-na-box{background:#fff;border:0.5px solid #e0e0dc;border-left:3px solid #BA7517;border-radius:8px;padding:1rem 1.3rem;margin:1rem 0}
+.ir-na-title{font-size:13px;font-weight:700;color:#BA7517;margin-bottom:6px}
+.ir-na-body{font-size:12px;color:#555;line-height:1.7}
+.ir-na-body ul{padding-left:1.2rem;margin-top:5px}
+.ir-na-body li{margin-bottom:3px}
+/* Reference 리스트 */
+.ref-list{list-style:none;padding:0;font-size:12px;line-height:1.8}
+.ref-list li{padding:7px 0;border-bottom:0.5px dashed #e0e0dc;display:flex;align-items:flex-start;gap:6px;flex-wrap:wrap}
+.ref-list li:last-child{border-bottom:none}
+.ref-list a{color:#378ADD;text-decoration:none}
+.ref-list a:hover{text-decoration:underline}
+.ref-tag{display:inline-block;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:600;flex-shrink:0;margin-top:1px}
+.ref-desc{color:#888;font-size:11px;margin-left:4px}
+.tag-official{background:#e6f7f0;color:#1D9E75}
+.tag-broker{background:#e8eef8;color:#378ADD}
+.tag-blog{background:#fff8e8;color:#BA7517}
+.tag-cafe{background:#f5e8f5;color:#9C27B0}
+.tag-news{background:#f0f0ee;color:#666}
+.tag-wiki{background:#e8f0e8;color:#558B2F}
+.tag-youtube{background:#fce8e4;color:#D85A30}
+.tag-data{background:#e8f4f8;color:#0277BD}
+.section{margin-bottom:3rem}
+.section-anchor{display:block;position:relative;top:-70px;visibility:hidden}
+h2{font-size:17px;font-weight:700;margin-bottom:14px;padding-bottom:6px;border-bottom:1.5px solid #e0e0dc}
+h3{font-size:14px;font-weight:600;margin:1.2rem 0 .6rem;color:#333}
+.chart-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:20px;position:relative;width:100%}
+.note{font-size:11px;color:#999;margin-top:8px;line-height:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;font-size:12px;color:#666}
+.legend-item{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:3px 8px;border-radius:6px;transition:opacity .15s}
+.legend-item:hover{background:#f0f0ee}
+.legend-item.hidden{opacity:.3;text-decoration:line-through}
+.legend-static{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+/* 테이블 */
+table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0dc;margin-bottom:.5rem}
+th{background:#f0f0ee;font-weight:600;padding:7px 8px;text-align:left;border-bottom:1px solid #e0e0dc;white-space:nowrap;font-size:11.5px}
+th.center{text-align:center}
+td{padding:6px 8px;border-bottom:0.5px solid #f0f0ee;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafaf8}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.center{text-align:center}
+.hl{background:#fffbe6 !important}
+.dn{color:#D85A30}
+.up2{color:#1D9E75}
+/* 회사 개요 — 2열, 모바일 1열 */
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
+@media(max-width:650px){.overview-grid{grid-template-columns:1fr}}
+.overview-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.overview-box h4{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.kv{display:flex;justify-content:space-between;padding:4px 0;border-bottom:0.5px solid #f5f5f3;font-size:12.5px;gap:10px}
+.kv:last-child{border-bottom:none}
+.kv-key{color:#666;min-width:90px;flex-shrink:0}
+.kv-val{font-weight:600;text-align:right;flex:1}
+/* 세그먼트 카드 — 수직 1열 */
+.seg-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:1rem}
+.seg-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:.9rem 1.1rem}
+.seg-card-name{font-size:13px;font-weight:700;margin-bottom:6px}
+.seg-card-desc{font-size:12px;color:#555;line-height:1.6;margin-bottom:6px}
+.seg-card-margin{font-size:11.5px;font-weight:600}
+/* 배지 */
+.badge{display:inline-block;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:600}
+.badge-up{background:#e6f7f0;color:#1D9E75}
+.badge-dn{background:#fce8e4;color:#D85A30}
+.badge-neu{background:#f0f0ee;color:#666}
+/* 컨콜 격자 */
+.cc-table-wrap{overflow-x:auto}
+.cc-grid-table{min-width:760px;width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0dc}
+.cc-grid-table th{background:#f0f0ee;font-weight:600;padding:8px;text-align:center;font-size:11.5px;border-bottom:1px solid #e0e0dc;width:24%}
+.cc-grid-table th:first-child{width:8%;text-align:center}
+.cc-grid-table td{padding:8px 9px;vertical-align:top;border-right:0.5px solid #f0f0ee;border-bottom:0.5px solid #f0f0ee;font-size:11px;line-height:1.5}
+.cc-grid-table td:first-child{font-weight:700;color:#378ADD;text-align:center;background:#fafaf8;font-size:12px}
+.cc-grid-table td:last-child{border-right:none}
+.cc-msg{color:#444;margin-bottom:5px}
+.cc-guide{color:#888;font-size:10.5px;border-top:0.5px solid #f0f0ee;padding-top:5px;margin-top:5px}
+.cc-hit{color:#1D9E75;font-weight:600}
+.cc-miss{color:#D85A30;font-weight:600}
+.cc-latest{background:#fffbe6 !important;border:1.5px solid #378ADD !important}
+/* 시나리오 — 수직 1열 */
+.scenario-list{display:flex;flex-direction:column;gap:14px}
+.scenario-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1.2rem 1.4rem}
+.scenario-title{font-size:14px;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid #f0f0ee}
+.s-bull .scenario-title{color:#1D9E75}
+.s-bear .scenario-title{color:#D85A30}
+.s-item{margin-bottom:9px;padding-bottom:9px;border-bottom:0.5px solid #f5f5f3;font-size:12.5px}
+.s-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-case{font-weight:600;margin-bottom:2px}
+.s-sub{color:#888;font-size:11.5px}
+/* Worth Watching */
+.ww-list{display:flex;flex-direction:column;gap:8px}
+.ww-item{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.75rem 1rem;display:flex;gap:14px}
+.ww-date{font-size:11px;font-weight:700;color:#378ADD;white-space:nowrap;min-width:90px}
+.ww-event{font-size:12.5px;font-weight:600;margin-bottom:2px}
+.ww-point{font-size:11px;color:#888}
+.source-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.4rem;font-size:12px;color:#888;line-height:2}
+.prose{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;margin-bottom:1rem;font-size:13px;line-height:1.7}
+.prose ul{padding-left:1.3rem}
+.prose li{margin-bottom:.25rem}
+.footer{font-size:11px;color:#aaa;text-align:center;margin-top:2rem;padding-top:1rem;border-top:0.5px solid #e0e0dc}
+/* 2행 세그먼트 테이블 */
+.seg-table-wrap{overflow-x:auto}
+.seg-table{min-width:720px}
+.seg-table th.seg-group{text-align:center;background:#e8e8e6;border-left:2px solid #d0d0cc}
+.seg-table td.seg-border{border-left:2px solid #e0e0dc}
+/* TradingView */
+.tv-wrap{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:6px;width:100%;height:480px}
+.tv-wrap iframe{width:100%;height:100%;border:0;border-radius:6px}
+/* 투자 포인트 카드 */
+.ip-cards{display:flex;flex-direction:column;gap:10px;margin-top:1rem}
+.ip-card{background:#fff;border:0.5px solid #e0e0dc;border-left:3px solid #378ADD;border-radius:8px;padding:.85rem 1.1rem}
+.ip-card-title{font-size:13px;font-weight:700;color:#378ADD;margin-bottom:5px}
+.ip-card-body{font-size:12px;color:#444;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div>
+    <div class="header-title">🧪 후성 (093370) 기업분석</div>
+    <div class="header-meta">회계연도: Calendar Year &nbsp;|&nbsp; 분석기간: Q1'18~Q1'26 (33분기) &nbsp;|&nbsp; 최근 컨콜: 2026 Q1 잠정 발표</div>
+  </div>
+  <div style="font-size:12px;color:#aaa">분석일: 2026.05.05</div>
+</div>
+
+<!-- 목차 — 1~7 대분류 + 하위번호, 좌→우 N자 순서 -->
+<div class="toc">
+  <div class="toc-title">목차</div>
+  <div class="toc-grid">
+    <!-- 좌측 열 (1~5-1) -->
+    <div class="toc-item"><span class="toc-num">1.</span><a href="#s1">회사 개요</a></div>
+    <div class="toc-item"><span class="toc-num">2.</span><a href="#s2">주가 흐름 — 주봉</a></div>
+    <div class="toc-item"><span class="toc-num">3.</span><a href="#s3">세그먼트별 매출 추이</a></div>
+    <div class="toc-item toc-sub"><span class="toc-num">3-1.</span><a href="#s3b">세그먼트 구조 및 제품</a></div>
+    <div class="toc-item toc-sub"><span class="toc-num">3-2.</span><a href="#s4">매출 &amp; OPM 추이</a></div>
+    <div class="toc-item toc-sub"><span class="toc-num">3-3.</span><a href="#s5">세그먼트별 실적 테이블</a></div>
+    <div class="toc-item"><span class="toc-num">4.</span><a href="#s6">재무제표 개요</a></div>
+    <div class="toc-item"><span class="toc-num">5.</span><a href="#s7">핵심 투자아이디어</a></div>
+    <!-- 우측 열 (5-1~7-1) -->
+    <div class="toc-item toc-sub"><span class="toc-num">5-1.</span><a href="#s8">핵심 변동 요인</a></div>
+    <div class="toc-item toc-sub"><span class="toc-num">5-2.</span><a href="#s9">컨퍼런스콜 트래킹</a></div>
+    <div class="toc-item toc-sub"><span class="toc-num">5-3.</span><a href="#s10">Q1'26 심층 정리</a></div>
+    <div class="toc-item toc-sub"><span class="toc-num">5-4.</span><a href="#s11">강세 / 약세 시나리오</a></div>
+    <div class="toc-item"><span class="toc-num">6.</span><a href="#s12">Worth Watching Events</a></div>
+    <div class="toc-item"><span class="toc-num">7.</span><a href="#s13">데이터 출처</a></div>
+    <div class="toc-item toc-sub"><span class="toc-num">7-1.</span><a href="#s14">Reference</a></div>
+  </div>
+</div>
+
+<!-- 1. 회사 개요 -->
+<span class="section-anchor" id="s1"></span>
+<div class="section">
+<h2>1. 회사 개요</h2>
+<div class="overview-grid">
+  <div class="overview-box">
+    <h4>기본 정보</h4>
+    <div class="kv"><span class="kv-key">설립</span><span class="kv-val">2006.11 (퍼스텍 인적분할)</span></div>
+    <div class="kv"><span class="kv-key">상장</span><span class="kv-val">KOSPI (종목코드 093370)</span></div>
+    <div class="kv"><span class="kv-key">본사</span><span class="kv-val">경기도 화성시 팔탄면</span></div>
+    <div class="kv"><span class="kv-key">대표이사</span><span class="kv-val">송한주, 김용민</span></div>
+    <div class="kv"><span class="kv-key">최대주주</span><span class="kv-val">김근수 회장 외 (범현대가)</span></div>
+    <div class="kv"><span class="kv-key">핵심 기술</span><span class="kv-val">불소화학 (40년+ 노하우)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>시장 정보 (2026.04.30 기준)</h4>
+    <div class="kv"><span class="kv-key">현재 주가</span><span class="kv-val">13,240원</span></div>
+    <div class="kv"><span class="kv-key">시가총액 (KRW)</span><span class="kv-val" style="color:#378ADD">~1조 4,201억원</span></div>
+    <div class="kv"><span class="kv-key">시가총액 (USD)</span><span class="kv-val" style="color:#378ADD">~$10.3억 (환율 1,380원)</span></div>
+    <div class="kv"><span class="kv-key">52주 고가</span><span class="kv-val">15,420원</span></div>
+    <div class="kv"><span class="kv-key">52주 저가</span><span class="kv-val">3,875원</span></div>
+    <div class="kv"><span class="kv-key">목표주가 (유진)</span><span class="kv-val" style="color:#1D9E75">20,000원 (+51%)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>사업 운영</h4>
+    <div class="kv"><span class="kv-key">울산공장</span><span class="kv-val">LiPF6·냉매 (4,000톤/년)</span></div>
+    <div class="kv"><span class="kv-key">중국 남통</span><span class="kv-val">LiPF6 3,400톤·WF6 500톤</span></div>
+    <div class="kv"><span class="kv-key">폴란드 법인</span><span class="kv-val">유럽 LiPF6 거점 (가동 준비)</span></div>
+    <div class="kv"><span class="kv-key">자회사 한텍</span><span class="kv-val">화공기기·탱크 (지분 69.4%)</span></div>
+    <div class="kv"><span class="kv-key">독점 제품</span><span class="kv-val">국내 유일 LiPF6·C4F6</span></div>
+    <div class="kv"><span class="kv-key">주요 고객</span><span class="kv-val">삼성전자·SK하이닉스·전해액사</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>투자 포인트 요약</h4>
+    <div class="kv"><span class="kv-key">2025 매출</span><span class="kv-val" style="color:#1D9E75">4,718억원 (+7.7% YoY)</span></div>
+    <div class="kv"><span class="kv-key">2025 영업이익</span><span class="kv-val" style="color:#1D9E75">253억원 (흑자전환)</span></div>
+    <div class="kv"><span class="kv-key">2026E 매출 (유진)</span><span class="kv-val" style="color:#1D9E75">5,648억원 (+20%)</span></div>
+    <div class="kv"><span class="kv-key">2026E 영업이익</span><span class="kv-val" style="color:#1D9E75">528억원 (+108%)</span></div>
+    <div class="kv"><span class="kv-key">Q1'26 추정</span><span class="kv-val" style="color:#1D9E75">1,238억 / 영업이익 97억</span></div>
+    <div class="kv"><span class="kv-key">핵심 모멘텀</span><span class="kv-val">LiPF6 가격 +126% / WF6 판가↑</span></div>
+  </div>
+</div>
+<p class="note">⚠️ <strong>Q1'26 잠정실적</strong>은 유진투자증권 추정치 (2026.04.23 리포트). 실제 발표는 5월 중순 예정. 회계연도는 Calendar Year(1~12월). 한텍은 2022년 12월 완전자회사 편입 후 2025년 별도 코스닥 재상장 (現 지분 69.41%).</p>
+
+<div class="ir-na-box">
+  <div class="ir-na-title">📋 IR Presentation 자료 미제공</div>
+  <div class="ir-na-body">
+    후성은 분기별 IR 발표자료(Earnings Presentation·Investor Day Slide)를 별도 공개하지 않습니다. 공식 사이트(<a href="https://www.foosungchem.com" target="_blank" style="color:#378ADD">foosungchem.com</a>, <a href="https://www.foosung.com" target="_blank" style="color:#378ADD">foosung.com</a>)는 사업보고서·재무정보만 게시하며, 분기 어닝콜이나 NDR(Non-Deal Roadshow) 자료도 미공개입니다. 본 리포트는 다음 자료를 기반으로 작성되었습니다:
+    <ul>
+      <li>DART 사업보고서 (2024, 2025)·분기보고서·잠정실적 공시</li>
+      <li>유진투자증권 한병화 애널리스트 리포트 (사실상 후성의 IR 역할 수행, 2022~2026 다수)</li>
+      <li>삼성증권·KB증권 등 기타 증권사 리포트</li>
+      <li>국내 언론·산업 매체 보도 (리드경제·한국신용신문·딜사이트 등)</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- 2. 주가 — Chart.js 주봉 -->
+<span class="section-anchor" id="s2"></span>
+<div class="section">
+<h2>2. 주가 흐름 — 주봉 (2018.01 ~ 2026.04)</h2>
+<div class="legend"><span class="legend-static"><span class="dot" style="background:#378ADD"></span>후성 주봉 종가 (근사치, 원)</span></div>
+<div class="chart-box" style="height:320px"><canvas id="cPrice"></canvas></div>
+<p class="note">* TradingView 위젯이 KRX 종목 데이터를 차단하여 Chart.js 주봉 차트로 대체. 실시간 차트는 <a href="https://finance.naver.com/item/main.naver?code=093370" target="_blank" style="color:#378ADD">네이버 증권</a> 또는 <a href="https://m.stock.naver.com/domestic/stock/093370/total" target="_blank" style="color:#378ADD">네이버 모바일 차트</a> 참고.</p>
+
+<h3 style="margin-top:1.2rem">주요 이벤트 연표</h3>
+<table>
+  <thead><tr><th>시기</th><th class="num">주가(근사)</th><th>이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2018~2019</td><td class="num">8,000~14,000원</td><td>전기차 테마 부각, 중국 LiPF6 공장 가동</td></tr>
+    <tr><td>2020.12~2021.07</td><td class="num">~25,000원</td><td>2차전지 슈퍼사이클, 매출 +46% / 영업이익 +1,971%</td></tr>
+    <tr><td>2021.08</td><td class="num">~33,000원 (사상최고)</td><td>분할 전 기준 주가 정점, 시총 약 3조원</td></tr>
+    <tr><td>2022~2023</td><td class="num">10,000~18,000원</td><td>금리인상 + 전해질 공급과잉 → LiPF6 가격 -85%</td></tr>
+    <tr><td>2023.04</td><td class="num">~9,000원</td><td>울산 LiPF6 공장 가동 중단 발표 (가동률 32%)</td></tr>
+    <tr><td>2024</td><td class="num">5,000~7,000원</td><td>매출 -16% / 영업적자 -96억 / 당기순손실 -834억</td></tr>
+    <tr><td>2025.04</td><td class="num">3,875원 (52주 저가)</td><td>2차전지 한파 직격, PBR 0.6배 수준</td></tr>
+    <tr><td>2025.08</td><td class="num">~7,000원</td><td>한텍 그린에너지 사업부 신설, CCUS·수소 모멘텀</td></tr>
+    <tr><td>2025.11</td><td class="num">~10,000원</td><td>중국 LiPF6 공급통제 → 스팟 가격 +126% (2개월)</td></tr>
+    <tr class="hl"><td><strong>2026.04.29</strong></td><td class="num"><strong>15,420원 (52주 高)</strong></td><td><strong>유진 목표가 2만원 상향, AI 반도체+미국 EV 수혜 부각</strong></td></tr>
+    <tr><td>2026.04.30</td><td class="num">13,240원</td><td>차익실현 조정, 시총 1.42조원</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 3. 세그먼트 33분기 -->
+<span class="section-anchor" id="s3"></span>
+<div class="section">
+<h2>3. 세그먼트별 매출 추이 — 33분기 (억원)</h2>
+<div class="legend" id="segLegend">
+  <span class="legend-item" onclick="toggleSeg(0,this)"><span class="dot" style="background:#378ADD"></span>반도체 특수가스</span>
+  <span class="legend-item" onclick="toggleSeg(1,this)"><span class="dot" style="background:#1D9E75"></span>2차전지 소재</span>
+  <span class="legend-item" onclick="toggleSeg(2,this)"><span class="dot" style="background:#D85A30"></span>냉매·무기불화물</span>
+  <span class="legend-item" onclick="toggleSeg(3,this)"><span class="dot" style="background:#BA7517"></span>화공기기 (한텍)</span>
+  <span style="font-size:11px;color:#bbb;margin-left:4px">← 클릭하여 표시/숨김</span>
+</div>
+<div class="chart-box" style="height:460px"><canvas id="cSeg"></canvas></div>
+<p class="note">* 2018~2022 분기 데이터는 사업보고서 역산 추정치. 2022 Q4부터 한텍 화공기기 연결 편입. 2차전지 소재(LiPF6) 부문은 2022 정점 → 2024 바닥 → 2025~2026 회복 사이클. 한텍은 2025 매출 1,719억 / 영업이익 382억으로 캐시카우 역할.</p>
+</div>
+
+<!-- 3-1. 세그먼트 구조 -->
+<span class="section-anchor" id="s3b"></span>
+<div class="section">
+<h2>3-1. 세그먼트 구조 및 제품</h2>
+<div class="seg-cards">
+  <div class="seg-card" style="border-left:3px solid #378ADD">
+    <div class="seg-card-name" style="color:#378ADD">① 반도체 특수가스</div>
+    <div class="seg-card-desc">반도체 식각(에칭)·증착 공정용 핵심 가스. <strong>WF6(육불화텅스텐)</strong>은 텅스텐 배선 형성에 사용 — 국내 400톤·중국 500톤 캐파. <strong>C4F6(육불화부타디엔)</strong>은 3D NAND 식각 핵심 가스로 국내 유일 제조사 (180톤/년). 삼성전자·SK하이닉스가 주요 고객. 2026년 모멘텀: 중국·일본 텅스텐 수출 제한으로 글로벌 공급 30% 감소 → 판가 상승 + 비중국산 수요 집중.</div>
+    <div class="seg-card-margin" style="color:#1D9E75">2025 매출 비중 ~25% · GPM 30%대 추정</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #1D9E75">
+    <div class="seg-card-name" style="color:#1D9E75">② 2차전지 소재 (LiPF6)</div>
+    <div class="seg-card-desc">전해액 핵심 염 <strong>LiPF6(육불화인산리튬)</strong>를 국내에서 유일 제조. 울산 4,000톤(2개 라인) + 중국 남통 3,400톤. 무수불산 반도체급 순도 + 결정화 공정이 진입장벽. 2022년 매출 비중 46% → 2024년 17%로 급락 (중국 공급과잉으로 t당 가격 59만→6.85만 위안). <strong>2025.11부터 중국 공급 통제로 스팟 +126% 반등</strong>, 미국 1,000톤 공급계약 체결.</div>
+    <div class="seg-card-margin" style="color:#1D9E75">2025 매출 비중 ~20% · 2026 회복 전망</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #D85A30">
+    <div class="seg-card-name" style="color:#D85A30">③ 냉매 · 무기불화물</div>
+    <div class="seg-card-desc">에어컨·냉장고용 <strong>HFC 냉매가스</strong> 국내 독점 생산. 1989년 몬트리올 의정서 이후 신규 인허가 사실상 차단되어 강력한 진입장벽. 정부 환경 규제로 <strong>쿼터 감축</strong>이 오히려 가격 상승을 유발 — 2025년 국내 유통 가격 상승이 실적 개선 핵심. 무기불화물(LCD 에칭·금속세정용)은 안정적 캐시카우.</div>
+    <div class="seg-card-margin" style="color:#1D9E75">2025 매출 비중 ~15% · 안정적 마진</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #BA7517">
+    <div class="seg-card-name" style="color:#BA7517">④ 화공기기 (자회사 한텍, 지분 69.4%)</div>
+    <div class="seg-card-desc">정유·석유화학·LNG 플랜트용 <strong>열교환기·압력용기·반응기·탑조류</strong> 제작. 비철 특수재질 분야 글로벌 경쟁력. 2025년부터 <strong>그린에너지 사업부</strong> 신설 — 수소탱크·CCUS 압력용기·원전 사용후 핵연료 운반 CASK 진출. 2024 영업이익 167억 → 2025 영업이익 <strong>382억(+128%)</strong>으로 그룹 흑자전환 견인.</div>
+    <div class="seg-card-margin" style="color:#1D9E75">2025 매출 비중 ~36% · 그룹 OP 견인</div>
+  </div>
+</div>
+<table>
+  <thead><tr><th>세그먼트</th><th>대표 제품</th><th>주요 고객</th><th>2025 비중</th><th>마진/특성</th></tr></thead>
+  <tbody>
+    <tr><td><strong>반도체 특수가스</strong></td><td>WF6, C4F6, NF3 외</td><td>삼성전자, SK하이닉스</td><td class="center">~25%</td><td>국내 유일 C4F6 / 진입장벽 高</td></tr>
+    <tr><td><strong>2차전지 소재</strong></td><td>LiPF6, LiBF4, 첨가제</td><td>국내외 전해액사·글로벌 OEM</td><td class="center">~20%</td><td>국내 유일 / 가격 사이클 변동성 큼</td></tr>
+    <tr><td><strong>냉매·무기불화물</strong></td><td>HFC 냉매가스, 무기불화물</td><td>가전·자동차·LCD·반도체</td><td class="center">~15%</td><td>국내 독점 / 환경규제 쿼터 효과</td></tr>
+    <tr><td><strong>화공기기 (한텍)</strong></td><td>열교환기·탱크·CASK·CCUS</td><td>글로벌 EPC·정유·원전·수소</td><td class="center">~36%</td><td>고마진 + 그린에너지 신성장</td></tr>
+  </tbody>
+</table>
+<p class="note">* 매출 비중은 2025 사업보고서 기반 추정치. 한텍은 2025년 별도 코스닥 상장 후에도 후성 지분 69.41% 유지로 연결 편입 지속.</p>
+</div>
+
+<!-- 4. 매출 + OPM -->
+<span class="section-anchor" id="s4"></span>
+<div class="section">
+<h2>3-2. 매출 &amp; 영업이익률(OPM) 추이</h2>
+<div class="legend">
+  <span class="legend-static"><span class="dot" style="background:rgba(55,138,221,0.35)"></span>매출 (억원, 막대)</span>
+  <span class="legend-static"><span class="dot" style="background:#1D9E75"></span>영업이익률 % (선)</span>
+</div>
+<div class="chart-box" style="height:420px"><canvas id="cRev"></canvas></div>
+<p class="note">* 2021 Q3~Q4 OPM 25%+ = 2차전지 슈퍼사이클 정점. 2024 Q1~2025 Q2는 LiPF6 가격 폭락기로 적자~소폭흑자 흐름. 2026 Q1부터 본격 회복 추정.</p>
+
+<h3 style="margin-top:1.5rem">연간 실적 요약 (연결, 억원)</h3>
+<table>
+  <thead><tr><th>연도</th><th class="num">매출</th><th class="num">영업이익</th><th class="num">OPM</th><th class="num">당기순이익</th></tr></thead>
+  <tbody>
+    <tr><td>2020</td><td class="num">2,615</td><td class="num">28</td><td class="num">1.1%</td><td class="num">26</td></tr>
+    <tr><td>2021</td><td class="num">3,813</td><td class="num">581</td><td class="num up2">15.2%</td><td class="num">313</td></tr>
+    <tr><td>2022</td><td class="num">6,105</td><td class="num up2">1,053</td><td class="num up2">17.2%</td><td class="num">831</td></tr>
+    <tr><td>2023</td><td class="num">5,231</td><td class="num dn">-461</td><td class="num dn">-8.8%</td><td class="num dn">-844</td></tr>
+    <tr><td>2024</td><td class="num">4,378</td><td class="num dn">-96</td><td class="num dn">-2.2%</td><td class="num dn">-834</td></tr>
+    <tr><td>2025</td><td class="num">4,718</td><td class="num up2">253</td><td class="num up2">5.4%</td><td class="num up2">266</td></tr>
+    <tr class="hl"><td><strong>2026E (유진)</strong></td><td class="num"><strong>5,648</strong></td><td class="num up2"><strong>528</strong></td><td class="num up2"><strong>9.3%</strong></td><td class="num">—</td></tr>
+  </tbody>
+</table>
+
+<h3 style="margin-top:1.5rem">분기별 실적 요약 (최근 12분기, 연결, 억원)</h3>
+<table>
+  <thead>
+    <tr>
+      <th>분기</th>
+      <th class="num">매출</th>
+      <th class="num">YoY</th>
+      <th class="num">영업이익</th>
+      <th class="num">OPM</th>
+      <th class="num">당기순이익</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Q2'23</td><td class="num">1,360</td><td class="num dn">-25%</td><td class="num dn">-110</td><td class="num dn">-8.1%</td><td class="num dn">-180</td></tr>
+    <tr><td>Q3'23</td><td class="num">1,310</td><td class="num dn">-19%</td><td class="num dn">-150</td><td class="num dn">-11.5%</td><td class="num dn">-230</td></tr>
+    <tr><td>Q4'23</td><td class="num">1,210</td><td class="num dn">-22%</td><td class="num dn">-120</td><td class="num dn">-9.9%</td><td class="num dn">-360</td></tr>
+    <tr><td>Q1'24</td><td class="num">1,071</td><td class="num dn">-1%</td><td class="num dn">-1</td><td class="num dn">-0.1%</td><td class="num dn">-50</td></tr>
+    <tr><td>Q2'24</td><td class="num">1,134</td><td class="num dn">-17%</td><td class="num dn">-50</td><td class="num dn">-4.4%</td><td class="num dn">-200</td></tr>
+    <tr><td>Q3'24</td><td class="num">1,069</td><td class="num dn">-18%</td><td class="num dn">-25</td><td class="num dn">-2.3%</td><td class="num dn">-450</td></tr>
+    <tr><td>Q4'24</td><td class="num">1,104</td><td class="num dn">-9%</td><td class="num dn">-20</td><td class="num dn">-1.8%</td><td class="num dn">-134</td></tr>
+    <tr><td>Q1'25</td><td class="num">1,071</td><td class="num">0%</td><td class="num dn">-17</td><td class="num dn">-1.6%</td><td class="num dn">-30</td></tr>
+    <tr><td>Q2'25</td><td class="num">1,242</td><td class="num up2">+10%</td><td class="num up2">164</td><td class="num up2">13.2%</td><td class="num">-170</td></tr>
+    <tr><td>Q3'25</td><td class="num">1,210</td><td class="num up2">+13%</td><td class="num up2">58</td><td class="num">4.8%</td><td class="num up2">340</td></tr>
+    <tr><td>Q4'25</td><td class="num">1,193</td><td class="num up2">+8%</td><td class="num">48</td><td class="num">4.0%</td><td class="num up2">126</td></tr>
+    <tr class="hl"><td><strong>Q1'26E</strong></td><td class="num"><strong>1,238</strong></td><td class="num up2"><strong>+16%</strong></td><td class="num up2"><strong>97</strong></td><td class="num up2"><strong>7.8%</strong></td><td class="num">—</td></tr>
+  </tbody>
+</table>
+<p class="note">* Q1'26은 유진투자증권 추정치 (2026.04.23). Q2'25 영업이익 급증은 한텍 호조 + 일회성 환입 영향 추정. 일부 분기 데이터는 추정치 포함.</p>
+</div>
+
+<!-- 5. 세그먼트 실적 테이블 -->
+<span class="section-anchor" id="s5"></span>
+<div class="section">
+<h2>3-3. 세그먼트별 실적 테이블 (16분기, 억원)</h2>
+<div class="seg-table-wrap">
+<table class="seg-table">
+  <thead>
+    <tr>
+      <th rowspan="2" style="vertical-align:middle">분기</th>
+      <th colspan="2" class="seg-group center">반도체가스</th>
+      <th colspan="2" class="seg-group center">2차전지 소재</th>
+      <th colspan="2" class="seg-group center">냉매·기타</th>
+      <th colspan="2" class="seg-group center">화공기기 (한텍)</th>
+      <th rowspan="2" class="seg-group center" style="vertical-align:middle">합계</th>
+    </tr>
+    <tr>
+      <th class="seg-group center">매출</th><th class="seg-group center">비중</th>
+      <th class="seg-group center">매출</th><th class="seg-group center">비중</th>
+      <th class="seg-group center">매출</th><th class="seg-group center">비중</th>
+      <th class="seg-group center">매출</th><th class="seg-group center">비중</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Q2'23</td><td class="num seg-border">340</td><td class="num">25%</td><td class="num seg-border">370</td><td class="num">27%</td><td class="num seg-border">200</td><td class="num">15%</td><td class="num seg-border">450</td><td class="num">33%</td><td class="num seg-border"><b>1,360</b></td></tr>
+    <tr><td>Q3'23</td><td class="num seg-border">310</td><td class="num">24%</td><td class="num seg-border">270</td><td class="num">21%</td><td class="num seg-border">220</td><td class="num">17%</td><td class="num seg-border">510</td><td class="num">39%</td><td class="num seg-border"><b>1,310</b></td></tr>
+    <tr><td>Q4'23</td><td class="num seg-border">280</td><td class="num">23%</td><td class="num seg-border">210</td><td class="num">17%</td><td class="num seg-border">230</td><td class="num">19%</td><td class="num seg-border">490</td><td class="num">41%</td><td class="num seg-border"><b>1,210</b></td></tr>
+    <tr><td>Q1'24</td><td class="num seg-border">260</td><td class="num">24%</td><td class="num seg-border">170</td><td class="num">16%</td><td class="num seg-border">220</td><td class="num">21%</td><td class="num seg-border">421</td><td class="num">39%</td><td class="num seg-border"><b>1,071</b></td></tr>
+    <tr><td>Q2'24</td><td class="num seg-border">270</td><td class="num">24%</td><td class="num seg-border">180</td><td class="num">16%</td><td class="num seg-border">230</td><td class="num">20%</td><td class="num seg-border">454</td><td class="num">40%</td><td class="num seg-border"><b>1,134</b></td></tr>
+    <tr><td>Q3'24</td><td class="num seg-border">240</td><td class="num">22%</td><td class="num seg-border">160</td><td class="num">15%</td><td class="num seg-border">220</td><td class="num">21%</td><td class="num seg-border">449</td><td class="num">42%</td><td class="num seg-border"><b>1,069</b></td></tr>
+    <tr><td>Q4'24</td><td class="num seg-border">280</td><td class="num">25%</td><td class="num seg-border">170</td><td class="num">15%</td><td class="num seg-border">220</td><td class="num">20%</td><td class="num seg-border">434</td><td class="num">39%</td><td class="num seg-border"><b>1,104</b></td></tr>
+    <tr><td>Q1'25</td><td class="num seg-border">260</td><td class="num">24%</td><td class="num seg-border">180</td><td class="num">17%</td><td class="num seg-border">230</td><td class="num">21%</td><td class="num seg-border">401</td><td class="num">37%</td><td class="num seg-border"><b>1,071</b></td></tr>
+    <tr><td>Q2'25</td><td class="num seg-border">310</td><td class="num">25%</td><td class="num seg-border">220</td><td class="num">18%</td><td class="num seg-border">250</td><td class="num">20%</td><td class="num seg-border">462</td><td class="num">37%</td><td class="num seg-border"><b>1,242</b></td></tr>
+    <tr><td>Q3'25</td><td class="num seg-border">300</td><td class="num">25%</td><td class="num seg-border">230</td><td class="num">19%</td><td class="num seg-border">240</td><td class="num">20%</td><td class="num seg-border">440</td><td class="num">36%</td><td class="num seg-border"><b>1,210</b></td></tr>
+    <tr><td>Q4'25</td><td class="num seg-border">300</td><td class="num">25%</td><td class="num seg-border">240</td><td class="num">20%</td><td class="num seg-border">237</td><td class="num">20%</td><td class="num seg-border">416</td><td class="num">35%</td><td class="num seg-border"><b>1,193</b></td></tr>
+    <tr class="hl"><td><b>Q1'26E</b></td><td class="num seg-border">320</td><td class="num up2"><b>26%</b></td><td class="num seg-border">280</td><td class="num up2"><b>23%</b></td><td class="num seg-border">240</td><td class="num">19%</td><td class="num seg-border">398</td><td class="num">32%</td><td class="num seg-border"><b>1,238</b></td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">* 세그먼트별 매출은 사업보고서 부문별 매출 + 한텍 별도 공시 기반 추정. 2024년 LiPF6 가동률 32%로 2차전지 비중 급락 → 2026 Q1부터 회복 본격화.</p>
+</div>
+
+<!-- 6. 재무제표 개요 -->
+<span class="section-anchor" id="s6"></span>
+<div class="section">
+<h2>4. 재무제표 개요</h2>
+<table>
+  <thead><tr><th>지표</th><th class="num">2023</th><th class="num">2024</th><th class="num">2025</th><th>비고</th></tr></thead>
+  <tbody>
+    <tr><td>자산총계</td><td class="num">~1.0조원</td><td class="num">~9,500억</td><td class="num">~1.0조원</td><td>설비투자 누적</td></tr>
+    <tr><td>부채총계</td><td class="num">~6,000억</td><td class="num">~5,800억</td><td class="num">~5,500억</td><td>차입금 안정화</td></tr>
+    <tr><td>자본총계</td><td class="num">~4,000억</td><td class="num">~3,700억</td><td class="num">~4,500억</td><td>순이익 흑전</td></tr>
+    <tr><td>부채비율</td><td class="num dn">150%대</td><td class="num dn">157%</td><td class="num">~120%대</td><td>안정 추세</td></tr>
+    <tr><td>PBR</td><td class="num">—</td><td class="num">0.6배</td><td class="num">~3배대</td><td>주가 회복</td></tr>
+    <tr><td>PER (Trailing)</td><td class="num dn">N/A</td><td class="num dn">N/A</td><td class="num">~267배</td><td>이익 정상화 진행중</td></tr>
+    <tr><td>R&amp;D 비율</td><td class="num">~3%</td><td class="num">~3%</td><td class="num">~3%</td><td>차세대 첨가제·전고체 대응</td></tr>
+  </tbody>
+</table>
+<p class="note">* 후성은 2024년 유상증자(약 1,000억원)로 2차전지 + 반도체가스 시설투자 자금 조달. 2024년 대규모 당기순손실은 LiPF6 자산 평가손 + 영업권 손상 영향. PER 267배는 2025 흑자전환 직후 일시적 수치로 2026E 기준 PER 27배 수준.</p>
+</div>
+
+<!-- 7. 핵심 투자아이디어 -->
+<span class="section-anchor" id="s7"></span>
+<div class="section">
+<h2>5. 핵심 투자아이디어</h2>
+<div class="prose">
+  <p><strong>① 중국발 LiPF6 공급통제 → 가격 사이클 반전.</strong> 2022년 t당 59만 위안에서 6.85만 위안까지 폭락했던 LiPF6 가격이 2025년 11월부터 중국 상위업체들의 공급·가격 통제로 2개월간 +126% 급등했다. 현재 중국 스팟 가격이 후성의 공급 가격을 추월한 상태로, 그동안 중국산 저가 공세에 가동률 32%까지 떨어졌던 후성의 LiPF6 라인이 다시 풀가동 진입 중이다. 2026년 2분기부터 울산 2,000톤 라인 풀가동 + 신규 2,000톤 라인 연내 가동으로 캐파 더블링 효과가 예상된다.</p>
+  <p><strong>② AI 반도체 — WF6 판가·물량 동시 상승.</strong> WF6는 반도체 텅스텐 배선 형성용 핵심 가스다. 텅스텐 파우더의 80%를 차지하는 중국이 2024년부터 수출 제한을 시행 중이고, 일본 역시 2025년 하반기부터 텅스텐 공급을 제한하면서 글로벌 생산의 30%를 차지하는 일본 업체 공급이 급감할 전망이다. 후성은 국내 400톤·중국 500톤의 WF6 캐파를 보유하고 있으며, 중국 공장은 7년 만에 흑자 전환이 기대된다. 미국의 FEOC(우려 외국 단체) 규정 강화로 비중국산 반도체 가스 수요가 후성으로 집중되는 구조다.</p>
+  <p><strong>③ 한텍 — 그린에너지 + 원전 신성장 옵션.</strong> 자회사 한텍(지분 69.4%)은 2025년 매출 1,719억·영업이익 382억(+128%)으로 그룹 흑자전환을 견인했다. 2025년 그린에너지 사업부 신설 후 수소탱크·CCUS 압력용기·원전 사용후 핵연료 운반용 CASK 시장에 본격 진입했다. 한미 원자력협정 개정 검토로 국내 CASK 시장이 열리면 한텍은 직접 수혜가 가능하다. 후성 입장에서 한텍은 안정적인 캐시카우이자 그린에너지 메가트렌드 노출 자산이다.</p>
+</div>
+
+<div class="ip-cards">
+  <div class="ip-card">
+    <div class="ip-card-title">투자 포인트 1 — 진입장벽: 국내 유일·40년 불소화학</div>
+    <div class="ip-card-body">LiPF6, C4F6는 국내 유일 제조사. 1989년 몬트리올 의정서 이후 HFC 냉매 신규 인허가 사실상 차단. 무수불산 반도체급 순도 + 결정화 공정 노하우는 단기간 모방 불가. 경쟁사가 들어올 수 없는 구조적 해자.</div>
+  </div>
+  <div class="ip-card">
+    <div class="ip-card-title">투자 포인트 2 — LiPF6 사이클 바닥 통과</div>
+    <div class="ip-card-body">중국 공급 통제로 스팟 +126%. 미국 1,000톤 공급계약(FEOC 수혜). 울산 2,000톤 풀가동 + 신규 2,000톤 연내 가동 → 캐파 더블링. 2022년 매출 비중 46% 달성 경험 → 사이클 회복 시 영업이익 레버리지 큼.</div>
+  </div>
+  <div class="ip-card">
+    <div class="ip-card-title">투자 포인트 3 — 반도체 특수가스 판가 상승</div>
+    <div class="ip-card-body">중·일 텅스텐 수출 제한 → WF6 글로벌 공급 30% 감소. 비중국산 수요가 후성으로 집중. 중국 공장 7년 만에 흑자전환 가시화. AI 반도체(HBM·3D NAND) 수요 폭증으로 C4F6도 동반 강세.</div>
+  </div>
+  <div class="ip-card">
+    <div class="ip-card-title">투자 포인트 4 — 한텍 + 냉매 안정 캐시카우</div>
+    <div class="ip-card-body">한텍 영업이익 +128% (그린에너지 모멘텀). 냉매 쿼터 감축 → 국내 유통가 상승 → 안정적 마진. 본업 사이클 변동성을 자회사·냉매가 완충하는 구조.</div>
+  </div>
+  <div class="ip-card">
+    <div class="ip-card-title">투자 포인트 5 — 2026 영업이익 +108% 성장</div>
+    <div class="ip-card-body">유진투자증권 2026E: 매출 5,648억(+20%), 영업이익 528억(+108%). 2022년 영업이익 1,053억 수준까지 회복은 시간 문제. 목표주가 2만원(상향여력 +51%).</div>
+  </div>
+</div>
+</div>
+
+<!-- 8. 핵심 변동 요인 -->
+<span class="section-anchor" id="s8"></span>
+<div class="section">
+<h2>5-1. 핵심 변동 요인</h2>
+<h3>외부 변수</h3>
+<table>
+  <thead><tr><th>요인</th><th>방향</th><th>내용</th></tr></thead>
+  <tbody>
+    <tr><td><strong>중국 LiPF6 공급통제</strong></td><td><span class="badge badge-up">↑ 강력 긍정</span></td><td>2025.11부터 중국 상위업체 가격담합. 2개월간 스팟 +126%. 후성 공급가 경쟁력 회복</td></tr>
+    <tr><td><strong>미국 FEOC 규정</strong></td><td><span class="badge badge-up">↑ 긍정</span></td><td>비중국산 배터리 소재 수요 후성으로 집중. 미 1,000톤 LiPF6 공급계약</td></tr>
+    <tr><td><strong>중국·일본 텅스텐 수출 제한</strong></td><td><span class="badge badge-up">↑ 긍정</span></td><td>WF6 원료 글로벌 공급 30% 감소 → 판가 상승. 후성 중국공장 흑자전환 기대</td></tr>
+    <tr><td><strong>HFC 냉매 환경규제 쿼터</strong></td><td><span class="badge badge-up">↑ 긍정</span></td><td>몬트리올 의정서 이행으로 매년 쿼터 감축 → 국내 유통가 상승. 후성 독점 수혜</td></tr>
+    <tr><td><strong>AI 반도체 수요</strong></td><td><span class="badge badge-up">↑ 긍정</span></td><td>HBM·3D NAND 캐파 확대 → C4F6·WF6 동반 수요 증가</td></tr>
+    <tr><td><strong>전기차 캐즘</strong></td><td><span class="badge badge-dn">↓ 위험</span></td><td>EV 수요 둔화 시 LiPF6 회복 지연 가능. LFP 비중 확대도 변수</td></tr>
+    <tr><td><strong>중국 공급통제 완화</strong></td><td><span class="badge badge-dn">↓ 위험</span></td><td>중국 가격담합 깨질 경우 LiPF6 가격 재차 하락 가능</td></tr>
+  </tbody>
+</table>
+<h3>내부 변수</h3>
+<table>
+  <thead><tr><th>요인</th><th>방향</th><th>내용</th></tr></thead>
+  <tbody>
+    <tr><td><strong>한텍 그린에너지 사업</strong></td><td><span class="badge badge-up">↑ 강력 긍정</span></td><td>수소탱크·CCUS·원전 CASK 진출. 2025 영업이익 +128%</td></tr>
+    <tr><td><strong>울산 LiPF6 캐파 더블링</strong></td><td><span class="badge badge-up">↑ 긍정</span></td><td>2,000톤 풀가동 + 신규 2,000톤 연내 가동. 추가 1,200억원 증설 검토 중</td></tr>
+    <tr><td><strong>폴란드 법인 가동</strong></td><td><span class="badge badge-up">↑ 긍정</span></td><td>유럽 LiPF6 거점 — 가동 시점에 따라 2027년부터 매출 기여</td></tr>
+    <tr><td><strong>Opex 레버리지</strong></td><td><span class="badge badge-up">↑ 긍정</span></td><td>2025 OPM 5.4% → 2026E 9.3%. 매출 +20%로 영업이익 +108% 레버리지</td></tr>
+    <tr><td><strong>한미 원자력협정 개정</strong></td><td><span class="badge badge-up">↑ 옵션</span></td><td>한텍 CASK 사업 직접 수혜. 사용후핵연료 건식저장 시장 진입</td></tr>
+    <tr><td><strong>설비투자 부담</strong></td><td><span class="badge badge-dn">↓ 부담</span></td><td>2024 유증 후에도 폴란드·중국 증설 자금 소요. 부채비율 120%대</td></tr>
+    <tr><td><strong>대규모 손상차손 가능성</strong></td><td><span class="badge badge-neu">불확실</span></td><td>2024년 영업권·유형자산 손상 -834억. LiPF6 회복 지연 시 추가 손상 위험</td></tr>
+    <tr><td><strong>고객 집중 (삼성·SK)</strong></td><td><span class="badge badge-neu">중립</span></td><td>국내 반도체 빅2 의존도 높음. 캐파 증설로 변동성 완화 진행</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 9. 컨콜 트래킹 - 행:연도, 열:분기 격자 -->
+<span class="section-anchor" id="s9"></span>
+<div class="section">
+<h2>5-2. 컨퍼런스콜 트래킹 — 연도×분기 격자</h2>
+<p class="note" style="margin-bottom:10px">* 후성은 정기 컨콜 미운영. 잠정실적 공시 + 사업보고서 + 증권사 리포트 기반 메시지 정리. 가이던스는 회사 자체 제시가 적어 컨센서스(유진투자 등) 기준 표기.</p>
+<div class="cc-table-wrap">
+<table class="cc-grid-table">
+  <thead>
+    <tr>
+      <th>연도</th>
+      <th>Q1</th>
+      <th>Q2</th>
+      <th>Q3</th>
+      <th>Q4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2023</td>
+      <td>—</td>
+      <td><div class="cc-msg">LiPF6 가격 하락 본격화. 2차전지 비중 46→17% 급락 우려</div><div class="cc-guide">컨센 매출 6,500억 → 실제 5,231억 <span class="cc-miss">❌</span></div></td>
+      <td><div class="cc-msg">울산 LiPF6 가동중단(4~8월). 공급과잉 직격</div><div class="cc-guide">FY23 영업적자 -461억 <span class="cc-miss">❌ 적전</span></div></td>
+      <td><div class="cc-msg">대규모 손상차손 인식. 한텍 IPO 예심 통과</div><div class="cc-guide">당기순손실 -844억 <span class="cc-miss">❌</span></div></td>
+    </tr>
+    <tr>
+      <td>2024</td>
+      <td><div class="cc-msg">매출 -1% / 영업적자 -1억으로 적자 축소 시작</div><div class="cc-guide">컨센 회복 → 실제 4,378억 <span class="cc-miss">❌</span></div></td>
+      <td><div class="cc-msg">유상증자 1,000억 (LiPF6 + 반도체가스 투자)</div><div class="cc-guide">상반기 매출 -8% <span class="cc-miss">❌</span></div></td>
+      <td><div class="cc-msg">LiPF6 가동률 32% 바닥 확인. 한텍 영업이익 +10% 견조</div><div class="cc-guide">유진 목표가 1.4만→1만원 하향</div></td>
+      <td><div class="cc-msg">반도체 가스 신규 매출 모멘텀 확인. 2026 LiPF6 본격 생산 가이던스</div><div class="cc-guide">FY24 영업적자 -96억 <span class="cc-hit">✅ 적자축소</span></div></td>
+    </tr>
+    <tr>
+      <td>2025</td>
+      <td><div class="cc-msg">매출 +0% YoY. 적자 폭 -17억으로 추가 축소</div><div class="cc-guide">FY25 컨센 4,500억</div></td>
+      <td><div class="cc-msg">한텍 호조 + 반도체가스 회복. 영업이익 164억 흑전</div><div class="cc-guide">상반기 영업이익 147억 <span class="cc-hit">✅ 흑전</span></div></td>
+      <td><div class="cc-msg">매출 1,210억 +13%. LiPF6 적자 지속이나 냉매·가스·한텍이 상쇄</div><div class="cc-guide">유진 목표가 1만→1.2만 상향</div></td>
+      <td><div class="cc-msg"><b>중국 LiPF6 가격 +126% 반등</b>. 미 1,000톤 계약 발표</div><div class="cc-guide">FY25 매출 4,718억 영업이익 253억 <span class="cc-hit">✅ 흑전</span></div></td>
+    </tr>
+    <tr>
+      <td>2026</td>
+      <td class="cc-latest"><div class="cc-msg"><b>★ Q1'26E (4월 추정)</b><br>매출 1,238억(+16%) / 영업이익 97억 흑전. WF6 + LiPF6 동시 회복</div><div class="cc-guide">유진 FY26: <b>매출 5,648억 / 영업이익 528억(+108%)</b><br>목표가 <span class="cc-hit">2만원 상향</span></div></td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+<!-- 10. Q1'26 심층 -->
+<span class="section-anchor" id="s10"></span>
+<div class="section">
+<h2>5-3. Q1'26 심층 정리 (유진투자증권 2026.04.23)</h2>
+<div class="prose">
+  <p><strong>리포트</strong>: 유진투자증권 한병화 애널리스트 (2026.04.23)</p>
+  <p><strong>실적 추정</strong>: 매출 1,238억원 (+16% YoY) / 영업이익 97억원 (전년 -17억 → 흑자전환) / OPM 7.8%</p>
+  <p><strong>목표주가</strong>: 20,000원 (상향, 기존 1.2만 → 2만), 투자의견 매수 유지. 작성일 주가 13,710원 대비 +45.9%</p>
+</div>
+<table>
+  <thead><tr><th>#</th><th>핵심 메시지</th><th>세부 내용</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>LiPF6 — 사이클 바닥 통과</strong></td><td>고객사(전해액 업체·글로벌 EV OEM) 주문 재개 + 중국 로컬 가격담합으로 후성 공급 가격 경쟁력 회복. Q2부터 2,000톤 라인 풀가동, 신규 2,000톤 라인 연내 가동</td></tr>
+    <tr><td>2</td><td><strong>WF6 판가·물량 동시 상승</strong></td><td>중국 텅스텐 파우더 수출제한(글로벌 공급 80%) + 일본 텅스텐 공급제한(글로벌 30%) → WF6 가격 상승 가속. 후성 중국공장 7년 만에 흑자전환 기대</td></tr>
+    <tr><td>3</td><td><strong>미국 FEOC 수혜</strong></td><td>국내 배터리 소재 라인 풀가동. 비중국산 수요가 후성으로 집중. 미국 1,000톤 LiPF6 공급계약 체결 완료</td></tr>
+    <tr><td>4</td><td><strong>한텍 안정적 이익 견인</strong></td><td>2024년부터 시작된 턴어라운드의 주원인. 2025 영업이익 382억(+128%). 그린에너지·CASK·CCUS 신성장 옵션</td></tr>
+    <tr><td>5</td><td><strong>2026 본업 이익 본격화</strong></td><td>지난 해 한텍 위주 회복 → 2026부터 반도체가스·배터리소재 본업 이익 개선 본격화. 영업이익 +108% 점프 전망</td></tr>
+  </tbody>
+</table>
+<h3 style="margin-top:1.2rem">2026 가이던스 (유진투자증권 추정)</h3>
+<table>
+  <thead><tr><th>지표</th><th class="num">2025 실적</th><th class="num">2026E (유진)</th><th class="num">증감</th></tr></thead>
+  <tbody>
+    <tr><td>매출</td><td class="num">4,718억</td><td class="num hl"><strong>5,648억</strong></td><td class="num up2"><strong>+20%</strong></td></tr>
+    <tr><td>영업이익</td><td class="num">253억</td><td class="num hl"><strong>528억</strong></td><td class="num up2"><strong>+108%</strong></td></tr>
+    <tr><td>영업이익률</td><td class="num">5.4%</td><td class="num hl"><strong>9.3%</strong></td><td class="num up2"><strong>+3.9%p</strong></td></tr>
+    <tr><td>Q1'26 매출</td><td class="num">1,071억</td><td class="num hl"><strong>1,238억</strong></td><td class="num up2"><strong>+16%</strong></td></tr>
+    <tr><td>Q1'26 영업이익</td><td class="num">-17억</td><td class="num hl"><strong>97억</strong></td><td class="num up2"><strong>흑자전환</strong></td></tr>
+    <tr><td>목표주가 (PBR 3.9배)</td><td class="num">—</td><td class="num hl"><strong>20,000원</strong></td><td class="num up2"><strong>+51%</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 11. 시나리오 — 수직 1열 -->
+<span class="section-anchor" id="s11"></span>
+<div class="section">
+<h2>5-4. 강세 / 약세 시나리오</h2>
+<div class="scenario-list">
+  <div class="scenario-box s-bull">
+    <div class="scenario-title">🟢 강세 시나리오</div>
+    <div class="s-item"><div class="s-case">중국 LiPF6 가격 통제 지속 + 추가 상승</div><div class="s-sub">담합 유지 시 2026 t당 가격 30만 위안 회복 가능 → 2022년 영업이익 1,053억 수준 재현 가시성</div></div>
+    <div class="s-item"><div class="s-case">미국 FEOC + 폴란드 가동 시너지</div><div class="s-sub">미국 1,000톤 + 유럽 LiPF6 거점 가동 시 글로벌 비중국산 LiPF6 핵심 공급자로 부상</div></div>
+    <div class="s-item"><div class="s-case">한텍 CASK·CCUS 대형 수주</div><div class="s-sub">한미 원자력협정 개정 후 사용후핵연료 건식저장 시장 진입 → 한텍 매출 2배 가능</div></div>
+    <div class="s-item"><div class="s-case">WF6 중국공장 흑자전환 + 판가 +30%</div><div class="s-sub">중·일 텅스텐 공급제한 장기화 → 후성 중국공장 7년 만에 OPM 두 자릿수</div></div>
+    <div class="s-item"><div class="s-case">2026E 매출·영업이익 가이던스 상회</div><div class="s-sub">매출 6,000억+ / 영업이익 600억+ 달성 시 PBR 5배 이상 가능 → 주가 2.5만원+</div></div>
+  </div>
+  <div class="scenario-box s-bear">
+    <div class="scenario-title">🔴 약세 시나리오</div>
+    <div class="s-item"><div class="s-case">중국 가격담합 균열 → LiPF6 재하락</div><div class="s-sub">담합 깨지면 스팟 가격 재차 6~8만 위안 회귀 → LiPF6 부문 다시 적자전환</div></div>
+    <div class="s-item"><div class="s-case">전기차 캐즘 심화 + LFP 비중 확대</div><div class="s-sub">EV 수요 둔화 + LFP 채택 증가로 LiPF6 수요 회복 지연. 2026 가이던스 미달</div></div>
+    <div class="s-item"><div class="s-case">반도체 사이클 둔화</div><div class="s-sub">메모리 가격 하락 시 삼성·SK의 가스·소재 단가 압박 → C4F6·WF6 마진 축소</div></div>
+    <div class="s-item"><div class="s-case">추가 손상차손 인식</div><div class="s-sub">LiPF6 회복 지연 시 폴란드·중국 자산 추가 평가손 가능. 당기순이익 변동성</div></div>
+    <div class="s-item"><div class="s-case">한텍 단일 대형 프로젝트 의존</div><div class="s-sub">화공기기 매출은 프로젝트성 — 대형 EPC 지연 시 분기 실적 급변동</div></div>
+  </div>
+</div>
+</div>
+
+<!-- 12. Worth Watching -->
+<span class="section-anchor" id="s12"></span>
+<div class="section">
+<h2>6. Worth Watching Events</h2>
+<div class="ww-list">
+  <div class="ww-item"><div class="ww-date">2026.05 중순</div><div><div class="ww-event">Q1'26 잠정실적 공식 발표</div><div class="ww-point">유진 추정 매출 1,238억 / 영업이익 97억 달성 여부 확인. LiPF6 가동률 회복 정도가 핵심</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026.06~07</div><div><div class="ww-event">울산 LiPF6 신규 2,000톤 라인 가동</div><div class="ww-point">기존 2,000톤 풀가동 + 신규 라인 가동 시 LiPF6 매출 더블링 가시성</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026 Q2 말</div><div><div class="ww-event">중국 LiPF6 스팟 가격 동향</div><div class="ww-point">중국 담합 유지 여부 — 가격 7만 위안+ 유지 시 후성 마진 안정. 5만 위안 하회 시 하락 신호</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026 H2</div><div><div class="ww-event">WF6 중국공장 흑자전환 가시성</div><div class="ww-point">7년 만의 흑자전환 — 텅스텐 공급 제약 지속 여부가 관건</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026 연중</div><div><div class="ww-event">한미 원자력협정 개정 진행</div><div class="ww-point">사용후핵연료 재처리·건식저장 허용 → 한텍 CASK 사업 직접 수혜</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026 연중</div><div><div class="ww-event">폴란드 법인 가동 시점 발표</div><div class="ww-point">유럽 LiPF6 진출 — 2027년 매출 기여 시점 결정</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026.10~11</div><div><div class="ww-event">Q3'26 실적 — 본업 회복 검증</div><div class="ww-point">한텍 의존에서 본업(반도체+배터리) 이익 비중 역전 시점 확인</div></div></div>
+  <div class="ww-item"><div class="ww-date">2027 이후</div><div><div class="ww-event">전고체 배터리 첨가제 상용화</div><div class="ww-point">차세대 첨가제 R&amp;D 성과 — 차세대 EV 사이클 진입 옵션</div></div></div>
+</div>
+</div>
+
+<!-- 13. 출처 -->
+<span class="section-anchor" id="s13"></span>
+<div class="section">
+<h2>7. 데이터 출처</h2>
+<div class="source-box">
+  <ul style="padding-left:1.2rem">
+    <li>후성 사업보고서 (2024, 2025), 분기보고서, 잠정실적 공시 (DART)</li>
+    <li>유진투자증권 한병화 리포트 (2024.05, 2024.10, 2025.11, 2026.04.23)</li>
+    <li>한텍 사업보고서·잠정실적 (지분 69.41% 연결)</li>
+    <li>리드경제 "후성 LiPF6 가동률 32%" (2026.04.03)</li>
+    <li>한국신용신문 "LiPF6 2배 상승" (2025.11.17)</li>
+    <li>FnGuide CompanyGuide, Wisereport 기업모니터, Investing.com</li>
+    <li>주가·시총: 2026.04.30 종가 13,240원 / 시총 1조 4,201억원 / 환율 1,380원</li>
+    <li>분석일: 2026년 5월 5일</li>
+  </ul>
+  <p style="margin-top:8px;color:#bbb">⚠️ Q1'26 매출·영업이익은 유진투자증권 추정치 (실제 발표 5월 중순 예정). 일부 분기 세그먼트 매출은 사업보고서 부문별 매출 + 한텍 별도 공시 기반 역산 추정. 투자 판단 시 공식 공시 자료 병행 확인 권장.</p>
+</div>
+</div>
+
+<!-- 7-1. Reference -->
+<span class="section-anchor" id="s14"></span>
+<div class="section">
+<h2>7-1. Reference</h2>
+<p class="note" style="margin-bottom:14px">* 본문에 인용되지 않았더라도 후성을 공부할 때 참고할 만한 자료를 모아둔 자료실입니다. 공식·비공식 자료를 모두 포함하며, 부정확한 정보가 있을 수 있으니 교차 확인을 권장합니다. 뉴스는 오래된 순 → 최신 순으로 정렬되었습니다.</p>
+<div class="source-box">
+<ul class="ref-list">
+  <li><span class="ref-tag tag-official">공식</span>
+    <a href="https://www.foosungchem.com" target="_blank">후성 공식 홈페이지 (foosungchem.com)</a>
+    <span class="ref-desc">— 회사소개, 제품 SPEC, 사업보고서 다운로드</span></li>
+  <li><span class="ref-tag tag-official">공식</span>
+    <a href="https://www.foosung.com" target="_blank">후성그룹 통합 사이트 (foosung.com)</a>
+    <span class="ref-desc">— IR 메뉴 (재무정보), 그룹 계열사 소개</span></li>
+  <li><span class="ref-tag tag-official">공식</span>
+    <a href="https://www.foosungchem.com/invest/invest_finan.asp" target="_blank">후성 재무정보 페이지</a>
+    <span class="ref-desc">— 분기·연간 재무제표 요약</span></li>
+  <li><span class="ref-tag tag-official">공시</span>
+    <a href="https://dart.fss.or.kr/dsab007/main.do?option=corp&textCrpNm=후성" target="_blank">DART 후성 공시 검색</a>
+    <span class="ref-desc">— 사업보고서·분기보고서·잠정실적·주요사항보고서 원문</span></li>
+  <li><span class="ref-tag tag-official">IR Page</span>
+    <a href="https://m.irgo.co.kr/IR-COMP/093370/%ED%9B%84%EC%84%B1-%EA%B8%B0%EC%97%85%EC%A0%95%EB%B3%B4" target="_blank">IRGO 후성 IR 페이지</a>
+    <span class="ref-desc">— IR 담당자 직접 질의 가능 플랫폼</span></li>
+  <li><span class="ref-tag tag-broker">증권사</span>
+    <a href="https://www.eugenefn.com/common/files/amail/20220411_093370_bhh1026_883.pdf" target="_blank">유진투자증권 후성 리포트 (2022.04.11)</a>
+    <span class="ref-desc">— 폴란드 공장 신설, 2024 유럽 진출 가시화 (과거 자료)</span></li>
+  <li><span class="ref-tag tag-broker">증권사</span>
+    <a href="https://www.eugenefn.com/common/files/amail//20240523_093370_bhh1026_1113.pdf" target="_blank">유진투자증권 한병화 리포트 (2024.05.23)</a>
+    <span class="ref-desc">— 후성 마진 회복 전망, LiPF6 사이클 분석</span></li>
+  <li><span class="ref-tag tag-broker">증권사</span>
+    <a href="https://www.samsungpop.com/common.do?cmd=down&contentType=application/pdf&inlineYn=Y&saveKey=research.pdf&fileName=2010/2025091210282804K_02_11.pdf" target="_blank">삼성증권 후성 리포트 (2025.09.12)</a>
+    <span class="ref-desc">— 반도체가스 부문 분석</span></li>
+  <li><span class="ref-tag tag-broker">증권사</span>
+    <a href="https://www.eugenefn.com/common/files/amail//20251117_093370_bhh1026_1261.pdf" target="_blank">유진투자증권 한병화 리포트 (2025.11.17)</a>
+    <span class="ref-desc">— LiPF6 가격 +126% 상승, 목표가 1.2만원 상향</span></li>
+  <li><span class="ref-tag tag-news">뉴스</span>
+    <a href="https://www.edaily.co.kr/news/read?newsId=01315286632260040" target="_blank">이데일리 "KTB증권 후성 목표가 3.5만원" (2022.03.04)</a>
+    <span class="ref-desc">— LiPF6 사이클 분석 (과거 자료)</span></li>
+  <li><span class="ref-tag tag-news">뉴스</span>
+    <a href="https://www.newspim.com/news/view/20220922000832" target="_blank">뉴스핌 "후성, 한텍 완전자회사 편입" (2022.09.22)</a>
+    <span class="ref-desc">— 한텍 100% 자회사 전환 배경·시너지</span></li>
+  <li><span class="ref-tag tag-news">뉴스</span>
+    <a href="https://dealsite.co.kr/articles/102284/025116" target="_blank">딜사이트 "후성, 2차전지 소재 생산 중단" (2023.04.18)</a>
+    <span class="ref-desc">— 울산 LiPF6 가동중단 원인·영향 분석</span></li>
+  <li><span class="ref-tag tag-news">뉴스</span>
+    <a href="https://www.bloter.net/news/articleView.html?idxno=603391" target="_blank">블로터 "후성, 반도체→이차전지 다각화 속도" (2023.07.03)</a>
+    <span class="ref-desc">— 후성과기·후성신재료·후성폴란드 자회사 구조 정리</span></li>
+  <li><span class="ref-tag tag-news">뉴스</span>
+    <a href="http://www.dailyinvest.kr/news/articleView.html?idxno=60953" target="_blank">데일리인베스트 "후성, 냉매·반도체가스 사업으로 흑자 전환하나" (2024.10)</a>
+    <span class="ref-desc">— 사업부별 진입장벽·기술경쟁력 분석</span></li>
+  <li><span class="ref-tag tag-news">뉴스</span>
+    <a href="https://www.hankyung.com/article/202510287224L" target="_blank">한국경제 "후성 52주 신고가 경신, 미국향 계약" (2025.10.27)</a>
+    <span class="ref-desc">— 미국 ESS 비중국 조달 55~60% 의무화 수혜</span></li>
+  <li><span class="ref-tag tag-news">뉴스</span>
+    <a href="https://www.creditnews.kr/news/articleView.html?idxno=1847" target="_blank">한국신용신문 "LiPF6 가격 2배↑, 후성이 뜬다" (2025.11.17)</a>
+    <span class="ref-desc">— 중국 공급 통제로 후성 가격 경쟁력 회복</span></li>
+  <li><span class="ref-tag tag-news">뉴스</span>
+    <a href="https://www.leadeconomy.co.kr/news/articleView.html?idxno=6981" target="_blank">리드경제 "후성, LiPF6 국내 유일인데 가동률 32%" (2026.04.03)</a>
+    <span class="ref-desc">— 한텍 견인으로 그룹 흑자전환 분석</span></li>
+  <li><span class="ref-tag tag-news">뉴스</span>
+    <a href="https://www.tokenpost.kr/news/economy/352376" target="_blank">토큰포스트 "후성, WF6·LiPF6 회복 기대" (2026.04)</a>
+    <span class="ref-desc">— AI BESS 시장 성장 + WF6 공급망 분석</span></li>
+  <li><span class="ref-tag tag-news">뉴스</span>
+    <a href="https://www.datatooza.com/article/20260423084120681752ef391265_80" target="_blank">데이터투자 "후성, 반도체·배터리 쌍끌이" (2026.04.23)</a>
+    <span class="ref-desc">— 유진 목표가 2만원 상향 리뷰</span></li>
+  <li><span class="ref-tag tag-blog">블로그</span>
+    <a href="https://blog.naver.com/ypl0730/224243584345" target="_blank">네이버 블로그 (ypl0730) 후성 분석</a>
+    <span class="ref-desc">— 좋아요 10+ 충족 개인 투자자 분석글</span></li>
+  <li><span class="ref-tag tag-blog">블로그</span>
+    <a href="https://blog.naver.com/amsirahc0528/224242269518" target="_blank">네이버 블로그 (amsirahc0528) 후성 분석</a>
+    <span class="ref-desc">— 좋아요 10+ 충족 개인 투자자 분석글</span></li>
+  <li><span class="ref-tag tag-wiki">위키</span>
+    <a href="https://namu.wiki/w/%ED%9B%84%EC%84%B1%EA%B7%B8%EB%A3%B9" target="_blank">나무위키 후성그룹</a>
+    <span class="ref-desc">— 그룹 연혁, 범현대가 지배구조, 계열사 정리</span></li>
+</ul>
+</div>
+</div>
+
+<div class="footer">후성 (093370) 기업분석 · 2026.05.05 · 개인 사용 목적</div>
+</div>
+
+<script>
+// 주봉 — 2018.01 ~ 2026.04 (주 단위 근사치, 단위: 원)
+const wLabels=[];const wData=[];
+const wkData=[
+  // 2018
+  {y:2018,m:1,v:[10500,10800,11000,10700]},{y:2018,m:2,v:[10500,10200,9800,9500]},{y:2018,m:3,v:[9800,10200,10500,10700]},{y:2018,m:4,v:[11000,11500,12000,12500]},{y:2018,m:5,v:[13000,13500,14000,13800]},{y:2018,m:6,v:[13500,13000,12500,12000]},{y:2018,m:7,v:[12500,13000,13500,14000]},{y:2018,m:8,v:[14000,13500,13000,12500]},{y:2018,m:9,v:[12500,12000,11500,11000]},{y:2018,m:10,v:[10500,10000,9500,9000]},{y:2018,m:11,v:[8500,8800,9000,9500]},{y:2018,m:12,v:[9500,9200,9000,8800]},
+  // 2019
+  {y:2019,m:1,v:[8800,9000,9200,9500]},{y:2019,m:2,v:[9500,9800,10000,10200]},{y:2019,m:3,v:[10500,10800,11000,11200]},{y:2019,m:4,v:[11500,12000,12500,13000]},{y:2019,m:5,v:[12500,12000,11500,11000]},{y:2019,m:6,v:[10500,10000,9500,9000]},{y:2019,m:7,v:[9000,9200,9500,9800]},{y:2019,m:8,v:[10000,10500,11000,11500]},{y:2019,m:9,v:[12000,12500,13000,13500]},{y:2019,m:10,v:[13000,12500,12000,11500]},{y:2019,m:11,v:[11500,11800,12000,11500]},{y:2019,m:12,v:[11000,10500,10800,11000]},
+  // 2020
+  {y:2020,m:1,v:[11000,10500,10000,9500]},{y:2020,m:2,v:[9500,9000,8500,8000]},{y:2020,m:3,v:[7500,6500,5500,6000]},{y:2020,m:4,v:[6500,7000,7500,8000]},{y:2020,m:5,v:[8500,9000,9500,10000]},{y:2020,m:6,v:[10500,11000,11500,12000]},{y:2020,m:7,v:[12500,13000,13500,14000]},{y:2020,m:8,v:[14500,15000,15500,16000]},{y:2020,m:9,v:[16500,17000,16500,16000]},{y:2020,m:10,v:[16000,15500,15000,14500]},{y:2020,m:11,v:[15000,16000,17000,18000]},{y:2020,m:12,v:[19000,20000,21000,22000]},
+  // 2021
+  {y:2021,m:1,v:[23000,24500,26000,25500]},{y:2021,m:2,v:[25000,24500,23500,23000]},{y:2021,m:3,v:[22500,22000,21500,21000]},{y:2021,m:4,v:[21500,22500,23500,24000]},{y:2021,m:5,v:[24500,25000,25500,26000]},{y:2021,m:6,v:[26500,27000,27500,28000]},{y:2021,m:7,v:[28500,29000,29500,30000]},{y:2021,m:8,v:[31000,32000,33000,32500]},{y:2021,m:9,v:[31500,30500,29500,28500]},{y:2021,m:10,v:[28000,27500,27000,26500]},{y:2021,m:11,v:[26000,25500,25000,24500]},{y:2021,m:12,v:[24000,23500,23000,22500]},
+  // 2022
+  {y:2022,m:1,v:[22000,21000,20000,19000]},{y:2022,m:2,v:[18500,18000,17500,17000]},{y:2022,m:3,v:[17500,18000,18500,19000]},{y:2022,m:4,v:[19500,19800,19500,19000]},{y:2022,m:5,v:[18500,18000,17500,17000]},{y:2022,m:6,v:[16500,16000,15500,15000]},{y:2022,m:7,v:[15500,16000,16500,17000]},{y:2022,m:8,v:[17500,18000,17500,17000]},{y:2022,m:9,v:[16500,16000,15500,15000]},{y:2022,m:10,v:[14500,14000,13500,13000]},{y:2022,m:11,v:[13500,14000,14500,15000]},{y:2022,m:12,v:[14500,14000,13500,13000]},
+  // 2023
+  {y:2023,m:1,v:[13000,13500,14000,14500]},{y:2023,m:2,v:[15000,15500,15000,14500]},{y:2023,m:3,v:[14000,13500,13000,12500]},{y:2023,m:4,v:[12000,11000,10000,9500]},{y:2023,m:5,v:[9000,9500,10000,10500]},{y:2023,m:6,v:[10500,10000,9500,9000]},{y:2023,m:7,v:[9000,9200,9500,9800]},{y:2023,m:8,v:[10000,10500,10800,11000]},{y:2023,m:9,v:[10800,10500,10000,9500]},{y:2023,m:10,v:[9000,8500,8000,7500]},{y:2023,m:11,v:[7500,7800,8000,8200]},{y:2023,m:12,v:[8000,7800,7500,7200]},
+  // 2024
+  {y:2024,m:1,v:[7000,6800,6500,6300]},{y:2024,m:2,v:[6500,6800,7000,7200]},{y:2024,m:3,v:[7000,6800,6500,6300]},{y:2024,m:4,v:[6000,5800,5500,5300]},{y:2024,m:5,v:[5500,5800,6000,6200]},{y:2024,m:6,v:[6000,5800,5500,5300]},{y:2024,m:7,v:[5500,5800,6000,5800]},{y:2024,m:8,v:[5500,5300,5000,4800]},{y:2024,m:9,v:[4800,5000,5200,5400]},{y:2024,m:10,v:[5500,5300,5000,4800]},{y:2024,m:11,v:[4800,4600,4400,4200]},{y:2024,m:12,v:[4200,4400,4600,4500]},
+  // 2025
+  {y:2025,m:1,v:[4400,4200,4000,4100]},{y:2025,m:2,v:[4200,4400,4500,4600]},{y:2025,m:3,v:[4500,4400,4200,4100]},{y:2025,m:4,v:[4000,3900,3875,4000]},{y:2025,m:5,v:[4200,4400,4600,4800]},{y:2025,m:6,v:[5000,5300,5600,5900]},{y:2025,m:7,v:[6000,6300,6500,6800]},{y:2025,m:8,v:[7000,7200,7000,6800]},{y:2025,m:9,v:[6800,7000,7200,7400]},{y:2025,m:10,v:[7600,7800,8200,8800]},{y:2025,m:11,v:[9500,10500,11500,12000]},{y:2025,m:12,v:[12500,13000,13500,13800]},
+  // 2026
+  {y:2026,m:1,v:[14000,13800,13500,13200]},{y:2026,m:2,v:[13500,13800,14000,13800]},{y:2026,m:3,v:[13500,13800,14200,14500]},{y:2026,m:4,v:[14800,15200,15420,13240]}
+];
+wkData.forEach(mo=>{mo.v.forEach((v,i)=>{wLabels.push(`${mo.y}.${String(mo.m).padStart(2,'0')}.W${i+1}`);wData.push(v);})});
+
+// 33분기 데이터
+const L33=["Q1'18","Q2'18","Q3'18","Q4'18","Q1'19","Q2'19","Q3'19","Q4'19","Q1'20","Q2'20","Q3'20","Q4'20","Q1'21","Q2'21","Q3'21","Q4'21","Q1'22","Q2'22","Q3'22","Q4'22","Q1'23","Q2'23","Q3'23","Q4'23","Q1'24","Q2'24","Q3'24","Q4'24","Q1'25","Q2'25","Q3'25","Q4'25","Q1'26"];
+
+// 반도체가스 (단위: 억원)
+const semi=[120,130,140,150,140,150,160,170,160,170,180,200,200,220,240,260,280,300,320,340,330,340,310,280,260,270,240,280,260,310,300,300,320];
+// 2차전지 소재 (LiPF6)
+const battery=[80,90,100,110,120,130,150,170,180,210,250,290,300,400,500,600,650,700,750,712,500,370,270,210,170,180,160,170,180,220,230,240,280];
+// 냉매·무기불화물
+const refrig=[150,160,170,180,170,180,190,200,180,190,200,210,200,220,230,240,250,250,260,260,250,200,220,230,220,230,220,220,230,250,240,237,240];
+// 화공기기 (한텍, 2022 Q4부터)
+const hantec=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,366,400,450,510,490,421,454,449,434,401,462,440,416,398];
+const totalRev=L33.map((_,i)=>semi[i]+battery[i]+refrig[i]+hantec[i]);
+
+// OPM% (분기별, 추정 포함)
+const opm=[null,null,null,null,null,null,null,null,null,null,null,null,5,15,22,25,18,20,17,15,5,-8.1,-11.5,-9.9,-0.1,-4.4,-2.3,-1.8,-1.6,13.2,4.8,4.0,7.8];
+
+const gc='rgba(0,0,0,0.05)',tc='#999';
+const xTseg={color:tc,font:{size:9},maxRotation:45,autoSkip:true,maxTicksLimit:18};
+const yT={color:tc,font:{size:11}};
+
+// 주봉 차트
+new Chart(document.getElementById('cPrice'),{
+  type:'line',
+  data:{labels:wLabels,datasets:[{data:wData,borderColor:'#378ADD',backgroundColor:'rgba(55,138,221,0.07)',fill:true,tension:0.3,pointRadius:0,borderWidth:1.5}]},
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.parsed.y.toLocaleString()+'원'},mode:'index',intersect:false}},
+    scales:{
+      x:{grid:{color:gc},ticks:{color:tc,font:{size:8},maxRotation:0,autoSkip:true,maxTicksLimit:20,callback:function(v,i){const l=this.getLabelForValue(i);if(l&&l.includes('.W1')){const p=l.split('.');return p[0]+'.'+p[1];}return '';}}},
+      y:{grid:{color:gc},ticks:{color:tc,callback:v=>(v/1000)+'k'},suggestedMin:0,suggestedMax:36000}
+    }
+  }
+});
+
+// 세그먼트 차트
+const segBase=[
+  {label:'반도체가스',data:semi,backgroundColor:'#378ADD',stack:'s'},
+  {label:'2차전지 소재',data:battery,backgroundColor:'#1D9E75',stack:'s'},
+  {label:'냉매·기타',data:refrig,backgroundColor:'#D85A30',stack:'s'},
+  {label:'화공기기 (한텍)',data:hantec,backgroundColor:'#BA7517',stack:'s'},
+];
+const segChart=new Chart(document.getElementById('cSeg'),{
+  type:'bar',
+  data:{labels:L33,datasets:segBase.map(d=>({...d}))},
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+Math.round(ctx.parsed.y)+'억'}}},
+    scales:{x:{grid:{color:gc},ticks:xTseg,stacked:true},y:{grid:{color:gc},ticks:{...yT,callback:v=>v+'억'},stacked:true}}
+  }
+});
+window.toggleSeg=function(idx,el){const m=segChart.getDatasetMeta(idx);m.hidden=!m.hidden;el.classList.toggle('hidden',m.hidden);segChart.update();};
+
+// 매출 + OPM 이중축
+new Chart(document.getElementById('cRev'),{
+  type:'bar',
+  data:{
+    labels:L33,
+    datasets:[
+      {type:'bar',label:'매출',data:totalRev,backgroundColor:'rgba(55,138,221,0.2)',borderColor:'#378ADD',borderWidth:1,yAxisID:'y'},
+      {type:'line',label:'OPM%',data:opm,borderColor:'#1D9E75',backgroundColor:'#1D9E75',pointRadius:3,fill:false,tension:0.3,spanGaps:false,yAxisID:'y2'}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:ctx=>ctx.datasetIndex===0?' 매출: '+Math.round(ctx.parsed.y)+'억':ctx.parsed.y!=null?' OPM: '+ctx.parsed.y.toFixed(1)+'%':' OPM: n/a'}}},
+    scales:{
+      x:{grid:{color:gc},ticks:xTseg},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>v+'억'},position:'left'},
+      y2:{grid:{display:false},ticks:{color:'#1D9E75',font:{size:10},callback:v=>v+'%'},position:'right',suggestedMin:-15,suggestedMax:30}
+    }
+  }
+});
+</script>
+</body>
+</html>
