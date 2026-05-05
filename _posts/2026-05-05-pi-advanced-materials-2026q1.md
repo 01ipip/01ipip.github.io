@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "“”PI첨단소재"
+title: "PI첨단소재"
 categories: 기업분석
 date: 2026-05-05
 classes: wide
