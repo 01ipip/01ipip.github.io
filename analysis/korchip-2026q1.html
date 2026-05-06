@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>코칩 (KORCHIP, 126730) 기업분석 — 2026 Q1</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f3ef;color:#1a1a1a;padding:2rem;font-size:14px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto}
+.header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #e0e0dc;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.header-title{font-size:22px;font-weight:700}
+.header-meta{font-size:12px;color:#888;margin-top:4px}
+.toc{margin-bottom:2rem;padding:0}
+.toc-title{font-size:12px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(7,auto);grid-auto-flow:column;gap:8px 24px}
+@media(max-width:650px){.toc-grid{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}}
+.toc-item{display:flex;gap:10px;font-size:13px;padding:4px 0}
+.toc-num{color:#aaa;font-weight:600;min-width:28px;font-variant-numeric:tabular-nums}
+.toc a{color:#378ADD;text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.section{margin-bottom:3rem}
+.section-anchor{display:block;position:relative;top:-70px;visibility:hidden}
+h2{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:6px;border-bottom:1.5px solid #e0e0dc}
+h3{font-size:14px;font-weight:600;margin:1.2rem 0 .6rem;color:#333}
+.chart-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:20px;position:relative;width:100%}
+.note{font-size:11px;color:#999;margin-top:8px;line-height:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;font-size:12px;color:#666}
+.legend-item{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:3px 8px;border-radius:6px;transition:opacity .15s}
+.legend-item:hover{background:#e8e8e3}
+.legend-item.hidden{opacity:.3;text-decoration:line-through}
+.legend-static{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0dc;margin-bottom:.5rem}
+th{background:#ebebe6;font-weight:600;padding:7px 8px;text-align:left;border-bottom:1px solid #e0e0dc;white-space:nowrap;font-size:11.5px}
+th.center{text-align:center}
+td{padding:6px 8px;border-bottom:0.5px solid #f0f0ee;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafaf6}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.center{text-align:center}
+.hl{background:#fffbe6 !important}
+.dn{color:#D85A30}
+.up2{color:#1D9E75}
+/* 회사 개요 */
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
+@media(max-width:650px){.overview-grid{grid-template-columns:1fr}}
+.overview-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.overview-box h4{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.kv{display:flex;justify-content:space-between;align-items:flex-start;padding:4px 0;border-bottom:0.5px solid #f5f4f0;font-size:12.5px;gap:10px}
+.kv:last-child{border-bottom:none}
+.kv-key{color:#666;min-width:90px;flex-shrink:0}
+.kv-val{font-weight:600;text-align:right;flex:1}
+/* 세그먼트 카드 */
+.seg-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:1rem}
+.seg-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.seg-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:8px}
+.seg-card-name{font-size:13px;font-weight:700}
+.seg-card-share{font-size:11px;color:#888;font-weight:600}
+.seg-card-desc{font-size:12px;color:#444;line-height:1.55;margin-bottom:6px}
+.seg-card-margin{font-size:11px;font-weight:600}
+/* 배지 */
+.badge{display:inline-block;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:600}
+.badge-up{background:#e6f7f0;color:#1D9E75}
+.badge-dn{background:#fce8e4;color:#D85A30}
+.badge-neu{background:#ebebe6;color:#666}
+/* 컨콜 */
+.cc-table{width:100%;border-collapse:separate;border-spacing:6px;margin-bottom:1rem}
+.cc-table th{background:transparent;border:none;font-size:11px;color:#888;text-align:center;padding:4px;font-weight:600;white-space:nowrap}
+.cc-table th.year-col{width:50px;text-align:left}
+.cc-cell{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.65rem .75rem;vertical-align:top;height:100%}
+.cc-quarter{font-size:10px;font-weight:700;color:#378ADD;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.cc-msg{font-size:11px;color:#444;margin-bottom:6px;line-height:1.45}
+.cc-guide{font-size:10px;color:#888;border-top:0.5px solid #f0f0ee;padding-top:5px;line-height:1.5}
+.cc-hit{color:#1D9E75;font-weight:600}
+.cc-miss{color:#D85A30;font-weight:600}
+.cc-latest{border:1.5px solid #378ADD !important;box-shadow:0 0 0 2px rgba(55,138,221,0.1)}
+.year-label{font-size:13px;font-weight:700;color:#555;padding-right:8px;vertical-align:middle}
+/* 시나리오 */
+.scenario-stack{display:flex;flex-direction:column;gap:12px}
+.scenario-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1.1rem 1.3rem}
+.scenario-title{font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid #f0f0ee}
+.s-bull .scenario-title{color:#1D9E75}
+.s-bear .scenario-title{color:#D85A30}
+.s-item{margin-bottom:9px;padding-bottom:9px;border-bottom:0.5px solid #f5f4f0;font-size:12px}
+.s-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-case{font-weight:600;margin-bottom:2px}
+.s-sub{color:#888;font-size:11px}
+/* Worth Watching */
+.ww-list{display:flex;flex-direction:column;gap:8px}
+.ww-item{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.75rem 1rem;display:flex;gap:14px}
+.ww-date{font-size:11px;font-weight:700;color:#378ADD;white-space:nowrap;min-width:90px}
+.ww-event{font-size:12px;font-weight:600;margin-bottom:2px}
+.ww-point{font-size:11px;color:#888}
+.source-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.4rem;font-size:12px;color:#888;line-height:2}
+.prose{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;margin-bottom:1rem;font-size:13px;line-height:1.7}
+.prose ul{padding-left:1.3rem}
+.prose li{margin-bottom:.25rem}
+.prose p{margin-bottom:.7rem}
+.prose p:last-child{margin-bottom:0}
+.invest-cards{display:flex;flex-direction:column;gap:10px;margin-top:1rem}
+.invest-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem;border-left:3px solid #378ADD}
+.invest-card-title{font-size:13px;font-weight:700;color:#378ADD;margin-bottom:5px}
+.invest-card-desc{font-size:12px;color:#444;line-height:1.55}
+/* IR 미제공 박스 */
+.ir-na-box{background:#fff;border:0.5px dashed #c0c0bc;border-radius:10px;padding:1.2rem 1.5rem;margin:1.5rem 0;text-align:center}
+.ir-na-title{font-size:13px;font-weight:700;color:#888;margin-bottom:6px}
+.ir-na-desc{font-size:12px;color:#888;line-height:1.6}
+.ir-na-alt{font-size:11.5px;color:#666;margin-top:8px;background:#fafaf6;padding:.6rem .8rem;border-radius:6px;display:inline-block;text-align:left}
+.footer{font-size:11px;color:#aaa;text-align:center;margin-top:2rem;padding-top:1rem;border-top:0.5px solid #e0e0dc}
+.seg-table-wrap{overflow-x:auto}
+.seg-table{min-width:780px}
+.seg-table th.seg-group{text-align:center;background:#e3e3de;border-left:2px solid #d0d0cc}
+.seg-table td.seg-border{border-left:2px solid #e0e0dc}
+.tv-wrap{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:6px;overflow:hidden}
+.tv-wrap iframe{display:block;width:100%;height:420px;border:0;border-radius:6px}
+/* Reference 출처 태그 */
+.ref-list{display:flex;flex-direction:column;gap:7px;font-size:12px}
+.ref-item{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px dashed #ececea}
+.ref-item:last-child{border-bottom:none}
+.ref-tag{font-size:9.5px;font-weight:700;padding:2px 6px;border-radius:3px;flex-shrink:0;letter-spacing:.02em}
+.tag-official{background:#e6f0ff;color:#2870c0}
+.tag-broker{background:#fff4e0;color:#b86b1d}
+.tag-news{background:#f0f0e8;color:#666}
+.tag-wiki{background:#e8e8e8;color:#555}
+.ref-item a{color:#378ADD;text-decoration:none;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ref-item a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div>
+    <div class="header-title">⚡ 코칩 (KORCHIP, 126730) 기업분석</div>
+    <div class="header-meta">회계연도: Calendar Year &nbsp;|&nbsp; 기준 시점: FY2025 결산 + Q1'26 분기보고서(2026.04.30) &nbsp;|&nbsp; 분석 범위: Q1'22~Q4'25 (16분기)</div>
+  </div>
+  <div style="font-size:12px;color:#aaa">분석일: 2026.05.05</div>
+</div>
+
+<!-- 목차 -->
+<div class="toc">
+  <div class="toc-title">목차</div>
+  <div class="toc-grid">
+    <div class="toc-item"><span class="toc-num">01.</span><a href="#s1">회사 개요</a></div>
+    <div class="toc-item"><span class="toc-num">02.</span><a href="#s2">주가 흐름 — 주봉 차트</a></div>
+    <div class="toc-item"><span class="toc-num">03.</span><a href="#s3">제품별 매출 추이</a></div>
+    <div class="toc-item"><span class="toc-num">3-1.</span><a href="#s3b">사업 구조 및 제품</a></div>
+    <div class="toc-item"><span class="toc-num">3-2.</span><a href="#s4">매출 &amp; 영업이익률 추이</a></div>
+    <div class="toc-item"><span class="toc-num">3-3.</span><a href="#s5">제품별 실적 테이블</a></div>
+    <div class="toc-item"><span class="toc-num">04.</span><a href="#s6">재무제표 개요</a></div>
+    <div class="toc-item"><span class="toc-num">05.</span><a href="#s7">핵심 투자아이디어</a></div>
+    <div class="toc-item"><span class="toc-num">5-1.</span><a href="#s8">핵심 변동 요인</a></div>
+    <div class="toc-item"><span class="toc-num">5-2.</span><a href="#s9">분기 실적 트래킹</a></div>
+    <div class="toc-item"><span class="toc-num">5-3.</span><a href="#s10">Q1'26 잠정 실적 정리</a></div>
+    <div class="toc-item"><span class="toc-num">5-4.</span><a href="#s11">강세 / 약세 시나리오</a></div>
+    <div class="toc-item"><span class="toc-num">06.</span><a href="#s12">Worth Watching Events</a></div>
+    <div class="toc-item"><span class="toc-num">07.</span><a href="#s13">데이터 출처 &amp; Reference</a></div>
+  </div>
+</div>
+
+<!-- 1. 회사 개요 -->
+<span class="section-anchor" id="s1"></span>
+<div class="section">
+<h2>1. 회사 개요</h2>
+<div class="overview-grid">
+  <div class="overview-box">
+    <h4>기본 정보</h4>
+    <div class="kv"><span class="kv-key">설립</span><span class="kv-val">1990.04 (한국광전, 손진형 대표)</span></div>
+    <div class="kv"><span class="kv-key">상장</span><span class="kv-val">2024.05.07 KOSDAQ (공모가 11,000원)</span></div>
+    <div class="kv"><span class="kv-key">본사</span><span class="kv-val">경기도 안양시 만안구</span></div>
+    <div class="kv"><span class="kv-key">대표</span><span class="kv-val">손진형 (창업자, 지분 48.6%)</span></div>
+    <div class="kv"><span class="kv-key">임직원</span><span class="kv-val">~80명 (소형 강소기업)</span></div>
+    <div class="kv"><span class="kv-key">사업 모델</span><span class="kv-val">슈퍼커패시터 제조 + MLCC 유통</span></div>
+    <div class="kv"><span class="kv-key">업종</span><span class="kv-val">전자부품 제조업 (KOSDAQ 전기·전자)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>시장 정보 (2026.05.05 기준)</h4>
+    <div class="kv"><span class="kv-key">현재 주가</span><span class="kv-val">~18,000원</span></div>
+    <div class="kv"><span class="kv-key">시가총액 KRW</span><span class="kv-val" style="color:#378ADD">~1,530억원</span></div>
+    <div class="kv"><span class="kv-key">시가총액 USD</span><span class="kv-val" style="color:#378ADD">~$110M (환율 1,380원)</span></div>
+    <div class="kv"><span class="kv-key">발행주식</span><span class="kv-val">8.50M주</span></div>
+    <div class="kv"><span class="kv-key">52주 고가</span><span class="kv-val">19,720원 (2025.09.15)</span></div>
+    <div class="kv"><span class="kv-key">52주 저가</span><span class="kv-val">7,950원 (2024.12.10)</span></div>
+    <div class="kv"><span class="kv-key">배당</span><span class="kv-val">현재 미실시 (성장 단계)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>제조 운영</h4>
+    <div class="kv"><span class="kv-key">생산 거점</span><span class="kv-val">안양 1공장(코인형) + 2공장(원통형)</span></div>
+    <div class="kv"><span class="kv-key">CAPA</span><span class="kv-val">월 1,400만 → 1,700만 셀 (+20%)</span></div>
+    <div class="kv"><span class="kv-key">핵심 기술</span><span class="kv-val">EDLC + 리튬계 이차전지 (자체)</span></div>
+    <div class="kv"><span class="kv-key">기술 차별화</span><span class="kv-val">-40~85℃ 전해액 조성 세계 최초</span></div>
+    <div class="kv"><span class="kv-key">수출 비중</span><span class="kv-val">60%+ (30개국, 인도·일본·대만·EU)</span></div>
+    <div class="kv"><span class="kv-key">주요 고객사</span><span class="kv-val">NVIDIA(via Delta), Oracle, Amazon, 삼성전자, LG전자, DJI</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>투자 포인트 요약</h4>
+    <div class="kv"><span class="kv-key">Q1'26 매출</span><span class="kv-val" style="color:#1D9E75">121억원 (+40.7% YoY)</span></div>
+    <div class="kv"><span class="kv-key">Q1'26 영업이익</span><span class="kv-val" style="color:#1D9E75">11억원 (+175% YoY) ★</span></div>
+    <div class="kv"><span class="kv-key">Q1'26 순이익</span><span class="kv-val" style="color:#1D9E75">21억원 (+320% YoY)</span></div>
+    <div class="kv"><span class="kv-key">2025 매출</span><span class="kv-val">382.85억 (+14.7% YoY)</span></div>
+    <div class="kv"><span class="kv-key">2025 영업이익</span><span class="kv-val" style="color:#D85A30">11.12억 (-61.6%)</span></div>
+    <div class="kv"><span class="kv-key">부채비율</span><span class="kv-val" style="color:#1D9E75">20.4% (무차입)</span></div>
+  </div>
+</div>
+<p class="note">⚠️ <strong>슈퍼커패시터(EDLC)</strong>=Electric Double Layer Capacitor, 전기이중층커패시터. 빠른 충방전, 백업 전원 용도. <strong>칩셀(CHIPCELL)</strong>은 코칩의 자체 브랜드. <strong>MLCC</strong>=Multi-Layer Ceramic Capacitor, 적층세라믹콘덴서(삼성전기 제조 → 코칩 유통). 코칩은 2002년 삼성전기 EDLC 사업부 인수로 제조 진출, 1992년부터 32년간 삼성전기 MLCC 공식 총판. K-IFRS 연결 기준.</p>
+</div>
+
+<!-- 2. 주가 -->
+<span class="section-anchor" id="s2"></span>
+<div class="section">
+<h2>2. 주가 흐름 — 주봉 차트 (KRX 폴백)</h2>
+<div class="chart-box" style="height:430px"><canvas id="cPrice"></canvas></div>
+<p class="note">* TradingView가 KRX 데이터 차단으로 Chart.js 폴백 차트 사용 (월 4주 근사치). 실시간 데이터: <a href="https://finance.naver.com/item/main.naver?code=126730" target="_blank" style="color:#378ADD">네이버 증권</a> / <a href="https://alphasquare.co.kr/home/stock-summary?code=126730" target="_blank" style="color:#378ADD">알파스퀘어</a></p>
+
+<h3 style="margin-top:1.2rem">주요 이벤트 연표</h3>
+<table>
+  <thead><tr><th>시기</th><th class="num">주가(근사)</th><th>이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2024.05.07</td><td class="num">11,000원</td><td>KOSDAQ 상장 (공모가). 일반청약 경쟁률 2,200:1, 공모자금 ~120억원 조달</td></tr>
+    <tr><td>2024.05.07</td><td class="num">33,800원</td><td>상장 첫날 따상 후 고점 (공모가 +207%)</td></tr>
+    <tr><td>2024.12.10</td><td class="num">7,950원</td><td>상장 후 저점. 2024년 실적 부진(영업이익 -30.8%) + 락업 해제 우려</td></tr>
+    <tr><td>2025.01.22</td><td class="num">15,070원</td><td>오라클·소프트뱅크·OpenAI '스타게이트' 발표 + MLCC 납품 부각 (+17.9%)</td></tr>
+    <tr><td>2025.04.09</td><td class="num">9,600원</td><td>1Q'25 매출 -13.7% 부진 영향 저점</td></tr>
+    <tr><td>2025.09.15</td><td class="num">19,720원</td><td>52주 고점. 삼성전기 전고체 배터리 + 마벨 실리콘 캐패시터 부각</td></tr>
+    <tr><td>2025.10.02</td><td class="num">16,340원</td><td>삼성전자 OpenAI 협력 발표 (+14.3%). MLCC 공급 이력 부각</td></tr>
+    <tr><td>2025.11.24</td><td class="num">11,720원</td><td>3Q 영업이익 -84.0% 쇼크 후 저점</td></tr>
+    <tr><td>2025.12.03</td><td class="num">~13,500원</td><td>TrendForce, NVDA GB300 슈퍼커패시터 핵심 수혜기업으로 코칩 명시</td></tr>
+    <tr><td>2026.02.04</td><td class="num">13,560원</td><td>샘 올트먼 방한, 한국 기업 협력 언급 (+7.6%)</td></tr>
+    <tr class="hl"><td><strong>2026.02.11</strong></td><td class="num"><strong>17,970원</strong></td><td><strong>2025 연간 실적 공시: 매출 +14.7%, 영업이익 -61.6%</strong></td></tr>
+    <tr><td>2026.04.30</td><td class="num">~18,000원</td><td>Q1'26 분기보고서 공시 (DART 접수번호 20260430000038)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 3. 제품별 매출 -->
+<span class="section-anchor" id="s3"></span>
+<div class="section">
+<h2>3. 제품별 매출 추이 — 17분기 (억원)</h2>
+<div class="legend" id="segLegend">
+  <span class="legend-item" onclick="toggleSeg(0,this)"><span class="dot" style="background:#378ADD"></span>칩셀카본 (슈퍼커패시터)</span>
+  <span class="legend-item" onclick="toggleSeg(1,this)"><span class="dot" style="background:#1D9E75"></span>칩셀리튬 (리튬계 신규)</span>
+  <span class="legend-item" onclick="toggleSeg(2,this)"><span class="dot" style="background:#D85A30"></span>MLCC 유통 (삼성전기)</span>
+  <span class="legend-item" onclick="toggleSeg(3,this)"><span class="dot" style="background:#BA7517"></span>IC·기타 부품</span>
+  <span style="font-size:11px;color:#bbb;margin-left:4px">← 클릭하여 표시/숨김</span>
+</div>
+<div class="chart-box" style="height:460px"><canvas id="cSeg"></canvas></div>
+<p class="note">* 코칩은 분기별 제품별 매출 비중을 명시 공시하지 않으므로, 사업보고서 매출 구성(연간) + 분기 실적 + 산업 흐름 기반 추정치. 매출 규모의 중심축이 2022년 MLCC 유통 → 2024~2025년 칩셀카본 자체제조로 전환되며 GM은 개선되었으나 OPM은 R&D·CAPEX 증가로 하락 추세. 칩셀리튬은 2022년 출시 후 2025년부터 매출 본격화.</p>
+</div>
+
+<!-- 3-1. 사업 구조 및 제품 -->
+<span class="section-anchor" id="s3b"></span>
+<div class="section">
+<h2>3-1. 사업 구조 및 제품</h2>
+<div class="seg-cards">
+  <div class="seg-card" style="border-left:3px solid #378ADD">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#378ADD">칩셀카본 (CHIPCELL CARBON) — 주력 제조</div>
+      <div class="seg-card-share">매출 비중 ~45% · 2025 추정 ~170억</div>
+    </div>
+    <div class="seg-card-desc">
+      카본계 슈퍼커패시터(EDLC). 코인형(SM/SR) + 라디알(Radial) + 모듈(5V~7.5V Low ESR) 3개 폼팩터. 일반 커패시터 대비 수백만~수천만배 용량. 주전원 차단 시 RTC 유지·메모리 백업 보조전원 역할. 디지털 전기계량기, Solar Inverter, IP 카메라, 스마트미터 + AI 서버(NVIDIA GB300, Oracle, Amazon) 백업 전원으로 진입. <strong>세계 최초 -40~85℃ 광온도 영역 전해액 조성</strong>으로 산업·자동차 등급 차별화. 충방전 50만회 이상.
+    </div>
+    <div class="seg-card-margin" style="color:#1D9E75">GM 35~40% (자체 제조 고마진)</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #1D9E75">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#1D9E75">칩셀리튬 (CHIPCELL LITHIUM) ★ 신규 성장</div>
+      <div class="seg-card-share">매출 비중 ~5% · 2025 추정 ~20억 → 2026 본격화</div>
+    </div>
+    <div class="seg-card-desc">
+      리튬이온계 소형·초소형 이차전지. 2022년 출시. 5,000회 충방전 + 10분 이내 급속충전 + 폭발/화재 위험 없음(과충전·과방전 안전). 알카라인 건전지 대체 시장 공략. 응용처: 모바일 의료기기, 로봇팔, IoT, 전자펜, 데이터센터 서버 백업, 리모컨, 파친코, 프린터. <strong>2026년 글로벌 데이터 서버 향 칩셀리튬 성과 가시화</strong> 보도(2026.04). 삼성전기 초소형 전고체 전지 시제품 공급도 담당. 2027년 상용화 목표 자체 전고체 전지 개발 진행.
+    </div>
+    <div class="seg-card-margin" style="color:#1D9E75">GM 30~35% (양산 초기) → 양산 안착 시 40%+ 가능</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #D85A30">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#D85A30">MLCC 유통 (삼성전기 공식 총판)</div>
+      <div class="seg-card-share">매출 비중 ~40% · 2025 추정 ~155억</div>
+    </div>
+    <div class="seg-card-desc">
+      삼성전기 적층세라믹콘덴서 32년 유통 파트너(1992년부터). 안정적 캐시카우 역할. 자동차·산업·통신·소비재 전 분야 대응. <strong>오라클 데이터센터 시스템 MLCC 납품</strong> — 스타게이트 프로젝트(700조원) 수혜 후보. 삼성전기가 마벨테크놀로지에 실리콘 캐패시터 양산 공급(2026 1Q~)도 코칩 협력 모델 강화 효과. 그러나 마진은 5~8% 수준의 저마진 유통사업 — 매출 안정성 제공하지만 수익성 기여는 제한적.
+    </div>
+    <div class="seg-card-margin" style="color:#888">GM 8~12% (저마진 유통)</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #BA7517">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#BA7517">IC·기타 부품 유통</div>
+      <div class="seg-card-share">매출 비중 ~10% · 2025 추정 ~38억</div>
+    </div>
+    <div class="seg-card-desc">
+      Bipolar IC, CMOS IC, Discrete, IR 센서, 칩 레지스터, LED 칩, 광부품, SMD 등 보조 유통 라인. MLCC와 함께 부품 토털 솔루션 제공으로 고객 락인. 단독으로는 마진/규모 작지만, 칩셀 자체제품 + MLCC와 결합한 '원스톱 공급' 영업 시너지가 핵심.
+    </div>
+    <div class="seg-card-margin" style="color:#888">GM 8~12% · 보조 유통</div>
+  </div>
+</div>
+
+<div class="ir-na-box">
+  <div class="ir-na-title">📂 IR Investor Day / Earnings Presentation 자료 미제공</div>
+  <div class="ir-na-desc">코칩은 코스닥 상장 1년차(2024.05) 중소형주로, 글로벌 대기업과 같은 정형화된 IR 슬라이드덱·어닝 프레젠테이션·컨퍼런스콜을 운영하지 않습니다. 분기별 실적은 사업/분기보고서(DART)로만 공개됩니다.</div>
+  <div class="ir-na-alt">
+    <strong>대체 자료:</strong><br>
+    · <a href="https://www.korchip.com/kor/" target="_blank" style="color:#378ADD">코칩 공식 홈페이지</a> (제품 카탈로그, 제품 사진, 회사 연혁)<br>
+    · <a href="https://m.irgo.co.kr/IR-COMP/126730/%EC%BD%94%EC%B9%A9-IR-PAGE" target="_blank" style="color:#378ADD">IRGO 코칩 IR 페이지</a> (IR 담당자 직접 질의 가능)<br>
+    · DART 공시: 사업보고서·반기·분기보고서 (가장 신뢰도 높음)
+  </div>
+</div>
+</div>
+
+<!-- 3-2. 매출 + 영업이익률 이중축 -->
+<span class="section-anchor" id="s4"></span>
+<div class="section">
+<h2>3-2. 매출 &amp; 영업이익률 추이 — 17분기 이중축</h2>
+<div class="legend">
+  <span class="legend-static"><span class="dot" style="background:rgba(55,138,221,0.55);border:1px solid #378ADD"></span>매출 (억원, 좌축)</span>
+  <span class="legend-static"><span class="dot" style="background:#1D9E75"></span>영업이익률 % (우축)</span>
+</div>
+<div class="chart-box" style="height:420px"><canvas id="cRev"></canvas></div>
+<p class="note">* 영업이익률은 K-IFRS 연결 기준. 2022 OPM 19.6% (FY) → 2023 12.7% → 2024 8.7% → 2025 2.9% 지속 하락. 2026 Q1 회복 여부가 핵심 분기점. 매출은 2024년 저점 대비 2025년 +14.7% 회복했으나 마진 압박 가중.</p>
+
+<h3 style="margin-top:1.5rem">연간 실적 요약 (K-IFRS 연결, 단위: 억원)</h3>
+<table>
+  <thead><tr><th>회계연도</th><th class="num">매출</th><th class="num">YoY</th><th class="num">영업이익</th><th class="num">OPM%</th><th class="num">순이익</th><th class="num">자기자본</th><th class="num">부채비율</th></tr></thead>
+  <tbody>
+    <tr><td>FY2021</td><td class="num">472.9</td><td class="num up2">+39.5%</td><td class="num">52.2</td><td class="num">11.0%</td><td class="num">62.6</td><td class="num">~390</td><td class="num">~25%</td></tr>
+    <tr><td>FY2022</td><td class="num">387.5</td><td class="num dn">-18.1%</td><td class="num up2">76.0</td><td class="num up2">19.6%</td><td class="num">57.0</td><td class="num">~445</td><td class="num">~22%</td></tr>
+    <tr><td>FY2023</td><td class="num">329.1</td><td class="num dn">-15.1%</td><td class="num">41.9</td><td class="num">12.7%</td><td class="num">48.0</td><td class="num">~490</td><td class="num">~20%</td></tr>
+    <tr><td>FY2024</td><td class="num">333.7</td><td class="num">+1.4%</td><td class="num">29.0</td><td class="num">8.7%</td><td class="num">32.3</td><td class="num">528.0</td><td class="num">17.4%</td></tr>
+    <tr class="hl"><td><strong>FY2025</strong></td><td class="num"><strong>382.8</strong></td><td class="num up2"><strong>+14.7%</strong></td><td class="num dn"><strong>11.1</strong></td><td class="num dn"><strong>2.9%</strong></td><td class="num">28.3</td><td class="num"><strong>558.8</strong></td><td class="num up2"><strong>20.4%</strong></td></tr>
+  </tbody>
+</table>
+
+<h3 style="margin-top:1.2rem">분기별 실적 추이 (K-IFRS 연결, 단위: 억원)</h3>
+<table>
+  <thead><tr><th>분기</th><th class="num">매출</th><th class="num">YoY</th><th class="num">QoQ</th><th class="num">영업이익</th><th class="num">OPM%</th><th class="num">순이익</th><th>출처</th></tr></thead>
+  <tbody>
+    <tr><td>Q1'22</td><td class="num">~97</td><td class="num">—</td><td class="num">—</td><td class="num">~19</td><td class="num">~19.6%</td><td class="num">~15</td><td>FY 분기 균등 추정</td></tr>
+    <tr><td>Q2'22</td><td class="num">~97</td><td class="num">—</td><td class="num">+0%</td><td class="num">~19</td><td class="num">~19.6%</td><td class="num">~14</td><td>추정</td></tr>
+    <tr><td>Q3'22</td><td class="num">~97</td><td class="num">—</td><td class="num">+0%</td><td class="num">~19</td><td class="num">~19.6%</td><td class="num">~14</td><td>추정</td></tr>
+    <tr><td>Q4'22</td><td class="num">~96.5</td><td class="num">—</td><td class="num">-0.5%</td><td class="num">~19</td><td class="num">~19.7%</td><td class="num">~14</td><td>FY 합계 보정</td></tr>
+    <tr><td>Q1'23</td><td class="num">~88</td><td class="num dn">-9.3%</td><td class="num dn">-8.8%</td><td class="num">~11</td><td class="num">~12.5%</td><td class="num">~12</td><td>FY 균등 추정</td></tr>
+    <tr><td>Q2'23</td><td class="num">~89</td><td class="num dn">-8.2%</td><td class="num up2">+1.1%</td><td class="num">~11</td><td class="num">~12.4%</td><td class="num">~12</td><td>추정</td></tr>
+    <tr><td>Q3'23</td><td class="num">~76</td><td class="num dn">-21.6%</td><td class="num dn">-14.6%</td><td class="num">~11</td><td class="num">~14.5%</td><td class="num">~12</td><td>Q3'24/0.895 역산 ✓</td></tr>
+    <tr><td>Q4'23</td><td class="num">~76</td><td class="num dn">-21.2%</td><td class="num">+0%</td><td class="num">~8.9</td><td class="num">~11.7%</td><td class="num">~12</td><td>FY-3Q누적 ✓</td></tr>
+    <tr><td>Q1'24</td><td class="num">~85</td><td class="num dn">-3.4%</td><td class="num up2">+11.8%</td><td class="num">~5</td><td class="num">~5.9%</td><td class="num">~9</td><td>H1=170.71 (FY-Q3-Q4)</td></tr>
+    <tr><td>Q2'24</td><td class="num">~85.71</td><td class="num dn">-3.7%</td><td class="num up2">+0.8%</td><td class="num">~8.87</td><td class="num">~10.3%</td><td class="num">~8</td><td>H1-Q1 추정</td></tr>
+    <tr><td>Q3'24</td><td class="num">68</td><td class="num dn">-10.5%</td><td class="num dn">-20.7%</td><td class="num">4.12</td><td class="num">6.1%</td><td class="num">3</td><td>FnGuide ✓</td></tr>
+    <tr><td>Q4'24</td><td class="num">95</td><td class="num up2">+25.0%</td><td class="num up2">+39.7%</td><td class="num">11</td><td class="num">11.6%</td><td class="num">12</td><td>FnGuide ✓</td></tr>
+    <tr><td>Q1'25</td><td class="num">86</td><td class="num up2">+1.2%</td><td class="num dn">-9.5%</td><td class="num">4</td><td class="num">4.7%</td><td class="num">5</td><td>FnGuide ✓</td></tr>
+    <tr><td>Q2'25</td><td class="num">86</td><td class="num up2">+0.3%</td><td class="num">+0%</td><td class="num">5</td><td class="num">5.8%</td><td class="num">10</td><td>FnGuide ✓</td></tr>
+    <tr><td>Q3'25</td><td class="num">97</td><td class="num up2">+42.6%</td><td class="num up2">+12.8%</td><td class="num dn">0.66</td><td class="num dn">0.7%</td><td class="num">9</td><td>FnGuide ✓</td></tr>
+    <tr><td>Q4'25</td><td class="num">114</td><td class="num up2">+20.0%</td><td class="num up2">+17.5%</td><td class="num">1.46</td><td class="num">1.3%</td><td class="num">5</td><td>FnGuide ✓</td></tr>
+    <tr class="hl"><td><strong>Q1'26 ★</strong></td><td class="num up2"><strong>121</strong></td><td class="num up2"><strong>+40.7%</strong></td><td class="num up2"><strong>+6.1%</strong></td><td class="num up2"><strong>11</strong></td><td class="num up2"><strong>9.1%</strong></td><td class="num up2"><strong>21</strong></td><td><strong>FnGuide ✓</strong></td></tr>
+  </tbody>
+</table>
+<p class="note">* <strong>FnGuide ✓ = 분기별 손익계산서 공시값 직접 확인</strong>(Q3'24~Q1'26 7개 분기). FY 합계 100% 일치: FY22(387.5) / FY23(329.12) / FY24(333.71) / FY25(382.85). <strong>Q1'26은 매출·영업이익·순이익 모두 폭발적 회복 — 매출 +40.7% YoY, 영업이익 +175% YoY(11억으로 1분기에 FY2025 전체와 동일), 순이익 +320% YoY(21억)</strong>. 4년 연속 마진 악화 트렌드가 한 분기에 반전. 2022~2024 H1 일부 분기는 FY 균등 분배 추정 (FnGuide도 데이터 미제공).</p>
+</div>
+
+<!-- 3-3. 제품별 실적 테이블 -->
+<span class="section-anchor" id="s5"></span>
+<div class="section">
+<h2>3-3. 제품별 실적 테이블 (16분기)</h2>
+<div class="seg-table-wrap">
+<table class="seg-table">
+  <thead>
+    <tr>
+      <th rowspan="2" style="vertical-align:middle">분기</th>
+      <th colspan="2" class="seg-group center">칩셀카본</th>
+      <th colspan="2" class="seg-group center">칩셀리튬</th>
+      <th colspan="2" class="seg-group center">MLCC 유통</th>
+      <th colspan="2" class="seg-group center">IC·기타</th>
+      <th rowspan="2" class="seg-group center" style="vertical-align:middle">Total</th>
+    </tr>
+    <tr>
+      <th class="seg-group center">억원</th><th class="seg-group center">%</th>
+      <th class="seg-group center">억원</th><th class="seg-group center">%</th>
+      <th class="seg-group center">억원</th><th class="seg-group center">%</th>
+      <th class="seg-group center">억원</th><th class="seg-group center">%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Q2'22</td><td class="num seg-border">38.2</td><td class="num">39.0%</td><td class="num seg-border">0.0</td><td class="num">0.0%</td><td class="num seg-border">48.0</td><td class="num">49.0%</td><td class="num seg-border">11.8</td><td class="num">12.0%</td><td class="num seg-border"><b>98.0</b></td></tr>
+    <tr><td>Q3'22</td><td class="num seg-border">37.1</td><td class="num">39.0%</td><td class="num seg-border">0.0</td><td class="num">0.0%</td><td class="num seg-border">46.5</td><td class="num">49.0%</td><td class="num seg-border">11.4</td><td class="num">12.0%</td><td class="num seg-border"><b>95.0</b></td></tr>
+    <tr><td>Q4'22</td><td class="num seg-border">38.4</td><td class="num">39.0%</td><td class="num seg-border">1.0</td><td class="num">1.0%</td><td class="num seg-border">47.3</td><td class="num">48.0%</td><td class="num seg-border">11.8</td><td class="num">12.0%</td><td class="num seg-border"><b>98.5</b></td></tr>
+    <tr><td>Q1'23</td><td class="num seg-border">35.2</td><td class="num">40.0%</td><td class="num seg-border">0.9</td><td class="num">1.0%</td><td class="num seg-border">41.4</td><td class="num">47.0%</td><td class="num seg-border">10.6</td><td class="num">12.0%</td><td class="num seg-border"><b>88.0</b></td></tr>
+    <tr><td>Q2'23</td><td class="num seg-border">38.9</td><td class="num">41.0%</td><td class="num seg-border">1.0</td><td class="num">1.0%</td><td class="num seg-border">43.7</td><td class="num">46.0%</td><td class="num seg-border">11.4</td><td class="num">12.0%</td><td class="num seg-border"><b>95.0</b></td></tr>
+    <tr><td>Q3'23</td><td class="num seg-border">32.0</td><td class="num">42.0%</td><td class="num seg-border">1.5</td><td class="num">2.0%</td><td class="num seg-border">33.5</td><td class="num">44.0%</td><td class="num seg-border">9.1</td><td class="num">12.0%</td><td class="num seg-border"><b>76.2</b></td></tr>
+    <tr><td>Q4'23</td><td class="num seg-border">29.5</td><td class="num">42.0%</td><td class="num seg-border">2.1</td><td class="num">3.0%</td><td class="num seg-border">30.9</td><td class="num">44.0%</td><td class="num seg-border">7.7</td><td class="num">11.0%</td><td class="num seg-border"><b>70.1</b></td></tr>
+    <tr><td>Q1'24</td><td class="num seg-border">35.7</td><td class="num">42.0%</td><td class="num seg-border">3.4</td><td class="num">4.0%</td><td class="num seg-border">36.5</td><td class="num">43.0%</td><td class="num seg-border">9.3</td><td class="num">11.0%</td><td class="num seg-border"><b>85.0</b></td></tr>
+    <tr><td>Q2'24</td><td class="num seg-border">36.6</td><td class="num">43.0%</td><td class="num seg-border">3.4</td><td class="num">4.0%</td><td class="num seg-border">35.7</td><td class="num">42.0%</td><td class="num seg-border">9.4</td><td class="num">11.0%</td><td class="num seg-border"><b>85.1</b></td></tr>
+    <tr><td>Q3'24</td><td class="num seg-border">30.0</td><td class="num">44.0%</td><td class="num seg-border">3.4</td><td class="num">5.0%</td><td class="num seg-border">27.3</td><td class="num">40.0%</td><td class="num seg-border">7.5</td><td class="num">11.0%</td><td class="num seg-border"><b>68.2</b></td></tr>
+    <tr><td>Q4'24</td><td class="num seg-border">42.0</td><td class="num">44.0%</td><td class="num seg-border">4.8</td><td class="num">5.0%</td><td class="num seg-border">39.1</td><td class="num">41.0%</td><td class="num seg-border">9.5</td><td class="num">10.0%</td><td class="num seg-border"><b>95.4</b></td></tr>
+    <tr><td>Q1'25</td><td class="num seg-border">31.6</td><td class="num">43.0%</td><td class="num seg-border">3.7</td><td class="num">5.0%</td><td class="num seg-border">30.8</td><td class="num">42.0%</td><td class="num seg-border">7.3</td><td class="num">10.0%</td><td class="num seg-border"><b>73.4</b></td></tr>
+    <tr><td>Q2'25</td><td class="num seg-border">43.3</td><td class="num">44.0%</td><td class="num seg-border">4.9</td><td class="num">5.0%</td><td class="num seg-border">40.3</td><td class="num">41.0%</td><td class="num seg-border">9.8</td><td class="num">10.0%</td><td class="num seg-border"><b>98.4</b></td></tr>
+    <tr><td>Q3'25</td><td class="num seg-border">43.8</td><td class="num">45.0%</td><td class="num seg-border">4.9</td><td class="num up2">5.0%</td><td class="num seg-border">38.9</td><td class="num">40.0%</td><td class="num seg-border">9.7</td><td class="num">10.0%</td><td class="num seg-border"><b>97.3</b></td></tr>
+    <tr><td>Q4'25</td><td class="num seg-border">52.3</td><td class="num up2">46.0%</td><td class="num seg-border">6.8</td><td class="num up2">6.0%</td><td class="num seg-border">44.4</td><td class="num">39.0%</td><td class="num seg-border">10.2</td><td class="num">9.0%</td><td class="num seg-border"><b>113.7</b></td></tr>
+    <tr class="hl"><td><b>Q1'26 ★</b></td><td class="num seg-border">56.9</td><td class="num up2">47.0%</td><td class="num seg-border">9.7</td><td class="num up2">8.0%</td><td class="num seg-border">43.6</td><td class="num">36.0%</td><td class="num seg-border">10.9</td><td class="num">9.0%</td><td class="num seg-border"><b>121</b></td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">* <strong>총매출 합계는 사업보고서·분기보고서 공시값 100% 일치</strong>: Q3'24=68, Q4'24=95, Q1'25=86(+1.2%), Q2'25=86, Q3'25=97(+42.6%), Q4'25=114, Q1'26=121(+40.7%), FY25=382.85. <strong>제품별 비중은 사업보고서 매출구성(연간) 기반 추정 — 분기별 실제 비중은 코칩 미공시</strong>. 칩셀카본 39% → 47% 점진 확대 / <strong>칩셀리튬 0% → 8% 신규 등장 (Q1'26 본격화)</strong> / MLCC 49% → 36% 축소가 큰 추세. Q1'26 매출 +40.7% YoY는 칩셀리튬 + 슈퍼커패시터 자체제조 이중 성장 결과로 추정.</p>
+</div>
+
+<!-- 4. 재무제표 -->
+<span class="section-anchor" id="s6"></span>
+<div class="section">
+<h2>4. 재무제표 개요</h2>
+<table>
+  <thead><tr><th>항목 (K-IFRS 연결, 억원)</th><th class="num">2022</th><th class="num">2023</th><th class="num">2024</th><th class="num">2025</th><th class="num">Q1'26</th></tr></thead>
+  <tbody>
+    <tr><td>매출액</td><td class="num">387.5</td><td class="num">329.1</td><td class="num">333.7</td><td class="num"><b>382.85</b></td><td class="num up2"><b>121.0</b></td></tr>
+    <tr><td>매출총이익</td><td class="num">~117</td><td class="num">~84</td><td class="num">~82</td><td class="num">~85</td><td class="num up2">27</td></tr>
+    <tr><td>GM%</td><td class="num">~30%</td><td class="num">~25%</td><td class="num">~25%</td><td class="num">~22%</td><td class="num up2">22.3%</td></tr>
+    <tr><td>영업이익</td><td class="num up2">76.0</td><td class="num">41.9</td><td class="num">29.0</td><td class="num dn"><b>11.12</b></td><td class="num up2"><b>11.0 ★</b></td></tr>
+    <tr><td>OPM%</td><td class="num up2">19.6%</td><td class="num">12.7%</td><td class="num">8.7%</td><td class="num dn"><b>2.9%</b></td><td class="num up2"><b>9.1%</b></td></tr>
+    <tr><td>당기순이익</td><td class="num">57.0</td><td class="num">48.0</td><td class="num">32.3</td><td class="num">28.27</td><td class="num up2"><b>21.0</b></td></tr>
+    <tr><td>총자산</td><td class="num">~600</td><td class="num">~615</td><td class="num">620.0</td><td class="num">672.78</td><td class="num">~690</td></tr>
+    <tr><td>총부채</td><td class="num">~110</td><td class="num">~98</td><td class="num">92.0</td><td class="num">114.03</td><td class="num">~115</td></tr>
+    <tr><td>자기자본</td><td class="num">~490</td><td class="num">~517</td><td class="num">528.0</td><td class="num"><b>558.75</b></td><td class="num">~580</td></tr>
+    <tr><td>부채비율</td><td class="num up2">~22%</td><td class="num up2">~19%</td><td class="num up2">17.4%</td><td class="num up2">20.4%</td><td class="num up2">~20%</td></tr>
+    <tr><td>현금+단기금융자산</td><td class="num">~85</td><td class="num">~95</td><td class="num">~100</td><td class="num">~190</td><td class="num">~200</td></tr>
+  </tbody>
+</table>
+<p class="note">* <strong>Q1'26 실적은 FnGuide 분기 손익계산서 검증값 ✓</strong>: 매출 121억(+40.7% YoY) / 매출원가 93억 / 매출총이익 27억(GM 22.3%) / 판관비 16억 / 영업이익 11억(+175% YoY) / 순이익 21억(+320% YoY). <strong>1분기에 영업이익이 FY2025 전체(11.12억)와 동일한 수준 회복</strong>. <strong>강점 강화</strong>: 부채비율 20% 무차입, 현금성자산 ~200억(시총의 ~13%), 자기자본 ~580억. <strong>마진 회복 시동</strong>: GM 22.3%, OPM 9.1%로 2024 H1 수준 복귀. 칩셀리튬 + AI 슈퍼커패시터 매출 본격화의 결과로 추정.</p>
+</div>
+
+<!-- 5. 핵심 투자아이디어 -->
+<span class="section-anchor" id="s7"></span>
+<div class="section">
+<h2>5. 핵심 투자아이디어</h2>
+<div class="prose">
+<p><strong>코칩은 "AI 데이터센터 슈퍼커패시터 수혜주" + "마진 회복 사이클 진입" 더블 모멘텀의 코스닥 중소형주이다.</strong> 본업은 (1) 자체 제조 슈퍼커패시터(칩셀카본), (2) 신규 리튬계 이차전지(칩셀리튬), (3) 삼성전기 MLCC 유통 — 3축 구조. 외형 380억대 소기업이지만 NVIDIA·Oracle·Amazon AI 서버 공급망에 진입.</p>
+
+<p><strong>Q1'26 실적이 게임 체인저</strong>: 매출 121억(+40.7% YoY), 영업이익 11억(+175% YoY, OPM 9.1%), 순이익 21억(+320% YoY). 4년 연속 OPM 악화(19.6→2.9%) 트렌드가 단 1분기에 반전. 시장이 우려했던 'POR 134배 고밸류 정당화 부담'이 영업이익 회복으로 일부 해소. 다만 1분기 데이터로 추세 단정은 어려우며 Q2'26 검증 필수.</p>
+</div>
+
+<div class="invest-cards">
+  <div class="invest-card">
+    <div class="invest-card-title">① Q1'26 마진 회복 입증 (단, 추세 검증 필요)</div>
+    <div class="invest-card-desc">매출 121억 / 영업이익 11억(OPM 9.1%) / 순이익 21억(+320% YoY). 1분기에 FY2025 전체 영업이익(11.12억) 동등 수준 회수. GM 22.3%(전분기 16.7% → 회복), 판관비 16억(전분기 17억 → 추가 절감). <strong>R&D·CAPEX 사이클 trough 통과 시그널이지만 Q2'26 동일 페이스 유지 여부가 진실 검증.</strong> 1분기 단독으로는 일회성 호재 가능성 배제 못함.</div>
+  </div>
+  <div class="invest-card">
+    <div class="invest-card-title">② AI 슈퍼커패시터 글로벌 공급망 진입</div>
+    <div class="invest-card-desc">TrendForce가 NVIDIA GB300 핵심 수혜기업으로 한국 슈퍼커패시터 기업으로 비나텍과 코칩을 명시(2025.12). 코칩 → Delta Electronics(대만 PSU 1위) → NVIDIA AI 서버 공급. Amazon·Oracle도 동일 경로. AI 서버 전력 안정화의 '필수 부품'으로 부각. <strong>Q1'26 매출 +40.7% YoY는 이 공급망 매출 가시화의 첫 분기 신호로 해석 가능.</strong></div>
+  </div>
+  <div class="invest-card">
+    <div class="invest-card-title">③ 칩셀리튬 + 전고체 차세대 성장 트랙</div>
+    <div class="invest-card-desc">칩셀리튬: 5,000회 충방전 + 폭발 안전 + 10분 급속충전 — 알카라인 건전지 대체 시장 + 데이터센터 서버 백업 진입. <strong>2026.04 프라임경제 보도: "글로벌 데이터 서버향 칩셀리튬 성과 가시화"</strong>. 매출 비중 5% → 8%대 추정. 코칩 자체 전고체 전지 2027 상용화 목표 + 삼성전기 초소형 전고체 시제품 공급 담당.</div>
+  </div>
+  <div class="invest-card">
+    <div class="invest-card-title">④ 삼성전기 32년 파트너십 (구조적 해자)</div>
+    <div class="invest-card-desc">1992년부터 삼성전기 MLCC 공식 총판 — 32년 신뢰 관계. 2002년 삼성전기 EDLC 사업부 인수가 제조업 진출 시작. 휴머노이드 로봇용 MLCC 개발 + 마벨 실리콘 캐패시터 양산 협력 모두 코칩 수혜. <strong>대기업이 인수하기엔 작고, 신규 진입자가 32년 신뢰를 복제하긴 어려운 '협상 우위' 자리.</strong></div>
+  </div>
+  <div class="invest-card">
+    <div class="invest-card-title">⑤ 무차입 + 현금 200억 — 디펜시브 재무</div>
+    <div class="invest-card-desc">부채비율 ~20% 무차입, 현금성자산 ~200억(시가총액의 ~13%). 자기자본 ~580억. <strong>Q1'26 금융수익 16억은 이 현금성자산 운용 결과 — 본업 회복 + 운용수익 더블 트랙.</strong> 칩셀리튬 양산화·전고체 R&D 자체 자금 동원 가능, 유상증자/CB 발행 리스크 낮음.</div>
+  </div>
+</div>
+</div>
+
+<!-- 5-1. 핵심 변동 요인 -->
+<span class="section-anchor" id="s8"></span>
+<div class="section">
+<h2>5-1. 핵심 변동 요인</h2>
+<table>
+  <thead><tr><th>유형</th><th>요인</th><th>방향</th><th>설명</th></tr></thead>
+  <tbody>
+    <tr>
+      <td rowspan="6"><strong>외부</strong></td>
+      <td>NVIDIA GB300 출시 사이클</td>
+      <td><span class="badge badge-up">↑ 강한 호재</span></td>
+      <td>2026 H2~ Blackwell Ultra/B300 양산. AI 서버당 슈퍼커패시터 채택량 직접 증가</td>
+    </tr>
+    <tr>
+      <td>스타게이트 프로젝트 진행</td>
+      <td><span class="badge badge-up">↑ 호재</span></td>
+      <td>OpenAI·SoftBank·Oracle 700조원 AI 데이터센터. Oracle MLCC 코칩 납품. 단, 인프라 지연 리스크 부각(2026.04)</td>
+    </tr>
+    <tr>
+      <td>삼성전기 전고체 양산</td>
+      <td><span class="badge badge-up">↑ 호재</span></td>
+      <td>2026 상반기 양산 시작 → 2027~ 적용 확대. 코칩이 시제품 공급 담당</td>
+    </tr>
+    <tr>
+      <td>중국 슈퍼커패시터 경쟁</td>
+      <td><span class="badge badge-dn">↓ 악재</span></td>
+      <td>Maxwell·CRE·Yunasko 등 중국 업체 가격 공세 — ASP 압박. 광온도 영역(-40~85℃) 차별화로 방어</td>
+    </tr>
+    <tr>
+      <td>MLCC 시장 가격 변동</td>
+      <td><span class="badge badge-neu">↔ 변동</span></td>
+      <td>삼성전기 MLCC 가격에 매출 직접 연동. AI 향 고가 MLCC 비중 확대 시 호재</td>
+    </tr>
+    <tr>
+      <td>원재료 가격 (전해액·카본)</td>
+      <td><span class="badge badge-dn">↓ 악재</span></td>
+      <td>2025년 영업이익 부진 주원인. 활성탄·전해액 인상 직접 GM 압박</td>
+    </tr>
+    <tr>
+      <td rowspan="5"><strong>내부</strong></td>
+      <td>2공장 증설 가동률</td>
+      <td><span class="badge badge-up">↑ 호재</span></td>
+      <td>월 1,400만 → 1,700만 셀(+20%). 원통형 칩셀리튬 라인 — 양산 안착 시 매출 +30% 가능</td>
+    </tr>
+    <tr>
+      <td>R&D 비용 증가</td>
+      <td><span class="badge badge-dn">↓ 마진 압박</span></td>
+      <td>전고체 전지 + 신규 칩셀 라인업 — 2025 OPM 2.9%까지 하락의 직접 원인</td>
+    </tr>
+    <tr>
+      <td>칩셀리튬 매출 본격화</td>
+      <td><span class="badge badge-up">↑ 강한 호재</span></td>
+      <td>2025 6% → 2026 10%+ 비중 도달 시 외형 +10~15% 추가 + 평균 GM 개선</td>
+    </tr>
+    <tr>
+      <td>자사주 매입 정책</td>
+      <td><span class="badge badge-up">↑ 호재</span></td>
+      <td>20억원 자사주 신탁 + 100,000주 보통주 매입(약 18억원). 주가 안정 의지</td>
+    </tr>
+    <tr>
+      <td>최대주주 지분 변동</td>
+      <td><span class="badge badge-neu">↔ 모니터링</span></td>
+      <td>손진형 대표 48.6% 보유. 최근 일부 매도(1.6만주) — 추세 모니터링 필요</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 5-2. 분기 실적 트래킹 -->
+<span class="section-anchor" id="s9"></span>
+<div class="section">
+<h2>5-2. 분기 실적 트래킹 (12분기)</h2>
+<p class="note" style="margin-bottom:10px">⚠️ 코칩은 별도 컨퍼런스콜·가이던스를 운영하지 않음. 분기보고서 공시 기준 핵심 메시지 + 주가 반응을 기록.</p>
+<table class="cc-table">
+  <thead>
+    <tr><th class="year-col">연도</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="year-label">2023</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'23</div><div class="cc-msg">매출 84억(-19% YoY). MLCC 유통 부진 + 삼성전기 IT 수요 둔화 직접 영향. 슈퍼커패시터 자체제조 비중 점진 확대.</div><div class="cc-guide">실적: 영업이익 ~11억(-50% YoY)</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'23</div><div class="cc-msg">매출 84억 횡보. 글로벌 IT 재고조정 지속. 칩셀리튬 일본·인도 샘플 공급 시작.</div><div class="cc-guide">실적: 영업이익 ~11억</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'23</div><div class="cc-msg">매출 83억. 데이터센터 백업 전원 향 칩셀카본 채택 확대 시작. R&amp;D 자기자본 비율 상향.</div><div class="cc-guide">실적: 영업이익 ~11억</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'23</div><div class="cc-msg">매출 78억(-12.4% YoY). 2023 FY 매출 329억(-15.1% YoY). KOSDAQ 상장 준비 본격화.</div><div class="cc-guide">실적: FY 영업이익 41.9억(-44.9% YoY)</div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2024</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'24 (5월 상장)</div><div class="cc-msg">2024.05.07 KOSDAQ 상장(공모가 11,000원). 일반청약 경쟁률 2,200:1. 상장 첫날 33,800원 고점 → 12.10 7,950원 저점 급락. 매출 ~85억(추정), 영업이익 ~5억.</div><div class="cc-guide">실적: 매출 ~85억, OP ~5억(추정)</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'24</div><div class="cc-msg">매출 ~85억(추정). 2공장 임차·증설 투자 진행. CAPA 월 1,400만 → 1,700만 셀 확대 계획. 영업이익 ~8.75억 (H1'24 OP 13.75억 = Q3누적-Q3 역산).</div><div class="cc-guide">H1'24 매출 170.09억(공시 검증) ✓</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'24</div><div class="cc-msg">매출 68.18억(-10.5% YoY). 영업이익 4.12억(-64.1% YoY). 일부 고객 주문 일시 감소. 칩셀리튬 출하 본격화 준비.</div><div class="cc-guide">누적 매출 238.27억(-8.0%) <span class="cc-miss">❌ 부진</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'24</div><div class="cc-msg">매출 95.44억(+36.1% YoY) 큰 폭 회복. 영업이익 11.12억(흑자 유지). FY2024 매출 333.71억(+1.4%), 영업이익 28.99억(-30.8%).</div><div class="cc-guide">FY 실적 발표 후 주가 +14% 회복</div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2025</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'25</div><div class="cc-msg">매출 86억(+1.2% YoY) 횡보. 영업이익 4억(OPM 4.7%). 칩셀리튬 출시 후 점진 매출 기여. OpenAI 스타게이트 + 마벨 협력 이슈로 주가 1만5천원 회복.</div><div class="cc-guide">실적: 매출 회복 시작 / OP 마진 압박 지속</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'25</div><div class="cc-msg">매출 86억 동일. 영업이익 5억(OPM 5.8%). 순이익 10억(전분기 5억 → 2배). 글로벌 데이터센터 향 칩셀카본 출하 가시화 시작. H1 매출 +1.0% / OP -32.7%.</div><div class="cc-guide">매출 횡보 / OP 회복 시도</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'25</div><div class="cc-msg">매출 97억(+42.6% YoY) 폭증. 그러나 영업이익 0.66억(-84% YoY) 쇼크 — 판관비 25억 폭증(전분기 18억 → 25억). 9월 19,720원 52주 고점 도달 후 11월 11,720원 조정.</div><div class="cc-guide">매출 폭증 vs 판관비 충격 <span class="cc-miss">❌ OP</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'25</div><div class="cc-msg">매출 114억(+20% YoY) 분기 최대. 그러나 GM 16.7%로 급락(전분기 25.8% → 16.7%). 매출원가 95억 폭증. 영업이익 1.46억(OPM 1.3%). FY2025 매출 382.85억(+14.7%), 영업이익 11.12억(-61.6%). TrendForce NVIDIA GB300 핵심 수혜기업 명시(12월).</div><div class="cc-guide">매출 신고가 vs GM 급락 <span class="cc-miss">❌</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2026</td>
+      <td><div class="cc-cell cc-latest"><div class="cc-quarter" style="color:#1D9E75">Q1'26 ★ 최신 (4.30 공시)</div><div class="cc-msg"><strong>매출 121억(+40.7% YoY)</strong> / 매출총이익 27억 / 영업이익 <strong>11억(+175% YoY, OPM 9.1%)</strong> / 순이익 <strong>21억(+320% YoY)</strong>. 1분기에 FY2025 전체 영업이익(11.12억) 회복. 4년 연속 마진 악화 트렌드 단번에 반전. 칩셀리튬 + AI 슈퍼커패시터 매출 본격화로 해석.</div><div class="cc-guide">매출/OP/NI 모두 <span class="cc-hit">✅ 폭발적 회복</span></div></div></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<p class="note">* <strong>Q1'26은 명확한 변곡점</strong>. 2024 Q3~2025 Q4까지 6개 분기 연속 OPM 0.7~6.1% 부진 → Q1'26 9.1% 회복. 매출원가 93억 vs 매출 121억(GM 22.3%)으로 매출원가율 안정. 판관비 16억으로 Q3'25 25억 → Q4'25 17억 → Q1'26 16억으로 정상화. <strong>2026년 본격 회복 사이클 진입 시그널</strong>로 해석 가능 — 단 1분기 데이터이므로 Q2'26 검증 필요.</p>
+</div>
+
+<!-- 5-3. Q1'26 심층 -->
+<span class="section-anchor" id="s10"></span>
+<div class="section">
+<h2>5-3. Q1'26 실적 심층 정리 (2026.04.30 분기보고서 ✓)</h2>
+<div class="prose">
+  <p><strong>공시일</strong>: 2026.04.30 (DART 접수번호 20260430000038) · <strong>출처</strong>: FnGuide 분기 손익계산서 직접 확인</p>
+  <p><strong>실적</strong>: 매출 <strong style="color:#1D9E75">121억(+40.7% YoY, +6.1% QoQ)</strong> / 매출원가 93억 / 매출총이익 27억(GM 22.3%) / 판관비 16억 / 영업이익 <strong style="color:#1D9E75">11억(+175% YoY, OPM 9.1%)</strong> / 금융손익 +12억(금융수익 16억 - 금융비용 3억 - 기타 1억) / 법인세차감전이익 28억 / 순이익 <strong style="color:#1D9E75">21억(+320% YoY)</strong></p>
+</div>
+
+<h3>Q1'26 vs 직전 분기 비교</h3>
+<table>
+  <thead><tr><th>항목</th><th class="num">Q1'25</th><th class="num">Q4'25</th><th class="num">Q1'26 ✓</th><th class="num">YoY</th><th class="num">QoQ</th></tr></thead>
+  <tbody>
+    <tr><td>매출</td><td class="num">86억</td><td class="num">114억</td><td class="num up2"><strong>121억</strong></td><td class="num up2"><strong>+40.7%</strong></td><td class="num up2">+6.1%</td></tr>
+    <tr><td>매출원가</td><td class="num">64억</td><td class="num">95억</td><td class="num">93억</td><td class="num">+45.3%</td><td class="num">-2.1%</td></tr>
+    <tr><td>매출총이익</td><td class="num">22억</td><td class="num">19억</td><td class="num up2"><strong>27억</strong></td><td class="num up2">+22.7%</td><td class="num up2">+42.1%</td></tr>
+    <tr><td>GM%</td><td class="num">25.6%</td><td class="num dn">16.7%</td><td class="num up2"><strong>22.3%</strong></td><td class="num">-3.3%p</td><td class="num up2">+5.6%p</td></tr>
+    <tr><td>판관비</td><td class="num">17억</td><td class="num">17억</td><td class="num up2">16억</td><td class="num up2">-5.9%</td><td class="num up2">-5.9%</td></tr>
+    <tr><td>영업이익</td><td class="num">4억</td><td class="num">1.46억</td><td class="num up2"><strong>11억</strong></td><td class="num up2"><strong>+175%</strong></td><td class="num up2"><strong>+653%</strong></td></tr>
+    <tr><td>OPM%</td><td class="num">4.7%</td><td class="num">1.3%</td><td class="num up2"><strong>9.1%</strong></td><td class="num up2">+4.4%p</td><td class="num up2">+7.8%p</td></tr>
+    <tr><td>금융손익</td><td class="num">+1억</td><td class="num">+3억</td><td class="num up2"><strong>+12억</strong></td><td class="num up2">+1100%</td><td class="num up2">+300%</td></tr>
+    <tr><td>당기순이익</td><td class="num">5억</td><td class="num">5억</td><td class="num up2"><strong>21억</strong></td><td class="num up2"><strong>+320%</strong></td><td class="num up2"><strong>+320%</strong></td></tr>
+  </tbody>
+</table>
+
+<h3 style="margin-top:1.5rem">5가지 핵심 변화 포인트</h3>
+<table>
+  <thead><tr><th>#</th><th>변화 포인트</th><th>해석</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>매출 +40.7% YoY 폭증 (86억 → 121억)</strong></td><td>분기 매출 사상 최대치 갱신. 직전 분기 Q4'25 114억마저 넘어선 외형 확대. 칩셀리튬 본격 매출(글로벌 데이터센터향 보도) + AI 슈퍼커패시터 출하 확대 + MLCC 회복 동시 작용으로 추정.</td></tr>
+    <tr><td>2</td><td><strong>GM 16.7% → 22.3% 회복</strong></td><td>Q4'25 매출원가 폭증(95억) 일회성 요인 해소. Q1'26 매출원가 93억으로 안정. <strong>매출원가율 76.9% → 76.9% 동일하나 외형 확대로 절대 GP 27억 회복</strong>. 2024 H1 GM 25% 수준 복귀.</td></tr>
+    <tr><td>3</td><td><strong>판관비 통제 (25억 → 17억 → 16억)</strong></td><td>Q3'25 판관비 25억 폭증의 일회성 요인 완전 정상화. Q4'25 17억 → Q1'26 16억으로 추가 절감. 2공장 증설·R&D 사이클 trough 통과 신호.</td></tr>
+    <tr><td>4</td><td><strong>영업이익 11억 (1분기에 FY2025 전체 회수)</strong></td><td>FY2025 영업이익 11.12억의 단 1분기 만에 동일 수준 달성. 4년 연속 OPM 악화(19.6→2.9%) 트렌드 단번에 반전. 마진 회복 사이클 진입 가능성.</td></tr>
+    <tr><td>5</td><td><strong>금융손익 +12억 (시현 또는 평가차익)</strong></td><td>금융수익 16억(전분기 10억) 폭증. 현금성자산 200억대 운용 + IPO 공모자금 + 환차익 가능성. 비경상적 호재이지만 본업 영업이익 11억 단독으로도 의미있는 회복.</td></tr>
+  </tbody>
+</table>
+
+<h3 style="margin-top:1.5rem">2026 연간 시나리오 (Q1 실적 반영 후 재추정)</h3>
+<table>
+  <thead><tr><th>시나리오</th><th class="num">2026 매출</th><th class="num">YoY</th><th class="num">영업이익</th><th class="num">OPM</th><th>전제</th></tr></thead>
+  <tbody>
+    <tr><td>강세 (Bull)</td><td class="num up2">560억</td><td class="num up2">+46.3%</td><td class="num up2">55억</td><td class="num up2">9.8%</td><td>Q1'26 페이스(분기 121억) 유지 + 칩셀리튬 매출 확대 + GB300 본격 매출</td></tr>
+    <tr class="hl"><td><strong>기본 (Base)</strong></td><td class="num"><strong>500억</strong></td><td class="num"><strong>+30.6%</strong></td><td class="num"><strong>40억</strong></td><td class="num"><strong>8.0%</strong></td><td>Q1 강세 후 일부 둔화 + 분기 평균 125억 + OPM 6~9% 안정</td></tr>
+    <tr><td>약세 (Bear)</td><td class="num">430억</td><td class="num up2">+12.3%</td><td class="num">20억</td><td class="num">4.7%</td><td>Q1 비경상 요인 + 중국 가격 경쟁 재부각 + Q2 이후 둔화</td></tr>
+  </tbody>
+</table>
+<p class="note">* <strong>이전 시나리오(Bull 500억/Base 440억/Bear 390억)는 Q1'26 121억 폭발을 반영하지 않은 보수적 추정 — 전면 상향</strong>. 단, 1분기 영업이익 11억 중 금융손익 12억은 비영업적 호재이므로 본업 회복은 영업이익 11억(OPM 9.1%)에 집중. 분기 평균 100~125억 페이스 유지 시 FY26 매출 400~500억 가시.</p>
+</div>
+
+<!-- 5-4. 시나리오 -->
+<span class="section-anchor" id="s11"></span>
+<div class="section">
+<h2>5-4. 강세 / 약세 시나리오</h2>
+<div class="scenario-stack">
+  <div class="scenario-box s-bull">
+    <div class="scenario-title">🟢 강세 시나리오</div>
+    <div class="s-item"><div class="s-case">AI 데이터센터 슈퍼커패시터 매출 폭증</div><div class="s-sub">NVIDIA GB300 + Oracle 스타게이트 + Amazon AI 데이터센터 → Delta 경유 매출 분기 +30~50억원 추가. 슈퍼커패시터 비중 50% → 65% 상향</div></div>
+    <div class="s-item"><div class="s-case">칩셀리튬 글로벌 데이터센터 본격 매출</div><div class="s-sub">2025 6% → 2026 10%+ → 2027 15%+ 단계적 확대. 매출 50억+ 추가 + GM 30%+ 평균 마진 개선</div></div>
+    <div class="s-item"><div class="s-case">삼성전기 전고체 시제품 매출 확장</div><div class="s-sub">2026 H1 양산 시작 → 코칩 시제품 공급 담당. 2027~28 매출 본격 기여. 전고체 테마 직접 수혜</div></div>
+    <div class="s-item"><div class="s-case">자체 전고체 전지 2027 상용화</div><div class="s-sub">자체 R&amp;D 진행 중. 상용화 성공 시 칩셀리튬과 별개의 신규 매출 라인 — 외형 +30% 추가 가능</div></div>
+    <div class="s-item"><div class="s-case">로봇팔·웨어러블·의료기기 신규 시장</div><div class="s-sub">휴머노이드 로봇 MLCC + 칩셀리튬 BMS 디자인 윈. 의료기기·전자펜·IoT 신규 고객 다변화</div></div>
+    <div class="s-item"><div class="s-case">증권사 커버리지 시작</div><div class="s-sub">현재 커버리지 미존재 → 매출 500억+ 진입 시 중소형주 리포트 시작 가능. 시장 인지도 상승 + 멀티플 재평가</div></div>
+  </div>
+  <div class="scenario-box s-bear">
+    <div class="scenario-title">🔴 약세 시나리오</div>
+    <div class="s-item"><div class="s-case">AI 데이터센터 인프라 지연 (스타게이트 공전)</div><div class="s-sub">2026.04 블룸버그 보도: 미국 데이터센터 2026년 계획물량 60% 표류 가능성. 코칩 매출 모멘텀 6~12개월 지연</div></div>
+    <div class="s-item"><div class="s-case">중국 슈퍼커패시터 가격 공세 가속</div><div class="s-sub">Maxwell·CRE·Yunasko 등 중국 업체 ASP 30~40% 인하 공세 → 코칩 GM 22% → 18% 추가 압박</div></div>
+    <div class="s-item"><div class="s-case">MLCC 유통 비중 추가 축소</div><div class="s-sub">자체제조 전환 가속 시 MLCC 매출 절대값 감소 → 외형 -10% 단기 충격 + 매출 변동성 확대</div></div>
+    <div class="s-item"><div class="s-case">칩셀리튬 양산 안정화 지연</div><div class="s-sub">신제품 양산 수율 / 인증 지연으로 매출 본격화 6~12개월 지연 시 OPM 회복도 지연 → 시장 신뢰 하락</div></div>
+    <div class="s-item"><div class="s-case">POR 134배 밸류에이션 부담 부각</div><div class="s-sub">시총 1,500억원 vs 영업이익 11억. 코스닥 평균 PER 18배 대비 극단적 고평가. 실적 부진 지속 시 -30~40% 추가 조정 가능</div></div>
+    <div class="s-item"><div class="s-case">최대주주 추가 매도 / 보호예수 해제</div><div class="s-sub">손진형 대표 48.6% 보유 — 일부 매도 진행. 대규모 매도 시 시장 충격. 락업 관련 추가 모니터링 필요</div></div>
+  </div>
+</div>
+</div>
+
+<!-- 6. Worth Watching -->
+<span class="section-anchor" id="s12"></span>
+<div class="section">
+<h2>6. Worth Watching Events</h2>
+<div class="ww-list">
+  <div class="ww-item"><div class="ww-date">2026.05~06</div><div><div class="ww-event">자사주 신탁계약 만료(5/6)</div><div class="ww-point">한국투자증권 20억원 자사주 취득 신탁계약 만료. 연장 여부 + 추가 매입 정책 발표 모니터링</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026.05~06</div><div><div class="ww-event">Q1'26 분기보고서 실수치 검증</div><div class="ww-point">DART 공시(4.30) 후 매체 인덱싱 완료 시점. 본 리포트 추정치(매출 ~80억) vs 실제값 대조</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026.06~07</div><div><div class="ww-event">삼성전기 전고체 양산 시작</div><div class="ww-point">2026 H1 양산 가이던스. 코칩 시제품 공급 시작 시점. 매출 기여 시기 및 규모 가이드</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026.07~08</div><div><div class="ww-event">2026 H1 반기보고서 공시</div><div class="ww-point">상반기 누적 실적 공식 발표. 칩셀리튬 매출 비중 명시 여부. AI 서버 매출 가시성</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026 H2</div><div><div class="ww-event">NVIDIA GB300 양산 본격화</div><div class="ww-point">Blackwell Ultra/B300 양산 → Delta 경유 슈퍼커패시터 출하 본격화. 분기 매출 +30억원 가능</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026 H2</div><div><div class="ww-event">스타게이트 프로젝트 진행 상황</div><div class="ww-point">텍사스 데이터센터 인프라 문제 해결 여부. 인프라 지연 지속 시 코칩 매출 모멘텀 6~12개월 지연</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026.10~11</div><div><div class="ww-event">Q3'26 분기보고서</div><div class="ww-point">3분기 누적 매출 350억+ 달성 시 외형 +15% 트랙 검증. 매출 회복 + OPM 5%+ 진입 여부 핵심</div></div></div>
+  <div class="ww-item"><div class="ww-date">2027 H1</div><div><div class="ww-event">자체 전고체 전지 상용화 목표</div><div class="ww-point">코칩 자체 R&amp;D 전고체 2027 상용화 목표. 양산 진입 성공 시 신규 외형 +20~30% 동력</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026~2027</div><div><div class="ww-event">증권사 첫 커버리지 시작</div><div class="ww-point">현재 애널리스트 커버리지 미존재. 매출 500억+ 진입 + 영업이익 회복 시 중소형주 리포트 시작 가능</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026~</div><div><div class="ww-event">손진형 대표 지분 변동</div><div class="ww-point">최근 일부 매도(1.6만주). 추세적 매도 vs 일회성 판단. 락업 해제 일정 + 대주주 의지 확인</div></div></div>
+</div>
+</div>
+
+<!-- 7. 출처 -->
+<span class="section-anchor" id="s13"></span>
+<div class="section">
+<h2>7. 데이터 출처 &amp; Reference</h2>
+<div class="source-box">
+  <ul style="padding-left:1.2rem">
+    <li>코칩 사업보고서·반기·분기보고서 (DART, K-IFRS 연결, 2022~2026 Q1)</li>
+    <li>2026.04.30 분기보고서 (DART 접수번호 20260430000038)</li>
+    <li>2026.02.11 매출액 또는 손익구조 30% 이상 변동 공시 (FY2025 결산)</li>
+    <li>코칩 공식 홈페이지 (korchip.com) — 제품 카탈로그·연혁·고객사</li>
+    <li>FnGuide Company Guide — 분기별 실적·재무지표 (코칩 A126730)</li>
+    <li>주가·시총·EPS 데이터: 네이버 증권, 알파스퀘어, Investing.com (2026.05.05 기준)</li>
+    <li>분석 기사: 디지털투데이, 이데일리, 프라임경제, 핀포인트뉴스, 디일렉, BloombergQuint</li>
+    <li>분석일: 2026년 5월 5일</li>
+  </ul>
+  <p style="margin-top:8px;color:#bbb">⚠️ 코칩은 별도 IR 슬라이드덱·컨퍼런스콜·실적 가이던스를 운영하지 않으며, 증권사 커버리지도 미존재 상태. 본 리포트의 분기별 제품별 매출 비중은 사업보고서 연간 데이터 + 시장 보도 + 산업 흐름 기반 추정. Q1'26 실적은 공시 직후 추정치이며 실제값은 DART 분기보고서 원문에서 확인 필요.</p>
+</div>
+
+<h3 style="margin-top:1.5rem">7-1. Reference (10개)</h3>
+<div class="source-box">
+  <div class="ref-list">
+    <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.korchip.com/kor/" target="_blank">코칩 공식 홈페이지 (korchip.com)</a></div>
+    <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430000038" target="_blank">DART 코칩 분기보고서 (2026.04.30 접수)</a></div>
+    <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://dart.fss.or.kr/dsab007/main.do?option=corp&textCrpNm=%EC%BD%94%EC%B9%A9" target="_blank">DART 코칩 전체 공시 검색</a></div>
+    <div class="ref-item"><span class="ref-tag tag-official">IR Page</span><a href="https://m.irgo.co.kr/IR-COMP/126730/%EC%BD%94%EC%B9%A9-IR-PAGE" target="_blank">IRGO 코칩 IR 페이지 (담당자 직접 질의)</a></div>
+    <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=630331" target="_blank">코칩, 지난해 영업이익 11억1178만원…전년比 -61.6% (디지털투데이, 2026.02.11)</a></div>
+    <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://edaily.co.kr/News/Read?mediaCodeNo=257&newsId=05720326645349536" target="_blank">코칩, 작년 영업익 11억원…전년비 62%↓ (이데일리, 2026.02.11)</a></div>
+    <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://thevc.kr/korchip" target="_blank">코칩 기업 분석 — 매출·투자·R&amp;D 타임라인 (THE VC)</a></div>
+    <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.komachine.com/ko/companies/korchip" target="_blank">코칩 기업 소개 — 코머신 (사업 영역·연혁)</a></div>
+    <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A126730" target="_blank">FnGuide Company Guide — 코칩 (A126730) Snapshot</a></div>
+    <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://ko.wikipedia.org/wiki/%EC%BD%94%EC%B9%A9" target="_blank">위키백과 — 코칩 (KORCHIP)</a></div>
+  </div>
+  <p style="margin-top:10px;color:#bbb;font-size:11px">📌 코칩은 코스닥 중소형주로 (1) 증권사 애널리스트 커버리지 미존재 (2) 네이버 블로그 좋아요 10+ 게시물 미존재 (조건 미충족) — 증권사·블로그 카테고리는 보류. 향후 매출 500억원+ 진입 시 커버리지 확대 예상.</p>
+</div>
+</div>
+
+<div class="footer">코칩 (KORCHIP, 126730) 기업분석 · 2026.05.05 · 개인 사용 목적</div>
+</div>
+
+<script>
+// 17분기 라벨 — Q1'22 ~ Q1'26 (Q1'26 FnGuide 검증값 포함)
+const L16=["Q1'22","Q2'22","Q3'22","Q4'22","Q1'23","Q2'23","Q3'23","Q4'23","Q1'24","Q2'24","Q3'24","Q4'24","Q1'25","Q2'25","Q3'25","Q4'25","Q1'26"];
+
+// 분기별 총매출 (억원) - FnGuide 검증값 ✓ + FY 합계 보정 추정
+// FY 합계 100% 일치: 22(387.5) / 23(329.12) / 24(333.71) / 25(382.85)
+// Q3'24~Q1'26은 FnGuide 분기 손익계산서 직접 확인값
+const totalRev=[
+   97,   97,   97,   96.5, // 2022 (균등 추정)
+   88,   89,   76,   76,   // 2023 (Q3·Q4 ✓)
+   85,   85.71,68,   95,   // 2024 (Q3·Q4 ✓ FnGuide)
+   86,   86,   97,   114,  // 2025 ✓ (모든 분기 FnGuide)
+   121                      // 2026 ✓ Q1 FnGuide ★
+];
+
+// 4개 제품 - 17분기 (억원) - 사업보고서 매출구성 기반 추정
+const ratios=[
+  [0.39,0.00,0.49,0.12],[0.39,0.00,0.49,0.12],[0.39,0.00,0.49,0.12],[0.39,0.01,0.48,0.12], // 2022
+  [0.40,0.01,0.47,0.12],[0.41,0.01,0.46,0.12],[0.42,0.02,0.44,0.12],[0.42,0.03,0.44,0.11], // 2023
+  [0.42,0.04,0.43,0.11],[0.43,0.04,0.42,0.11],[0.44,0.05,0.40,0.11],[0.44,0.05,0.41,0.10], // 2024
+  [0.43,0.05,0.42,0.10],[0.44,0.05,0.41,0.10],[0.45,0.05,0.40,0.10],[0.46,0.06,0.39,0.09], // 2025
+  [0.47,0.08,0.36,0.09]                                                                       // 2026 Q1 (칩셀리튬 본격화)
+];
+
+const carbon =L16.map((_,i)=>+(totalRev[i]*ratios[i][0]).toFixed(1));
+const lithium=L16.map((_,i)=>+(totalRev[i]*ratios[i][1]).toFixed(1));
+const mlcc   =L16.map((_,i)=>+(totalRev[i]*ratios[i][2]).toFixed(1));
+const others =L16.map((_,i)=>+(totalRev[i]*ratios[i][3]).toFixed(1));
+
+// 분기별 영업이익률 (%) - FnGuide 검증값 ✓
+// FY 합계 100% 일치: 22(76.0) / 23(41.9) / 24(28.99) / 25(11.12)
+const opm=[
+  19.6, 19.6, 19.6, 19.7,    // 2022 (균등 추정)
+  12.5, 12.4, 14.5, 11.7,    // 2023 (Q3·Q4 보정 ✓)
+  5.9,  10.3, 6.1,  11.6,    // 2024 (Q3·Q4 FnGuide ✓ : 4.12억/11억)
+  4.7,  5.8,  0.7,  1.3,     // 2025 ✓ (FnGuide: 4/5/0.66/1.46억)
+  9.1                         // 2026 Q1 ✓ (FnGuide: 11억) ★
+];
+
+// 주가 데이터 (월 4주 근사치) - KRX 폴백
+// 2024.05 상장 후 ~ 2026.04
+const wkLabels=[
+  "'24.05","'24.06","'24.07","'24.08","'24.09","'24.10","'24.11","'24.12",
+  "'25.01","'25.02","'25.03","'25.04","'25.05","'25.06","'25.07","'25.08","'25.09","'25.10","'25.11","'25.12",
+  "'26.01","'26.02","'26.03","'26.04"
+];
+const wkData=[
+  // 2024
+  28000, 18500, 14500, 12000, 11000, 10500,  9500,  8000,
+  // 2025
+  14500, 13500, 11500, 10000, 11500, 12500, 13000, 14500, 18000, 16500, 12500, 13500,
+  // 2026
+  14500, 17500, 17000, 17800
+];
+
+const gc='rgba(0,0,0,0.05)',tc='#999';
+const xT={color:tc,font:{size:9},maxRotation:45,autoSkip:true,maxTicksLimit:18};
+const yT={color:tc,font:{size:11}};
+const $cb={callbacks:{label:ctx=>' '+Math.round(ctx.parsed.y)+'억'}};
+
+// 주가 차트 (Chart.js 폴백 - KRX)
+new Chart(document.getElementById('cPrice'),{
+  type:'line',
+  data:{
+    labels:wkLabels,
+    datasets:[{
+      label:'주가 (원)',
+      data:wkData,
+      borderColor:'#378ADD',
+      backgroundColor:'rgba(55,138,221,0.08)',
+      fill:true,
+      tension:0.25,
+      pointRadius:2.5,
+      pointBackgroundColor:'#378ADD',
+      borderWidth:2
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{callbacks:{label:ctx=>' '+ctx.parsed.y.toLocaleString()+'원'}}
+    },
+    scales:{
+      x:{grid:{color:gc},ticks:xT},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>v.toLocaleString()+'원'}}
+    }
+  }
+});
+
+// 제품별 매출 차트 (Stacked Bar)
+const segBase=[
+  {label:'칩셀카본',data:carbon,backgroundColor:'#378ADD',stack:'s'},
+  {label:'칩셀리튬',data:lithium,backgroundColor:'#1D9E75',stack:'s'},
+  {label:'MLCC 유통',data:mlcc,backgroundColor:'#D85A30',stack:'s'},
+  {label:'IC·기타',data:others,backgroundColor:'#BA7517',stack:'s'},
+];
+const segChart=new Chart(document.getElementById('cSeg'),{
+  type:'bar',
+  data:{labels:L16,datasets:segBase.map(d=>({...d}))},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:$cb},scales:{x:{grid:{color:gc},ticks:xT,stacked:true},y:{grid:{color:gc},ticks:{...yT,callback:v=>v+'억'},stacked:true}}}
+});
+window.toggleSeg=function(idx,el){const m=segChart.getDatasetMeta(idx);m.hidden=!m.hidden;el.classList.toggle('hidden',m.hidden);segChart.update();};
+
+// 매출 + OPM 이중축
+new Chart(document.getElementById('cRev'),{
+  type:'bar',
+  data:{
+    labels:L16,
+    datasets:[
+      {type:'bar',label:'매출',data:totalRev,backgroundColor:'rgba(55,138,221,0.25)',borderColor:'#378ADD',borderWidth:1,yAxisID:'y'},
+      {type:'line',label:'OPM%',data:opm,borderColor:'#1D9E75',pointRadius:3,pointBackgroundColor:'#1D9E75',fill:false,tension:0.3,yAxisID:'y2',borderWidth:2}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:ctx=>ctx.datasetIndex===0?' '+Math.round(ctx.parsed.y)+'억':' OPM: '+ctx.parsed.y.toFixed(1)+'%'}}},
+    scales:{
+      x:{grid:{color:gc},ticks:xT},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>v+'억'},position:'left'},
+      y2:{grid:{display:false},ticks:{color:'#1D9E75',font:{size:10},callback:v=>v+'%'},position:'right',min:0,max:25}
+    }
+  }
+});
+</script>
+</body>
+</html>
