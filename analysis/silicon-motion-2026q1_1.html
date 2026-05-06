@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silicon Motion (SIMO) 기업분석 — 2026 Q1</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f3ef;color:#1a1a1a;padding:2rem;font-size:14px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto}
+.header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #e0e0dc;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.header-title{font-size:22px;font-weight:700}
+.header-meta{font-size:12px;color:#888;margin-top:4px}
+.toc{margin-bottom:2rem;padding:0}
+.toc-title{font-size:12px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(7,auto);grid-auto-flow:column;gap:8px 24px}
+@media(max-width:650px){.toc-grid{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}}
+.toc-item{display:flex;gap:10px;font-size:13px;padding:4px 0}
+.toc-num{color:#aaa;font-weight:600;min-width:28px;font-variant-numeric:tabular-nums}
+.toc a{color:#378ADD;text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.section{margin-bottom:3rem}
+.section-anchor{display:block;position:relative;top:-70px;visibility:hidden}
+h2{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:6px;border-bottom:1.5px solid #e0e0dc}
+h3{font-size:14px;font-weight:600;margin:1.2rem 0 .6rem;color:#333}
+.chart-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:20px;position:relative;width:100%}
+.note{font-size:11px;color:#999;margin-top:8px;line-height:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;font-size:12px;color:#666}
+.legend-item{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:3px 8px;border-radius:6px;transition:opacity .15s}
+.legend-item:hover{background:#e8e8e3}
+.legend-item.hidden{opacity:.3;text-decoration:line-through}
+.legend-static{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0dc;margin-bottom:.5rem}
+th{background:#ebebe6;font-weight:600;padding:7px 8px;text-align:left;border-bottom:1px solid #e0e0dc;white-space:nowrap;font-size:11.5px}
+th.center{text-align:center}
+td{padding:6px 8px;border-bottom:0.5px solid #f0f0ee;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafaf6}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.center{text-align:center}
+.hl{background:#fffbe6 !important}
+.dn{color:#D85A30}
+.up2{color:#1D9E75}
+/* 회사 개요 */
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
+@media(max-width:650px){.overview-grid{grid-template-columns:1fr}}
+.overview-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.overview-box h4{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.kv{display:flex;justify-content:space-between;align-items:flex-start;padding:4px 0;border-bottom:0.5px solid #f5f4f0;font-size:12.5px;gap:10px}
+.kv:last-child{border-bottom:none}
+.kv-key{color:#666;min-width:90px;flex-shrink:0}
+.kv-val{font-weight:600;text-align:right;flex:1}
+/* 세그먼트 카드 */
+.seg-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:1rem}
+.seg-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.seg-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:8px}
+.seg-card-name{font-size:13px;font-weight:700}
+.seg-card-share{font-size:11px;color:#888;font-weight:600}
+.seg-card-desc{font-size:12px;color:#444;line-height:1.55;margin-bottom:6px}
+.seg-card-margin{font-size:11px;font-weight:600}
+/* 배지 */
+.badge{display:inline-block;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:600}
+.badge-up{background:#e6f7f0;color:#1D9E75}
+.badge-dn{background:#fce8e4;color:#D85A30}
+.badge-neu{background:#ebebe6;color:#666}
+/* 컨콜 - 격자 형태 */
+.cc-table{width:100%;border-collapse:separate;border-spacing:6px;margin-bottom:1rem}
+.cc-table th{background:transparent;border:none;font-size:11px;color:#888;text-align:center;padding:4px;font-weight:600;white-space:nowrap}
+.cc-table th.year-col{width:50px;text-align:left}
+.cc-cell{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.65rem .75rem;vertical-align:top;height:100%}
+.cc-quarter{font-size:10px;font-weight:700;color:#378ADD;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.cc-msg{font-size:11px;color:#444;margin-bottom:6px;line-height:1.45}
+.cc-guide{font-size:10px;color:#888;border-top:0.5px solid #f0f0ee;padding-top:5px;line-height:1.5}
+.cc-hit{color:#1D9E75;font-weight:600}
+.cc-miss{color:#D85A30;font-weight:600}
+.cc-latest{border:1.5px solid #378ADD !important;box-shadow:0 0 0 2px rgba(55,138,221,0.1)}
+.year-label{font-size:13px;font-weight:700;color:#555;padding-right:8px;vertical-align:middle}
+/* 시나리오 - 수직 카드 */
+.scenario-stack{display:flex;flex-direction:column;gap:12px}
+.scenario-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1.1rem 1.3rem}
+.scenario-title{font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid #f0f0ee}
+.s-bull .scenario-title{color:#1D9E75}
+.s-bear .scenario-title{color:#D85A30}
+.s-item{margin-bottom:9px;padding-bottom:9px;border-bottom:0.5px solid #f5f4f0;font-size:12px}
+.s-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-case{font-weight:600;margin-bottom:2px}
+.s-sub{color:#888;font-size:11px}
+/* Worth Watching */
+.ww-list{display:flex;flex-direction:column;gap:8px}
+.ww-item{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.75rem 1rem;display:flex;gap:14px}
+.ww-date{font-size:11px;font-weight:700;color:#378ADD;white-space:nowrap;min-width:90px}
+.ww-event{font-size:12px;font-weight:600;margin-bottom:2px}
+.ww-point{font-size:11px;color:#888}
+.source-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.4rem;font-size:12px;color:#888;line-height:2}
+.prose{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;margin-bottom:1rem;font-size:13px;line-height:1.7}
+.prose ul{padding-left:1.3rem}
+.prose li{margin-bottom:.25rem}
+.prose p{margin-bottom:.7rem}
+.prose p:last-child{margin-bottom:0}
+.invest-cards{display:flex;flex-direction:column;gap:10px;margin-top:1rem}
+.invest-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem;border-left:3px solid #378ADD}
+.invest-card-title{font-size:13px;font-weight:700;color:#378ADD;margin-bottom:5px}
+.invest-card-desc{font-size:12px;color:#444;line-height:1.55}
+/* IR 미제공 박스 */
+.ir-na-box{background:#fff;border:0.5px dashed #c0c0bc;border-radius:10px;padding:1.2rem 1.4rem;margin:1rem 0;text-align:center}
+.ir-na-title{font-size:13px;font-weight:700;color:#666;margin-bottom:6px}
+.ir-na-desc{font-size:12px;color:#888;line-height:1.6}
+/* 제품 이미지 (3-1 섹션) */
+.prod-img-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 8px}
+@media(max-width:650px){.prod-img-row{grid-template-columns:1fr}}
+.prod-img-cell{background:#fafaf6;border:0.5px solid #e8e8e3;border-radius:8px;padding:10px;text-align:center}
+.prod-img-cell img{max-width:60%;height:auto;display:block;margin:0 auto 6px}
+@media(max-width:650px){.prod-img-cell img{max-width:50%}}
+.prod-img-cap{font-size:11px;color:#555;line-height:1.5}
+/* IR 슬라이드 캡처 */
+.ir-slides{display:flex;flex-direction:column;gap:14px;margin:1.5rem 0}
+.ir-slide{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:0;overflow:hidden}
+.ir-slide-frame{background:linear-gradient(135deg,#f8f8f5 0%,#ffffff 100%);padding:.85rem 1.4rem;border-bottom:0.5px solid #e0e0dc}
+.ir-slide-num{font-size:10px;color:#999;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+.ir-slide-title{font-size:14px;font-weight:700;color:#333;margin-bottom:2px}
+.ir-slide-img-wrap{padding:1rem 1.4rem;text-align:center;background:#fafaf6}
+.ir-slide-img-wrap img{display:block;max-width:65%;width:100%;height:auto;margin:0 auto;border:0.5px solid #e0e0dc;border-radius:4px}
+@media(max-width:650px){.ir-slide-img-wrap img{max-width:90%}}
+.ir-slide-caption{font-size:11.5px;color:#555;padding:.85rem 1.4rem 1rem;line-height:1.55;background:#fff;border-top:0.5px solid #f0f0ee}
+/* Reference 태그 */
+.ref-list{display:flex;flex-direction:column;gap:6px}
+.ref-item{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.6rem .9rem;display:flex;gap:10px;align-items:center;font-size:12px}
+.ref-tag{display:inline-block;font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600;flex-shrink:0;min-width:55px;text-align:center}
+.tag-official{background:#e6f0ff;color:#2466b8}
+.tag-broker{background:#fff4e0;color:#a86819}
+.tag-news{background:#e6f7f0;color:#1D9E75}
+.tag-wiki{background:#f0e8f5;color:#7a4ba0}
+.ref-link{color:#444;text-decoration:none;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ref-link:hover{color:#378ADD;text-decoration:underline}
+.footer{font-size:11px;color:#aaa;text-align:center;margin-top:2rem;padding-top:1rem;border-top:0.5px solid #e0e0dc}
+.seg-table-wrap{overflow-x:auto}
+.seg-table{min-width:780px}
+.seg-table th.seg-group{text-align:center;background:#e3e3de;border-left:2px solid #d0d0cc}
+.seg-table td.seg-border{border-left:2px solid #e0e0dc}
+.tv-wrap{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:6px;overflow:hidden}
+.tv-wrap iframe{display:block;width:100%;height:420px;border:0;border-radius:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div>
+    <div class="header-title">💾 Silicon Motion (SIMO) 기업분석</div>
+    <div class="header-meta">회계연도: Calendar Year &nbsp;|&nbsp; 분석기간: Q1'17~Q1'26 (37분기) &nbsp;|&nbsp; 최근 컨콜: 2026.04.29</div>
+  </div>
+  <div style="font-size:12px;color:#aaa">분석일: 2026.05.05</div>
+</div>
+
+<!-- 목차 -->
+<div class="toc">
+  <div class="toc-title">목차</div>
+  <div class="toc-grid">
+    <div class="toc-item"><span class="toc-num">01.</span><a href="#s1">회사 개요</a></div>
+    <div class="toc-item"><span class="toc-num">02.</span><a href="#s2">주가 흐름 — TradingView 주봉</a></div>
+    <div class="toc-item"><span class="toc-num">03.</span><a href="#s3">제품군별 매출 추이</a></div>
+    <div class="toc-item"><span class="toc-num">3-1.</span><a href="#s3b">제품군 구조 및 제품</a></div>
+    <div class="toc-item"><span class="toc-num">3-2.</span><a href="#s4">매출 &amp; Non-GAAP OPM 추이</a></div>
+    <div class="toc-item"><span class="toc-num">3-3.</span><a href="#s5">제품군별 실적 테이블</a></div>
+    <div class="toc-item"><span class="toc-num">04.</span><a href="#s6">재무제표 개요</a></div>
+    <div class="toc-item"><span class="toc-num">05.</span><a href="#s7">핵심 투자아이디어</a></div>
+    <div class="toc-item"><span class="toc-num">5-1.</span><a href="#s8">핵심 변동 요인</a></div>
+    <div class="toc-item"><span class="toc-num">5-2.</span><a href="#s9">컨퍼런스콜 트래킹</a></div>
+    <div class="toc-item"><span class="toc-num">5-3.</span><a href="#s10">Q1'26 컨콜 심층 정리</a></div>
+    <div class="toc-item"><span class="toc-num">5-4.</span><a href="#s11">강세 / 약세 시나리오</a></div>
+    <div class="toc-item"><span class="toc-num">06.</span><a href="#s12">Worth Watching Events</a></div>
+    <div class="toc-item"><span class="toc-num">07.</span><a href="#s13">데이터 출처</a></div>
+    <div class="toc-item"><span class="toc-num">7-1.</span><a href="#s14">Reference</a></div>
+  </div>
+</div>
+
+<!-- 1. 회사 개요 -->
+<span class="section-anchor" id="s1"></span>
+<div class="section">
+<h2>1. 회사 개요</h2>
+<div class="overview-grid">
+  <div class="overview-box">
+    <h4>기본 정보</h4>
+    <div class="kv"><span class="kv-key">설립</span><span class="kv-val">1995년 (Wallace Kou 등)</span></div>
+    <div class="kv"><span class="kv-key">상장</span><span class="kv-val">2005.06 NASDAQ (티커 SIMO)</span></div>
+    <div class="kv"><span class="kv-key">본사</span><span class="kv-val">대만 타이베이 / 美 밀피타스</span></div>
+    <div class="kv"><span class="kv-key">CEO</span><span class="kv-val">Wallace Kou (창업자)</span></div>
+    <div class="kv"><span class="kv-key">CFO</span><span class="kv-val">Jason Tsai</span></div>
+    <div class="kv"><span class="kv-key">임직원</span><span class="kv-val">~1,819명</span></div>
+    <div class="kv"><span class="kv-key">사업 모델</span><span class="kv-val">Fabless NAND Flash 컨트롤러</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>시장 정보 (2026.05.05 기준)</h4>
+    <div class="kv"><span class="kv-key">현재 주가</span><span class="kv-val">~$234.7 (5/1 종가)</span></div>
+    <div class="kv"><span class="kv-key">시가총액 USD</span><span class="kv-val" style="color:#378ADD">~$7.97B</span></div>
+    <div class="kv"><span class="kv-key">시가총액 KRW</span><span class="kv-val" style="color:#378ADD">~11.8조원 (환율 1,475원)</span></div>
+    <div class="kv"><span class="kv-key">발행주식</span><span class="kv-val">33.91M ADS</span></div>
+    <div class="kv"><span class="kv-key">52주 고가</span><span class="kv-val">$235.00 (2026.05)</span></div>
+    <div class="kv"><span class="kv-key">52주 저가</span><span class="kv-val">$48.31 (1년만에 +386%)</span></div>
+    <div class="kv"><span class="kv-key">배당</span><span class="kv-val">$0.50/분기 (수익률 ~0.85%)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>사업 운영</h4>
+    <div class="kv"><span class="kv-key">제조 모델</span><span class="kv-val">Fabless — TSMC 6nm 활용</span></div>
+    <div class="kv"><span class="kv-key">시장 지위</span><span class="kv-val">머천트 SSD 컨트롤러 글로벌 1위</span></div>
+    <div class="kv"><span class="kv-key">고객사</span><span class="kv-val">NAND 6대 메이커 + 모듈/OEM</span></div>
+    <div class="kv"><span class="kv-key">핵심 신제품</span><span class="kv-val">MonTitan SM8366/8388, SM2508 PCIe Gen5</span></div>
+    <div class="kv"><span class="kv-key">제품군</span><span class="kv-val">SSD 컨트롤러, eMMC/UFS, Ferri/Boot Drive, 자동차</span></div>
+    <div class="kv"><span class="kv-key">특허 기술</span><span class="kv-val">PerformaShape™, NANDXtend® LDPC</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>투자 포인트 요약</h4>
+    <div class="kv"><span class="kv-key">Q1'26 매출</span><span class="kv-val" style="color:#1D9E75">$342.1M (+105% YoY)</span></div>
+    <div class="kv"><span class="kv-key">Non-GAAP GM</span><span class="kv-val" style="color:#1D9E75">47.2% (가이던스 상회)</span></div>
+    <div class="kv"><span class="kv-key">Non-GAAP OPM</span><span class="kv-val" style="color:#1D9E75">18.2% (+OPM 433% YoY)</span></div>
+    <div class="kv"><span class="kv-key">Non-GAAP EPS</span><span class="kv-val" style="color:#1D9E75">$1.58 (+163% YoY)</span></div>
+    <div class="kv"><span class="kv-key">Q2'26 가이던스</span><span class="kv-val" style="color:#1D9E75">$393~411M (+15~20% QoQ)</span></div>
+    <div class="kv"><span class="kv-key">현금</span><span class="kv-val">$210.9M (배당+재고 영향)</span></div>
+  </div>
+</div>
+<p class="note">⚠️ <strong>Non-GAAP</strong>은 SBC(주식보상비용)·분쟁비용·M&amp;A 비용 등 비현금/일회성 항목 제외. <strong>NAND Flash 컨트롤러</strong>=SSD/eMMC/UFS의 두뇌 역할로 NAND ↔ 호스트 인터페이스 데이터 흐름·오류정정·내구성 관리. <strong>MonTitan™</strong>=엔터프라이즈/AI 데이터센터용 PCIe Gen5 SSD 컨트롤러 플랫폼. <strong>Ferri</strong>=싱글칩 SSD 솔루션(자동차/산업용 + AI 서버 부트드라이브).</p>
+</div>
+
+<!-- 2. 주가 -->
+<span class="section-anchor" id="s2"></span>
+<div class="section">
+<h2>2. 주가 흐름 — TradingView 주봉</h2>
+<div class="tv-wrap">
+<iframe src="https://www.tradingview.com/widgetembed/?symbol=NASDAQ%3ASIMO&interval=W&style=1&theme=light&hidesidetoolbar=1&hidetoptoolbar=0&allow_symbol_change=0" allowfullscreen></iframe>
+</div>
+<p class="note">* 2022.05 Maxlinear M&A 발표 $98 → 2023.07 인수 무산 $50 (중국 규제 승인 거부) → 2024.02 $80 (PCIe Gen5 출시) → 2025.04 $48 (NAND 다운사이클 저점) → 2025.10 $80 → 2026.02 $135 (Q4'25 호실적) → 2026.04.29 $198 (Q1'26 +105% 어닝 폭발) → 2026.05.01 $234.7 (애널리스트 목표가 $250 상향)</p>
+
+<h3 style="margin-top:1.2rem">주요 이벤트 연표</h3>
+<table>
+  <thead><tr><th>시기</th><th class="num">주가(근사)</th><th>이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2005.06</td><td class="num">$8.50</td><td>NASDAQ IPO (저전력 메모리 IC 사업 기반)</td></tr>
+    <tr><td>2017~2018</td><td class="num">$45~$60</td><td>SSD 컨트롤러 시장 점유율 확대</td></tr>
+    <tr><td>2021.11</td><td class="num">$100</td><td>코로나 반도체 호황, NAND 컨트롤러 수요 폭증</td></tr>
+    <tr><td>2022.05</td><td class="num">$98</td><td><strong>MaxLinear와 $3.8B M&amp;A 합병 발표</strong></td></tr>
+    <tr><td>2023.07</td><td class="num">$50</td><td><strong>중국 SAMR 규제 미승인 → M&amp;A 무산</strong></td></tr>
+    <tr><td>2024.02</td><td class="num">$80</td><td>PCIe Gen5 8채널 SM2508 출시, NAND 회복 기대</td></tr>
+    <tr><td>2024.08</td><td class="num">$70</td><td>SSD 클라이언트 수요 둔화, 가이던스 하향</td></tr>
+    <tr><td>2025.04</td><td class="num">$48 (52주 저점)</td><td>Q1'25 매출 $166.5M (-12% YoY), NAND 다운사이클</td></tr>
+    <tr><td>2025.10~12</td><td class="num">$80~120</td><td>Q3'25 +14% YoY 회복, MonTitan 사양 공개</td></tr>
+    <tr><td>2026.02</td><td class="num">$135~150</td><td>Q4'25 매출 $278M (+46% YoY), 2026 record year 가이드</td></tr>
+    <tr><td>2026.03</td><td class="num">$140~150</td><td>SM8008 PCIe Gen5 부트드라이브 컨트롤러 출시, NVIDIA GTC 부스</td></tr>
+    <tr class="hl"><td><strong>2026.04.29</strong></td><td class="num"><strong>$198</strong></td><td><strong>Q1'26 매출 $342M (+105% YoY) 발표 — 시간외 +30%</strong></td></tr>
+    <tr><td>2026.04.30</td><td class="num">$219</td><td>B.Riley·Craig-Hallum·Roth 목표가 $250로 상향</td></tr>
+    <tr class="hl"><td><strong>2026.05.01</strong></td><td class="num"><strong>$234.7</strong></td><td><strong>52주 신고가, 30일 수익률 +105%</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 3. 제품군 매출 -->
+<span class="section-anchor" id="s3"></span>
+<div class="section">
+<h2>3. 제품군별 매출 추이 — 37분기 ($M)</h2>
+<div class="legend" id="segLegend">
+  <span class="legend-item" onclick="toggleSeg(0,this)"><span class="dot" style="background:#378ADD"></span>SSD Controllers (Client/Enterprise)</span>
+  <span class="legend-item" onclick="toggleSeg(1,this)"><span class="dot" style="background:#1D9E75"></span>eMMC + UFS Controllers</span>
+  <span class="legend-item" onclick="toggleSeg(2,this)"><span class="dot" style="background:#D85A30"></span>SSD Solutions (Ferri/Boot Drive)</span>
+  <span style="font-size:11px;color:#bbb;margin-left:4px">← 클릭하여 표시/숨김</span>
+</div>
+<div class="chart-box" style="height:460px"><canvas id="cSeg"></canvas></div>
+<p class="note">* Q1'17~Q4'22 데이터는 연간 10-K 역산 추정치. 2023년부터 분기 공시 기반. 2025년부터 SSD Solutions를 'Ferri & Boot Drive'로 리브랜딩 — AI 서버 부트드라이브 제품 큰 비중. Q1'26 SSD Controllers ~10% QoQ 감소(계절성), eMMC/UFS +30% QoQ, Ferri/Boot +200%+ QoQ (AI GPU 고객 램프).</p>
+</div>
+
+<!-- 3-1. 제품군 구조 -->
+<span class="section-anchor" id="s3b"></span>
+<div class="section">
+<h2>3-1. 제품군 구조 및 제품</h2>
+<div class="seg-cards">
+  <div class="seg-card">
+    <div class="seg-card-head">
+      <span class="seg-card-name" style="color:#378ADD">① SSD Controllers — 클라이언트 + 엔터프라이즈</span>
+      <span class="seg-card-share">Q1'26 매출 비중 ~50% (추정)</span>
+    </div>
+    <div class="seg-card-desc">
+      PC·노트북·게이밍 콘솔·데이터센터용 SSD의 두뇌. 호스트 ↔ NAND 사이 데이터 흐름·오류정정·웨어레벨링·전력관리를 담당. 6대 NAND 메이커(삼성·하이닉스·키옥시아·WD·마이크론·YMTC) 중 4社가 SIMO Gen5 컨트롤러 채택. <strong>SM2508</strong>(PCIe Gen5 x4 8채널, TSMC 6nm) 클라이언트 메인 제품. <strong>MonTitan™ SM8366/SM8388</strong>는 엔터프라이즈/AI 데이터센터용 PCIe Gen5 NVMe 2.0, 14GB/s, 3.3M IOPS — 5W 미만으로 전력효율 업계 최고.
+    </div>
+    <div class="prod-img-row">
+      <div class="prod-img-cell">
+        <img src="https://www.siliconmotion.com/images/products/product-SM2508_board.png" alt="SM2508 PCIe Gen5 x4 8채널 클라이언트 SSD 컨트롤러" loading="lazy">
+        <div class="prod-img-cap"><strong>SM2508</strong> — PCIe Gen5 x4 8채널, 14.5 GB/s 순차 읽기, TSMC 6nm</div>
+      </div>
+      <div class="prod-img-cell">
+        <img src="https://www.siliconmotion.com/images/products/product-SM2504XT_board.png" alt="SM2504XT PCIe Gen5 DRAM-less 클라이언트 SSD 컨트롤러" loading="lazy">
+        <div class="prod-img-cap"><strong>SM2504XT</strong> — PCIe Gen5 DRAM-less 4채널, 5W 미만 전력</div>
+      </div>
+    </div>
+    <div class="seg-card-margin">📊 Q1'26: -10% QoQ (계절성), +45% YoY | 글로벌 머천트 컨트롤러 점유율 1위</div>
+  </div>
+  <div class="seg-card">
+    <div class="seg-card-head">
+      <span class="seg-card-name" style="color:#1D9E75">② eMMC + UFS Controllers — 모바일 + IoT + 자동차</span>
+      <span class="seg-card-share">Q1'26 매출 비중 ~30% (추정)</span>
+    </div>
+    <div class="seg-card-desc">
+      스마트폰·태블릿·웨어러블·자동차 인포테인먼트 임베디드 스토리지의 컨트롤러. <strong>UFS 4.1</strong>(2025 H2 양산 시작)·<strong>UFS 4.0</strong>·<strong>eMMC 5.1</strong> 모두 지원. 머천트 시장에서 압도적 1위. 글로벌 스마트폰 출하 둔화에도 불구하고 NAND 메이커들의 outsourcing 트렌드 강화로 시장점유율 확대 중. 자동차 ASPICE CL3·ISO 26262 ASIL B 인증 기반 자동차 OEM 진출 가속.
+    </div>
+    <div class="seg-card-margin">📊 Q1'26: +30% QoQ, +140% YoY (시장점유율 폭발적 확대)</div>
+  </div>
+  <div class="seg-card">
+    <div class="seg-card-head">
+      <span class="seg-card-name" style="color:#D85A30">③ Ferri & Boot Drive Solutions — 싱글칩 SSD + AI 서버</span>
+      <span class="seg-card-share">Q1'26 매출 비중 ~20% (급성장)</span>
+    </div>
+    <div class="seg-card-desc">
+      <strong>FerriSSD®</strong>·<strong>Ferri-eMMC®</strong>·<strong>Ferri-UFS®</strong>는 컨트롤러+NAND 통합 싱글칩 솔루션. 2025년부터 <strong>AI 서버용 부트드라이브</strong> 시장 진출 — NVIDIA AI 인프라/GPU 고객(주요 단일 고객 1社)과 program 시작. <strong>SM8008</strong> PCIe Gen5 x4 NVMe 부트드라이브 컨트롤러(2026.03 출시)는 데이터센터 부트 SSD에 특화. NVIDIA ICMS(Inference Context Memory Storage) 이니셔티브 정렬.
+    </div>
+    <div class="seg-card-margin">📊 Q1'26: +205~210% QoQ, +755~760% YoY (AI 인프라 + 자동차 동시 폭발)</div>
+  </div>
+</div>
+<p class="note">📌 SIMO는 단일 사업부(NAND Flash 컨트롤러)이지만 IR 공시 기준 위 3개 제품군으로 분리 추적. 2026년부터는 AI 서버용 비중이 가파르게 상승 중. 5개 Tier-1 CSP(아시아 3社, 美 2社)가 2H'26 MonTitan 양산 ramp 예정.</p>
+</div>
+
+<!-- 3-2. 매출 + OPM -->
+<span class="section-anchor" id="s4"></span>
+<div class="section">
+<h2>3-2. 매출 &amp; Non-GAAP OPM 추이</h2>
+<div class="legend">
+  <span class="legend-static"><span class="dot" style="background:#378ADD"></span>분기 매출 ($M, 좌축)</span>
+  <span class="legend-static"><span class="dot" style="background:#D85A30;border-radius:50%"></span>Non-GAAP OPM (%, 우축)</span>
+</div>
+<div class="chart-box" style="height:420px"><canvas id="cRev"></canvas></div>
+<p class="note">* Q1'17~Q4'22: 연간 데이터 분기 분배 추정. Q1'23~Q1'26: 실제 분기 공시. <strong>OPM은 2022 H1 35% 정점 → 2024 H1 회복(15~17%) → 2025 Q1 ~10% 저점(매출 감소+OPEX 증가) → Q1'26 18.2% 회복 → Q2'26E 21~22%</strong>. Non-GAAP은 SBC + 분쟁비용 제외.</p>
+
+<h3>연간 요약</h3>
+<table>
+  <thead><tr><th>연도</th><th class="num">매출($M)</th><th class="num">YoY</th><th class="num">Non-GAAP GM</th><th class="num">Non-GAAP OPM</th><th>비고</th></tr></thead>
+  <tbody>
+    <tr><td>2021</td><td class="num">922.0</td><td class="num up2">+71.7%</td><td class="num">50.6%</td><td class="num">31.5%</td><td>코로나 NAND 호황 정점</td></tr>
+    <tr><td>2022</td><td class="num">945.9</td><td class="num up2">+2.6%</td><td class="num">50.5%</td><td class="num">31.7%</td><td>MaxLinear M&A 발표년</td></tr>
+    <tr><td>2023</td><td class="num">639.1</td><td class="num dn">-32.4%</td><td class="num">43.0%</td><td class="num">9.6%</td><td>NAND 다운사이클 + M&A 무산</td></tr>
+    <tr><td>2024</td><td class="num">803.6</td><td class="num up2">+25.7%</td><td class="num">46.2%</td><td class="num">15.4%</td><td>SSD/UFS 회복, PCIe Gen5 출시</td></tr>
+    <tr><td>2025</td><td class="num">885.6</td><td class="num up2">+10.2%</td><td class="num">47.2%</td><td class="num">12.5%</td><td>2H 강한 반등 (record Q4)</td></tr>
+    <tr class="hl"><td><strong>2026E</strong></td><td class="num"><strong>~1,500+</strong></td><td class="num up2"><strong>+70%+</strong></td><td class="num"><strong>48~50%</strong></td><td class="num"><strong>20%+</strong></td><td><strong>"defining year" — 4분기 연속 sequential growth</strong></td></tr>
+  </tbody>
+</table>
+
+<h3 style="margin-top:1.2rem">분기별 실적 (최근 12분기)</h3>
+<table>
+  <thead><tr><th>분기</th><th class="num">매출($M)</th><th class="num">QoQ</th><th class="num">YoY</th><th class="num">Non-GAAP GM</th><th class="num">Non-GAAP OPM</th><th class="num">EPS</th></tr></thead>
+  <tbody>
+    <tr><td>Q2'23</td><td class="num">137.0</td><td class="num up2">+10%</td><td class="num dn">-44%</td><td class="num">42.0%</td><td class="num">2.7%</td><td class="num">$0.04</td></tr>
+    <tr><td>Q3'23</td><td class="num">175.5</td><td class="num up2">+28%</td><td class="num dn">-15%</td><td class="num">43.7%</td><td class="num">9.7%</td><td class="num">$0.51</td></tr>
+    <tr><td>Q4'23</td><td class="num">202.4</td><td class="num up2">+15%</td><td class="num up2">+30%</td><td class="num">46.0%</td><td class="num">17.4%</td><td class="num">$0.99</td></tr>
+    <tr><td>Q1'24</td><td class="num">189.3</td><td class="num dn">-6%</td><td class="num up2">+53%</td><td class="num">45.0%</td><td class="num">14.5%</td><td class="num">$0.78</td></tr>
+    <tr><td>Q2'24</td><td class="num">210.7</td><td class="num up2">+11%</td><td class="num up2">+58%</td><td class="num">46.0%</td><td class="num">17.6%</td><td class="num">$1.09</td></tr>
+    <tr><td>Q3'24</td><td class="num">212.4</td><td class="num up2">+1%</td><td class="num up2">+23%</td><td class="num">46.7%</td><td class="num">15.0%</td><td class="num">$0.89</td></tr>
+    <tr><td>Q4'24</td><td class="num">191.2</td><td class="num dn">-10%</td><td class="num dn">-6%</td><td class="num">46.0%</td><td class="num">15.6%</td><td class="num">$0.87</td></tr>
+    <tr><td>Q1'25</td><td class="num">166.5</td><td class="num dn">-13%</td><td class="num dn">-12%</td><td class="num">47.1%</td><td class="num">9.7%</td><td class="num">$0.64</td></tr>
+    <tr><td>Q2'25</td><td class="num">198.7</td><td class="num up2">+19%</td><td class="num dn">-6%</td><td class="num">47.5%</td><td class="num">12.5%</td><td class="num">$0.84</td></tr>
+    <tr><td>Q3'25</td><td class="num">242.0</td><td class="num up2">+22%</td><td class="num up2">+14%</td><td class="num">48.7%</td><td class="num">15.8%</td><td class="num">$1.20</td></tr>
+    <tr><td>Q4'25</td><td class="num">278.5</td><td class="num up2">+15%</td><td class="num up2">+46%</td><td class="num">48.0%</td><td class="num">15.8%</td><td class="num">$1.26</td></tr>
+    <tr class="hl"><td><strong>Q1'26</strong></td><td class="num"><strong>342.1</strong></td><td class="num up2"><strong>+23%</strong></td><td class="num up2"><strong>+105%</strong></td><td class="num"><strong>47.2%</strong></td><td class="num"><strong>18.2%</strong></td><td class="num"><strong>$1.58</strong></td></tr>
+    <tr><td>Q2'26E</td><td class="num">393~411</td><td class="num up2">+15~20%</td><td class="num up2">+98~107%</td><td class="num">48.5~49.5%</td><td class="num">21~22%</td><td class="num">~$2.15</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 3-3. 제품군별 실적 테이블 -->
+<span class="section-anchor" id="s5"></span>
+<div class="section">
+<h2>3-3. 제품군별 실적 — 16분기 추정치 ($M)</h2>
+<div class="seg-table-wrap">
+<table class="seg-table">
+  <thead>
+    <tr>
+      <th rowspan="2">분기</th>
+      <th colspan="2" class="seg-group">SSD Controllers</th>
+      <th colspan="2" class="seg-group">eMMC + UFS</th>
+      <th colspan="2" class="seg-group">Ferri &amp; Boot Drive</th>
+      <th rowspan="2" class="num">Total</th>
+    </tr>
+    <tr>
+      <th class="num">매출</th><th class="num">YoY</th>
+      <th class="num seg-border">매출</th><th class="num">YoY</th>
+      <th class="num seg-border">매출</th><th class="num">YoY</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Q2'22</td><td class="num">~150</td><td class="num">—</td><td class="num seg-border">~75</td><td class="num">—</td><td class="num seg-border">~25</td><td class="num">—</td><td class="num">~250</td></tr>
+    <tr><td>Q3'22</td><td class="num">~155</td><td class="num">—</td><td class="num seg-border">~70</td><td class="num">—</td><td class="num seg-border">~24</td><td class="num">—</td><td class="num">~250</td></tr>
+    <tr><td>Q4'22</td><td class="num">~125</td><td class="num">—</td><td class="num seg-border">~55</td><td class="num">—</td><td class="num seg-border">~17</td><td class="num">—</td><td class="num">~197</td></tr>
+    <tr><td>Q1'23</td><td class="num">~75</td><td class="num dn">-50%</td><td class="num seg-border">~25</td><td class="num dn">-65%</td><td class="num seg-border">~24</td><td class="num">~flat</td><td class="num">124.1</td></tr>
+    <tr><td>Q2'23</td><td class="num">~80</td><td class="num">—</td><td class="num seg-border">~30</td><td class="num">—</td><td class="num seg-border">~27</td><td class="num">—</td><td class="num">137.0</td></tr>
+    <tr><td>Q3'23</td><td class="num">~105</td><td class="num">—</td><td class="num seg-border">~45</td><td class="num">—</td><td class="num seg-border">~26</td><td class="num">—</td><td class="num">175.5</td></tr>
+    <tr><td>Q4'23</td><td class="num">~117</td><td class="num">—</td><td class="num seg-border">~55</td><td class="num">—</td><td class="num seg-border">~30</td><td class="num">—</td><td class="num">202.4</td></tr>
+    <tr><td>Q1'24</td><td class="num">~118</td><td class="num up2">+57%</td><td class="num seg-border">~50</td><td class="num up2">+100%</td><td class="num seg-border">~21</td><td class="num dn">-13%</td><td class="num">189.3</td></tr>
+    <tr><td>Q2'24</td><td class="num">~130</td><td class="num up2">+63%</td><td class="num seg-border">~60</td><td class="num up2">+100%</td><td class="num seg-border">~21</td><td class="num dn">-22%</td><td class="num">210.7</td></tr>
+    <tr><td>Q3'24</td><td class="num">~130</td><td class="num up2">+24%</td><td class="num seg-border">~60</td><td class="num up2">+33%</td><td class="num seg-border">~22</td><td class="num dn">-15%</td><td class="num">212.4</td></tr>
+    <tr><td>Q4'24</td><td class="num">~120</td><td class="num up2">+3%</td><td class="num seg-border">~52</td><td class="num">~flat</td><td class="num seg-border">~19</td><td class="num dn">-37%</td><td class="num">191.2</td></tr>
+    <tr><td>Q1'25</td><td class="num">~93</td><td class="num dn">-21%</td><td class="num seg-border">~48</td><td class="num dn">-4%</td><td class="num seg-border">~25</td><td class="num up2">+19%</td><td class="num">166.5</td></tr>
+    <tr><td>Q2'25</td><td class="num">~95</td><td class="num dn">-27%</td><td class="num seg-border">~80</td><td class="num up2">+33%</td><td class="num seg-border">~24</td><td class="num up2">+14%</td><td class="num">198.7</td></tr>
+    <tr><td>Q3'25</td><td class="num">~118</td><td class="num dn">-9%</td><td class="num seg-border">~98</td><td class="num up2">+63%</td><td class="num seg-border">~26</td><td class="num up2">+18%</td><td class="num">242.0</td></tr>
+    <tr><td>Q4'25</td><td class="num">~150</td><td class="num up2">+25%</td><td class="num seg-border">~105</td><td class="num up2">+102%</td><td class="num seg-border">~24</td><td class="num up2">+26%</td><td class="num">278.5</td></tr>
+    <tr class="hl"><td><strong>Q1'26</strong></td><td class="num"><strong>~135</strong></td><td class="num up2"><strong>+45%</strong></td><td class="num seg-border"><strong>~135</strong></td><td class="num up2"><strong>+143%</strong></td><td class="num seg-border"><strong>~72</strong></td><td class="num up2"><strong>+758%</strong></td><td class="num"><strong>342.1</strong></td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">* SSD Controllers는 클라이언트(노트북/PC) + 엔터프라이즈 합산. 회사 공시는 분기별 QoQ/YoY 범위만 제공하므로 절대값은 추정치. <strong>Q1'26의 가장 큰 변화는 Ferri/Boot Drive의 +758% YoY 폭발</strong> — AI 서버 부트드라이브 단일 고객(NVIDIA 추정)의 본격 ramp 영향. eMMC/UFS도 시장점유율 확대로 +143% YoY.</p>
+</div>
+
+<!-- 4. 재무제표 -->
+<span class="section-anchor" id="s6"></span>
+<div class="section">
+<h2>4. 재무제표 개요</h2>
+<div class="prose">
+<p><strong>📈 손익 (Q1'26)</strong></p>
+<ul>
+<li>매출 $342.1M (+105% YoY, +23% QoQ) — 연속 2분기 record</li>
+<li>매출총이익 $161.3M (Non-GAAP GM 47.2%) — 가이던스(46~47%) 상회</li>
+<li>영업이익(Non-GAAP) $62.3M (OPM 18.2%, +YoY 433%) — 가이던스(16~18%) 상회</li>
+<li>순이익(Non-GAAP) $53.8M / EPS $1.58 (+163% YoY)</li>
+<li>OPEX $99.2M (전분기 대비 증가) — MonTitan + 부트드라이브 R&D 투자 확대</li>
+</ul>
+
+<p><strong>💰 재무 상태 (2026.03.31 기준)</strong></p>
+<ul>
+<li>현금 + 단기투자: $210.9M (전분기 $277.1M에서 감소)</li>
+<li>감소 원인: $16.9M 분기 배당 + AI 고객 램프 대비 재고 확충</li>
+<li>총 부채: 전년 동기 대비 +83% YoY 증가 (재고/매출채권 확대)</li>
+<li>발행주식: 33.91M ADS</li>
+<li>주주환원: 분기당 $0.50 배당 (연 $2.00, 수익률 0.85%)</li>
+</ul>
+
+<p><strong>⚖️ 가치평가 (2026.05.05 기준)</strong></p>
+<ul>
+<li>P/E (TTM): ~56.6배 (parabolic 상승 후 valuation 부담)</li>
+<li>P/S: ~7.92배</li>
+<li>2026E 매출 $1.5B 가정 시 P/S 하향 → ~5배대 (성장률 감안 합리적)</li>
+<li>애널리스트 목표가: $250 (B.Riley/Craig-Hallum/Roth — 기존 $140~167에서 상향)</li>
+</ul>
+</div>
+</div>
+
+<!-- 5. 핵심 투자아이디어 -->
+<span class="section-anchor" id="s7"></span>
+<div class="section">
+<h2>5. 핵심 투자아이디어</h2>
+<div class="invest-cards">
+  <div class="invest-card">
+    <div class="invest-card-title">① AI 부트드라이브 — 새로운 성장 엔진 (Ferri +758% YoY)</div>
+    <div class="invest-card-desc">
+      Q1'26 Ferri & Boot Drive 매출 +758% YoY 폭발. NVIDIA AI 인프라 단일 고객(공식 미언급, 시장 추정)의 본격 ramp가 시작. AI 서버 부트드라이브는 고성능·저전력·고신뢰성 요구가 클라이언트 SSD 대비 높아 ASP·마진 둘 다 우위. SIMO는 SM8008 PCIe Gen5 부트드라이브 컨트롤러로 이 시장을 선점 중.
+    </div>
+  </div>
+  <div class="invest-card">
+    <div class="invest-card-title">② MonTitan — 엔터프라이즈 SSD Tier-1 CSP 5社 ramp (2H'26)</div>
+    <div class="invest-card-desc">
+      Q1'26 컨콜에서 "MonTitan은 이번 분기(Q2'26)에 양산 시작 — 계획보다 빠름, 하반기에 Tier-1 CSP 5社(아시아 3社, 美 2社) ramp"로 발표. 엔터프라이즈 SSD 컨트롤러 시장은 ASP가 클라이언트의 5~10배. 2H'26 explosive growth 기대.
+    </div>
+  </div>
+  <div class="invest-card">
+    <div class="invest-card-title">③ NAND 메이커 outsourcing 가속 → 머천트 점유율 확대</div>
+    <div class="invest-card-desc">
+      NAND·DRAM 가격이 Q1'26에 QoQ +55~60% 상승 — AI 수요로 메모리 메이커들이 자체 컨트롤러 개발 여력 축소. 외부(SIMO·Phison) outsourcing 비중 증가. SIMO는 Q1'26 모바일 매출 +140% YoY (스마트폰 출하 둔화에도 점유율 확대로 outperform).
+    </div>
+  </div>
+  <div class="invest-card">
+    <div class="invest-card-title">④ PCIe Gen5 ASP 효과 — 마진 회복 가속</div>
+    <div class="invest-card-desc">
+      PCIe Gen5 컨트롤러는 Gen4 대비 ASP가 50%+ 높음. Q1'26 GM 47.2% → Q2'26E 48.5~49.5% → 연중 50% 도달 가능 (CEO Wallace Kou 직접 언급). MonTitan + Gen5 client mix 상승이 핵심.
+    </div>
+  </div>
+  <div class="invest-card">
+    <div class="invest-card-title">⑤ 자동차용 신제품 다수 — 안정적 secular growth</div>
+    <div class="invest-card-desc">
+      Ferri 자동차 솔루션 신규 제품 ramp + ASPICE CL3 / ISO 26262 ASIL B Ready 인증 — 자동차 OEM 진출 가속. 자동차 NAND 컨트롤러는 제품수명 7~10년으로 안정적 매출 기여.
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 5-1. 핵심 변동 요인 -->
+<span class="section-anchor" id="s8"></span>
+<div class="section">
+<h2>5-1. 핵심 변동 요인 — 외부 / 내부 변수</h2>
+<table>
+  <thead><tr><th>구분</th><th>변수</th><th class="center">방향</th><th>임팩트</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="5"><strong>외부</strong></td><td>NAND/DRAM 가격 사이클</td><td class="center"><span class="badge badge-up">↑ 호재</span></td><td>가격 상승 = NAND 메이커 capex/outsourcing 확대 → 컨트롤러 수요↑</td></tr>
+    <tr><td>AI 데이터센터 capex</td><td class="center"><span class="badge badge-up">↑ 호재</span></td><td>NVIDIA·하이퍼스케일러 capex 확대 = MonTitan/부트드라이브 직접 수혜</td></tr>
+    <tr><td>스마트폰 글로벌 출하</td><td class="center"><span class="badge badge-dn">↓ 악재</span></td><td>Q1'26 출하 -10%+ 전망(IDC) — 점유율 확대로 상쇄 중이나 절대 시장 축소</td></tr>
+    <tr><td>美中 무역 갈등 / 관세</td><td class="center"><span class="badge badge-neu">중립</span></td><td>SIMO는 대만 본사·TSMC 파운드리 — 직접 영향 제한적</td></tr>
+    <tr><td>경기 침체 / 소비 둔화</td><td class="center"><span class="badge badge-dn">↓ 악재</span></td><td>SSD 클라이언트 시장 둔화 — 단 enterprise mix 확대로 영향 완화</td></tr>
+    <tr><td rowspan="5"><strong>내부</strong></td><td>MonTitan Tier-1 CSP 5社 ramp</td><td class="center"><span class="badge badge-up">↑ 결정적</span></td><td>2H'26 매출/마진 동시 견인 — 가장 큰 catalyst</td></tr>
+    <tr><td>AI 부트드라이브 단일 고객</td><td class="center"><span class="badge badge-up">↑ 호재</span></td><td>NVIDIA 추정 — Q1 +758% YoY, 추가 GPU 고객 확보 기대</td></tr>
+    <tr><td>UFS 4.1 / PCIe Gen5 ramp</td><td class="center"><span class="badge badge-up">↑ 호재</span></td><td>ASP 50%+ 상승, 2H'26부터 mix 상승 본격화</td></tr>
+    <tr><td>OPEX 증가 (Q2~Q3 R&D)</td><td class="center"><span class="badge badge-dn">↓ 일시</span></td><td>4nm 테이프아웃 등 개발비용 — 매출 성장으로 OPM 상쇄</td></tr>
+    <tr><td>주식보상비용(SBC)</td><td class="center"><span class="badge badge-dn">↓ 악재</span></td><td>Q1'26 SBC + 분쟁비용 ~$11M, GAAP과 Non-GAAP 갭</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 5-2. 컨퍼런스콜 트래킹 -->
+<span class="section-anchor" id="s9"></span>
+<div class="section">
+<h2>5-2. 컨퍼런스콜 트래킹 — 최근 12분기</h2>
+<table class="cc-table">
+  <thead>
+    <tr><th class="year-col"></th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="year-label">2023</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'23 (5/3)</div><div class="cc-msg">"NAND 다운사이클 저점 통과 중. 2H 회복 기대"</div><div class="cc-guide">가이드: $130~140M / 실적: $137M <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'23 (8/2)</div><div class="cc-msg">"Maxlinear 인수 완료 임박. 8월말 클로징 예정"</div><div class="cc-guide">가이드: $170~180M / 실적: $175.5M <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'23 (10/26)</div><div class="cc-msg">"Maxlinear M&A 무산 충격. 단독 사업 재집중"</div><div class="cc-guide">가이드: $190~200M / 실적: $202.4M <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'23 (1/30)</div><div class="cc-msg">"PCIe Gen5 SM2508 출시. 2024 회복 본격화"</div><div class="cc-guide">가이드: $185~195M / 실적: $189.3M <span class="cc-hit">✅</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2024</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'24 (5/2)</div><div class="cc-msg">"PCIe Gen5 4社 디자인 win. 하반기 ramp"</div><div class="cc-guide">가이드: $199~208M / 실적: $210.7M <span class="cc-hit">✅상회</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'24 (8/2)</div><div class="cc-msg">"NAND OEM 비즈니스 강세 지속"</div><div class="cc-guide">가이드: $205~216M / 실적: $212.4M <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'24 (10/31)</div><div class="cc-msg">"엔터프라이즈 컨트롤러 출시 시작"</div><div class="cc-guide">가이드: $191~202M / 실적: $191.2M <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'24 (2/5)</div><div class="cc-msg">"2025 Q4 $1B run-rate 목표"</div><div class="cc-guide">가이드: $158~167M / 실적: $166.5M <span class="cc-hit">✅상회</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2025</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'25 (4/30)</div><div class="cc-msg">"소비 시장 약세, 2H 강한 반등 기대"</div><div class="cc-guide">가이드: $175~183M / 실적: $198.7M <span class="cc-hit">✅대폭 상회</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'25 (7/30)</div><div class="cc-msg">"$1B run-rate 4Q'25에 도달 — 모바일/SSD/자동차/엔터프라이즈 동반"</div><div class="cc-guide">가이드: $230~245M / 실적: $242M <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'25 (10/30)</div><div class="cc-msg">"Q4 record 매출. 2026 record year"</div><div class="cc-guide">가이드: $254~266M / 실적: $278.5M <span class="cc-hit">✅대폭 상회</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'25 (2/3)</div><div class="cc-msg">"2026 sequential growth 매분기. NAND/DRAM 타이트"</div><div class="cc-guide">가이드: $292~306M / 실적: $342.1M <span class="cc-hit">✅폭증</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2026</td>
+      <td><div class="cc-cell cc-latest"><div class="cc-quarter">Q1'26 (4/29) ★ 최신</div><div class="cc-msg">"defining year. record revenue 매분기. MonTitan 양산 조기, 5社 Tier-1 CSP 2H'26 ramp"</div><div class="cc-guide">Q2 가이드: $393~411M (+15~20% QoQ)</div></div></td>
+      <td><div class="cc-cell" style="background:#fafaf6;border-style:dashed"><div class="cc-quarter">Q2'26 예정 (7월말)</div><div class="cc-msg">매출 $393~411M / GM 48.5~49.5% / OPM 21~22%</div><div class="cc-guide">MonTitan 양산 시작, 4nm 테이프아웃 비용</div></div></td>
+      <td><div class="cc-cell" style="background:#fafaf6;border-style:dashed"><div class="cc-quarter">Q3'26 예정</div><div class="cc-msg">— Tier-1 CSP 5社 본격 ramp 시작</div><div class="cc-guide">—</div></div></td>
+      <td><div class="cc-cell" style="background:#fafaf6;border-style:dashed"><div class="cc-quarter">Q4'26 예정</div><div class="cc-msg">— GM 50%+ 도달 가능성</div><div class="cc-guide">—</div></div></td>
+    </tr>
+  </tbody>
+</table>
+<p class="note">* 매분기 가이드 vs 실제 실적: 8연속 상회 또는 상한 근접. 특히 Q1'25 이후 매분기 큰 폭으로 상회. CEO/CFO 가이드 보수적 성향.</p>
+</div>
+
+<!-- 5-3. Q1'26 컨콜 심층 정리 -->
+<span class="section-anchor" id="s10"></span>
+<div class="section">
+<h2>5-3. Q1'26 최신 컨콜 심층 정리 (2026.04.29)</h2>
+<div class="prose">
+<p><strong>📊 실적 개요</strong></p>
+<ul>
+<li>매출 $342.1M (+105% YoY, +23% QoQ) — 가이던스($292~306M) 대폭 상회, 2분기 연속 record</li>
+<li>Non-GAAP GM 47.2% (가이드 46~47% 상회) — PCIe Gen5 ASP 효과</li>
+<li>Non-GAAP OPM 18.2% (가이드 16~18% 상회)</li>
+<li>EPS $1.58 (시장 컨센서스 $1.30 대비 22% 상회)</li>
+<li>실적 발표 후 시간외 +18%, 다음날 +30%, 5/1 신고가 $234.7</li>
+</ul>
+
+<p><strong>🎯 핵심 메시지 5가지</strong></p>
+<ol style="padding-left:1.3rem">
+<li><strong>"defining year for Silicon Motion"</strong> — CEO Wallace Kou 표현. 2026 record year 확신, 매분기 sequential 성장</li>
+<li><strong>MonTitan 양산 조기 시작</strong> — 당초 계획보다 1~2분기 빠른 Q2'26 양산. 2H'26 Tier-1 CSP 5社(아시아 3社, 美 2社) ramp 예정</li>
+<li><strong>Ferri/Boot Drive +758% YoY</strong> — AI 인프라/GPU 고객(NVIDIA 추정) 본격 ramp. 자동차 Ferri 추가 ramp</li>
+<li><strong>NAND 가격 +55~60% QoQ 상승</strong> — AI 수요로 HBM·DRAM·NAND·HDD 동반 부족. 메모리 메이커 outsourcing 확대 → SIMO 점유율 추가 확대</li>
+<li><strong>"50% gross margin definitely achievable this year"</strong> — Wallace Kou 직접 언급. PCIe Gen5 mix + MonTitan 마진 견인</li>
+</ol>
+
+<p><strong>📈 가이던스 상향 비교</strong></p>
+</div>
+
+<table>
+  <thead><tr><th>지표</th><th class="num">Q1'26 가이드 (Q4'25 발표)</th><th class="num">Q1'26 실제</th><th class="num">Q2'26 가이드</th><th class="num">YoY 동등 비교</th></tr></thead>
+  <tbody>
+    <tr><td>매출 ($M)</td><td class="num">$292~306</td><td class="num up2">342.1</td><td class="num up2">$393~411</td><td class="num up2">+98~107%</td></tr>
+    <tr><td>Non-GAAP GM</td><td class="num">46~47%</td><td class="num up2">47.2%</td><td class="num up2">48.5~49.5%</td><td class="num up2">+2~3pp</td></tr>
+    <tr><td>Non-GAAP OPM</td><td class="num">16~18%</td><td class="num up2">18.2%</td><td class="num up2">21~22%</td><td class="num up2">+11~12pp</td></tr>
+    <tr><td>EPS</td><td class="num">~$1.30 (컨센)</td><td class="num up2">$1.58</td><td class="num up2">~$2.15</td><td class="num up2">+125%+</td></tr>
+  </tbody>
+</table>
+
+<div class="prose" style="margin-top:1rem">
+<p><strong>🔮 추가 코멘트</strong></p>
+<ul>
+<li>Q2~Q3 OPEX 증가 — 4nm 테이프아웃 + MonTitan/boot drive 추가 R&D 투자</li>
+<li>모바일 비즈니스 +25~35% QoQ, +140% YoY — 스마트폰 출하 둔화에도 점유율 확대로 outperform</li>
+<li>SSD 컨트롤러 -10% QoQ는 일반적 계절성 (Q1 client SSD 약세) — YoY +45% 견조</li>
+<li>현금 $210.9M — 배당 $16.9M + 재고 확충(AI 고객 대비)으로 일시 감소</li>
+<li>풀이어 가이던스 미제공 — "Q3 가이던스 낼 때까지 기다려달라"</li>
+</ul>
+</div>
+</div>
+
+<!-- 5-4. 시나리오 -->
+<span class="section-anchor" id="s11"></span>
+<div class="section">
+<h2>5-4. 강세 / 약세 시나리오</h2>
+<div class="scenario-stack">
+  <div class="scenario-box s-bull">
+    <div class="scenario-title">🐂 강세 시나리오 (Bull Case)</div>
+    <div class="s-item"><div class="s-case">① MonTitan Tier-1 CSP 5社 모두 본격 ramp (2H'26)</div><div class="s-sub">엔터프라이즈 매출이 Ferri/AI 대비 추가 폭발 — 2026 매출 $1.7B+ 가능성. AI 인프라 capex 호황 지속</div></div>
+    <div class="s-item"><div class="s-case">② NAND outsourcing 트렌드 가속</div><div class="s-sub">메모리 메이커들이 컨트롤러 자체 개발 포기 → SIMO 점유율 50%+ 도달</div></div>
+    <div class="s-item"><div class="s-case">③ GM 50% 돌파 + OPM 25%+</div><div class="s-sub">PCIe Gen5 + MonTitan mix 50%+ 도달. EPS $9~10 수준. P/E 25배 → 주가 $250+</div></div>
+    <div class="s-item"><div class="s-case">④ 자동차 Ferri secular growth</div><div class="s-sub">자동차 NAND 컨트롤러 7~10년 라이프사이클 → 안정적 매출 기여 누적</div></div>
+    <div class="s-item"><div class="s-case">⑤ 추가 AI 고객 확보</div><div class="s-sub">현재 NVIDIA 외 AMD·Broadcom·하이퍼스케일러 추가 ramp 가능성</div></div>
+  </div>
+  <div class="scenario-box s-bear">
+    <div class="scenario-title">🐻 약세 시나리오 (Bear Case)</div>
+    <div class="s-item"><div class="s-case">① AI 데이터센터 capex 둔화</div><div class="s-sub">NVIDIA/하이퍼스케일러 capex 가이던스 하향 → MonTitan ramp 지연. AI 거품 우려</div></div>
+    <div class="s-item"><div class="s-case">② NAND 가격 급락 (재고 사이클)</div><div class="s-sub">2027년 NAND capa 증설 → 가격 하락 → 메이커 자체 컨트롤러 회귀. 2023년 시나리오 재현</div></div>
+    <div class="s-item"><div class="s-case">③ Phison 등 경쟁 격화</div><div class="s-sub">대만 Phison이 Gen5 컨트롤러 가격 경쟁 → ASP 압박. 머천트 시장 점유율 분산</div></div>
+    <div class="s-item"><div class="s-case">④ Valuation 부담 (P/E 56배)</div><div class="s-sub">parabolic 상승 후 미달 시 큰 폭 조정 가능. Point72·Erste 등 기관 매도 신호</div></div>
+    <div class="s-item"><div class="s-case">⑤ 단일 고객 의존도 (NVIDIA 추정)</div><div class="s-sub">Ferri/Boot의 +758% 폭증이 1社 의존 — 고객 다변화 실패 시 변동성 확대</div></div>
+    <div class="s-item"><div class="s-case">⑥ 美中 갈등 / 대만 지정학 리스크</div><div class="s-sub">SIMO 본사가 대만, TSMC 파운드리 — 양안 긴장 시 직접 타격</div></div>
+  </div>
+</div>
+</div>
+
+<!-- 6. Worth Watching -->
+<span class="section-anchor" id="s12"></span>
+<div class="section">
+<h2>6. Worth Watching Events</h2>
+<div class="ww-list">
+  <div class="ww-item"><div class="ww-date">2026.05.20<br>~05.23</div><div><div class="ww-event">Computex 2026 (대만 타이베이)</div><div class="ww-point">SM2508 PCIe Gen5 클라이언트 컨트롤러, MonTitan 신제품 공개 가능성. 자동차/AI PC 솔루션 부스 운영</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026.06 중</div><div><div class="ww-event">MonTitan 양산 시작 (Q2 내)</div><div class="ww-point">조기 ramp — 매출 인식 본격. 첫 Tier-1 CSP 매출 보고 예상</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026.07.28<br>(추정)</div><div><div class="ww-event">Q2'26 어닝 발표</div><div class="ww-point">매출 $393~411M 가이던스 vs 실제. GM 48.5~49.5%, OPM 21~22% 달성 여부. Q3 가이던스 핵심</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026.08.06<br>~08.08</div><div><div class="ww-event">FMS 2026 (Flash Memory Summit)</div><div class="ww-point">엔터프라이즈 SSD 신제품, MonTitan 양산 사례 발표. 산업 컨퍼런스 핵심 이벤트</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026.10 말</div><div><div class="ww-event">Q3'26 어닝 — Tier-1 CSP 5社 ramp 본격</div><div class="ww-point">2H'26 매출 폭증 확인 분기. GM 50% 도달 가능성. 2026 풀이어 매출 결정적</div></div></div>
+  <div class="ww-item"><div class="ww-date">2026.11<br>(예상)</div><div><div class="ww-event">NVIDIA GTC Asia / Supercomputing 2026</div><div class="ww-point">AI 인프라 신제품 공개. MonTitan 추가 사양/고객 발표 가능성</div></div></div>
+  <div class="ww-item"><div class="ww-date">2027 H1</div><div><div class="ww-event">4nm 신제품 첫 양산</div><div class="ww-point">Q2~Q3'26 4nm 테이프아웃 후 신제품. 차세대 enterprise/client controller</div></div></div>
+</div>
+</div>
+
+<!-- IR Earnings Slides -->
+<div class="section">
+<h2 style="margin-bottom:8px">📊 Q1'26 IR Earnings Presentation 핵심 슬라이드</h2>
+<p class="note" style="margin-bottom:1rem">SIMO Q1'26 어닝 콜과 함께 공개된 공식 IR Presentation. 회계/재무 일반 슬라이드 제외하고 제품·전략·시장 위주 4장 발췌.</p>
+
+<div class="ir-slides">
+
+  <div class="ir-slide">
+    <div class="ir-slide-frame">
+      <div class="ir-slide-num">📊 IR Slide 1 — Q1'26 Operating Highlights</div>
+      <div class="ir-slide-title">매출 $342.1M (+105% YoY) — record 분기 + 모든 제품군 동시 폭증</div>
+    </div>
+    <div class="ir-slide-img-wrap">
+      <img src="https://csv-storage.forexpros.com/slides/5d86d5442132891447b6b0ec463120e8cc42b880ade9bfc61409fb35df1d9819.png" alt="SIMO Q1 2026 Operating Highlights" loading="lazy">
+    </div>
+    <div class="ir-slide-caption">
+      매출 +105% YoY / +23% QoQ — 2분기 연속 record. 사업부별: SSD Controllers +40~45% YoY (계절성으로 QoQ -5~10%), eMMC/UFS +140~145% YoY, <strong>Ferri & Boot Drive +755~760% YoY</strong> — AI 인프라/GPU 고객 ramp 본격화. EPS Non-GAAP $1.58 (Q4'25 $1.26, Q1'25 $0.60 대비 +163% YoY)
+    </div>
+  </div>
+
+  <div class="ir-slide">
+    <div class="ir-slide-frame">
+      <div class="ir-slide-num">📊 IR Slide 2 — SM2508 PCIe Gen5 클라이언트 컨트롤러</div>
+      <div class="ir-slide-title">업계 최초 머천트 6nm PCIe Gen5 — 6社 NAND 메이커 출하 중</div>
+    </div>
+    <div class="ir-slide-img-wrap">
+      <img src="https://csv-storage.forexpros.com/slides/36573b28852c27c6422bfc558a0ad887ff97c927c569a24bb1b9eaec66bdac89.png" alt="SIMO SM2508 PCIe Gen5 Client Controller" loading="lazy">
+    </div>
+    <div class="ir-slide-caption">
+      SM2508은 6社 flash maker + 거의 모든 모듈 메이커 출하, Q3'25에 클라이언트 SSD 매출의 15% 차지. 14.5 GB/s 순차 읽기, 14 GB/s 쓰기, active mode 3.5W. 경쟁 솔루션 대비 <strong>40배 낮은 idle power, 70% 향상된 전력효율</strong>. AI PC 트렌드의 핵심 부품으로 부상.
+    </div>
+  </div>
+
+  <div class="ir-slide">
+    <div class="ir-slide-frame">
+      <div class="ir-slide-num">📊 IR Slide 3 — MonTitan SM8366 엔터프라이즈/AI 컨트롤러</div>
+      <div class="ir-slide-title">12개+ Tier-1 고객 샘플링 → Q2'26 양산 시작 → 2H'26 5社 ramp</div>
+    </div>
+    <div class="ir-slide-img-wrap">
+      <img src="https://csv-storage.forexpros.com/slides/cdc93bbcadfc3db23bc113a195e288ebeaf9371eff0120518916a474072b227e.png" alt="SIMO MonTitan SM8366 Enterprise SSD Controller" loading="lazy">
+    </div>
+    <div class="ir-slide-caption">
+      SM8366은 12개+ Tier-1 데이터센터/엔터프라이즈 고객 + NAND 메이커 + 모듈 메이커에 샘플링. 고용량 QLC "warm storage" + TLC "compute" 양 시장 타깃. <strong>Q2'26 양산 시작, 2H'26 아시아 3社 + 美 2社 = 총 5社 Tier-1 ramp 예정</strong>. 경쟁 대비 random read +25% (LLM 학습/GNN 시간 단축), 14 GB/s, 3.5M IOPS.
+    </div>
+  </div>
+
+  <div class="ir-slide">
+    <div class="ir-slide-frame">
+      <div class="ir-slide-num">📊 IR Slide 4 — Boot Drive Solutions (AI 서버)</div>
+      <div class="ir-slide-title">AI 칩메이커 + 통신 인프라 + 검색엔진 — 멀티 고객 ramp</div>
+    </div>
+    <div class="ir-slide-img-wrap">
+      <img src="https://csv-storage.forexpros.com/slides/de691762cdcf4ef7ac239cb5c8c523b5520a5e4e68d1ca854fb7dbe7c6b53880.png" alt="SIMO Boot Drive Solutions for AI" loading="lazy">
+    </div>
+    <div class="ir-slide-caption">
+      Q4'25에 <strong>선도 AI 칩메이커(NVIDIA 추정)의 DPU 제품에 양산 진입</strong>, 2H'26 차세대 플랫폼으로 관계 확대. 추가로 선도 통신 인프라 메이커(2H'26 ramp), 메이저 검색엔진(차세대 아키텍처용 샘플링) — 멀티 Tier-1 AI 인프라 고객. Ferri & Boot Drive는 Q1'26에 +758% YoY 폭발.
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- 7. 데이터 출처 -->
+<span class="section-anchor" id="s13"></span>
+<div class="section">
+<h2>7. 데이터 출처</h2>
+<div class="source-box">
+• <strong>SIMO 공식 IR / SEC EDGAR</strong>: 분기 6-K 보도자료, 10-K 연차보고서<br>
+• <strong>SIMO IR Page</strong>: siliconmotiontechnologycorporation.gcs-web.com (Q1'26 Presentation, Earnings Webcast)<br>
+• <strong>Q1'26 Earnings Presentation</strong>: 2026.04.29 공식 IR 슬라이드 (8장)<br>
+• <strong>Q1'26 Earnings Release</strong>: 2026.04.28 SEC EDGAR Form 6-K<br>
+• <strong>Q1'26 Earnings Call Transcript</strong>: 2026.04.29 (Seeking Alpha / Motley Fool)<br>
+• <strong>분기 매출 / 마진 데이터</strong>: SIMO 분기별 6-K 공시 (2017~2026)<br>
+• <strong>주가 / 시총 / 환율</strong>: Yahoo Finance, Investing.com, Morningstar (2026.05.05 기준)<br>
+• <strong>제품 정보 / 제품 이미지</strong>: siliconmotion.com 공식 홈페이지<br>
+• <strong>분석가 목표가</strong>: B.Riley, Craig-Hallum, Roth Capital (2026.04.30 발표)<br>
+• <strong>분기 추정치</strong>: SIMO 공시 QoQ/YoY 범위 + 연간 매출 역산 추정 (분기 절대값은 추정치)
+</div>
+</div>
+
+<!-- 7-1. Reference -->
+<span class="section-anchor" id="s14"></span>
+<div class="section">
+<h2>7-1. Reference</h2>
+<div class="ref-list">
+
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a class="ref-link" href="https://www.siliconmotion.com" target="_blank">Silicon Motion 공식 홈페이지</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">IR Page</span><a class="ref-link" href="https://siliconmotiontechnologycorporation.gcs-web.com/" target="_blank">SIMO Investor Relations 공식 페이지 (Q1'26 Presentation 다운로드)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a class="ref-link" href="https://www.investing.com/news/company-news/silicon-motion-q1-2026-slides-revenue-surges-105-stock-jumps-31-93CH-4645493" target="_blank">SIMO Q1'26 IR Presentation 슬라이드 분석 (Investing.com)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a class="ref-link" href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001329394" target="_blank">SEC EDGAR — Silicon Motion 6-K/20-F 모음</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a class="ref-link" href="https://www.globenewswire.com/news-release/2026/04/28/3283309/9885/en/Silicon-Motion-Announces-Results-for-the-Quarterly-Period-Ended-March-31-2026.html" target="_blank">SIMO Q1'26 Earnings Press Release (2026.04.28)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a class="ref-link" href="https://www.siliconmotion.com/products/enterprise/detail" target="_blank">SIMO 엔터프라이즈 제품 페이지 (MonTitan SM8366/8388)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a class="ref-link" href="https://www.siliconmotion.com/products/client/detail" target="_blank">SIMO 클라이언트 SSD 컨트롤러 페이지 (SM2508/SM2504XT)</a></div>
+
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a class="ref-link" href="https://www.cantechletter.com/2026/05/silicon-motion-technology-wins-huge-price-target-raise-from-this-analyst/" target="_blank">Roth Capital — SIMO 목표가 $250 상향 리포트 (2026.05)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a class="ref-link" href="https://www.marketbeat.com/stocks/NASDAQ/SIMO/forecast/" target="_blank">MarketBeat — SIMO Analyst Forecast Aggregator</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a class="ref-link" href="https://www.tipranks.com/stocks/simo/earnings" target="_blank">TipRanks — SIMO Earnings Reports & Analyst Targets</a></div>
+
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a class="ref-link" href="https://finance.yahoo.com/markets/stocks/articles/silicon-motion-technology-q1-earnings-203028101.html" target="_blank">Yahoo Finance — SIMO Q1'26 Earnings Call Highlights</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a class="ref-link" href="https://www.fool.com/investing/2026/04/29/why-silicon-motion-technology-stock-is-skyrocketin/" target="_blank">Motley Fool — SIMO 주가 폭등 이유 (2026.04.29)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a class="ref-link" href="https://www.fool.com/earnings/call-transcripts/2026/04/30/silicon-motion-simo-q1-2026-earnings-transcript/" target="_blank">Motley Fool — SIMO Q1'26 Earnings Call Transcript</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a class="ref-link" href="https://seekingalpha.com/article/4896020-silicon-motion-technology-corporation-simo-q1-2026-earnings-call-transcript" target="_blank">Seeking Alpha — SIMO Q1'26 Earnings Call 전체 Transcript</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a class="ref-link" href="https://www.investing.com/equities/silicon-motion-te" target="_blank">Investing.com — SIMO 주가 / 가치평가</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a class="ref-link" href="https://www.dailyan.com/news/article.html?no=766334" target="_blank">데일리연합 — SIMO SM8008 PCIe Gen5 컨트롤러 출시 (한국어)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a class="ref-link" href="https://www.newswire.co.kr/newsRead.php?no=1030474" target="_blank">뉴스와이어 — SIMO NVIDIA GTC 2026 출품 (한국어)</a></div>
+
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a class="ref-link" href="https://namu.wiki/w/SSD/%EA%B5%AC%EC%84%B1%20%EC%9A%94%EC%86%8C" target="_blank">나무위키 — SSD/구성요소 (실리콘모션 컨트롤러 시장 위치)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a class="ref-link" href="https://en.wikipedia.org/wiki/Silicon_Motion" target="_blank">Wikipedia — Silicon Motion Technology Corporation</a></div>
+
+</div>
+<p class="note" style="margin-top:1rem">📌 네이버 블로그(blog.naver.com 도메인)에서 좋아요 10+ 의 SIMO 분석 게시물은 본 리포트 작성 시점 기준 미확인. 향후 업데이트 시 보강 예정.</p>
+</div>
+
+<div class="footer">
+Silicon Motion Technology (SIMO) 기업분석 리포트 · 2026 Q1 · 개인 열람용 (배포 없음)<br>
+분석일: 2026.05.05 · 본 자료는 투자 권유가 아닌 분석 목적의 정리이며, 실제 투자 결정은 본인 판단에 따라야 함
+</div>
+
+</div>
+
+<script>
+// ============== 데이터 정의 ==============
+// 분기 라벨 — Q1'17~Q1'26 (37분기)
+const labels = [
+  "Q1'17","Q2'17","Q3'17","Q4'17",
+  "Q1'18","Q2'18","Q3'18","Q4'18",
+  "Q1'19","Q2'19","Q3'19","Q4'19",
+  "Q1'20","Q2'20","Q3'20","Q4'20",
+  "Q1'21","Q2'21","Q3'21","Q4'21",
+  "Q1'22","Q2'22","Q3'22","Q4'22",
+  "Q1'23","Q2'23","Q3'23","Q4'23",
+  "Q1'24","Q2'24","Q3'24","Q4'24",
+  "Q1'25","Q2'25","Q3'25","Q4'25",
+  "Q1'26"
+];
+
+// 제품군별 매출 추정치 ($M)
+// SSD Controllers (Client + Enterprise)
+const segSSD = [
+  60,65,70,75,         // 2017
+  80,85,90,90,         // 2018
+  85,90,95,95,         // 2019
+  100,105,115,125,     // 2020
+  140,160,175,170,     // 2021
+  155,150,155,125,     // 2022
+  75,80,105,117,       // 2023
+  118,130,130,120,     // 2024
+  93,95,118,150,       // 2025
+  135                  // Q1'26
+];
+
+// eMMC + UFS Controllers
+const segUFS = [
+  20,22,25,28,         // 2017
+  30,33,36,38,         // 2018
+  35,40,45,45,         // 2019
+  50,55,65,70,         // 2020
+  80,90,100,105,       // 2021
+  85,75,70,55,         // 2022
+  25,30,45,55,         // 2023
+  50,60,60,52,         // 2024
+  48,80,98,105,        // 2025
+  135                  // Q1'26
+];
+
+// SSD Solutions / Ferri & Boot Drive
+const segFerri = [
+  25,27,30,32,         // 2017
+  35,37,40,42,         // 2018
+  40,42,45,42,         // 2019
+  40,45,48,52,         // 2020
+  55,60,65,60,         // 2021
+  35,25,24,17,         // 2022
+  24,27,26,30,         // 2023
+  21,21,22,19,         // 2024
+  25,24,26,24,         // 2025
+  72                   // Q1'26
+];
+
+// 분기별 총 매출
+const totalRev = labels.map((_,i) => segSSD[i] + segUFS[i] + segFerri[i]);
+
+// Non-GAAP OPM (%)
+const opm = [
+  18,18,19,20,         // 2017
+  20,21,22,23,         // 2018
+  20,22,24,25,         // 2019
+  24,26,28,30,         // 2020
+  31,32,33,30,         // 2021
+  33,32,32,28,         // 2022
+  -10,3,10,17,         // 2023
+  14.5,17.6,15.0,15.6, // 2024
+  9.7,12.5,15.8,15.8,  // 2025
+  18.2                 // Q1'26
+];
+
+// ============== 차트 1: 제품군별 누적 막대 ==============
+const ctxSeg = document.getElementById('cSeg').getContext('2d');
+const segChart = new Chart(ctxSeg, {
+  type: 'bar',
+  data: {
+    labels: labels,
+    datasets: [
+      {label:'SSD Controllers', data: segSSD, backgroundColor:'#378ADD'},
+      {label:'eMMC + UFS', data: segUFS, backgroundColor:'#1D9E75'},
+      {label:'Ferri & Boot Drive', data: segFerri, backgroundColor:'#D85A30'}
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: {display: false},
+      tooltip: {
+        callbacks: {
+          footer: (items) => {
+            const sum = items.reduce((a,b) => a + b.parsed.y, 0);
+            return 'Total: $' + sum.toFixed(0) + 'M';
+          }
+        }
+      }
+    },
+    scales: {
+      x: {stacked: true, ticks:{font:{size:10}, maxRotation:60, minRotation:60}, grid:{display:false}},
+      y: {stacked: true, ticks:{callback:v=>'$'+v+'M', font:{size:11}}, grid:{color:'#f0f0ee'}}
+    }
+  }
+});
+
+function toggleSeg(idx, el){
+  const isHidden = segChart.isDatasetVisible(idx);
+  segChart.setDatasetVisibility(idx, !isHidden);
+  segChart.update();
+  el.classList.toggle('hidden');
+}
+
+// ============== 차트 2: 매출 + OPM 이중축 ==============
+const ctxRev = document.getElementById('cRev').getContext('2d');
+new Chart(ctxRev, {
+  type: 'bar',
+  data: {
+    labels: labels,
+    datasets: [
+      {
+        type:'bar', label:'매출 ($M)', data: totalRev,
+        backgroundColor:'#378ADD', yAxisID:'y', order:2
+      },
+      {
+        type:'line', label:'Non-GAAP OPM (%)', data: opm,
+        borderColor:'#D85A30', backgroundColor:'#D85A30',
+        borderWidth:2, pointRadius:3, pointBackgroundColor:'#D85A30',
+        yAxisID:'y2', order:1, tension:0.3
+      }
+    ]
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales: {
+      x:{ticks:{font:{size:10}, maxRotation:60, minRotation:60}, grid:{display:false}},
+      y:{position:'left', ticks:{callback:v=>'$'+v+'M', font:{size:11}}, grid:{color:'#f0f0ee'}, title:{display:true,text:'매출 ($M)',font:{size:11}}},
+      y2:{position:'right', ticks:{callback:v=>v+'%', font:{size:11}}, grid:{display:false}, title:{display:true,text:'Non-GAAP OPM (%)',font:{size:11}}, suggestedMin:-15, suggestedMax:35}
+    }
+  }
+});
+</script>
+</body>
+</html>
