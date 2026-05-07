@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Micro Devices (AMD) 기업분석 — 2026 Q1</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f3ef;color:#1a1a1a;padding:2rem;font-size:14px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto}
+.header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #e0e0dc;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.header-title{font-size:22px;font-weight:700}
+.header-meta{font-size:12px;color:#888;margin-top:4px}
+.toc{margin-bottom:2rem;padding:0}
+.toc-title{font-size:12px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+/* 통합 스티커 박스 — 모든 목차 항목이 한 박스 안에 */
+.toc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:1.1rem 1.3rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.toc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(8,auto);grid-auto-flow:column;gap:6px 28px}
+@media(max-width:650px){.toc-grid{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}}
+.toc-link{display:flex;align-items:center;gap:10px;padding:5px 0;text-decoration:none;color:#444;font-size:13px;border-bottom:0.5px dashed transparent;transition:all .15s ease}
+.toc-link:hover{color:#378ADD;border-bottom-color:#cfe1f5}
+.toc-link .toc-num{color:#aaa;font-weight:700;font-size:12px;min-width:30px;font-variant-numeric:tabular-nums;flex-shrink:0}
+.toc-link:hover .toc-num{color:#378ADD}
+.toc-link .toc-text{flex:1}
+.toc-link.sub{padding-left:18px;font-size:12.5px;color:#666}
+.toc-link.sub .toc-num{font-size:11px;color:#bbb}
+.section{margin-bottom:3rem}
+.section-anchor{display:block;position:relative;top:-70px;visibility:hidden}
+h2{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:6px;border-bottom:1.5px solid #e0e0dc}
+h3{font-size:14px;font-weight:600;margin:1.2rem 0 .6rem;color:#333}
+.chart-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:20px;position:relative;width:100%}
+.note{font-size:11px;color:#999;margin-top:8px;line-height:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;font-size:12px;color:#666}
+.legend-item{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:3px 8px;border-radius:6px;transition:opacity .15s}
+.legend-item:hover{background:#e8e8e3}
+.legend-item.hidden{opacity:.3;text-decoration:line-through}
+.legend-static{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0dc;margin-bottom:.5rem}
+th{background:#ebebe6;font-weight:600;padding:7px 8px;text-align:left;border-bottom:1px solid #e0e0dc;white-space:nowrap;font-size:11.5px}
+th.center{text-align:center}
+td{padding:6px 8px;border-bottom:0.5px solid #f0f0ee;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafaf6}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.center{text-align:center}
+.hl{background:#fffbe6 !important}
+.dn{color:#D85A30}
+.up2{color:#1D9E75}
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
+@media(max-width:650px){.overview-grid{grid-template-columns:1fr}}
+.overview-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.overview-box h4{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.kv{display:flex;justify-content:space-between;align-items:flex-start;padding:4px 0;border-bottom:0.5px solid #f5f4f0;font-size:12.5px;gap:10px}
+.kv:last-child{border-bottom:none}
+.kv-key{color:#666;min-width:90px;flex-shrink:0}
+.kv-val{font-weight:600;text-align:right;flex:1}
+.seg-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:1rem}
+.seg-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.seg-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:8px}
+.seg-card-name{font-size:13px;font-weight:700}
+.seg-card-share{font-size:11px;color:#888;font-weight:600}
+.seg-card-desc{font-size:12px;color:#444;line-height:1.55;margin-bottom:6px}
+.seg-card-margin{font-size:11px;font-weight:600}
+.badge{display:inline-block;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:600}
+.badge-up{background:#e6f7f0;color:#1D9E75}
+.badge-dn{background:#fce8e4;color:#D85A30}
+.badge-neu{background:#ebebe6;color:#666}
+.cc-table{width:100%;border-collapse:separate;border-spacing:6px;margin-bottom:1rem}
+.cc-table th{background:transparent;border:none;font-size:11px;color:#888;text-align:center;padding:4px;font-weight:600;white-space:nowrap}
+.cc-table th.year-col{width:50px;text-align:left}
+.cc-cell{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.65rem .75rem;vertical-align:top;height:100%}
+.cc-quarter{font-size:10px;font-weight:700;color:#378ADD;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.cc-msg{font-size:11px;color:#444;margin-bottom:6px;line-height:1.45}
+.cc-guide{font-size:10px;color:#888;border-top:0.5px solid #f0f0ee;padding-top:5px;line-height:1.5}
+.cc-hit{color:#1D9E75;font-weight:600}
+.cc-miss{color:#D85A30;font-weight:600}
+.cc-latest{border:1.5px solid #378ADD !important;box-shadow:0 0 0 2px rgba(55,138,221,0.1)}
+.year-label{font-size:13px;font-weight:700;color:#555;padding-right:8px;vertical-align:middle}
+.scenario-stack{display:flex;flex-direction:column;gap:12px}
+.scenario-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1.1rem 1.3rem}
+.scenario-title{font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid #f0f0ee}
+.s-bull .scenario-title{color:#1D9E75}
+.s-bear .scenario-title{color:#D85A30}
+.s-item{margin-bottom:9px;padding-bottom:9px;border-bottom:0.5px solid #f5f4f0;font-size:12px}
+.s-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-case{font-weight:600;margin-bottom:2px}
+.s-sub{color:#888;font-size:11px}
+.ww-list{display:flex;flex-direction:column;gap:8px}
+.ww-item{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.75rem 1rem;display:flex;gap:14px}
+/* 통합 스티커 박스 — Worth Watching Events */
+.ww-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.ww-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.ww-sticker-item{padding:.7rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:14px;align-items:flex-start}
+.ww-sticker-item:last-child{border-bottom:none}
+.ww-sticker-date{font-size:11px;font-weight:700;color:#378ADD;white-space:nowrap;min-width:90px;flex-shrink:0;padding-top:1px}
+.ww-sticker-content{flex:1}
+.ww-sticker-event{font-size:12.5px;font-weight:700;color:#222;margin-bottom:2px}
+.ww-sticker-point{font-size:11.5px;color:#666;line-height:1.5}
+.ww-date{font-size:11px;font-weight:700;color:#378ADD;white-space:nowrap;min-width:90px}
+.ww-event{font-size:12px;font-weight:600;margin-bottom:2px}
+.ww-point{font-size:11px;color:#888}
+.source-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.4rem;font-size:12px;color:#888;line-height:2}
+.prose{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;margin-bottom:1rem;font-size:13px;line-height:1.7}
+.prose ul{padding-left:1.3rem}
+.prose li{margin-bottom:.25rem}
+.prose p{margin-bottom:.7rem}
+.prose p:last-child{margin-bottom:0}
+.invest-cards{display:flex;flex-direction:column;gap:10px;margin-top:1rem}
+.invest-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem;border-left:3px solid #378ADD}
+.invest-card-title{font-size:13px;font-weight:700;color:#378ADD;margin-bottom:5px}
+.invest-card-desc{font-size:12px;color:#444;line-height:1.55}
+/* 핵심 투자아이디어 강조 박스 */
+.thesis-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:12px;padding:1.2rem 1.4rem;margin-bottom:12px;border-left:5px solid #333;position:relative}
+.thesis-box.green{border-left-color:#333}
+.thesis-box.orange{border-left-color:#333}
+.thesis-box-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.thesis-icon{font-size:22px;flex-shrink:0}
+.thesis-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:5px;background:#ebebe6;color:#444}
+.thesis-box.green .thesis-tag{background:#ebebe6;color:#444}
+.thesis-box.orange .thesis-tag{background:#ebebe6;color:#444}
+.thesis-title{font-size:15px;font-weight:700;color:#222;flex:1;margin-bottom:0}
+.thesis-body{font-size:13px;line-height:1.7;color:#333}
+.thesis-body p{margin-bottom:.6rem}
+.thesis-body p:last-child{margin-bottom:0}
+.thesis-body strong{color:#222;font-weight:700}
+.thesis-body .hl-blue{font-weight:600;color:#222}
+.thesis-body .hl-green{font-weight:700;color:#1D9E75}
+.thesis-body .hl-red{font-weight:700;color:#D85A30}
+/* 컨콜 핵심 메시지 강조 */
+.cc-msg-card{background:#fff;border:1px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start}
+.cc-msg-content{flex:1}
+.cc-msg-title-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
+.cc-msg-rank{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#378ADD;color:#fff;font-size:11px;font-weight:700;flex-shrink:0}
+.cc-msg-title{font-size:13px;font-weight:700;color:#222}
+.cc-msg-desc{font-size:12px;color:#444;line-height:1.6}
+.cc-msg-desc strong{color:#222}
+/* 통합 스티커 박스 — 컨콜 핵심 메시지 5가지 */
+.cc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.cc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.cc-sticker-item{padding:.85rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:12px;align-items:flex-start}
+.cc-sticker-item:last-child{border-bottom:none}
+.cc-sticker-rank{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#378ADD;color:#fff;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.cc-sticker-content{flex:1}
+.cc-sticker-title{font-size:13px;font-weight:700;color:#222;margin-bottom:4px}
+.cc-sticker-desc{font-size:12px;color:#444;line-height:1.6}
+.cc-sticker-desc strong{color:#222}
+.hl-pos{color:#1D9E75;font-weight:700}
+.hl-neg{color:#D85A30;font-weight:700}
+.ir-na-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;font-size:12px;color:#666;line-height:1.6}
+/* IR 슬라이드 캡쳐 — 외부 이미지 직접 임베드 (원본 그대로) */
+.ir-slide{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;overflow:hidden;margin-bottom:14px}
+.ir-slide-frame{background:linear-gradient(135deg,#f8f8f5 0%,#ffffff 100%);padding:.85rem 1.4rem;border-bottom:0.5px solid #e0e0dc}
+.ir-slide-num{font-size:10px;color:#999;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+.ir-slide-title{font-size:14px;font-weight:700;color:#333}
+.ir-slide-img-wrap{padding:1rem 1.4rem;text-align:center;background:#fafaf6}
+.ir-slide-img-wrap img{display:block;max-width:75%;width:100%;height:auto;margin:0 auto;border:0.5px solid #e0e0dc;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+@media(max-width:650px){.ir-slide-img-wrap img{max-width:95%}}
+.ir-slide-img-wrap iframe{display:block;width:100%;max-width:850px;height:480px;margin:0 auto;border:0.5px solid #e0e0dc;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.ir-slide-caption{font-size:11.5px;color:#555;padding:.85rem 1.4rem 1rem;line-height:1.55;background:#fff;border-top:0.5px solid #f0f0ee}
+.ir-slide-caption strong{color:#222}
+.footer{font-size:11px;color:#aaa;text-align:center;margin-top:2rem;padding-top:1rem;border-top:0.5px solid #e0e0dc}
+.seg-table-wrap{overflow-x:auto}
+.seg-table{min-width:780px}
+.seg-table th.seg-group{text-align:center;background:#e3e3de;border-left:2px solid #d0d0cc}
+.seg-table td.seg-border{border-left:2px solid #e0e0dc}
+.tv-wrap{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:6px;overflow:hidden}
+.tv-wrap iframe{display:block;width:100%;height:420px;border:0;border-radius:6px}
+.ref-list{display:flex;flex-direction:column;gap:6px}
+.ref-item{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.6rem .9rem;display:flex;align-items:center;gap:10px;font-size:12px}
+.ref-tag{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600;flex-shrink:0;min-width:55px;text-align:center}
+.tag-official{background:#e0effc;color:#1565c0}
+.tag-broker{background:#fff4e0;color:#ed8936}
+.tag-news{background:#f0f0ed;color:#555}
+.tag-wiki{background:#e6f7f0;color:#1D9E75}
+.tag-blog{background:#e7e1f5;color:#6b46c1}
+.ref-item a{color:#378ADD;text-decoration:none;flex:1;word-break:break-all}
+.ref-item a:hover{text-decoration:underline}
+.ref-item span.ref-desc{color:#888;font-size:11px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div>
+    <div class="header-title">🚀 Advanced Micro Devices (AMD) 기업분석</div>
+    <div class="header-meta">회계연도: Calendar Year &nbsp;|&nbsp; 분석기간: Q1'18~Q1'26 (33분기) &nbsp;|&nbsp; 최근 컨콜: 2026.05.05</div>
+  </div>
+  <div style="font-size:12px;color:#aaa">분석일: 2026.05.07</div>
+</div>
+
+<!-- 목차 -->
+<div class="toc">
+  <div class="toc-title">목차</div>
+  <div class="toc-sticker-box">
+    <div class="toc-grid">
+      <a class="toc-link" href="#s1"><span class="toc-num">01.</span><span class="toc-text">회사 개요</span></a>
+      <a class="toc-link" href="#s2"><span class="toc-num">02.</span><span class="toc-text">주가 흐름 — TradingView 일봉</span></a>
+      <a class="toc-link" href="#s3"><span class="toc-num">03.</span><span class="toc-text">세그먼트별 매출 추이</span></a>
+      <a class="toc-link sub" href="#s3b"><span class="toc-num">3-1.</span><span class="toc-text">세그먼트 구조 및 제품</span></a>
+      <a class="toc-link sub" href="#s4"><span class="toc-num">3-2.</span><span class="toc-text">매출 &amp; Non-GAAP OPM 추이</span></a>
+      <a class="toc-link sub" href="#s5"><span class="toc-num">3-3.</span><span class="toc-text">세그먼트별 실적 테이블</span></a>
+      <a class="toc-link" href="#s6"><span class="toc-num">04.</span><span class="toc-text">재무제표 개요</span></a>
+      <a class="toc-link" href="#s7"><span class="toc-num">05.</span><span class="toc-text">핵심 투자아이디어</span></a>
+      <a class="toc-link sub" href="#s8"><span class="toc-num">5-1.</span><span class="toc-text">핵심 변동 요인</span></a>
+      <a class="toc-link sub" href="#s9"><span class="toc-num">5-2.</span><span class="toc-text">컨퍼런스콜 트래킹</span></a>
+      <a class="toc-link sub" href="#s10"><span class="toc-num">5-3.</span><span class="toc-text">Q1'26 컨콜 심층 정리</span></a>
+      <a class="toc-link sub" href="#s11"><span class="toc-num">5-4.</span><span class="toc-text">강세 / 약세 시나리오</span></a>
+      <a class="toc-link" href="#s12"><span class="toc-num">06.</span><span class="toc-text">Worth Watching Events</span></a>
+      <a class="toc-link" href="#s13"><span class="toc-num">07.</span><span class="toc-text">데이터 출처</span></a>
+      <a class="toc-link sub" href="#s14"><span class="toc-num">7-1.</span><span class="toc-text">Reference</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- 1. 회사 개요 -->
+<span class="section-anchor" id="s1"></span>
+<div class="section">
+<h2>1. 회사 개요</h2>
+<div class="overview-grid">
+  <div class="overview-box">
+    <h4>기본 정보</h4>
+    <div class="kv"><span class="kv-key">설립</span><span class="kv-val">1969년 (Jerry Sanders)</span></div>
+    <div class="kv"><span class="kv-key">상장</span><span class="kv-val">1972 NYSE → 1979 NASDAQ</span></div>
+    <div class="kv"><span class="kv-key">본사</span><span class="kv-val">Santa Clara, CA, USA</span></div>
+    <div class="kv"><span class="kv-key">CEO</span><span class="kv-val">Lisa Su (2014.10~)</span></div>
+    <div class="kv"><span class="kv-key">임직원</span><span class="kv-val">~31,000명</span></div>
+    <div class="kv"><span class="kv-key">사업 모델</span><span class="kv-val">Fabless (TSMC, Samsung 등 위탁)</span></div>
+    <div class="kv"><span class="kv-key">티커</span><span class="kv-val">NASDAQ: AMD</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>시장 정보 (2026.05.06 기준)</h4>
+    <div class="kv"><span class="kv-key">현재 주가</span><span class="kv-val">$417.47</span></div>
+    <div class="kv"><span class="kv-key">시가총액 USD</span><span class="kv-val" style="color:#378ADD">~$687B</span></div>
+    <div class="kv"><span class="kv-key">시가총액 KRW</span><span class="kv-val" style="color:#378ADD">~995조원 (환율 1,448원)</span></div>
+    <div class="kv"><span class="kv-key">발행주식</span><span class="kv-val">~1.63B주</span></div>
+    <div class="kv"><span class="kv-key">52주 고가</span><span class="kv-val">$430.60 (2026.05.06)</span></div>
+    <div class="kv"><span class="kv-key">52주 저가</span><span class="kv-val">$96.88 (2025.05.07)</span></div>
+    <div class="kv"><span class="kv-key">P/E (TTM)</span><span class="kv-val">~140 (Fwd ~52)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>사업 운영</h4>
+    <div class="kv"><span class="kv-key">제조 모델</span><span class="kv-val">Fabless (TSMC 2nm/3nm/5nm)</span></div>
+    <div class="kv"><span class="kv-key">핵심 IP</span><span class="kv-val">x86 CPU, RDNA/CDNA GPU, FPGA</span></div>
+    <div class="kv"><span class="kv-key">주요 인수</span><span class="kv-val">Xilinx ($49B, 2022) · ZT Systems ($4.9B, 2025)</span></div>
+    <div class="kv"><span class="kv-key">차세대 노드</span><span class="kv-val">2nm Venice CPU (2H'26)</span></div>
+    <div class="kv"><span class="kv-key">세그먼트</span><span class="kv-val">3개: Data Center / Client&amp;Gaming / Embedded</span></div>
+    <div class="kv"><span class="kv-key">제품군</span><span class="kv-val">EPYC 서버 CPU, Instinct AI GPU, Ryzen, Radeon, Versal FPGA</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>투자 포인트 요약</h4>
+    <div class="kv"><span class="kv-key">Q1'26 매출</span><span class="kv-val" style="color:#1D9E75">$10.25B (+38% YoY)</span></div>
+    <div class="kv"><span class="kv-key">Non-GAAP GM</span><span class="kv-val" style="color:#1D9E75">55% (+170bps YoY)</span></div>
+    <div class="kv"><span class="kv-key">Non-GAAP EPS</span><span class="kv-val" style="color:#1D9E75">$1.37 (+43% YoY)</span></div>
+    <div class="kv"><span class="kv-key">Q2'26 가이던스</span><span class="kv-val" style="color:#1D9E75">$11.2B ±$300M (+46% YoY)</span></div>
+    <div class="kv"><span class="kv-key">Data Center</span><span class="kv-val" style="color:#1D9E75">$5.78B (+57% YoY, 56% 비중)</span></div>
+    <div class="kv"><span class="kv-key">FCF</span><span class="kv-val" style="color:#1D9E75">$2.6B (+260% YoY 기록)</span></div>
+  </div>
+</div>
+<p class="note">⚠️ <strong>Non-GAAP</strong>은 SBC(주식보상비용)·M&amp;A 비용·무형자산 상각 제외. <strong>EPYC</strong>=AMD 서버 CPU, <strong>Instinct</strong>=AI GPU, <strong>Ryzen</strong>=클라이언트 CPU, <strong>Radeon</strong>=게이밍 GPU, <strong>ROCm</strong>=AMD AI 소프트웨어 스택(NVDA CUDA 대응). <strong>Helios</strong>=ZT Systems 인수 기반 랙스케일 AI 플랫폼.</p>
+</div>
+
+<!-- 2. 주가 -->
+<span class="section-anchor" id="s2"></span>
+<div class="section">
+<h2>2. 주가 흐름 — TradingView 일봉</h2>
+<div class="tv-wrap">
+<iframe src="https://www.tradingview.com/widgetembed/?symbol=NASDAQ%3AAMD&interval=D&style=1&theme=light&hidesidetoolbar=1&hidetoptoolbar=0&allow_symbol_change=0" allowfullscreen></iframe>
+</div>
+<p class="note">* 2025.05 $96.88 저점 → 2026.02 OpenAI 6GW 발표 후 본격 상승 → 2026.05.06 $430.60 역대 최고가 갱신. 1년간 +330% 상승. Q1'26 어닝 후 +16.85% 단일 일일 급등 (시간외 포함).</p>
+
+<h3 style="margin-top:1.2rem">주요 이벤트 연표</h3>
+<table>
+  <thead><tr><th>시기</th><th class="num">주가(근사)</th><th>이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2014.10</td><td class="num">$3.50</td><td>Lisa Su CEO 취임 (당시 매출 $5B, 적자, 거의 파산 직전)</td></tr>
+    <tr><td>2017.03</td><td class="num">$15</td><td>Zen 아키텍처 1세대 EPYC 출시, Intel 대비 첫 경쟁력 회복</td></tr>
+    <tr><td>2020.07</td><td class="num">$55</td><td>Zen 2 EPYC Rome 채택 본격화, 데이터센터 첫 흑자전환</td></tr>
+    <tr><td>2022.02</td><td class="num">$120</td><td>Xilinx 인수 완료 ($49B 주식교환), Embedded 세그먼트 신설</td></tr>
+    <tr><td>2023.06</td><td class="num">$110</td><td>MI300 시리즈 발표, AI GPU 첫 진입 선언 (NVDA H100 경쟁)</td></tr>
+    <tr><td>2024.03</td><td class="num">$210</td><td>MI300X 본격 출하, 1차 AI 랠리 — Microsoft·Meta 채택 발표</td></tr>
+    <tr><td>2025.04</td><td class="num">$96.88</td><td>52주 저점 — 중국 MI308 수출규제, AI GPU 점유율 12% 정체 우려</td></tr>
+    <tr><td>2025.08</td><td class="num">$160</td><td>ZT Systems $4.9B 인수 발표 — 랙스케일 시스템 사업 진입</td></tr>
+    <tr><td>2025.10</td><td class="num">$220</td><td><strong>OpenAI 6GW 메가딜 발표 — 워런트 1.6억주 구조</strong></td></tr>
+    <tr><td>2026.02.03</td><td class="num">$245</td><td>Q4'25 record $10.3B 매출 (+34% YoY), 2026 데이터센터 +60% 가이드</td></tr>
+    <tr><td>2026.02.24</td><td class="num">$280</td><td><strong>Meta 6GW 추가 메가딜 — 워런트 1.6억주, MI450 커스텀 GPU</strong></td></tr>
+    <tr><td>2026.04.01</td><td class="num">$330</td><td>Advancing AI 2026 — MI400 풀 라인업, MI500 1,000x 성능 공개</td></tr>
+    <tr class="hl"><td><strong>2026.05.06</strong></td><td class="num"><strong>$417.47</strong></td><td><strong>Q1'26 어닝 +38% YoY 서프라이즈, +16.85% 급등, 시총 $687B</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 3. 세그먼트 33분기 -->
+<span class="section-anchor" id="s3"></span>
+<div class="section">
+<h2>3. 세그먼트별 매출 추이 — 33분기 ($M)</h2>
+<div class="legend" id="segLegend">
+  <span class="legend-item" onclick="toggleSeg(0,this)"><span class="dot" style="background:#1D9E75"></span>Data Center</span>
+  <span class="legend-item" onclick="toggleSeg(1,this)"><span class="dot" style="background:#378ADD"></span>Client</span>
+  <span class="legend-item" onclick="toggleSeg(2,this)"><span class="dot" style="background:#D85A30"></span>Gaming</span>
+  <span class="legend-item" onclick="toggleSeg(3,this)"><span class="dot" style="background:#BA7517"></span>Embedded</span>
+  <span style="font-size:11px;color:#bbb;margin-left:4px">← 클릭하여 표시/숨김</span>
+</div>
+<div class="chart-box" style="height:460px"><canvas id="cSeg"></canvas></div>
+<p class="note">* 2018~2021 Q3 데이터는 구 세그먼트(Computing&amp;Graphics / EESC) → 신규 4세그먼트(2022 Q1~) 역산 추정치. 2022 Q1 Xilinx 인수로 Embedded 신설. Data Center는 2024 Q1부터 본격 폭증, Q1'26 $5.78B (+57% YoY)로 전체 매출의 56% 차지. Client&amp;Gaming은 2025년 통합 보고. Embedded는 산업/통신 사이클로 2024 저점 후 회복 중.</p>
+</div>
+
+<!-- 3-1. 세그먼트 구조 -->
+<span class="section-anchor" id="s3b"></span>
+<div class="section">
+<h2>3-1. 세그먼트 구조 및 제품</h2>
+<div class="seg-cards">
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">Data Center ★</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">56.4%</span> · Q1'26 $5,775M</div>
+    </div>
+    <div class="seg-card-desc">
+      AMD의 핵심 성장 엔진. 두 가지 축: <strong>EPYC 서버 CPU</strong> (Genoa/Turin 5세대 → Venice 6세대 2H'26 ramp) + <strong>Instinct AI GPU</strong> (MI300X → MI350/355X 2025 → MI450/Helios 2H'26). 클라우드/AI/엔터프라이즈/HPC 4개 채널 다변화. Q2'26 서버 CPU 매출만 +70% YoY 성장 가이드. AI 데이터센터 매출 2027년 "tens of billions" 가시성. OpenAI/Meta 각 6GW 메가딜로 5년 매출 락인.
+    </div>
+    <div class="seg-card-margin" style="color:#555">OPM <span style="color:#378ADD;font-weight:700">27.7%</span> · GM 60%+ · 회사 평균 상회</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">Client (PC CPU)</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">28.2%</span> · Q1'26 $2,885M</div>
+    </div>
+    <div class="seg-card-desc">
+      Ryzen 데스크톱·노트북 CPU. Intel 점유율 빼앗기 지속 — 2025년 Client 매출 +51% YoY (record). Q1'26 +26% YoY 강세. 상용 PC 시장 50% 이상 sell-through 성장. AI PC(Ryzen AI) 채택 본격화. 단, 2H'26 메모리 가격 상승으로 일부 둔화 우려 (CFO 가이드).
+    </div>
+    <div class="seg-card-margin" style="color:#555">OPM <span style="color:#378ADD;font-weight:700">~16%</span> · 점유율 확장 단계</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">Gaming</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">7.0%</span> · Q1'26 $720M</div>
+    </div>
+    <div class="seg-card-desc">
+      두 가지 축: <strong>Radeon GPU</strong> (RDNA 4) + <strong>Semi-custom</strong> (PS5/Xbox 콘솔 SoC). 2025년 +51% YoY 회복했으나 콘솔 사이클 후반부. 2026 H2 메모리 비용↑ + 부품 비용 상승으로 -20%+ 감소 가이드. 차세대 Xbox는 2027 ramp 예정 — 2026은 일시 둔화 구간.
+    </div>
+    <div class="seg-card-margin" style="color:#555">OPM <span style="color:#378ADD;font-weight:700">변동성 큼</span> · 콘솔 사이클 의존</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">Embedded (Xilinx)</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">8.5%</span> · Q1'26 $873M</div>
+    </div>
+    <div class="seg-card-desc">
+      2022 Xilinx 인수로 신설. FPGA(Versal/Zynq), 적응형 SoC. 산업 자동화·항공우주·통신·테스트장비. 2024 고객 재고조정 -33% → 2025 -3% 정체 → Q1'26 +6% YoY 회복 시작. 39% 영업마진 — 회사에서 가장 수익성 높음. 디자인 윈 모멘텀 지속.
+    </div>
+    <div class="seg-card-margin" style="color:#555">OPM <span style="color:#378ADD;font-weight:700">39%</span> · 가장 수익성 높은 세그먼트</div>
+  </div>
+</div>
+
+<table>
+  <thead><tr><th>세그먼트</th><th>대표 제품</th><th>주요 고객</th><th>Q1'26 매출 비중</th><th>YoY 성장</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Data Center</strong></td><td>EPYC 서버 CPU, Instinct AI GPU, Pensando DPU</td><td>Microsoft, Meta, OpenAI, Oracle, AWS, Google</td><td class="num"><strong>56.4%</strong></td><td class="num up2"><strong>+57.2%</strong></td></tr>
+    <tr><td><strong>Client</strong></td><td>Ryzen 데스크톱/모바일 CPU, Ryzen AI</td><td>HP, Dell, Lenovo, ASUS, Acer (PC OEM)</td><td class="num">28.2%</td><td class="num up2">+25.7%</td></tr>
+    <tr><td><strong>Gaming</strong></td><td>Radeon GPU, PS5/Xbox SoC (Semi-custom)</td><td>Sony, Microsoft, AIB 파트너</td><td class="num">7.0%</td><td class="num up2">+11.3%</td></tr>
+    <tr><td><strong>Embedded</strong></td><td>Versal FPGA, Zynq SoC, Alveo, 산업용 컨트롤러</td><td>Tier 1 산업/항공/통신/방산 OEM</td><td class="num">8.5%</td><td class="num up2">+6.1%</td></tr>
+  </tbody>
+</table>
+<p class="note">* 2025년부터 Client + Gaming 통합 보고 (단, 비즈니스 단위는 분리 공시). 본 리포트는 별도 표시. Data Center 비중 56% — AMD는 이제 데이터센터 회사.</p>
+</div>
+
+<!-- 3-2. 매출 + OPM -->
+<span class="section-anchor" id="s4"></span>
+<div class="section">
+<h2>3-2. 매출 &amp; Non-GAAP OPM 추이 — 33분기</h2>
+<div class="legend">
+  <span class="legend-static"><span class="dot" style="background:rgba(55,138,221,0.5)"></span>매출 ($M, 좌축)</span>
+  <span class="legend-static"><span class="dot" style="background:#1D9E75"></span>Non-GAAP OPM% (우축)</span>
+</div>
+<div class="chart-box" style="height:420px"><canvas id="cRev"></canvas></div>
+
+<h3 style="margin-top:1.2rem">연간 요약</h3>
+<table>
+  <thead><tr><th>연도</th><th class="num">매출</th><th class="num">YoY</th><th class="num">Non-GAAP GM</th><th class="num">Non-GAAP OPM</th><th class="num">Non-GAAP EPS</th><th>주요 이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2018</td><td class="num">$6.48B</td><td class="num up2">+23%</td><td class="num">38%</td><td class="num">8%</td><td class="num">$0.46</td><td>Zen 2 발표</td></tr>
+    <tr><td>2019</td><td class="num">$6.73B</td><td class="num up2">+4%</td><td class="num">43%</td><td class="num">10%</td><td class="num">$0.64</td><td>Zen 2 본격, 노트북 진입</td></tr>
+    <tr><td>2020</td><td class="num">$9.76B</td><td class="num up2">+45%</td><td class="num">45%</td><td class="num">22%</td><td class="num">$1.29</td><td>코로나 PC 수요 폭증</td></tr>
+    <tr><td>2021</td><td class="num">$16.43B</td><td class="num up2">+68%</td><td class="num">48%</td><td class="num">27%</td><td class="num">$2.79</td><td>EPYC Milan 출시, 사이클 정점</td></tr>
+    <tr><td>2022</td><td class="num">$23.60B</td><td class="num up2">+44%</td><td class="num">52%</td><td class="num">25%</td><td class="num">$3.50</td><td>Xilinx 인수 완료</td></tr>
+    <tr><td>2023</td><td class="num">$22.68B</td><td class="num dn">-4%</td><td class="num">50%</td><td class="num">22%</td><td class="num">$2.65</td><td>PC 침체, MI300 발표</td></tr>
+    <tr><td>2024</td><td class="num">$25.79B</td><td class="num up2">+14%</td><td class="num">53%</td><td class="num">23%</td><td class="num">$3.31</td><td>MI300X 본격, Data Center 첫 폭증</td></tr>
+    <tr><td>2025</td><td class="num">$32.74B</td><td class="num up2">+27%</td><td class="num">53%</td><td class="num">22%</td><td class="num">$3.93</td><td>OpenAI 6GW 발표, 시총 첫 $400B</td></tr>
+    <tr class="hl"><td><strong>2026 Q1</strong></td><td class="num"><strong>$10.25B</strong></td><td class="num up2"><strong>+38%</strong></td><td class="num up2"><strong>55%</strong></td><td class="num up2"><strong>24.8%</strong></td><td class="num up2"><strong>$1.37</strong></td><td><strong>Meta 6GW, Q2 가이드 +46%</strong></td></tr>
+  </tbody>
+</table>
+
+<h3 style="margin-top:1.2rem">분기별 실적 (12분기)</h3>
+<table>
+  <thead><tr><th>분기</th><th class="num">매출</th><th class="num">YoY</th><th class="num">QoQ</th><th class="num">GAAP GM</th><th class="num">Non-GAAP GM</th><th class="num">Non-GAAP OPM</th><th class="num">Non-GAAP EPS</th></tr></thead>
+  <tbody>
+    <tr><td>Q2'23</td><td class="num">$5,359M</td><td class="num dn">-18%</td><td class="num">+0%</td><td class="num">46%</td><td class="num">50%</td><td class="num">20%</td><td class="num">$0.58</td></tr>
+    <tr><td>Q3'23</td><td class="num">$5,800M</td><td class="num up2">+4%</td><td class="num up2">+8%</td><td class="num">47%</td><td class="num">51%</td><td class="num">22%</td><td class="num">$0.70</td></tr>
+    <tr><td>Q4'23</td><td class="num">$6,168M</td><td class="num up2">+10%</td><td class="num up2">+6%</td><td class="num">47%</td><td class="num">51%</td><td class="num">23%</td><td class="num">$0.77</td></tr>
+    <tr><td>Q1'24</td><td class="num">$5,473M</td><td class="num up2">+2%</td><td class="num dn">-11%</td><td class="num">47%</td><td class="num">52%</td><td class="num">21%</td><td class="num">$0.62</td></tr>
+    <tr><td>Q2'24</td><td class="num">$5,835M</td><td class="num up2">+9%</td><td class="num up2">+7%</td><td class="num">49%</td><td class="num">53%</td><td class="num">22%</td><td class="num">$0.69</td></tr>
+    <tr><td>Q3'24</td><td class="num">$6,819M</td><td class="num up2">+18%</td><td class="num up2">+17%</td><td class="num">50%</td><td class="num">53.6%</td><td class="num">25%</td><td class="num">$0.92</td></tr>
+    <tr><td>Q4'24</td><td class="num">$7,658M</td><td class="num up2">+24%</td><td class="num up2">+12%</td><td class="num">51%</td><td class="num">54%</td><td class="num">25%</td><td class="num">$1.09</td></tr>
+    <tr><td>Q1'25</td><td class="num">$7,438M</td><td class="num up2">+36%</td><td class="num dn">-3%</td><td class="num">50%</td><td class="num">54%</td><td class="num">23.8%</td><td class="num">$0.96</td></tr>
+    <tr><td>Q2'25</td><td class="num">$7,685M</td><td class="num up2">+32%</td><td class="num up2">+3%</td><td class="num">43%</td><td class="num">43%*</td><td class="num">11%</td><td class="num">$0.48</td></tr>
+    <tr><td>Q3'25</td><td class="num">$9,246M</td><td class="num up2">+36%</td><td class="num up2">+20%</td><td class="num">52%</td><td class="num">54%</td><td class="num">25%</td><td class="num">$1.20</td></tr>
+    <tr><td>Q4'25</td><td class="num">$10,270M</td><td class="num up2">+34%</td><td class="num up2">+11%</td><td class="num">54%</td><td class="num">57%</td><td class="num">28%</td><td class="num">$1.51</td></tr>
+    <tr class="hl"><td><strong>Q1'26</strong></td><td class="num"><strong>$10,253M</strong></td><td class="num up2"><strong>+37.8%</strong></td><td class="num">~0%</td><td class="num"><strong>53%</strong></td><td class="num up2"><strong>55.4%</strong></td><td class="num up2"><strong>24.8%</strong></td><td class="num up2"><strong>$1.37</strong></td></tr>
+  </tbody>
+</table>
+<p class="note">* Q2'25 GM 43% 하락은 중국 MI308 GPU 수출규제로 $800M 인벤토리 충전 1회성 비용. 정상화 후 Q3'25부터 회복. Q1'26 Non-GAAP GM 55.4% (+170bps YoY) — Data Center 믹스 우호적.</p>
+</div>
+
+<!-- 3-3. 세그먼트별 실적 테이블 (16분기) -->
+<span class="section-anchor" id="s5"></span>
+<div class="section">
+<h2>3-3. 세그먼트별 실적 테이블 (16분기)</h2>
+<div class="seg-table-wrap">
+<table class="seg-table">
+  <thead>
+    <tr>
+      <th rowspan="2" style="vertical-align:middle">분기</th>
+      <th colspan="2" class="seg-group center">Data Center</th>
+      <th colspan="2" class="seg-group center">Client</th>
+      <th colspan="2" class="seg-group center">Gaming</th>
+      <th colspan="2" class="seg-group center">Embedded</th>
+      <th rowspan="2" class="seg-group center" style="vertical-align:middle">Total</th>
+    </tr>
+    <tr>
+      <th class="seg-group center">$M</th><th class="seg-group center">%</th>
+      <th class="seg-group center">$M</th><th class="seg-group center">%</th>
+      <th class="seg-group center">$M</th><th class="seg-group center">%</th>
+      <th class="seg-group center">$M</th><th class="seg-group center">%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Q2'23</td><td class="num seg-border">$1,321</td><td class="num">24.7%</td><td class="num seg-border">$998</td><td class="num">18.6%</td><td class="num seg-border">$1,581</td><td class="num">29.5%</td><td class="num seg-border">$1,459</td><td class="num">27.2%</td><td class="num seg-border"><b>$5,359</b></td></tr>
+    <tr><td>Q3'23</td><td class="num seg-border">$1,598</td><td class="num">27.6%</td><td class="num seg-border">$1,453</td><td class="num">25.0%</td><td class="num seg-border">$1,506</td><td class="num">26.0%</td><td class="num seg-border">$1,243</td><td class="num">21.4%</td><td class="num seg-border"><b>$5,800</b></td></tr>
+    <tr><td>Q4'23</td><td class="num seg-border">$2,282</td><td class="num">37.0%</td><td class="num seg-border">$1,461</td><td class="num">23.7%</td><td class="num seg-border">$1,368</td><td class="num">22.2%</td><td class="num seg-border">$1,057</td><td class="num">17.1%</td><td class="num seg-border"><b>$6,168</b></td></tr>
+    <tr><td>Q1'24</td><td class="num seg-border">$2,337</td><td class="num">42.7%</td><td class="num seg-border">$1,368</td><td class="num">25.0%</td><td class="num seg-border">$922</td><td class="num">16.8%</td><td class="num seg-border">$846</td><td class="num">15.5%</td><td class="num seg-border"><b>$5,473</b></td></tr>
+    <tr><td>Q2'24</td><td class="num seg-border">$2,834</td><td class="num">48.6%</td><td class="num seg-border">$1,492</td><td class="num">25.6%</td><td class="num seg-border">$648</td><td class="num">11.1%</td><td class="num seg-border">$861</td><td class="num">14.7%</td><td class="num seg-border"><b>$5,835</b></td></tr>
+    <tr><td>Q3'24</td><td class="num seg-border">$3,549</td><td class="num">52.0%</td><td class="num seg-border">$1,881</td><td class="num">27.6%</td><td class="num seg-border">$462</td><td class="num">6.8%</td><td class="num seg-border">$927</td><td class="num">13.6%</td><td class="num seg-border"><b>$6,819</b></td></tr>
+    <tr><td>Q4'24</td><td class="num seg-border">$3,859</td><td class="num up2">50.4%</td><td class="num seg-border">$2,313</td><td class="num">30.2%</td><td class="num seg-border">$563</td><td class="num">7.4%</td><td class="num seg-border">$923</td><td class="num">12.0%</td><td class="num seg-border"><b>$7,658</b></td></tr>
+    <tr><td>Q1'25</td><td class="num seg-border">$3,674</td><td class="num">49.4%</td><td class="num seg-border">$2,294</td><td class="num">30.8%</td><td class="num seg-border">$647</td><td class="num">8.7%</td><td class="num seg-border">$823</td><td class="num">11.1%</td><td class="num seg-border"><b>$7,438</b></td></tr>
+    <tr><td>Q2'25</td><td class="num seg-border">$3,240</td><td class="num">42.2%</td><td class="num seg-border">$2,499</td><td class="num up2">32.5%</td><td class="num seg-border">$1,122</td><td class="num">14.6%</td><td class="num seg-border">$824</td><td class="num">10.7%</td><td class="num seg-border"><b>$7,685</b></td></tr>
+    <tr><td>Q3'25</td><td class="num seg-border">$4,300</td><td class="num">46.5%</td><td class="num seg-border">$2,800</td><td class="num">30.3%</td><td class="num seg-border">$1,300</td><td class="num">14.1%</td><td class="num seg-border">$857</td><td class="num">9.3%</td><td class="num seg-border"><b>$9,246</b></td></tr>
+    <tr><td>Q4'25</td><td class="num seg-border">$5,380</td><td class="num up2">52.4%</td><td class="num seg-border">$3,097</td><td class="num">30.2%</td><td class="num seg-border">$843</td><td class="num">8.2%</td><td class="num seg-border">$950</td><td class="num">9.2%</td><td class="num seg-border"><b>$10,270</b></td></tr>
+    <tr class="hl"><td><b>Q1'26</b></td><td class="num seg-border"><b>$5,775</b></td><td class="num up2"><b>56.4%</b></td><td class="num seg-border">$2,885</td><td class="num">28.2%</td><td class="num seg-border">$720</td><td class="num">7.0%</td><td class="num seg-border">$873</td><td class="num">8.5%</td><td class="num seg-border"><b>$10,253</b></td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">* Data Center 비중 27.6%(Q3'23) → 56.4%(Q1'26)로 2배 확대. AMD는 더 이상 PC 회사가 아닌 데이터센터 회사. Q2'25 비중 일시 하락은 중국 MI308 수출규제 영향 — 그러나 Q3'25부터 즉시 재가속. Embedded는 Xilinx 인수(2022 Q1) 후 27% 정점 → 8.5% 정상화 (전체 매출 폭증으로 비중만 축소, 절대 매출은 안정).</p>
+</div>
+
+<!-- 4. 재무제표 -->
+<span class="section-anchor" id="s6"></span>
+<div class="section">
+<h2>4. 재무제표 개요</h2>
+<table>
+  <thead><tr><th>항목 (USD)</th><th class="num">2023</th><th class="num">2024</th><th class="num">2025</th><th class="num">Q1'26</th></tr></thead>
+  <tbody>
+    <tr><td>매출</td><td class="num">$22.68B</td><td class="num">$25.79B</td><td class="num">$32.74B</td><td class="num">$10.25B</td></tr>
+    <tr><td>매출총이익 (Non-GAAP)</td><td class="num">$11.4B</td><td class="num">$13.7B</td><td class="num">$17.4B</td><td class="num">$5.7B</td></tr>
+    <tr><td>GAAP 영업이익</td><td class="num">$401M</td><td class="num">$1.92B</td><td class="num">$3.5B*</td><td class="num">$1.5B</td></tr>
+    <tr><td>Non-GAAP 영업이익</td><td class="num">$5.0B</td><td class="num">$5.9B</td><td class="num">$7.2B</td><td class="num">$2.54B</td></tr>
+    <tr><td>GAAP 순이익</td><td class="num">$854M</td><td class="num">$1.64B</td><td class="num">$2.8B*</td><td class="num">$1.4B</td></tr>
+    <tr><td>Non-GAAP EPS (희석)</td><td class="num">$2.65</td><td class="num">$3.31</td><td class="num">$3.93</td><td class="num">$1.37</td></tr>
+    <tr><td>영업현금흐름</td><td class="num">$1.67B</td><td class="num">$3.04B</td><td class="num">$5.2B</td><td class="num">$3.0B</td></tr>
+    <tr><td>FCF</td><td class="num">$1.12B</td><td class="num">$2.42B</td><td class="num">$4.4B</td><td class="num">$2.6B</td></tr>
+    <tr><td>현금+단기투자</td><td class="num">$5.77B</td><td class="num">$5.13B</td><td class="num">$7.3B</td><td class="num">$12.3B</td></tr>
+    <tr><td>총자산</td><td class="num">$67.6B</td><td class="num">$69.2B</td><td class="num">$76.5B</td><td class="num">~$80B</td></tr>
+    <tr><td>총부채</td><td class="num">$11.8B</td><td class="num">$11.6B</td><td class="num">$13.0B</td><td class="num">~$14B</td></tr>
+    <tr><td>자본총계</td><td class="num">$55.8B</td><td class="num">$57.6B</td><td class="num">$63.5B</td><td class="num">~$66B</td></tr>
+  </tbody>
+</table>
+<p class="note">* 2025년 Q4 실적은 중국 GPU 일회성 매출 $390M + 인벤토리 충전 환입 $306M 포함. Q1'26은 OpenAI/Meta 워런트 비현금 이슈 누적 중. 발행주식 1.63B주, 부채/자본비율 ~21% 양호.</p>
+<p class="note">⚠️ Q1'26 자사주 매입 1.1M주, $221M 환원. 매입 권한 잔여 $9.2B. Xilinx 인수 후 무형자산 상각 분기당 ~$300M 지속 → Non-GAAP 차이 큰 이유. 워런트(OpenAI 1.6억주 + Meta 1.6억주, 합계 3.2억주, 발행주식 대비 ~20%)는 마일스톤 달성 시 점진 베스팅 — 잠재적 희석 요인.</p>
+</div>
+
+<!-- 5. 핵심 투자아이디어 -->
+<span class="section-anchor" id="s7"></span>
+<div class="section">
+<h2>5. 핵심 투자아이디어</h2>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">🎯</span>
+    <span class="thesis-tag">Thesis #1</span>
+    <div class="thesis-title">AMD는 더 이상 "NVDA의 2등"이 아닌 "AI 인프라 빅2 체제의 명시적 파트너"</div>
+  </div>
+  <div class="thesis-body">
+    <p>2025.10 OpenAI와의 <span class="hl-blue">6GW 메가딜</span>, 2026.02 Meta와의 <span class="hl-blue">6GW 추가 메가딜</span>로 AMD는 단순 GPU 판매사에서 <strong>하이퍼스케일러의 멀티년·멀티세대 핵심 인프라 파트너</strong>로 격상됐다. 두 메가딜의 진짜 의미는 <strong>워런트 구조</strong>: AMD가 OpenAI에 1.6억주, Meta에 1.6억주 워런트 발행 — 합계 <span class="hl-red">3.2억주(발행주식의 ~20% 잠재 희석)</span>.</p>
+    <p>이는 AMD 주가 상승이 곧 양 고객사의 직접 이익이 되도록 인터레스트를 정렬한 구조로, <span class="hl-green">5년+ 락인</span>을 의미한다. CFO Hu: 기가와트당 데이터센터 AI 매출이 <strong>"significant double-digit billions of dollars per gigawatt"</strong> → 12GW = 잠재 <span class="hl-green">$150~250B 누적 매출 가시성</span>.</p>
+  </div>
+</div>
+
+<div class="thesis-box green">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">⚡</span>
+    <span class="thesis-tag">Thesis #2</span>
+    <div class="thesis-title">EPYC 서버 CPU의 가속 점유율 확장 — Q2 +70% YoY</div>
+  </div>
+  <div class="thesis-body">
+    <p>AI GPU에 가려졌지만 <strong>EPYC가 여전히 가장 수익성 높은 사업</strong>. Q2'26 가이던스: <span class="hl-green">서버 CPU 매출 +70% YoY 성장</span>. AI 인프라가 늘어날수록 GPU 호스트 CPU 수요가 함께 증가 — Lisa Su는 이를 <strong>"agentic AI inference가 고성능 CPU/Accelerator 동반 성장 견인"</strong>으로 설명.</p>
+    <p>2H'26 ramp되는 6세대 EPYC <strong>Venice</strong>는 TSMC <span class="hl-blue">2nm 공정 첫 적용</span>. Intel·ARM 대비 더 명확한 기술 우위 점할 전망. Meta 6GW 딜에 Venice CPU도 lead customer 포함됨.</p>
+  </div>
+</div>
+
+<div class="thesis-box orange">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">⚠️</span>
+    <span class="thesis-tag">Thesis #3</span>
+    <div class="thesis-title">다변화된 매출 vs 시장의 단일 사이클 우려</div>
+  </div>
+  <div class="thesis-body">
+    <p>AMD는 <strong>Data Center / Client / Gaming / Embedded 4세그먼트</strong> 보유 — NVDA(95%+ 데이터센터)보다 사이클 변동성 낮음. <span class="hl-green">Embedded 39% 영업마진</span>, Client 점유율 확장 단계 — 안정적 캐시 발전소.</p>
+    <p>핵심 단기 리스크: <span class="hl-red">MI450 ramp 시 GM 희석</span>(CFO 명시: 회사 평균 이하), <span class="hl-red">중국 수출규제 잔여 영향</span>(Q1'26 $100M만 반영, 추가 가이드 ❌), <span class="hl-red">워런트 희석 ~20%</span>. 그러나 Q1'26 <span class="hl-green">Non-GAAP GM 55.4%(+170bps YoY)</span> 확장으로 마진 우려는 이미 시장에서 일부 해소 — 주가 +16.85% 단일일일 급등이 그 증거.</p>
+  </div>
+</div>
+
+<!-- 5-1. 핵심 변동 요인 -->
+<span class="section-anchor" id="s8"></span>
+<div class="section">
+<h2>5-1. 핵심 변동 요인</h2>
+<table>
+  <thead><tr><th>구분</th><th>요인</th><th class="center">방향</th><th>설명</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>외부</strong></td><td>AI Capex 슈퍼사이클</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>Hyperscaler 5사 합계 2026 Capex $400B+ 가시. AMD MI450 ramp 시점과 일치</td></tr>
+    <tr><td>HBM4 메모리 공급</td><td class="center"><span class="badge badge-neu">중립 ●</span></td><td>Samsung·SK Hynix·Micron 3사 공급 능력. AMD는 다중 벤더 사전 락인 — 공급 우려 ↓</td></tr>
+    <tr><td>중국 MI308 수출규제</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>Q1'26 $100M만 반영, Q2~ 가이드 0. 연간 잠재 $1B+ 매출 손실 가능</td></tr>
+    <tr><td>NVDA 경쟁 (CUDA 생태계)</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>NVDA Rubin/Blackwell Ultra가 절대 성능 리더십 유지. AMD ROCm 격차 단축 중</td></tr>
+    <tr><td>Hyperscaler 자체 ASIC</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>Google TPU, AWS Trainium, Meta MTIA 등 자체 칩 — 그러나 Meta 6GW = 자체 칩 한계 인정</td></tr>
+    <tr><td>x86 vs ARM 경쟁</td><td class="center"><span class="badge badge-neu">중립 ●</span></td><td>AWS Graviton, NVDA Grace 등 ARM 침투. EPYC Venice는 2nm로 대응. AI Compute Extensions(Intel 협력)</td></tr>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>내부</strong></td><td>OpenAI/Meta 6GW 실행</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>2H'26 1GW 첫 출하 — 양사 모두 워런트 구조로 5년 락인. 2027년 본격 ramp</td></tr>
+    <tr><td>MI450/Helios 확장</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>Lisa Su: "lead customer forecasts now above initial 2027 plans" — 추가 멀티-GW 기회</td></tr>
+    <tr><td>EPYC Venice 2nm 출시</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>2H'26 ramp. TSMC 2nm 첫 적용. 대형 고객 즉시 도입 의향</td></tr>
+    <tr><td>워런트 희석 (3.2억주)</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>OpenAI+Meta 합계 ~20% 잠재 희석. Meta 워런트 행사가 $600 — 주가 도달 시 추가 발행</td></tr>
+    <tr><td>MI450 GM 희석</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>CFO: MI450 GM 회사 평균 이하. 2H'26~2027 ramp 시 일시적 GM 압박. 장기 55~58% 레인지 유지</td></tr>
+    <tr><td>ROCm 소프트웨어 성숙도</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>Lisa Su: 워크로드 최적화 시간 "수개월 → 며칠"로 단축. Gemma 4·Qwen·Kimi day-zero 지원</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 5-2. 컨콜 트래킹 -->
+<span class="section-anchor" id="s9"></span>
+<div class="section">
+<h2>5-2. 컨퍼런스콜 트래킹 (최근 12분기)</h2>
+<table class="cc-table">
+  <colgroup>
+    <col style="width:50px"><col><col><col><col>
+  </colgroup>
+  <thead>
+    <tr><th class="year-col">년</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="year-label">2023</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'23</div><div class="cc-msg">매출 $5.4B (-9% YoY). 3개 세그먼트 -10%~-65%. PC 사이클 침체. EPYC Genoa 본격 출하</div><div class="cc-guide">가이드 $5.3B → 실제 $5.35B <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'23</div><div class="cc-msg">$5.36B. Data Center 둔화 우려에도 EPYC 점유율 확장. MI300 6월 발표</div><div class="cc-guide">가이드 $5.3B → 실제 $5.36B <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'23</div><div class="cc-msg">$5.8B (+4% YoY). MI300 1Q'24 출하 가시성. Embedded 둔화 본격</div><div class="cc-guide">가이드 $5.7B → 실제 $5.8B <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'23</div><div class="cc-msg">$6.2B (+10% YoY). MI300X 출하 시작. 2024 데이터센터 GPU 매출 $2B+ 가이드</div><div class="cc-guide">가이드 $6.1B → 실제 $6.17B <span class="cc-hit">✅</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2024</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'24</div><div class="cc-msg">$5.47B (+2%). DC GPU 가이드 $4B로 상향. Microsoft·Meta MI300X 채택 발표</div><div class="cc-guide">가이드 $5.4B → 실제 $5.47B <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'24</div><div class="cc-msg">$5.84B (+9%). MI300X DC GPU 매출 $1B+ 분기 첫 돌파. AI GPU 가이드 $4.5B</div><div class="cc-guide">가이드 $5.7B → 실제 $5.84B <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'24</div><div class="cc-msg">$6.82B (+18%). DC GPU 가이드 $5B. MI325X 4Q 출하 발표</div><div class="cc-guide">가이드 $6.7B → 실제 $6.82B <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'24</div><div class="cc-msg">$7.66B (+24%). 2024 DC GPU 매출 $5B 달성. MI350 시리즈 1H'25 ramp</div><div class="cc-guide">가이드 $7.5B → 실제 $7.66B <span class="cc-hit">✅</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2025</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'25</div><div class="cc-msg">$7.44B (+36% YoY). DC $3.67B. MI355 ramp 정상. ZT Systems 인수 검토 중</div><div class="cc-guide">가이드 $7.1B → 실제 $7.44B <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'25</div><div class="cc-msg">$7.69B (+32%). 중국 MI308 수출규제 $800M 인벤토리 충전. GM 일시 43%로 폭락</div><div class="cc-guide">가이드 $7.4B → 실제 $7.69B <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'25</div><div class="cc-msg">$9.25B (+36%). DC 회복. ZT Systems $4.9B 인수 완료. <strong>OpenAI 6GW 메가딜 발표</strong></div><div class="cc-guide">가이드 $8.7B → 실제 $9.25B <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'25</div><div class="cc-msg">$10.27B record (+34%). 2026 DC 성장 60%+ 가이드. MI450/Helios 2H'26 ramp 확정</div><div class="cc-guide">가이드 $7.5B(보수) → 실제 $10.27B <span class="cc-hit">✅</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2026</td>
+      <td><div class="cc-cell cc-latest"><div class="cc-quarter">Q1'26 ★ 최신</div><div class="cc-msg"><strong>$10.25B (+38%)</strong>. DC $5.78B (+57%). <strong>Meta 6GW 추가 메가딜</strong>. 서버 CPU Q2 +70% YoY 가이드</div><div class="cc-guide">가이드 $9.8B → 실제 $10.25B <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'26</div><div class="cc-msg">예정: 2026.08.05</div><div class="cc-guide">가이드 $11.2B ±$300M (+46% YoY)</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'26</div><div class="cc-msg">예정: 2026.11</div><div class="cc-guide">MI450/Helios 첫 출하 시점</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'26</div><div class="cc-msg">예정: 2027.02</div><div class="cc-guide">OpenAI/Meta 1GW deployment 첫 매출</div></div></td>
+    </tr>
+  </tbody>
+</table>
+<p class="note">* AMD는 12분기 연속 가이던스 모두 달성/초과. 2025년 패턴: 가이드 보수적 → 실제 +5~10% 초과. 2026 Q2 가이드 $11.2B는 컨센서스 $9.84B 대비 +14% 강력. Q4'25 → Q1'26은 매출 flat이지만 GM 55%+ 안착이 핵심 — 시장은 이를 "데이터센터 믹스 강화"로 해석하며 주가 +16.85% 급등.</p>
+</div>
+
+<!-- 5-3. Q1'26 심층 -->
+<span class="section-anchor" id="s10"></span>
+<div class="section">
+<h2>5-3. Q1'26 컨콜 심층 정리 (2026.05.05)</h2>
+<div class="prose">
+  <p><strong>발언자</strong>: Lisa Su (Chair &amp; CEO) · Jean Hu (CFO) · Mitch Haws (VP IR)</p>
+  <p><strong>실적</strong>: 매출 <strong>$10.25B</strong> (+37.8% YoY, flat QoQ, 컨센 $9.85B 대비 +4%) / Non-GAAP EPS <strong>$1.37</strong> (컨센 $1.27 대비 +8%) / Non-GAAP GM <strong>55.4%</strong> (+170bps YoY) / FCF <strong>$2.6B</strong> record (+260% YoY) / 현금+단기투자 $12.3B / 자사주 매입 $221M (1.1M주)</p>
+  <p><strong>시장 반응</strong>: 발표 후 시간외 +13%, 다음 거래일 +16.85% (단일일일 시총 $97B 증가). 시총 $687B 도달, S&amp;P 500 시가총액 7위권 진입. KeyBanc PT $530, Goldman $450 업그레이드, Stifel $450.</p>
+</div>
+<h3 style="margin-top:1.2rem">컨콜 핵심 메시지 5가지</h3>
+<div class="cc-sticker-box">
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">1</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">Data Center <span class="hl-pos">+57% YoY 폭발</span> — AMD는 데이터센터 회사</div>
+      <div class="cc-sticker-desc"><span class="hl-pos">$5.78B record</span>. EPYC 강세 + Instinct GPU ramp. 매출 비중 <span class="hl-pos">56.4%</span> — 사상 첫 데이터센터가 매출의 절반 이상. Lisa Su: <em>"AI 인프라 수요 가속이 매출과 이익 성장의 주된 동력"</em></div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">2</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">Meta <span class="hl-pos">6GW 메가딜</span> — OpenAI에 이어 2번째 hyperscaler 딜</div>
+      <div class="cc-sticker-desc">2026.02.24 발표. 5년간 6GW 배포. 첫 1GW <strong>2H'26 ramp</strong>. <span class="hl-neg">워런트 1.6억주</span> (베스팅 trigger 주가 $600). 커스텀 MI450 + EPYC Venice + Helios 랙. CFO Hu: 기가와트당 매출 <em>"significant double-digit billions"</em> → 12GW = <span class="hl-pos">$150~250B 잠재</span></div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">3</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">서버 CPU Q2'26 <span class="hl-pos">+70% YoY 가이드</span></div>
+      <div class="cc-sticker-desc">EPYC가 AI GPU에 가려졌지만 여전히 가속 중. Lisa Su: <em>agentic AI inference가 CPU + Accelerator 동반 수요 견인</em>. 6세대 EPYC <strong>Venice 2nm</strong>는 <span class="hl-pos">2H'26 ramp</span> — 대형 고객 <em>"즉시 도입 의향"</em></div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">4</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">MI450/Helios <span class="hl-pos">고객 forecast 초기 계획 상회</span></div>
+      <div class="cc-sticker-desc">Lisa Su: <em>"lead customer forecasts now above initial 2027 plans"</em>. 추가 <span class="hl-pos">멀티-GW 기회</span> 진행 중. 2027 데이터센터 AI 매출 <span class="hl-pos">"tens of billions"</span> 가시성. <span class="hl-pos">80%+ CAGR 목표 초과</span> 가능성</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">5</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">2026 H2 Gaming <span class="hl-neg">-20%+ 약세 가이드</span></div>
+      <div class="cc-sticker-desc">CFO Hu: <em><span class="hl-neg">메모리·부품 가격 상승</span>으로 콘솔 SoC 수요 둔화</em>. Client도 일부 영향. 차세대 Xbox는 2027 ramp. 2026 H2 <span class="hl-neg">일시적 약세 구간</span> — <strong>Data Center가 충분히 상쇄</strong></div>
+    </div>
+  </div>
+</div>
+
+<h3 style="margin-top:1.2rem">Q2 2026 가이던스</h3>
+<table>
+  <thead><tr><th>지표</th><th class="num">Q1'26 실제</th><th class="num">Q2'26 가이던스</th><th class="num">컨센서스</th></tr></thead>
+  <tbody>
+    <tr><td>Revenue</td><td class="num">$10.25B</td><td class="num hl"><strong>$11.2B ±$300M (+46% YoY, +9% QoQ)</strong></td><td class="num">$9.84B</td></tr>
+    <tr><td>Non-GAAP GM</td><td class="num">55.4%</td><td class="num hl"><strong>~56% (+60bps QoQ)</strong></td><td class="num">~55%</td></tr>
+    <tr><td>Non-GAAP Opex</td><td class="num">~$2.5B</td><td class="num hl"><strong>~$2.65B</strong></td><td class="num">—</td></tr>
+    <tr><td>Non-GAAP EPS</td><td class="num">$1.37</td><td class="num hl"><strong>~$1.55 (시사)</strong></td><td class="num">~$1.30</td></tr>
+    <tr><td>Server CPU 매출</td><td class="num">N/A</td><td class="num">+70% YoY 명시</td><td class="num">—</td></tr>
+    <tr><td>중국 MI308 매출</td><td class="num">$100M</td><td class="num hl"><strong>$0 (가이드 미반영)</strong></td><td class="num">—</td></tr>
+  </tbody>
+</table>
+<p class="note">* Q2'26 가이드 $11.2B는 컨센서스 $9.84B 대비 +14% 초과 — Wall Street 사실상 unreachable로 평가. 12분기 연속 가이드 달성 패턴 유지 시 실제 $11.5B+ 가능성. 분석가 PT 일제 상향: KeyBanc $530, Stifel $450, Goldman $450, Citi $470, BofA $500. 시총 $700B+ 도달 가능성 거론.</p>
+
+<h3 style="margin-top:1.5rem">📊 IR 자료 핵심 슬라이드 (원본 캡쳐 — 재가공 없음)</h3>
+<div class="ir-slide">
+  <div class="ir-slide-frame">
+    <div class="ir-slide-num">📊 IR Slide — Q1 2026 Earnings Presentation, Page 14</div>
+    <div class="ir-slide-title">AMD 공식 Q1'26 Earnings — Data Center Segment Strategic Highlights</div>
+  </div>
+  <div class="ir-slide-img-wrap">
+    <iframe src="https://d1io3yog0oux5.cloudfront.net/_530b22e8aa311a8d1011a56b31890d4b/amd/db/841/9232/presentation/AMD+Q1'26+Earnings+Slides+Final.pdf#page=14" title="AMD Q1 2026 Earnings Slides Page 14"></iframe>
+  </div>
+  <div class="ir-slide-caption">📌 <strong>Q1'26 Earnings Slide #14 — Data Center Highlights</strong>. Q1 매출 $5.8B (+57% YoY), 영업이익 $1.6B (+72%). Meta 6GW 메가딜 + Samsung HBM4 협력 + AWS·Google·Azure·Tencent 신규 EPYC 인스턴스 + MLPerf MI355X leadership 결과. <a href="https://d1io3yog0oux5.cloudfront.net/_530b22e8aa311a8d1011a56b31890d4b/amd/db/841/9232/presentation/AMD+Q1'26+Earnings+Slides+Final.pdf" target="_blank" style="color:#378ADD;text-decoration:underline">PDF 직접 다운로드</a></div>
+</div>
+</div>
+
+<!-- 5-4. 시나리오 -->
+<span class="section-anchor" id="s11"></span>
+<div class="section">
+<h2>5-4. 강세 / 약세 시나리오</h2>
+<div class="scenario-stack">
+  <div class="scenario-box s-bull">
+    <div class="scenario-title">🟢 강세 시나리오</div>
+    <div class="s-item"><div class="s-case">OpenAI/Meta 6GW 메가딜 무사 실행</div><div class="s-sub">2H'26 첫 1GW deployment 성공 시 2027~2031 매출 락인. 12GW 누적 = $150~250B 잠재 매출. AMD 5년간 가장 안전한 AI 베팅</div></div>
+    <div class="s-item"><div class="s-case">EPYC Venice 2nm 점유율 가속</div><div class="s-sub">서버 CPU Q2 +70% YoY → 2026 연간 +50%+. Intel/ARM 대비 명확한 기술 우위. 2027 서버 CPU 시장점유율 50%+ 첫 돌파 가능</div></div>
+    <div class="s-item"><div class="s-case">MI450 추가 멀티-GW 고객 발굴</div><div class="s-sub">Lisa Su: 추가 멀티-GW 기회 진행 중. Microsoft, Google, Oracle 추가 메가딜 가능성. 2027 DC AI 매출 $20~30B 가시성</div></div>
+    <div class="s-item"><div class="s-case">Non-GAAP GM 57~58% 안착</div><div class="s-sub">Data Center 믹스 + 서버 CPU 강세 + Embedded 회복. 장기 55~58% 레인지 상단 도달. EPS $7+ (2027) 가능</div></div>
+    <div class="s-item"><div class="s-case">Embedded 39% OPM 회복 사이클</div><div class="s-sub">2024 저점 후 회복 시작. 산업/항공/방산 디자인 윈 모멘텀. 2027 Embedded 매출 $4B+ 가능. 가장 수익성 높은 세그먼트</div></div>
+    <div class="s-item"><div class="s-case">$20+ EPS 장기 목표 달성</div><div class="s-sub">Financial Analyst Day 35% CAGR / $20+ EPS 3~5년 목표. 현재 PE 52(forward) → 5년 후 EPS $20 시 시총 $1.5T+ 가능</div></div>
+  </div>
+  <div class="scenario-box s-bear">
+    <div class="scenario-title">🔴 약세 시나리오</div>
+    <div class="s-item"><div class="s-case">AI Capex 사이클 조정 (2027 침체)</div><div class="s-sub">Hyperscaler Capex 삭감 시 OpenAI/Meta 베스팅 지연. 데이터센터 매출 -30%+ 가능. 워런트 행사 지연으로 희석 우려는 ↓</div></div>
+    <div class="s-item"><div class="s-case">NVDA Rubin/B300 우위 확대</div><div class="s-sub">CUDA 생태계 격차 유지. AMD ROCm 단축 노력에도 절대 성능 리더십 ❌. 점유율 12~15%대 정체. 시장은 NVDA 100배 PE 정당화</div></div>
+    <div class="s-item"><div class="s-case">중국 수출규제 완전 차단</div><div class="s-sub">Q1'26 $100M → Q2~ $0. 연간 잠재 $1B+ 매출 손실 확정. 추가 규제 강화 시 EPYC 일부 영향 가능</div></div>
+    <div class="s-item"><div class="s-case">Hyperscaler ASIC 자체 칩 가속</div><div class="s-sub">Google TPU v6, AWS Trainium 3, Meta MTIA — Meta 6GW에도 불구하고 자체 칩 비중 ↑. Top 4 hyperscaler 의존도 ↓ 시 위험</div></div>
+    <div class="s-item"><div class="s-case">MI450 GM 희석 충격</div><div class="s-sub">CFO 명시: MI450 GM 회사 평균 이하. 2H'26 ramp 시 GM 53~54% 후퇴 가능. 시장 GM 56%+ 기대치 미달 시 단기 조정</div></div>
+    <div class="s-item"><div class="s-case">워런트 3.2억주 희석 가시화</div><div class="s-sub">OpenAI+Meta 합계 ~20% 잠재 희석. Meta 워런트 $600 trigger — 주가 도달 시 즉시 발행. EPS dilution 본격 반영 시 PE 압박</div></div>
+  </div>
+</div>
+</div>
+
+<!-- 6. Worth Watching -->
+<span class="section-anchor" id="s12"></span>
+<div class="section">
+<h2>6. Worth Watching Events</h2>
+<div class="ww-sticker-box">
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.06</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Computex 2026 — Lisa Su 키노트</div>
+      <div class="ww-sticker-point">Venice EPYC 라이브 데모. AI PC Ryzen AI 5세대. AMD-Intel AI Compute Extensions 진척</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.08.05</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q2'26 실적 발표 (예상)</div>
+      <div class="ww-sticker-point">가이드 $11.2B 달성 여부. 서버 CPU +70% YoY 검증. Non-GAAP GM 56%+ 안착 여부</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026 Q3</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">MI450 시리즈 첫 출하 (Helios 랙)</div>
+      <div class="ww-sticker-point">OpenAI/Meta 1GW deployment 시작. Custom MI450 (Meta variant) 양산. ROCm 7 메이저 업데이트</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026 H2</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">EPYC Venice (6세대) 2nm ramp</div>
+      <div class="ww-sticker-point">TSMC 2nm 첫 적용. AMD 칩렛 아키텍처 → 4세대. 대형 고객 즉시 도입 의향 (Lisa Su)</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.10</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Oracle 50,000 MI450 클러스터 deployment</div>
+      <div class="ww-sticker-point">Q3'26 AI 슈퍼클러스터 가동. Oracle Cloud AMD 본격 채택. Microsoft Azure 추가 시 도미노 효과</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.11</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q3'26 실적 + 2027 가이던스 시사</div>
+      <div class="ww-sticker-point">2027 데이터센터 AI 매출 "tens of billions" 구체화. MI450 ramp 정량 가이드</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027.02</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q4'26 실적 + 2026 연간 결산</div>
+      <div class="ww-sticker-point">2026 연간 매출 $40B+ 달성 여부. OpenAI/Meta 첫 매출 인식 분기. 2027 가이드 공식</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027 H1</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">차세대 Xbox / PlayStation Pro 발표</div>
+      <div class="ww-sticker-point">Gaming 세그먼트 회복 사이클 시작. 2026 약세 구간 종료. Semi-custom 매출 본격 재성장</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">MI500 (Verano) 시리즈 출시</div>
+      <div class="ww-sticker-point">Lisa Su CES 2026: "1,000x 성능 향상". HBM5 적용. UALink 표준 본격 채택</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2028</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">OpenAI/Meta 6GW 누적 deployment 50%+</div>
+      <div class="ww-sticker-point">워런트 베스팅 트랜치 진행. AMD 주가 $600 도달 시 Meta 워런트 행사 가속. 시총 $1T+ 가시성</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 7. 데이터 출처 -->
+<span class="section-anchor" id="s13"></span>
+<div class="section">
+<h2>7. 데이터 출처</h2>
+<div class="source-box">
+  <ul style="padding-left:1.2rem">
+    <li>AMD SEC 8-K (분기·연간 실적 보도자료), 10-Q/10-K 2018~2026</li>
+    <li>Q1'26 Earnings Press Release (2026.05.05), Q1'26 CFO Commentary</li>
+    <li>Q1'26 Earnings Conference Call Transcript (Motley Fool, Yahoo Finance, MarketScreener, AOL)</li>
+    <li>Q4'25 (2026.02.03), Q3'25 (2025.10.28), Q2'25, Q1'25 Earnings Conference Calls</li>
+    <li>2025.11 AMD Financial Analyst Day (35% CAGR, $20+ EPS 목표)</li>
+    <li>2026.02.24 Meta 6GW 메가딜 발표 (AMD-Meta Joint Press Release)</li>
+    <li>2025.10.06 OpenAI 6GW 메가딜 발표 (AMD-OpenAI Joint Announcement)</li>
+    <li>2026.04 Advancing AI 2026 Keynote (MI400 풀 라인업, MI500 1,000x)</li>
+    <li>주가·시총·EPS 데이터: TradingView, Yahoo Finance, CNBC, Robinhood, Macrotrends (2026.05.06 기준)</li>
+    <li>분석 기사: CNBC, Bloomberg, Yahoo Finance, Investing.com, Tradingkey, Stocktitan</li>
+    <li>환율: 2026.05.07 USD/KRW 1,448원 (Trading Economics)</li>
+    <li>분석일: 2026년 5월 7일</li>
+  </ul>
+  <p style="margin-top:8px;color:#bbb">⚠️ Non-GAAP 지표는 SBC·Xilinx 무형자산 상각 등 제외 수치. 투자 판단 시 GAAP 기준 병행 확인 권장. 2018~2021 일부 분기 세그먼트 데이터는 구 Computing&amp;Graphics/EESC 체계 → 신규 4세그먼트 역산 추정치. OpenAI/Meta 워런트 행사 시 발생할 잠재 EPS 희석 효과는 별도 분석 필요.</p>
+</div>
+</div>
+
+<!-- 7-1. Reference -->
+<span class="section-anchor" id="s14"></span>
+<div class="section">
+<h2>7-1. Reference</h2>
+<div class="ref-list">
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://ir.amd.com/" target="_blank">AMD IR — Investor Relations</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://d1io3yog0oux5.cloudfront.net/_530b22e8aa311a8d1011a56b31890d4b/amd/db/841/9232/presentation/AMD+Q1'26+Earnings+Slides+Final.pdf" target="_blank">AMD Q1'26 Earnings Presentation PDF (26슬라이드 공식)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results" target="_blank">AMD Q1'26 실적 보도자료 (2026.05.05)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.amd.com/en/newsroom/press-releases/2026-2-24-amd-and-meta-announce-expanded-strategic-partnersh.html" target="_blank">Meta 6GW 메가딜 발표 (2026.02.24)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.sec.gov/Archives/edgar/data/0000002488/000000248826000072/amd-20260505.htm" target="_blank">AMD SEC 8-K (2026.05.05) — Q1 실적 + 슬라이드 첨부</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.amd.com/en/products/accelerators/instinct.html" target="_blank">AMD Instinct AI GPU 제품 페이지 (MI300/MI325/MI350)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.amd.com/en/products/processors/server/epyc.html" target="_blank">AMD EPYC Server CPU 제품 페이지 (Turin/Venice)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.amd.com/en/blogs/2025/amd-instinct-mi350-series-and-beyond-accelerating-the-future-of-ai-and-hpc.html" target="_blank">AMD Blog — MI350 시리즈 및 Helios AI 랙 프리뷰</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.fool.com/earnings/call-transcripts/2026/05/06/amd-amd-q1-2026-earnings-call-transcript/" target="_blank">Motley Fool — AMD Q1'26 컨퍼런스콜 transcript</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.investing.com/news/transcripts/earnings-call-transcript-amds-q1-2026-earnings-surpass-expectations-stock-rises-93CH-4661423" target="_blank">Investing.com — AMD Q1'26 transcript &amp; 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.morningstar.com/stocks/xnas/amd/quote" target="_blank">Morningstar — AMD 분석 보고서</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.cnbc.com/2026/05/05/amd-q1-2026-earnings-report.html" target="_blank">CNBC — AMD Q1 어닝 분석 (2026.05.05)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://finance.yahoo.com/markets/stocks/articles/amd-q1-2026-earnings-revenue-203331768.html" target="_blank">Yahoo Finance — AMD Q1'26 매출 +38%</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.servethehome.com/amd-and-meta-announce-a-massive-6gw-deal/" target="_blank">ServeTheHome — Meta 6GW 딜 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.servethehome.com/amd-and-openai-ink-megadeal-for-6gw-of-future-ai-compute/" target="_blank">ServeTheHome — OpenAI 6GW 딜 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.datacenterdynamics.com/en/news/amd-unveils-full-mi400-product-lineup-claims-mi500-chips-will-deliver-1000x-increase-in-ai-performance/" target="_blank">DCD — MI400/MI500 풀 라인업 발표</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.investing.com/news/company-news/amd-q1-2026-slides-data-center-surge-drives-38-revenue-growth-93CH-4661476" target="_blank">Investing.com — Q1 슬라이드 분석 (Data Center +38%)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://en.wikipedia.org/wiki/AMD" target="_blank">Wikipedia — Advanced Micro Devices</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://namu.wiki/w/AMD" target="_blank">나무위키 — AMD</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://en.wikipedia.org/wiki/Lisa_Su" target="_blank">Wikipedia — Lisa Su (CEO)</a></div>
+</div>
+<p class="note">* 공식 자료(AMD IR·SEC) 6개, 증권사·전문 분석 3개, 뉴스 6개, 위키 3개 — 총 18개 레퍼런스. 한국어 블로그 자료는 좋아요 10개 이상 충족 게시물 부재로 본 리포트에서는 미포함 (네이버 블로그 검색 결과 AMD 분석은 일반적인 종목 코멘터리 위주, 본격 분석 글은 부족).</p>
+</div>
+
+<div class="footer">Advanced Micro Devices (AMD) 기업분석 · 2026.05.07 · 개인 사용 목적</div>
+</div>
+
+<script>
+// 33분기 라벨 — Q1'18 ~ Q1'26
+const L33=["Q1'18","Q2'18","Q3'18","Q4'18","Q1'19","Q2'19","Q3'19","Q4'19","Q1'20","Q2'20","Q3'20","Q4'20","Q1'21","Q2'21","Q3'21","Q4'21","Q1'22","Q2'22","Q3'22","Q4'22","Q1'23","Q2'23","Q3'23","Q4'23","Q1'24","Q2'24","Q3'24","Q4'24","Q1'25","Q2'25","Q3'25","Q4'25","Q1'26"];
+
+// 4개 세그먼트 - 33분기 ($M)
+// 2018~2021 Q3: 구 세그먼트(Computing&Graphics + EESC)에서 신규 4세그먼트 역산 추정
+// 2022 Q1~: Xilinx 인수 후 신규 4세그먼트 (Embedded 신설), 8-K 공시 실제
+// Data Center: 서버 CPU + AI GPU
+const dc        = [400,420,500,600, 580,610,750,820, 950,1080,1200,1400, 1500,1600,1750,1900, 1300,1486,1610,1655, 1295,1321,1598,2282, 2337,2834,3549,3859, 3674,3240,4300,5380, 5775];
+// Client: Ryzen 데스크톱/모바일 CPU
+const client    = [550,580,650,750, 700,750,900,1080, 1100,1200,1450,1700, 1800,1700,1900,2100, 2124,2152,1022,903, 739,998,1453,1461, 1368,1492,1881,2313, 2294,2499,2800,3097, 2885];
+// Gaming: Radeon GPU + 콘솔 SoC
+const gaming    = [600,650,800,950, 700,820,1000,1200, 900,1100,1500,1800, 2000,1900,1950,2000, 1900,1655,1631,1640, 1757,1581,1506,1368, 922,648,462,563, 647,1122,1300,843, 720];
+// Embedded: Xilinx (2022 Q1 인수) — 이전엔 거의 0
+const embedded  = [10,12,15,18, 12,15,18,20, 18,22,28,32, 35,40,45,50, 595,1257,1300,1400, 1562,1459,1243,1057, 846,861,927,923, 823,824,857,950, 873];
+
+const totalRev=L33.map((_,i)=>dc[i]+client[i]+gaming[i]+embedded[i]);
+
+// Non-GAAP OPM% (2018~2022 추정, 2023~2026 실제)
+const opm=[
+  6,7,8,9,        // 2018 - Zen 2 직전, 적자 회복기
+  8,9,10,12,      // 2019 - Zen 2 본격
+  18,20,22,25,    // 2020 - 코로나 PC 폭증
+  26,27,28,28,    // 2021 - 사이클 정점
+  20,28,28,23,    // 2022 - Xilinx 인수 직후
+  21,20,22,23,    // 2023 - 실제 (PC 침체)
+  21,22,25,25,    // 2024 - 실제 (MI300 ramp)
+  23.8,11,25,28,  // 2025 - 실제 (Q2 중국 규제로 일시 폭락)
+  24.8            // Q1'26 - 실제
+];
+
+const gc='rgba(0,0,0,0.05)',tc='#999';
+const xT={color:tc,font:{size:9},maxRotation:45,autoSkip:true,maxTicksLimit:18};
+const yT={color:tc,font:{size:11}};
+const $cb={callbacks:{label:ctx=>' $'+Math.round(ctx.parsed.y)+'M'}};
+
+// 세그먼트 차트
+const segBase=[
+  {label:'Data Center',data:dc,backgroundColor:'#1D9E75',stack:'s'},
+  {label:'Client',data:client,backgroundColor:'#378ADD',stack:'s'},
+  {label:'Gaming',data:gaming,backgroundColor:'#D85A30',stack:'s'},
+  {label:'Embedded',data:embedded,backgroundColor:'#BA7517',stack:'s'},
+];
+const segChart=new Chart(document.getElementById('cSeg'),{
+  type:'bar',
+  data:{labels:L33,datasets:segBase.map(d=>({...d}))},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:$cb},scales:{x:{grid:{color:gc},ticks:xT,stacked:true},y:{grid:{color:gc},ticks:{...yT,callback:v=>'$'+v+'M'},stacked:true}}}
+});
+window.toggleSeg=function(idx,el){const m=segChart.getDatasetMeta(idx);m.hidden=!m.hidden;el.classList.toggle('hidden',m.hidden);segChart.update();};
+
+// 매출+OPM 이중축
+new Chart(document.getElementById('cRev'),{
+  type:'bar',
+  data:{
+    labels:L33,
+    datasets:[
+      {type:'bar',label:'매출',data:totalRev,backgroundColor:'rgba(55,138,221,0.25)',borderColor:'#378ADD',borderWidth:1,yAxisID:'y'},
+      {type:'line',label:'Non-GAAP OPM%',data:opm,borderColor:'#1D9E75',pointRadius:3,pointBackgroundColor:'#1D9E75',fill:false,tension:0.3,yAxisID:'y2',borderWidth:2}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:ctx=>ctx.datasetIndex===0?' $'+Math.round(ctx.parsed.y)+'M':' OPM: '+ctx.parsed.y.toFixed(1)+'%'}}},
+    scales:{
+      x:{grid:{color:gc},ticks:xT},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>'$'+v+'M'},position:'left'},
+      y2:{grid:{display:false},ticks:{color:'#1D9E75',font:{size:10},callback:v=>v+'%'},position:'right',min:0,max:35}
+    }
+  }
+});
+</script>
+</body>
+</html>
