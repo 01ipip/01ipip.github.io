@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이녹스첨단소재 (272290) 기업분석 — 2026 Q1</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f3ef;color:#1a1a1a;padding:2rem;font-size:14px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto}
+.header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #e0e0dc;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.header-title{font-size:22px;font-weight:700}
+.header-meta{font-size:12px;color:#888;margin-top:4px}
+.toc{margin-bottom:2rem;padding:0}
+.toc-title{font-size:12px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+.toc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:1.1rem 1.3rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.toc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 28px}
+@media(max-width:650px){.toc-grid{grid-template-columns:1fr}}
+.toc-link{display:flex;align-items:center;gap:10px;padding:5px 0;text-decoration:none;color:#444;font-size:13px;border-bottom:0.5px dashed transparent;transition:all .15s ease}
+.toc-link:hover{color:#378ADD;border-bottom-color:#cfe1f5}
+.toc-link .toc-num{color:#aaa;font-weight:700;font-size:12px;min-width:30px;font-variant-numeric:tabular-nums;flex-shrink:0}
+.toc-link:hover .toc-num{color:#378ADD}
+.toc-link .toc-text{flex:1}
+.toc-link.sub{padding-left:18px;font-size:12.5px;color:#666}
+.toc-link.sub .toc-num{font-size:11px;color:#bbb}
+.section{margin-bottom:3rem}
+.section-anchor{display:block;position:relative;top:-70px;visibility:hidden}
+h2{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:6px;border-bottom:1.5px solid #e0e0dc}
+h3{font-size:14px;font-weight:600;margin:1.2rem 0 .6rem;color:#333}
+.chart-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:20px;position:relative;width:100%}
+.note{font-size:11px;color:#999;margin-top:8px;line-height:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;font-size:12px;color:#666}
+.legend-item{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:3px 8px;border-radius:6px;transition:opacity .15s}
+.legend-item:hover{background:#e8e8e3}
+.legend-item.hidden{opacity:.3;text-decoration:line-through}
+.legend-static{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0dc;margin-bottom:.5rem}
+th{background:#ebebe6;font-weight:600;padding:7px 8px;text-align:left;border-bottom:1px solid #e0e0dc;white-space:nowrap;font-size:11.5px}
+th.center{text-align:center}
+td{padding:6px 8px;border-bottom:0.5px solid #f0f0ee;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafaf6}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.center{text-align:center}
+.hl{background:#fffbe6 !important}
+.dn{color:#D85A30}
+.up2{color:#1D9E75}
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
+@media(max-width:650px){.overview-grid{grid-template-columns:1fr}}
+.overview-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.overview-box h4{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.kv{display:flex;justify-content:space-between;align-items:flex-start;padding:4px 0;border-bottom:0.5px solid #f5f4f0;font-size:12.5px;gap:10px}
+.kv:last-child{border-bottom:none}
+.kv-key{color:#666;min-width:90px;flex-shrink:0}
+.kv-val{font-weight:600;text-align:right;flex:1}
+.seg-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:1rem}
+.seg-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.seg-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:8px}
+.seg-card-name{font-size:13px;font-weight:700}
+.seg-card-share{font-size:11px;color:#888;font-weight:600}
+.seg-card-desc{font-size:12px;color:#444;line-height:1.55;margin-bottom:6px}
+.seg-card-margin{font-size:11px;font-weight:600}
+.badge{display:inline-block;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:600}
+.badge-up{background:#e6f7f0;color:#1D9E75}
+.badge-dn{background:#fce8e4;color:#D85A30}
+.badge-neu{background:#ebebe6;color:#666}
+.cc-table{width:100%;border-collapse:separate;border-spacing:6px;margin-bottom:1rem}
+.cc-table th{background:transparent;border:none;font-size:11px;color:#888;text-align:center;padding:4px;font-weight:600;white-space:nowrap}
+.cc-table th.year-col{width:50px;text-align:left}
+.cc-cell{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.65rem .75rem;vertical-align:top;height:100%}
+.cc-quarter{font-size:10px;font-weight:700;color:#378ADD;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.cc-msg{font-size:11px;color:#444;margin-bottom:6px;line-height:1.45}
+.cc-guide{font-size:10px;color:#888;border-top:0.5px solid #f0f0ee;padding-top:5px;line-height:1.5}
+.cc-hit{color:#1D9E75;font-weight:600}
+.cc-miss{color:#D85A30;font-weight:600}
+.cc-latest{border:1.5px solid #378ADD !important;box-shadow:0 0 0 2px rgba(55,138,221,0.1)}
+.year-label{font-size:13px;font-weight:700;color:#555;padding-right:8px;vertical-align:middle}
+.scenario-stack{display:flex;flex-direction:column;gap:12px}
+.scenario-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1.1rem 1.3rem}
+.scenario-title{font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid #f0f0ee}
+.s-bull .scenario-title{color:#1D9E75}
+.s-bear .scenario-title{color:#D85A30}
+.s-item{margin-bottom:9px;padding-bottom:9px;border-bottom:0.5px solid #f5f4f0;font-size:12px}
+.s-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-case{font-weight:600;margin-bottom:2px}
+.s-sub{color:#888;font-size:11px}
+.ww-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.ww-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.ww-sticker-item{padding:.7rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:14px;align-items:flex-start}
+.ww-sticker-item:last-child{border-bottom:none}
+.ww-sticker-date{font-size:11px;font-weight:700;color:#378ADD;white-space:nowrap;min-width:90px;flex-shrink:0;padding-top:1px}
+.ww-sticker-content{flex:1}
+.ww-sticker-event{font-size:12.5px;font-weight:700;color:#222;margin-bottom:2px}
+.ww-sticker-point{font-size:11.5px;color:#666;line-height:1.5}
+.source-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.4rem;font-size:12px;color:#888;line-height:2}
+.prose{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;margin-bottom:1rem;font-size:13px;line-height:1.7}
+.prose ul{padding-left:1.3rem}
+.prose li{margin-bottom:.25rem}
+.prose p{margin-bottom:.7rem}
+.prose p:last-child{margin-bottom:0}
+.thesis-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:12px;padding:1.2rem 1.4rem;margin-bottom:12px;border-left:5px solid #333;position:relative}
+.thesis-box-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.thesis-icon{font-size:22px;flex-shrink:0}
+.thesis-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:5px;background:#ebebe6;color:#444}
+.thesis-title{font-size:15px;font-weight:700;color:#222;flex:1;margin-bottom:0}
+.thesis-body{font-size:13px;line-height:1.7;color:#333}
+.thesis-body p{margin-bottom:.6rem}
+.thesis-body p:last-child{margin-bottom:0}
+.thesis-body strong{color:#222;font-weight:700}
+.thesis-body .hl-blue{font-weight:600;color:#222}
+.thesis-body .hl-green{font-weight:700;color:#1D9E75}
+.thesis-body .hl-red{font-weight:700;color:#D85A30}
+.cc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.cc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.cc-sticker-item{padding:.85rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:12px;align-items:flex-start}
+.cc-sticker-item:last-child{border-bottom:none}
+.cc-sticker-rank{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#378ADD;color:#fff;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.cc-sticker-content{flex:1}
+.cc-sticker-title{font-size:13px;font-weight:700;color:#222;margin-bottom:4px}
+.cc-sticker-desc{font-size:12px;color:#444;line-height:1.6}
+.cc-sticker-desc strong{color:#222}
+.hl-pos{color:#1D9E75;font-weight:700}
+.hl-neg{color:#D85A30;font-weight:700}
+.ir-na-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;font-size:12px;color:#666;line-height:1.6}
+.ir-na-box strong{color:#222}
+.footer{font-size:11px;color:#aaa;text-align:center;margin-top:2rem;padding-top:1rem;border-top:0.5px solid #e0e0dc}
+.seg-table-wrap{overflow-x:auto}
+.seg-table{min-width:780px}
+.seg-table th.seg-group{text-align:center;background:#e3e3de;border-left:2px solid #d0d0cc}
+.seg-table td.seg-border{border-left:2px solid #e0e0dc}
+.tv-wrap{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:6px;overflow:hidden}
+.tv-wrap iframe{display:block;width:100%;height:420px;border:0;border-radius:6px}
+.ref-list{display:flex;flex-direction:column;gap:6px}
+.ref-item{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.6rem .9rem;display:flex;align-items:center;gap:10px;font-size:12px}
+.ref-tag{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600;flex-shrink:0;min-width:55px;text-align:center}
+.tag-official{background:#e0effc;color:#1565c0}
+.tag-broker{background:#fff4e0;color:#ed8936}
+.tag-news{background:#f0f0ed;color:#555}
+.tag-wiki{background:#e6f7f0;color:#1D9E75}
+.ref-item a{color:#378ADD;text-decoration:none;flex:1;word-break:break-all}
+.ref-item a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div>
+    <div class="header-title">🧪 이녹스첨단소재 (272290) 기업분석</div>
+    <div class="header-meta">회계연도: Calendar Year &nbsp;|&nbsp; 분석기간: Q1'18~Q1'26 (33분기) &nbsp;|&nbsp; 최근 잠정실적: 2026.05.06</div>
+  </div>
+  <div style="font-size:12px;color:#aaa">분석일: 2026.05.07</div>
+</div>
+
+<!-- 목차 -->
+<div class="toc">
+  <div class="toc-title">목차</div>
+  <div class="toc-sticker-box">
+    <div class="toc-grid">
+      <a class="toc-link" href="#s1"><span class="toc-num">01.</span><span class="toc-text">회사 개요</span></a>
+      <a class="toc-link" href="#s2"><span class="toc-num">02.</span><span class="toc-text">주가 흐름 — 주봉 차트</span></a>
+      <a class="toc-link" href="#s3"><span class="toc-num">03.</span><span class="toc-text">세그먼트별 매출 추이</span></a>
+      <a class="toc-link sub" href="#s3b"><span class="toc-num">3-1.</span><span class="toc-text">세그먼트 구조 및 제품</span></a>
+      <a class="toc-link sub" href="#s4"><span class="toc-num">3-2.</span><span class="toc-text">매출 &amp; OPM 추이</span></a>
+      <a class="toc-link sub" href="#s5"><span class="toc-num">3-3.</span><span class="toc-text">세그먼트별 실적 테이블</span></a>
+      <a class="toc-link" href="#s6"><span class="toc-num">04.</span><span class="toc-text">재무제표 개요</span></a>
+      <a class="toc-link" href="#s7"><span class="toc-num">05.</span><span class="toc-text">핵심 투자아이디어</span></a>
+      <a class="toc-link sub" href="#s8"><span class="toc-num">5-1.</span><span class="toc-text">핵심 변동 요인</span></a>
+      <a class="toc-link sub" href="#s9"><span class="toc-num">5-2.</span><span class="toc-text">실적 트래킹</span></a>
+      <a class="toc-link sub" href="#s10"><span class="toc-num">5-3.</span><span class="toc-text">Q1'26 실적 심층 정리</span></a>
+      <a class="toc-link sub" href="#s11"><span class="toc-num">5-4.</span><span class="toc-text">강세 / 약세 시나리오</span></a>
+      <a class="toc-link" href="#s12"><span class="toc-num">06.</span><span class="toc-text">Worth Watching Events</span></a>
+      <a class="toc-link" href="#s13"><span class="toc-num">07.</span><span class="toc-text">데이터 출처</span></a>
+      <a class="toc-link sub" href="#s14"><span class="toc-num">7-1.</span><span class="toc-text">Reference</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- 1. 회사 개요 -->
+<span class="section-anchor" id="s1"></span>
+<div class="section">
+<h2>1. 회사 개요</h2>
+<div class="overview-grid">
+  <div class="overview-box">
+    <h4>기본 정보</h4>
+    <div class="kv"><span class="kv-key">설립</span><span class="kv-val">2017.06 (이녹스 인적분할)</span></div>
+    <div class="kv"><span class="kv-key">상장</span><span class="kv-val">2017.07.10 (KOSDAQ)</span></div>
+    <div class="kv"><span class="kv-key">본사</span><span class="kv-val">경기 성남시 수정구 금토로</span></div>
+    <div class="kv"><span class="kv-key">대표이사</span><span class="kv-val">장경호 · 강정태 (각자대표)</span></div>
+    <div class="kv"><span class="kv-key">임직원</span><span class="kv-val">~616명</span></div>
+    <div class="kv"><span class="kv-key">사업장</span><span class="kv-val">아산 · 中 광저우 · 베트남 박닌 · 오창</span></div>
+    <div class="kv"><span class="kv-key">티커</span><span class="kv-val">KOSDAQ: 272290</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>시장 정보 (2026.05.06 기준)</h4>
+    <div class="kv"><span class="kv-key">현재 주가</span><span class="kv-val">~34,600원</span></div>
+    <div class="kv"><span class="kv-key">시가총액</span><span class="kv-val" style="color:#378ADD">~6,898억원</span></div>
+    <div class="kv"><span class="kv-key">발행주식</span><span class="kv-val">~19.93M주</span></div>
+    <div class="kv"><span class="kv-key">52주 고가</span><span class="kv-val">~38,500원</span></div>
+    <div class="kv"><span class="kv-key">52주 저가</span><span class="kv-val">~19,520원</span></div>
+    <div class="kv"><span class="kv-key">PER (TTM)</span><span class="kv-val">~12배</span></div>
+    <div class="kv"><span class="kv-key">PBR</span><span class="kv-val">~1.75배</span></div>
+    <div class="kv"><span class="kv-key">목표주가 평균</span><span class="kv-val" style="color:#1D9E75">44,667원 (+29%)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>사업 운영</h4>
+    <div class="kv"><span class="kv-key">주요 제품</span><span class="kv-val">OLED · FPCB · 반도체PKG · 수산화리튬</span></div>
+    <div class="kv"><span class="kv-key">핵심 IP</span><span class="kv-val">고분자 합성·배합·박막 코팅 기술</span></div>
+    <div class="kv"><span class="kv-key">시장점유율</span><span class="kv-val">국내 OLED·FPCB 소재 ~50%</span></div>
+    <div class="kv"><span class="kv-key">주요 종속회사</span><span class="kv-val">이녹스리튬 (2023.12 편입)</span></div>
+    <div class="kv"><span class="kv-key">신사업</span><span class="kv-val">수산화리튬 · 열폭주 방지필름</span></div>
+    <div class="kv"><span class="kv-key">고객사</span><span class="kv-val">SDC · LGD · 삼성전자 · SK하이닉스</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>투자 포인트 요약</h4>
+    <div class="kv"><span class="kv-key">Q1'26 매출</span><span class="kv-val" style="color:#D85A30">951억원 (-15.9% YoY)</span></div>
+    <div class="kv"><span class="kv-key">Q1'26 영업이익</span><span class="kv-val" style="color:#D85A30">169억원 (-36% YoY)</span></div>
+    <div class="kv"><span class="kv-key">2025 매출</span><span class="kv-val">~4,398억원 (잠정)</span></div>
+    <div class="kv"><span class="kv-key">2026 매출 컨센서스</span><span class="kv-val" style="color:#1D9E75">4,675억원 (+6.3%)</span></div>
+    <div class="kv"><span class="kv-key">이녹스리튬</span><span class="kv-val" style="color:#1D9E75">2026.04 양산 시작</span></div>
+    <div class="kv"><span class="kv-key">2027 목표</span><span class="kv-val" style="color:#1D9E75">매출 1조원 (CEO)</span></div>
+  </div>
+</div>
+<p class="note">⚠️ <strong>OLED 소재</strong>=PSI·봉지재·Back Plate, <strong>FPCB 소재</strong>=INNOFLEX·SMARTFLEX(연성회로기판 원소재), <strong>반도체 PKG 소재</strong>=INNOSEM(국내 유일 Full-line), <strong>수산화리튬</strong>=NCM 양극재 핵심원료(자회사 이녹스리튬 오창공장 연 2만톤), <strong>열폭주 방지필름</strong>=전기차 배터리 셀 사이 화재 차단 소재(완성차 공동개발). 시장점유율 국내 OLED·FPCB 소재 ~50%로 1위.</p>
+</div>
+
+<!-- 2. 주가 -->
+<span class="section-anchor" id="s2"></span>
+<div class="section">
+<h2>2. 주가 흐름 — 주봉 차트</h2>
+<div class="chart-box" style="height:380px"><canvas id="cPrice"></canvas></div>
+<p class="note">* KRX 종목은 TradingView 데이터 차단으로 Chart.js 주봉 차트로 대체. 실시간 차트는 
+<a href="https://finance.naver.com/item/main.naver?code=272290" target="_blank" style="color:#378ADD">네이버 증권</a> 또는
+<a href="https://alphasquare.co.kr/home/stock-summary?code=272290" target="_blank" style="color:#378ADD">알파스퀘어</a> 참조. 2024년 3만원대 → 2025년 8월 19,520원 저점 → 2025년 4분기 리튬 양산 가시성 + 2차전지 회복 기대로 반등, 2026.02 IBK·신한 목표가 45,000원 상향, 2026.04 35,000원대 회복.</p>
+
+<h3 style="margin-top:1.2rem">주요 이벤트 연표</h3>
+<table>
+  <thead><tr><th>시기</th><th class="num">주가(근사)</th><th>이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2017.07</td><td class="num">25,000원</td><td>이녹스에서 인적분할 후 코스닥 상장 (분할가 21,750원)</td></tr>
+    <tr><td>2018.03</td><td class="num">35,000원</td><td>OLED 소재 본격화 — 매출 비중 33% 돌파</td></tr>
+    <tr><td>2020.07</td><td class="num">45,000원</td><td>코로나 IT수요 + LGD 광저우 OLED 라인 가동, 분기 최대 매출</td></tr>
+    <tr><td>2021.07</td><td class="num">70,000원</td><td>역대 최고가, OLED 소재 매출 1,800억원 돌파, 시총 1.4조원</td></tr>
+    <tr><td>2022.10</td><td class="num">25,000원</td><td>스마트폰·TV 침체로 <span class="dn">-65% 폭락</span>, OLED·FPCB 동반 부진</td></tr>
+    <tr><td>2023.05</td><td class="num">38,000원</td><td><span class="up2">이녹스리튬 신사업 발표</span> — 2030년 그룹 매출 3조원 비전 공개</td></tr>
+    <tr><td>2023.11</td><td class="num">42,000원</td><td>오창 수산화리튬 1호기 (연 2만톤) 착공식</td></tr>
+    <tr><td>2024.07</td><td class="num">45,000원</td><td>Q1'24 영업이익 +257% YoY 급증, "OLED 회복 + 신사업 기대" 랠리</td></tr>
+    <tr><td>2025.01</td><td class="num">28,000원</td><td><span class="dn">전기차 캐즘으로 수산화리튬 1호기 가동 6개월 연기</span> 발표</td></tr>
+    <tr><td>2025.08</td><td class="num">19,520원</td><td><span class="dn">52주 저점</span>, 2차전지 업황 악화 + IBK 목표가 34,000원으로 하향</td></tr>
+    <tr><td>2025.11</td><td class="num">23,000원</td><td>이녹스리튬 오창공장 <span class="up2">준공</span> — 가동 가시화로 반등 시작</td></tr>
+    <tr><td>2026.02.13</td><td class="num">31,000원</td><td><span class="up2">이녹스리튬 해외 배터리사 샘플 첫 출하</span> — 2026.04 양산 발표</td></tr>
+    <tr><td>2026.02.26</td><td class="num">33,000원</td><td>신한투자증권 목표가 <span class="up2">45,000원</span>으로 상향, "기업가치 재평가" 코멘트</td></tr>
+    <tr><td>2026.04.14</td><td class="num">31,500원</td><td>IBK투자증권 목표가 <span class="up2">45,000원</span> 상향 — "2분기부터 실적 개선"</td></tr>
+    <tr class="hl"><td><strong>2026.05.06</strong></td><td class="num"><strong>~34,600원</strong></td><td><strong>Q1'26 잠정실적 발표 — 매출 951억(-16% YoY), 영업이익 169억(-36% YoY) <span class="dn">기대치 하회</span></strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 3. 세그먼트 33분기 -->
+<span class="section-anchor" id="s3"></span>
+<div class="section">
+<h2>3. 세그먼트별 매출 추이 — 33분기 (억원)</h2>
+<div class="legend" id="segLegend">
+  <span class="legend-item" onclick="toggleSeg(0,this)"><span class="dot" style="background:#1D9E75"></span>OLED 소재</span>
+  <span class="legend-item" onclick="toggleSeg(1,this)"><span class="dot" style="background:#378ADD"></span>FPCB 소재</span>
+  <span class="legend-item" onclick="toggleSeg(2,this)"><span class="dot" style="background:#D85A30"></span>반도체 PKG</span>
+  <span class="legend-item" onclick="toggleSeg(3,this)"><span class="dot" style="background:#BA7517"></span>이차전지/기타</span>
+  <span style="font-size:11px;color:#bbb;margin-left:4px">← 클릭하여 표시/숨김</span>
+</div>
+<div class="chart-box" style="height:460px"><canvas id="cSeg"></canvas></div>
+<p class="note">* 단위: 억원. 2018~2022 분기 데이터는 연간 사업보고서 기반 분기 안분 추정. 2023~2026은 잠정·정정공시 기준. OLED 소재 비중은 2018년 33% → 2024년 50% 돌파 → 2025년 일부 둔화. FPCB 소재는 스마트폰·웨어러블 회복으로 2024년 후반 반등. 이차전지(이녹스리튬 수산화리튬)는 2026.04 본격 양산으로 2026.Q2부터 매출 인식 시작. Q1'26은 OLED·FPCB 동반 둔화로 -16% YoY 역성장.</p>
+</div>
+
+<!-- 3-1. 세그먼트 구조 -->
+<span class="section-anchor" id="s3b"></span>
+<div class="section">
+<h2>3-1. 세그먼트 구조 및 제품</h2>
+<div class="seg-cards">
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">OLED 소재 ★</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">~48%</span> · 2025E ~2,100억원</div>
+    </div>
+    <div class="seg-card-desc">
+      현재 주력. <strong>PSI(점착제)</strong>, <strong>봉지재(Encapsulation)</strong>, <strong>Back Plate</strong>, <strong>Back Plate 보호필름</strong> 등 OLED 패널 핵심소재 풀라인업 공급. <strong>국내 시장점유율 ~50%</strong> 1위. SDC(중소형) + LGD(대형 TV) 양 디스플레이사 모두 고객. 폴더블·차세대 QD-OLED·차량용 OLED 채택 확대로 중장기 수요 견조. 2014년 진입, 2015년 첫 매출 → 10년 만에 회사의 최대 사업.
+    </div>
+    <div class="seg-card-margin" style="color:#555">OPM <span style="color:#378ADD;font-weight:700">~22%</span> · 회사 평균 상회 · 고부가</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">FPCB 소재</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">~32%</span> · 2025E ~1,400억원</div>
+    </div>
+    <div class="seg-card-desc">
+      <strong>INNOFLEX</strong>·<strong>SMARTFLEX</strong> 브랜드. 연성회로기판(휘어지는 PCB) 제조용 원소재 — 동박적층필름(CCL) 등. <strong>세계 1위 Maker</strong>. 스마트폰·웨어러블·노트북·자동차 카메라모듈에 채택. 갤럭시 S8부터 방열시트 공급. 2022~2023 스마트폰 침체로 부진했으나 2024년 회복, 2025년 차량용 FPC(CAR FPC) 매출 본격화. 2026 H1 일부 둔화 조짐.
+    </div>
+    <div class="seg-card-margin" style="color:#555">OPM <span style="color:#378ADD;font-weight:700">~15%</span> · 사이클 변동성</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">반도체 PKG 소재</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">~15%</span> · 2025E ~660억원</div>
+    </div>
+    <div class="seg-card-desc">
+      <strong>INNOSEM</strong> 브랜드. 반도체 패키징(후공정) 핵심소재 — LOC TAPE, DAF(Die Attach Film), C-DAF(Non-UV dicing 대응 차세대), MUF 등. <strong>국내 유일 Full-line</strong>. 1999년 일본 의존도 90%를 깬 LOC TAPE 국산화로 사업 시작. 삼성전자·SK하이닉스 공급. AI·HBM 수요로 패키징 소재 점진 확대. 2025년부터 회복세.
+    </div>
+    <div class="seg-card-margin" style="color:#555">OPM <span style="color:#378ADD;font-weight:700">~18%</span> · 안정 수익</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">이차전지 소재 (이녹스리튬) 🔋 신사업</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">~5%</span> · 2026.04~ 양산 개시</div>
+    </div>
+    <div class="seg-card-desc">
+      자회사 <strong>이녹스리튬</strong> 통해 진출. 충북 오창 수산화리튬 1호기 <strong>연 2만톤</strong> (전기차 약 40만대분), 2025.11 준공·2026.02 해외 배터리사 샘플 출하·2026.04 본격 양산. 저순도 탄산리튬→고순도 수산화리튬 정제. SK온·삼성SDI 장기공급 계약 + 해외 고객사 확보. 2027 말 2호기 추가 시 연 4만톤. 추가로 <strong>전기차 열폭주 방지필름</strong> 완성차 공동개발 중. 2027년 매출 1조원 도전 핵심 동력.
+    </div>
+    <div class="seg-card-margin" style="color:#555">OPM 초기 <span style="color:#D85A30;font-weight:700">적자 또는 BEP</span> · 2027 흑전 목표</div>
+  </div>
+</div>
+
+<table>
+  <thead><tr><th>세그먼트</th><th>대표 제품</th><th>주요 고객</th><th>2025E 매출 비중</th><th>특이사항</th></tr></thead>
+  <tbody>
+    <tr><td><strong>OLED 소재</strong></td><td>PSI · 봉지재 · Back Plate · 보호필름</td><td>삼성디스플레이, LG디스플레이, BOE</td><td class="num"><strong>~48%</strong></td><td>국내 점유율 1위 (~50%)</td></tr>
+    <tr><td><strong>FPCB 소재</strong></td><td>INNOFLEX, SMARTFLEX, 방열시트</td><td>삼성전기, LG이노텍, 비에이치, 인터플렉스</td><td class="num">~32%</td><td>세계 1위 Maker</td></tr>
+    <tr><td><strong>반도체 PKG</strong></td><td>INNOSEM, LOC TAPE, DAF, C-DAF</td><td>삼성전자, SK하이닉스</td><td class="num">~15%</td><td>국내 유일 Full-line</td></tr>
+    <tr><td><strong>이차전지 (이녹스리튬)</strong></td><td>고순도 수산화리튬 (NCM 양극재용)</td><td>SK온, 삼성SDI, 해외 배터리사</td><td class="num">~5%</td><td>2026.04 양산 개시</td></tr>
+  </tbody>
+</table>
+<p class="note">* 비중은 2025년 추정치 기준. 이녹스리튬 매출은 2026 Q2부터 본격 인식. 매출 외에 자회사 <strong>이녹스에코엠</strong>(과거 환경소재), 광저우·박닌 해외법인 등 다수 종속회사 보유.</p>
+</div>
+
+<!-- 3-2. 매출 + OPM -->
+<span class="section-anchor" id="s4"></span>
+<div class="section">
+<h2>3-2. 매출 &amp; OPM 추이 — 33분기</h2>
+<div class="legend">
+  <span class="legend-static"><span class="dot" style="background:rgba(55,138,221,0.5)"></span>매출 (억원, 좌축)</span>
+  <span class="legend-static"><span class="dot" style="background:#1D9E75"></span>영업이익률% (우축)</span>
+</div>
+<div class="chart-box" style="height:420px"><canvas id="cRev"></canvas></div>
+
+<h3 style="margin-top:1.2rem">연간 요약</h3>
+<table>
+  <thead><tr><th>연도</th><th class="num">매출(억원)</th><th class="num">YoY</th><th class="num">영업이익</th><th class="num">OPM</th><th class="num">순이익</th><th class="num">EPS(원)</th><th>주요 이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2018</td><td class="num">2,790</td><td class="num up2">+45%</td><td class="num">464</td><td class="num">17%</td><td class="num">370</td><td class="num">3,798</td><td>OLED 소재 비중 33% 돌파</td></tr>
+    <tr><td>2019</td><td class="num">3,493</td><td class="num up2">+25%</td><td class="num">466</td><td class="num">13%</td><td class="num">395</td><td class="num">4,055</td><td>OLED·FPCB 균형 성장</td></tr>
+    <tr><td>2020</td><td class="num">3,416</td><td class="num dn">-2%</td><td class="num">432</td><td class="num">13%</td><td class="num">370</td><td class="num">3,798</td><td>코로나 영향 + LGD 광저우 가동</td></tr>
+    <tr><td>2021</td><td class="num">5,053</td><td class="num up2">+48%</td><td class="num">878</td><td class="num">17%</td><td class="num">735</td><td class="num">7,545</td><td>역대 최대, OLED 소재 1,990억</td></tr>
+    <tr><td>2022</td><td class="num">5,025</td><td class="num">-1%</td><td class="num">639</td><td class="num">13%</td><td class="num">461</td><td class="num">4,732</td><td>하반기 IT침체 시작</td></tr>
+    <tr><td>2023</td><td class="num">3,668</td><td class="num dn">-27%</td><td class="num">328</td><td class="num">9%</td><td class="num">198</td><td class="num">2,033</td><td>스마트폰·TV 동반 침체, 저점</td></tr>
+    <tr><td>2024</td><td class="num">4,156</td><td class="num up2">+13%</td><td class="num">820</td><td class="num">20%</td><td class="num">595</td><td class="num">6,107</td><td>OLED 회복, OPM 20% 회복</td></tr>
+    <tr><td>2025E</td><td class="num">4,398</td><td class="num up2">+6%</td><td class="num">819</td><td class="num">19%</td><td class="num">552</td><td class="num">5,668</td><td>2H 둔화, 이녹스리튬 비용 반영</td></tr>
+    <tr class="hl"><td><strong>2026E (컨센)</strong></td><td class="num"><strong>4,675</strong></td><td class="num up2"><strong>+6.3%</strong></td><td class="num"><strong>780</strong></td><td class="num"><strong>17%</strong></td><td class="num">~520</td><td class="num">~5,300</td><td><strong>리튬 양산 + OLED 회복</strong></td></tr>
+  </tbody>
+</table>
+
+<h3 style="margin-top:1.2rem">분기별 실적 (12분기, 억원)</h3>
+<table>
+  <thead><tr><th>분기</th><th class="num">매출</th><th class="num">YoY</th><th class="num">QoQ</th><th class="num">영업이익</th><th class="num">OPM</th><th class="num">순이익</th><th>비고</th></tr></thead>
+  <tbody>
+    <tr><td>Q2'23</td><td class="num">983</td><td class="num dn">-29%</td><td class="num up2">+15%</td><td class="num">88</td><td class="num">9.0%</td><td class="num">52</td><td>저점 구간</td></tr>
+    <tr><td>Q3'23</td><td class="num">855</td><td class="num dn">-26%</td><td class="num dn">-13%</td><td class="num">72</td><td class="num">8.4%</td><td class="num">45</td><td>스마트폰·TV 부진</td></tr>
+    <tr><td>Q4'23</td><td class="num">975</td><td class="num up2">+5%</td><td class="num up2">+14%</td><td class="num">83</td><td class="num">8.5%</td><td class="num">22</td><td>회복 시작</td></tr>
+    <tr><td>Q1'24</td><td class="num">1,021</td><td class="num up2">+26%</td><td class="num up2">+5%</td><td class="num">157</td><td class="num">15.4%</td><td class="num">88</td><td><span class="up2">영업익 +257% 급증</span></td></tr>
+    <tr><td>Q2'24</td><td class="num">1,131</td><td class="num up2">+15%</td><td class="num up2">+11%</td><td class="num">264</td><td class="num">23.3%</td><td class="num">219</td><td>분기 최대 OPM 23%</td></tr>
+    <tr><td>Q3'24</td><td class="num">990</td><td class="num up2">+16%</td><td class="num dn">-12%</td><td class="num">191</td><td class="num">19.3%</td><td class="num">157</td><td>OLED 강세 지속</td></tr>
+    <tr><td>Q4'24</td><td class="num">1,014</td><td class="num up2">+4%</td><td class="num up2">+2%</td><td class="num">208</td><td class="num">20.5%</td><td class="num">131</td><td>2024 호실적 마무리</td></tr>
+    <tr><td>Q1'25</td><td class="num">1,131</td><td class="num up2">+11%</td><td class="num up2">+12%</td><td class="num">264</td><td class="num">23.3%</td><td class="num">200</td><td>역대급 1분기</td></tr>
+    <tr><td>Q2'25</td><td class="num">1,118</td><td class="num">-1%</td><td class="num dn">-0.5%</td><td class="num">220</td><td class="num">19.7%</td><td class="num">171</td><td>견조</td></tr>
+    <tr><td>Q3'25</td><td class="num">1,125</td><td class="num up2">+14%</td><td class="num up2">+1%</td><td class="num">208</td><td class="num">18.5%</td><td class="num">125</td><td>3분기 누적 +5.8%</td></tr>
+    <tr><td>Q4'25</td><td class="num">1,024</td><td class="num">-2%</td><td class="num dn">-9%</td><td class="num">127</td><td class="num">12.4%</td><td class="num">56</td><td><span class="dn">컨센 -24% 미달</span>, 리튬 비용</td></tr>
+    <tr class="hl"><td><strong>Q1'26</strong></td><td class="num"><strong>951</strong></td><td class="num dn"><strong>-16%</strong></td><td class="num dn"><strong>-7%</strong></td><td class="num"><strong>169</strong></td><td class="num"><strong>17.8%</strong></td><td class="num"><strong>144</strong></td><td><strong><span class="dn">기대 하회</span>, 고객 물량 부진</strong></td></tr>
+  </tbody>
+</table>
+<p class="note">* Q4'25 영업이익 127억은 컨센서스 167억 대비 -24%. 이녹스리튬 가동 준비비용 + 4분기 OLED 출하 둔화. Q1'26은 매출 -15.9%, 영업익 -36% 더 큰 폭 하락 — 기존 고객(SDC·LGD) 물량 부진. 2분기부터 이녹스리튬 매출 인식 + OLED 회복으로 점진 개선 기대.</p>
+</div>
+
+<!-- 3-3. 세그먼트별 실적 테이블 (16분기) -->
+<span class="section-anchor" id="s5"></span>
+<div class="section">
+<h2>3-3. 세그먼트별 실적 테이블 (16분기, 억원)</h2>
+<div class="seg-table-wrap">
+<table class="seg-table">
+  <thead>
+    <tr>
+      <th rowspan="2" style="vertical-align:middle">분기</th>
+      <th colspan="2" class="seg-group center">OLED 소재</th>
+      <th colspan="2" class="seg-group center">FPCB 소재</th>
+      <th colspan="2" class="seg-group center">반도체 PKG</th>
+      <th colspan="2" class="seg-group center">이차전지/기타</th>
+      <th rowspan="2" class="seg-group center" style="vertical-align:middle">Total</th>
+    </tr>
+    <tr>
+      <th class="seg-group center">억원</th><th class="seg-group center">%</th>
+      <th class="seg-group center">억원</th><th class="seg-group center">%</th>
+      <th class="seg-group center">억원</th><th class="seg-group center">%</th>
+      <th class="seg-group center">억원</th><th class="seg-group center">%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Q2'22</td><td class="num seg-border">615</td><td class="num">45.5%</td><td class="num seg-border">525</td><td class="num">38.9%</td><td class="num seg-border">175</td><td class="num">13.0%</td><td class="num seg-border">35</td><td class="num">2.6%</td><td class="num seg-border"><b>1,350</b></td></tr>
+    <tr><td>Q3'22</td><td class="num seg-border">540</td><td class="num">43.2%</td><td class="num seg-border">490</td><td class="num">39.2%</td><td class="num seg-border">180</td><td class="num">14.4%</td><td class="num seg-border">40</td><td class="num">3.2%</td><td class="num seg-border"><b>1,250</b></td></tr>
+    <tr><td>Q4'22</td><td class="num seg-border">450</td><td class="num">42.9%</td><td class="num seg-border">420</td><td class="num">40.0%</td><td class="num seg-border">150</td><td class="num">14.3%</td><td class="num seg-border">30</td><td class="num">2.9%</td><td class="num seg-border"><b>1,050</b></td></tr>
+    <tr><td>Q1'23</td><td class="num seg-border">370</td><td class="num">42.5%</td><td class="num seg-border">350</td><td class="num">40.2%</td><td class="num seg-border">125</td><td class="num">14.4%</td><td class="num seg-border">25</td><td class="num">2.9%</td><td class="num seg-border"><b>870</b></td></tr>
+    <tr><td>Q2'23</td><td class="num seg-border">450</td><td class="num">45.8%</td><td class="num seg-border">385</td><td class="num">39.2%</td><td class="num seg-border">120</td><td class="num">12.2%</td><td class="num seg-border">28</td><td class="num">2.8%</td><td class="num seg-border"><b>983</b></td></tr>
+    <tr><td>Q3'23</td><td class="num seg-border">390</td><td class="num">45.6%</td><td class="num seg-border">325</td><td class="num">38.0%</td><td class="num seg-border">115</td><td class="num">13.5%</td><td class="num seg-border">25</td><td class="num">2.9%</td><td class="num seg-border"><b>855</b></td></tr>
+    <tr><td>Q4'23</td><td class="num seg-border">450</td><td class="num">46.2%</td><td class="num seg-border">370</td><td class="num">37.9%</td><td class="num seg-border">130</td><td class="num">13.3%</td><td class="num seg-border">25</td><td class="num">2.6%</td><td class="num seg-border"><b>975</b></td></tr>
+    <tr><td>Q1'24</td><td class="num seg-border">490</td><td class="num">48.0%</td><td class="num seg-border">365</td><td class="num">35.7%</td><td class="num seg-border">140</td><td class="num">13.7%</td><td class="num seg-border">26</td><td class="num">2.5%</td><td class="num seg-border"><b>1,021</b></td></tr>
+    <tr><td>Q2'24</td><td class="num seg-border">555</td><td class="num up2">49.1%</td><td class="num seg-border">395</td><td class="num">34.9%</td><td class="num seg-border">155</td><td class="num">13.7%</td><td class="num seg-border">26</td><td class="num">2.3%</td><td class="num seg-border"><b>1,131</b></td></tr>
+    <tr><td>Q3'24</td><td class="num seg-border">485</td><td class="num">49.0%</td><td class="num seg-border">340</td><td class="num">34.3%</td><td class="num seg-border">140</td><td class="num">14.1%</td><td class="num seg-border">25</td><td class="num">2.5%</td><td class="num seg-border"><b>990</b></td></tr>
+    <tr><td>Q4'24</td><td class="num seg-border">495</td><td class="num">48.8%</td><td class="num seg-border">340</td><td class="num">33.5%</td><td class="num seg-border">155</td><td class="num">15.3%</td><td class="num seg-border">24</td><td class="num">2.4%</td><td class="num seg-border"><b>1,014</b></td></tr>
+    <tr><td>Q1'25</td><td class="num seg-border">555</td><td class="num up2">49.1%</td><td class="num seg-border">385</td><td class="num">34.0%</td><td class="num seg-border">165</td><td class="num">14.6%</td><td class="num seg-border">26</td><td class="num">2.3%</td><td class="num seg-border"><b>1,131</b></td></tr>
+    <tr><td>Q2'25</td><td class="num seg-border">540</td><td class="num">48.3%</td><td class="num seg-border">385</td><td class="num">34.4%</td><td class="num seg-border">165</td><td class="num">14.8%</td><td class="num seg-border">28</td><td class="num">2.5%</td><td class="num seg-border"><b>1,118</b></td></tr>
+    <tr><td>Q3'25</td><td class="num seg-border">540</td><td class="num">48.0%</td><td class="num seg-border">385</td><td class="num">34.2%</td><td class="num seg-border">170</td><td class="num">15.1%</td><td class="num seg-border">30</td><td class="num">2.7%</td><td class="num seg-border"><b>1,125</b></td></tr>
+    <tr><td>Q4'25</td><td class="num seg-border">478</td><td class="num">46.7%</td><td class="num seg-border">350</td><td class="num">34.2%</td><td class="num seg-border">160</td><td class="num">15.6%</td><td class="num seg-border">36</td><td class="num">3.5%</td><td class="num seg-border"><b>1,024</b></td></tr>
+    <tr class="hl"><td><b>Q1'26</b></td><td class="num seg-border"><b>440</b></td><td class="num">46.3%</td><td class="num seg-border">320</td><td class="num">33.6%</td><td class="num seg-border">150</td><td class="num">15.8%</td><td class="num seg-border">41</td><td class="num">4.3%</td><td class="num seg-border"><b>951</b></td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">* 세그먼트 분할은 사업보고서 기반 추정. OLED·FPCB·반도체PKG는 사업보고서 명시 비중. 이차전지/기타는 이녹스리튬 + 기타 매출. 2026.Q2부터 이녹스리튬 본격 매출 인식 → 비중 5%대로 빠르게 상승할 전망. OLED 비중은 2024 Q2 49.1% 정점 후 2026 Q1 46.3%로 소폭 후퇴 — 디스플레이 사이클 둔화.</p>
+</div>
+
+<!-- 4. 재무제표 -->
+<span class="section-anchor" id="s6"></span>
+<div class="section">
+<h2>4. 재무제표 개요</h2>
+<table>
+  <thead><tr><th>항목 (억원)</th><th class="num">2022</th><th class="num">2023</th><th class="num">2024</th><th class="num">2025E</th><th class="num">Q1'26</th></tr></thead>
+  <tbody>
+    <tr><td>매출</td><td class="num">5,025</td><td class="num">3,668</td><td class="num">4,156</td><td class="num">4,398</td><td class="num">951</td></tr>
+    <tr><td>매출총이익</td><td class="num">1,206</td><td class="num">770</td><td class="num">1,123</td><td class="num">1,143</td><td class="num">237</td></tr>
+    <tr><td>영업이익</td><td class="num">639</td><td class="num">328</td><td class="num">820</td><td class="num">819</td><td class="num">169</td></tr>
+    <tr><td>OPM</td><td class="num">12.7%</td><td class="num">8.9%</td><td class="num">19.7%</td><td class="num">18.6%</td><td class="num">17.8%</td></tr>
+    <tr><td>당기순이익</td><td class="num">461</td><td class="num">198</td><td class="num">595</td><td class="num">552</td><td class="num">144</td></tr>
+    <tr><td>EPS(원)</td><td class="num">4,732</td><td class="num">2,033</td><td class="num">6,107</td><td class="num">5,668</td><td class="num">722</td></tr>
+    <tr><td>영업현금흐름</td><td class="num">560</td><td class="num">450</td><td class="num">780</td><td class="num">~700</td><td class="num">~150</td></tr>
+    <tr><td>현금성자산</td><td class="num">980</td><td class="num">850</td><td class="num">1,200</td><td class="num">~1,400</td><td class="num">~1,300</td></tr>
+    <tr><td>총자산</td><td class="num">5,800</td><td class="num">5,950</td><td class="num">6,500</td><td class="num">~7,200</td><td class="num">~7,300</td></tr>
+    <tr><td>총부채</td><td class="num">1,400</td><td class="num">1,600</td><td class="num">1,750</td><td class="num">~1,900</td><td class="num">~1,950</td></tr>
+    <tr><td>자본총계</td><td class="num">4,400</td><td class="num">4,350</td><td class="num">4,750</td><td class="num">~5,300</td><td class="num">~5,350</td></tr>
+    <tr><td>ROE</td><td class="num">10.5%</td><td class="num">4.6%</td><td class="num">12.5%</td><td class="num">~10.4%</td><td class="num">—</td></tr>
+  </tbody>
+</table>
+<p class="note">* 2025년 4월~7월 자회사 <strong>이녹스리튬 유상증자 2,619억원</strong> (제3자배정) 납입 완료 — 이녹스첨단소재 지분율 변동 + 비지배지분 대폭 증가. 별도 vs 연결 차이 큼: Q4'25 별도 영업익 175억 vs 연결 127억 (이녹스리튬 손실 반영). 부채/자본비율 ~36% 양호. 발행주식 약 1,993만주, 매년 주식배당 1주당 0.03주 4년 연속 실시.</p>
+<p class="note">⚠️ 이녹스리튬 누적 투자비 약 6,300억원 계획 (2호기까지). 1호기까지 약 3,500억원 투입. 2025년 말 기준 이녹스리튬 자본금은 유증 후 약 3,000억원대. 모회사 이녹스첨단소재 지분 ~50%대로 추정 (정확 비율 미공시).</p>
+</div>
+
+<!-- 5. 핵심 투자아이디어 -->
+<span class="section-anchor" id="s7"></span>
+<div class="section">
+<h2>5. 핵심 투자아이디어</h2>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">🔋</span>
+    <span class="thesis-tag">Thesis #1</span>
+    <div class="thesis-title">이녹스리튬 — 디스플레이 소재 회사에서 "리튬 + 첨단소재 그룹"으로 변신</div>
+  </div>
+  <div class="thesis-body">
+    <p>회사의 본질적 변곡점. <span class="hl-blue">2026.04 충북 오창 수산화리튬 1호기 양산 개시</span> — 연 2만톤(전기차 약 40만대분) 규모. 2025.11 준공 후 <strong>3개월 만에 글로벌 톱티어 품질 확보</strong> (일반적으로 6개월 이상 소요), 2026.02 해외 배터리사 샘플 첫 출하. <span class="hl-green">SK온·삼성SDI 장기공급 계약 + 해외 글로벌 고객사 확보 진행 중</span>.</p>
+    <p>핵심은 <strong>"래깅 효과(Lagging Effect)"</strong> — 리튬 가격 저점 구간에서 원재료를 선제적으로 확보, 가격 상승 사이클에서 판매 시 마진 확장. 2025년 말 리튬 가격 저점 → 2026년 회복 사이클 진입 중. 2027년 말 2호기 추가 시 <span class="hl-green">연 4만톤 / 매출 1조4천억원 잠재</span>. CEO는 2027년 그룹 매출 1조원, 2030년 3조원 비전 제시.</p>
+  </div>
+</div>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">📱</span>
+    <span class="thesis-tag">Thesis #2</span>
+    <div class="thesis-title">OLED 소재 점유율 50% — 폴더블·차량용 OLED 확대 수혜</div>
+  </div>
+  <div class="thesis-body">
+    <p>주력 사업의 안정성. <span class="hl-blue">국내 OLED 소재 점유율 ~50%</span>로 1위. <strong>SDC + LGD 양대 패널사 모두 고객</strong>인 유일한 회사. PSI·봉지재·Back Plate·보호필름 풀라인업 보유. 2018년 33% → 2024년 49% 매출 비중까지 확장.</p>
+    <p>중장기 성장 드라이버: <span class="hl-green">폴더블 스마트폰 본격화</span>(갤럭시 Z6·Z7) + <span class="hl-green">OLED TV 침투율 상승</span>(삼성 QD-OLED + LGD WOLED) + <span class="hl-green">차량용 OLED 채택 확대</span>(현대·BMW·벤츠 차세대 클러스터). Q1'26은 일시 둔화(고객 물량 부진)지만, <strong>2분기부터 신제품 출시 효과로 회복</strong> 가이드 (IBK·신한 분석가 공통).</p>
+  </div>
+</div>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">⚠️</span>
+    <span class="thesis-tag">Thesis #3</span>
+    <div class="thesis-title">단기 실적 부진 + 신사업 초기비용 — 밸류에이션 압박 vs 기업가치 재평가 기대</div>
+  </div>
+  <div class="thesis-body">
+    <p>리스크는 명확. <span class="hl-red">Q1'26 매출 -15.9% / 영업익 -36% YoY</span>로 시장 기대 하회. 1H'26 부진 이어질 가능성. <span class="hl-red">이녹스리튬 초기 비용</span>(감가상각·R&amp;D·재고 확보)으로 2026 영업익 -4.7% 감소 컨센. 자회사 유증 2,619억원으로 비지배지분 증가 → 모회사 EPS 희석 우려.</p>
+    <p>그러나 <strong>현재 PER 12배 / PBR 1.75배</strong>는 <span class="hl-green">메리츠·신한·IBK 모두 "기업가치 재평가"</span> 코멘트로 평가. 6개월 평균 목표가 <strong>34,333원 → 44,667원 (+30%)</strong> 상향. <span class="hl-green">1) OLED 점유율 50% 안정 사업 + 2) 리튬 양산 본격화 + 3) 열폭주 방지필름 신사업</span> 3축이 검증되면 멀티플 확장 가능.</p>
+  </div>
+</div>
+
+<!-- 5-1. 핵심 변동 요인 -->
+<span class="section-anchor" id="s8"></span>
+<div class="section">
+<h2>5-1. 핵심 변동 요인</h2>
+<table>
+  <thead><tr><th>구분</th><th>요인</th><th class="center">방향</th><th>설명</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>외부</strong></td><td>OLED 침투율 상승</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>스마트폰·TV·차량·노트북 OLED 확대. SDC·LGD 신규 라인 가동 시 패널 출하 ↑ → 소재 수요 ↑</td></tr>
+    <tr><td>리튬 가격 회복 사이클</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>2022 정점 → 2024 -90% 폭락 → 2025 말 저점 후 반등 시작. 2026 본격 회복 시 이녹스리튬 마진 확장</td></tr>
+    <tr><td>전기차 캐즘 회복 시점</td><td class="center"><span class="badge badge-neu">중립 ●</span></td><td>2024~2025 EV 수요 정체 → 1호기 가동 6개월 연기. 2026 회복 시 양극재·수산화리튬 수요 폭증</td></tr>
+    <tr><td>스마트폰·TV 출하 사이클</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>2026 H1 글로벌 스마트폰 출하 정체, 메모리 가격 상승으로 OEM 가격 압박. FPCB·OLED 동시 영향</td></tr>
+    <tr><td>중국 OLED·소재 굴기</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>BOE·CSOT 중국 패널사 자체 소재 내재화 시도. 가격 경쟁 심화 가능. 단, 고부가 PSI·봉지재는 아직 격차</td></tr>
+    <tr><td>IRA·CRMA 탈중국 공급망</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>이녹스리튬은 한국 생산거점 + 폐쇄형 순환체계 → 미국 IRA·EU CRMA 모두 부합. 해외 수요 ↑</td></tr>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>내부</strong></td><td>이녹스리튬 양산 ramp</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>2026.04 본격 양산. SK온·삼성SDI 장기계약 + 해외 고객 확보. 2026 매출 ~500억, 2027 ~2,000억 잠재</td></tr>
+    <tr><td>열폭주 방지필름 상용화</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>국내 완성차 공동개발 중, 시제품 단계. 차량당 매출 단가 높음. 양산 시 신규 캐시카우 가능</td></tr>
+    <tr><td>2호기 (연 2만톤) 착공</td><td class="center"><span class="badge badge-neu">중립 ●</span></td><td>2027 양산 목표였으나 1호기 연기로 일정 후퇴. EV 수요 회복 확인 후 결정 — Capex 6,300억 부담</td></tr>
+    <tr><td>고객 물량 부진 (2026 H1)</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>IBK 분석: "기존 고객 물량 부진으로 외형·수익성 부진". Q1 매출 -16%, 영업익 -36%. 2분기 회복 시 일시적</td></tr>
+    <tr><td>이녹스리튬 자본 희석</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>2025.04~07 유증 2,619억(제3자배정) → 모회사 지분율 일부 희석 + 비지배지분 ↑</td></tr>
+    <tr><td>주식배당 4년 연속</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>매년 보통주 1주당 0.03주 주식배당 → 발행주식수 점진 증가. 단, 현금 보존으로 신사업 투자 가능</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 5-2. 실적 트래킹 -->
+<span class="section-anchor" id="s9"></span>
+<div class="section">
+<h2>5-2. 실적 트래킹 (최근 12분기)</h2>
+<table class="cc-table">
+  <colgroup>
+    <col style="width:50px"><col><col><col><col>
+  </colgroup>
+  <thead>
+    <tr><th class="year-col">년</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="year-label">2023</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'23</div><div class="cc-msg">매출 870억(-38% YoY). 영업익 86억(-86%). 스마트폰·TV 동반 침체로 저점</div><div class="cc-guide">컨센 1,000억 → 실제 870억 <span class="cc-miss">❌ 미달</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'23</div><div class="cc-msg">983억(-29%). FPCB 부진 지속. <strong>이녹스리튬 신사업 발표</strong> — 2030 그룹 3조원 비전</div><div class="cc-guide">컨센 950억 → 실제 983억 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'23</div><div class="cc-msg">855억(-26%). C-DAF 차세대 반도체 소재 R&amp;D 완료. 가격경쟁력 ↑</div><div class="cc-guide">컨센 880억 → 실제 855억 <span class="cc-miss">❌</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'23</div><div class="cc-msg">975억(+5%). 회복 시작. <strong>오창 수산화리튬 1호기 착공</strong>. 2024 가이드 OLED 회복</div><div class="cc-guide">컨센 950억 → 실제 975억 <span class="cc-hit">✅</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2024</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'24</div><div class="cc-msg">1,021억(+26%). <strong>영업익 +257% 급증</strong>. 고부가 필름 + 스마트팩토리 효과</div><div class="cc-guide">컨센 970억 → 실제 1,021억 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'24</div><div class="cc-msg">1,131억(+15%). <strong>OPM 23.3% 분기 최대</strong>. OLED 본격 회복, FPCB 안정</div><div class="cc-guide">컨센 1,080억 → 실제 1,131억 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'24</div><div class="cc-msg">990억(+16%). KIW 2024에서 김경훈 CEO "2027년 매출 1조원 도전" 비전</div><div class="cc-guide">컨센 1,020억 → 실제 990억 <span class="cc-miss">❌</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'24</div><div class="cc-msg">1,014억(+4%). 2024 연간 매출 4,156억(+13%), 영업익 820억(+150%) 호실적</div><div class="cc-guide">컨센 1,030억 → 실제 1,014억 <span class="cc-hit">✅</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2025</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'25</div><div class="cc-msg">1,131억(+11%). <span class="dn">전기차 캐즘으로 리튬 1호기 가동 6개월 연기</span> 발표. 주가 -30%</div><div class="cc-guide">컨센 1,100억 → 실제 1,131억 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'25</div><div class="cc-msg">1,118억(-1%). <strong>이녹스리튬 유증 2,619억 납입 완료</strong>. 자본 확충</div><div class="cc-guide">컨센 1,150억 → 실제 1,118억 <span class="cc-miss">❌</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'25</div><div class="cc-msg">1,125억(+14%). 누적 매출 +5.8%, 영업익 +12%. <strong>이녹스리튬 오창 준공 임박</strong></div><div class="cc-guide">컨센 1,150억 → 실제 1,125억 <span class="cc-miss">❌</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'25</div><div class="cc-msg">1,024억(-2%). 영업익 127억(<span class="dn">-49%</span>). <strong>리튬 가동준비비용 + OLED 둔화</strong></div><div class="cc-guide">컨센 1,050억(영업익 167억) → 실제 1,024억(영업익 127억) <span class="cc-miss">❌ -24%</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2026</td>
+      <td><div class="cc-cell cc-latest"><div class="cc-quarter">Q1'26 ★ 최신</div><div class="cc-msg"><strong>951억(-16% YoY)</strong>. 영업익 169억(<span class="dn">-36%</span>). <strong>고객 물량 부진</strong></div><div class="cc-guide">컨센 1,100억 → 실제 951억 <span class="cc-miss">❌ -14%</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'26</div><div class="cc-msg">예정: 2026.08</div><div class="cc-guide"><strong>리튬 매출 본격 인식</strong> + OLED 회복</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'26</div><div class="cc-msg">예정: 2026.11</div><div class="cc-guide">하반기 OLED 신제품 ramp</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'26</div><div class="cc-msg">예정: 2027.02</div><div class="cc-guide">연간 매출 4,675억(+6.3%) 컨센</div></div></td>
+    </tr>
+  </tbody>
+</table>
+<p class="note">* 한국 코스닥 기업 특성상 미국 기업과 같은 분기별 컨퍼런스콜이 없음 — 잠정실적 공시 + 사업보고서 + 증권사 IR 미팅 자료로 대체. 2025년 들어 컨센서스 미달 패턴 지속(Q2/Q3/Q4 모두 ❌). Q1'26도 -14% 미달 — 시장 기대치 자체가 너무 높았다는 평가. 단, IBK·신한 분석가는 <strong>"2분기부터 회복"</strong> 일관 가이드.</p>
+</div>
+
+<!-- 5-3. Q1'26 심층 -->
+<span class="section-anchor" id="s10"></span>
+<div class="section">
+<h2>5-3. Q1'26 실적 심층 정리 (2026.05.06 잠정공시)</h2>
+<div class="prose">
+  <p><strong>실적 (연결 기준)</strong>: 매출 <strong>951.2억원</strong> (-15.91% YoY, -7.1% QoQ) / 영업이익 <strong>168.9억원</strong> (-35.96% YoY) / 당기순이익 <strong>143.9억원</strong> (-28.13% YoY) / OPM 17.8% (전년 23.3% 대비 -550bps)</p>
+  <p><strong>시장 반응</strong>: 발표 후 주가 약보합 (~-2%). 시장은 이미 부진을 일부 선반영(2026.04 IBK 리포트에서 "1분기 주춤" 명시). 컨센서스 1,100억 / 220억 대비 매출 -14% / 영업익 -23% 미달. 그러나 <strong>"2분기부터 회복"</strong> 컨센은 유효 — 목표가 평균 44,667원 유지.</p>
+  <p><strong>분석가 코멘트</strong>: IBK 김운호 — "기존 고객의 물량 부진으로 외형 및 수익성 부진. <strong>2분기부터 실적 개선 기대</strong>. 이녹스리튬, 반도체, 전장 등 사업 영역 확장 기대 유효". 메리츠 — "<strong>올해 기점으로 기업가치 재평가 기대</strong>". 신한 — 목표가 45,000원 유지.</p>
+</div>
+<h3 style="margin-top:1.2rem">실적 핵심 메시지 5가지</h3>
+<div class="cc-sticker-box">
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">1</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">매출 <span class="hl-neg">-15.9% YoY</span> — 고객 물량 부진이 핵심</div>
+      <div class="cc-sticker-desc">매출 951억원, 시장 컨센서스(1,100억) <span class="hl-neg">-14% 미달</span>. 주요 OLED·FPCB 고객사(SDC·LGD 등)의 <strong>스마트폰·TV 출하 둔화</strong>가 직접 반영. 2025 Q1 1,131억 대비 큰 폭 하락. IBK: <em>"기존 고객의 물량 부진으로 외형 및 수익성은 부진할 전망"</em></div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">2</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">영업이익률 <span class="hl-neg">23% → 18%로 후퇴</span> — 고정비 부담</div>
+      <div class="cc-sticker-desc">영업이익 168.9억(<span class="hl-neg">-36% YoY</span>), OPM 17.8%로 1년 만에 5.5%p 하락. 매출 감소에도 인건비·R&amp;D·감가상각 등 고정비 유지로 마진 압박. <strong>이녹스리튬 가동 초기비용</strong>도 일부 반영. 단, 동종업계 대비 여전히 양호한 수준</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">3</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title"><span class="hl-pos">이녹스리튬 4월 본격 양산 개시</span> — 신성장동력 가동</div>
+      <div class="cc-sticker-desc">2026.02.13 해외 배터리사 샘플 첫 출하 → <strong>4월 양산·판매 개시</strong>. 오창 1호기 연 2만톤(EV 약 40만대분). 단, Q1'26은 매출 인식 거의 없음 — <span class="hl-pos">Q2부터 매출 본격 반영 예상</span>. 래깅 효과로 리튬가 회복 시 마진 확장</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">4</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">분석가 일제히 <span class="hl-pos">"2분기부터 회복"</span> 메시지</div>
+      <div class="cc-sticker-desc">IBK <strong>목표가 45,000원</strong>(+32%) 상향, 신한 45,000원 유지, 메리츠 "기업가치 재평가". 6개월 평균 목표가 34,333원 → <strong>44,667원 (+30%)</strong>. 2026 매출 컨센 4,675억(+6.3%) — 1H 부진을 2H에서 만회한다는 시각</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">5</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">2027년 매출 <span class="hl-pos">1조원 도전</span> — 다각화 전환 가속</div>
+      <div class="cc-sticker-desc">CEO 김경훈 비전: <strong>"OLED + 리튬 + 열폭주 방지필름 3축으로 2027 매출 1조원"</strong>. 그룹사 박정진 회장은 <strong>"2030년 그룹 매출 3조원, 시총 6조원"</strong> 로드맵 공개. 첨단소재 솔루션 기업으로 전환 — <span class="hl-pos">반도체·우주항공·배터리 다변화</span></div>
+    </div>
+  </div>
+</div>
+
+<h3 style="margin-top:1.2rem">2026 실적 컨센서스</h3>
+<table>
+  <thead><tr><th>지표</th><th class="num">2024 실제</th><th class="num">2025E</th><th class="num">2026E (컨센)</th><th class="num">2027E</th></tr></thead>
+  <tbody>
+    <tr><td>매출 (억원)</td><td class="num">4,156</td><td class="num">4,398</td><td class="num hl"><strong>4,675 (+6.3%)</strong></td><td class="num">~5,500 (+18%)</td></tr>
+    <tr><td>영업이익 (억원)</td><td class="num">820</td><td class="num">819</td><td class="num hl"><strong>780 (-4.7%)</strong></td><td class="num">~950 (+22%)</td></tr>
+    <tr><td>OPM</td><td class="num">19.7%</td><td class="num">18.6%</td><td class="num hl"><strong>16.7%</strong></td><td class="num">~17.3%</td></tr>
+    <tr><td>당기순이익 (억원)</td><td class="num">595</td><td class="num">552</td><td class="num">~520</td><td class="num">~700</td></tr>
+    <tr><td>EPS (원)</td><td class="num">6,107</td><td class="num">5,668</td><td class="num">~5,300</td><td class="num">~7,000</td></tr>
+    <tr><td>이녹스리튬 매출 (억원)</td><td class="num">~30</td><td class="num">~80</td><td class="num hl"><strong>~500</strong></td><td class="num">~2,000</td></tr>
+  </tbody>
+</table>
+<p class="note">* 2026 영업익 -4.7% 컨센서스는 이녹스리튬 초기 가동비용 + OLED·FPCB 일부 둔화 반영. 2027년부터 리튬 본격 매출 + 2호기 검토로 매출 5,500억+ 가능. CEO 비전(2027 1조원)은 컨센 대비 보수적이지만, 리튬·열폭주 방지필름 양산 본격화 시 도달 가능 시나리오.</p>
+
+<h3 style="margin-top:1.5rem">📊 IR 자료 — 정기 IR 자료 미공개</h3>
+<div class="ir-na-box">
+  <strong>※ 이녹스첨단소재 IR 자료 미제공 사유</strong><br>
+  한국 중견기업(코스닥) 특성상 미국 기업과 같은 분기별 Earnings Presentation PDF가 공개적으로 배포되지 않음. <strong>대체 자료</strong>:
+  <ul style="margin-top:6px;padding-left:1.3rem">
+    <li>📄 <strong>분기·반기·연간 사업보고서</strong> (DART 전자공시) — 매 분기 사업 부문별 매출 비중 공시
+    <li>📄 <strong>증권사 분석 리포트</strong> (IBK·신한·메리츠) — 한국 기업의 사실상 IR 역할
+    <li>📄 <strong>잠정실적 공시</strong> (2026.05.06 발표) — 매출·영업익·순이익 핵심 수치만 우선 공개
+    <li>📄 <strong>이녹스리튬 보도자료</strong> — 2026.02.13 샘플 출하, 2026.04 양산 개시 발표
+    <li>📄 <strong>회사 홈페이지</strong> — innoxamc.com (사업·제품·연혁 소개)
+  </ul>
+  <strong>IR Page</strong>: <a href="https://m.irgo.co.kr/IR-COMP/272290/-IR-PAGE" target="_blank" style="color:#378ADD">IRGO 이녹스첨단소재 IR Page</a> — IR 담당자 직접 질문 가능
+</div>
+</div>
+
+<!-- 5-4. 시나리오 -->
+<span class="section-anchor" id="s11"></span>
+<div class="section">
+<h2>5-4. 강세 / 약세 시나리오</h2>
+<div class="scenario-stack">
+  <div class="scenario-box s-bull">
+    <div class="scenario-title">🟢 강세 시나리오</div>
+    <div class="s-item"><div class="s-case">이녹스리튬 양산 안착 + 리튬가 회복</div><div class="s-sub">2026.04 양산 → 4분기 분기 매출 200억+ 도달. 2027년 연 2,000억 매출 + 흑전. 리튬가 +30%~+50% 회복 시 래깅 효과로 마진 확장</div></div>
+    <div class="s-item"><div class="s-case">2호기 (연 2만톤) 착공 결정</div><div class="s-sub">2027년 EV 수요 확인 후 착공. 2028~2029 가동 시 연 4만톤 / 매출 1.4조원 잠재. 그룹 매출 3조원 비전 가시화</div></div>
+    <div class="s-item"><div class="s-case">OLED 폴더블 본격화 + 차량용 OLED</div><div class="s-sub">갤럭시 Z6/Z7 + 中 폴더블 출하 ↑. 현대·BMW 차량용 OLED 채택. 2027 OLED 소재 매출 3,000억 가능. 점유율 50%+ 유지</div></div>
+    <div class="s-item"><div class="s-case">열폭주 방지필름 양산 진입</div><div class="s-sub">2026 H1 시제품 → H2 평가 → 2027 양산. 차량당 단가 높음. SDI/SK온/현대모비스 채택 시 연 500억+ 신규 매출</div></div>
+    <div class="s-item"><div class="s-case">반도체 PKG 회복 + AI 수혜</div><div class="s-sub">HBM·AI 칩 패키징 수요 ↑. C-DAF 차세대 소재 채택. 반도체 PKG 매출 700억+ 회복</div></div>
+    <div class="s-item"><div class="s-case">목표주가 45,000~50,000원 도달</div><div class="s-sub">현재 6개월 평균 목표가 44,667원 (+29%). PER 12 → 15배 멀티플 확장 + EPS 7,000원 시 시총 1.4조원 가능</div></div>
+  </div>
+  <div class="scenario-box s-bear">
+    <div class="scenario-title">🔴 약세 시나리오</div>
+    <div class="s-item"><div class="s-case">EV 캐즘 장기화 + 리튬가 추가 하락</div><div class="s-sub">전기차 수요 둔화 지속 시 이녹스리튬 가동률 50% 미만. 6,300억 누적 투자 회수 지연. 2027 흑자 전환 실패 가능</div></div>
+    <div class="s-item"><div class="s-case">OLED·FPCB 고객 물량 부진 지속</div><div class="s-sub">스마트폰·TV 출하 정체 + 메모리 가격 상승으로 OEM 압박. 1H'26 부진이 2H로 연장 시 2026 매출 -5%~-10% 가능</div></div>
+    <div class="s-item"><div class="s-case">중국 OLED 소재 자체 내재화</div><div class="s-sub">BOE·CSOT 자체 소재 개발 가속. 가격 경쟁 심화로 OLED 마진 -300bps 가능. OPM 15% 후퇴</div></div>
+    <div class="s-item"><div class="s-case">이녹스리튬 자본 추가 희석</div><div class="s-sub">2호기 6,300억 추가 투자 시 추가 유증·차입 필요. 모회사 EPS 추가 희석. 주식배당 4년 연속도 발행주식 점진 ↑</div></div>
+    <div class="s-item"><div class="s-case">열폭주 방지필름 채택 지연</div><div class="s-sub">완성차 평가 통과 실패 또는 경쟁사(SK이노 등) 우위. 신규 캐시카우 부재로 OLED 의존 지속</div></div>
+    <div class="s-item"><div class="s-case">코스닥 디스카운트 + 외국인 매도</div><div class="s-sub">2025년 외국인 비중 12% 수준에서 추가 매도. 한국 중소형 디스카운트 지속 시 PER 8~10배로 후퇴 가능</div></div>
+  </div>
+</div>
+</div>
+
+<!-- 6. Worth Watching -->
+<span class="section-anchor" id="s12"></span>
+<div class="section">
+<h2>6. Worth Watching Events</h2>
+<div class="ww-sticker-box">
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.05~06</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">이녹스리튬 양산 본격화 + 첫 매출 인식</div>
+      <div class="ww-sticker-point">2026.04 양산 개시 후 첫 분기 매출 가시화. 해외 배터리사 첫 매출 + SK온/삼성SDI 공급 시작</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.06~07</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">갤럭시 Z 폴드7/Flip7 출시</div>
+      <div class="ww-sticker-point">SDC OLED 패널 출하 ↑ → 이녹스 PSI·봉지재 매출 동반 상승. 폴더블 점유율 결정적</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.08</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q2'26 잠정실적 발표</div>
+      <div class="ww-sticker-point">"2분기부터 회복" 컨센 검증. 매출 1,100억+ / 영업익 200억+ 회복 여부 핵심. 리튬 매출 첫 가시화</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026 H2</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">열폭주 방지필름 시제품 평가</div>
+      <div class="ww-sticker-point">국내 완성차(현대·기아) 평가 진행. 통과 시 2027 양산. 신규 매출 동력 확보 여부</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.10</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">아이폰 17 출시 + Pro 모델 OLED 신규</div>
+      <div class="ww-sticker-point">애플 OLED 채택 확대 시 LGD·SDC 출하 ↑. FPCB·OLED 동시 수혜. 차량용 OLED 본격화 시점</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.11</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q3'26 잠정실적 + 2호기 결정 가시화</div>
+      <div class="ww-sticker-point">리튬 1호기 가동률 + 2호기 착공 결정 여부. EV 수요 회복 모멘텀 확인</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027.02</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">2026 연간 결산 + 2027 가이던스</div>
+      <div class="ww-sticker-point">2027 매출 1조원 비전 진척도. 그룹 매출 3조원 로드맵 업데이트. 리튬 흑자 전환 시점 명확화</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027 H1</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">열폭주 방지필름 양산 + 차세대 차량 채택</div>
+      <div class="ww-sticker-point">전기차 차량당 단가 높은 신규 매출. SDI·SK온 외 LGES 추가 공급 가능성</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027 H2</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">이녹스리튬 2호기 착공 (예정)</div>
+      <div class="ww-sticker-point">EV 수요 회복 시 결정. Capex 약 3,000억 추가. 2029~2030 가동 시 연 4만톤 / 매출 1.4조원</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2030</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">그룹 매출 3조원 / 시총 6조원 비전 검증</div>
+      <div class="ww-sticker-point">박정진 회장 로드맵 — 계열사 12개+ / 상장사 6개+. ESS 탄산리튬 + 전고체 황화리튬 사업 확장 여부</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 7. 데이터 출처 -->
+<span class="section-anchor" id="s13"></span>
+<div class="section">
+<h2>7. 데이터 출처</h2>
+<div class="source-box">
+  <ul style="padding-left:1.2rem">
+    <li>이녹스첨단소재 DART 전자공시 (분기·반기·연간 사업보고서) 2017~2026</li>
+    <li>2026.05.06 Q1'26 잠정실적 공시 — 매출 951.2억, 영업이익 168.9억, 순이익 143.9억</li>
+    <li>2026.04.14 IBK투자증권 김운호 리포트 — 목표주가 45,000원 (직전 34,000 → +32.4% 상향)</li>
+    <li>2026.02.26 신한투자증권 리포트 — 목표주가 45,000원 유지</li>
+    <li>2026.03.13 메리츠증권 리포트 — "올해 기점으로 기업가치 재평가 기대"</li>
+    <li>2026.02.13 이데일리·중앙이코노미뉴스 — 이녹스리튬 해외 배터리사 샘플 첫 출하 발표</li>
+    <li>2025.01.12 전자신문 — 이녹스리튬 1호기 가동 6개월 연기 (전기차 캐즘)</li>
+    <li>2024.09.09 한국경제 — KIW 2024 김경훈 CEO "2027년 1조원 도전" 비전</li>
+    <li>2024.07.10 한국경제 — 김경훈 CEO 인터뷰 "전지 소재로 매출 1조 도전"</li>
+    <li>2023.05.04 더일렉·MTN — 이녹스리튬 신사업 발표 (2030 그룹 3조원 비전)</li>
+    <li>주가·시가총액·EPS: FnGuide Company Guide, Investing.com (2026.05.06 기준)</li>
+    <li>분석일: 2026년 5월 7일</li>
+  </ul>
+  <p style="margin-top:8px;color:#bbb">⚠️ 한국 코스닥 중견기업 특성상 미국 기업과 같은 분기별 Earnings Presentation PDF는 미공개. 잠정실적 공시 + 사업보고서 + 증권사 리포트가 사실상 IR 역할. 2025~2026 분기별 세그먼트 매출은 사업보고서 기재 비중 + 추정. 이녹스리튬 매출은 2026.Q2부터 본격 인식 — 정확한 수치는 2026.08 Q2 공시에서 확인 가능.</p>
+</div>
+</div>
+
+<!-- 7-1. Reference -->
+<span class="section-anchor" id="s14"></span>
+<div class="section">
+<h2>7-1. Reference</h2>
+<div class="ref-list">
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.innoxamc.com/" target="_blank">이녹스첨단소재 공식 홈페이지</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://innoxamc.com/invest/public_announce" target="_blank">이녹스첨단소재 — 공시·IR 페이지</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://m.irgo.co.kr/IR-COMP/272290/-IR-PAGE" target="_blank">IRGO — 이녹스첨단소재 IR Page (담당자 질의응답)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://dart.fss.or.kr/dsab007/main.do?selectKey=00465339" target="_blank">DART 전자공시 — 이녹스첨단소재 정기공시</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.innoxamc.com/business/productType03" target="_blank">이녹스첨단소재 — OLED 소재 제품 페이지</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://news.nate.com/view/20260414n16763" target="_blank">IBK투자증권 — '사업 확장성에 투자하자' 목표가 45,000원 (2026.04.14)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?gicode=A272290" target="_blank">FnGuide Company Guide — 이녹스첨단소재 (재무·실적 종합)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.bondweb.co.kr/_research/downloadPage.asp?number=891144" target="_blank">신한투자증권 리포트 — 이녹스첨단소재 (2026.02)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://biz.heraldcorp.com/article/10732275" target="_blank">헤럴드경제 — Q1'26 영업익 169억 (-36% YoY) 잠정 (2026.05.06)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.edaily.co.kr/News/Read?newsId=03316086645350192" target="_blank">이데일리 — 이녹스리튬, 수산화리튬 샘플 첫 출하 (2026.02.13)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.joongangenews.com/news/articleView.html?idxno=495927" target="_blank">중앙이코노미뉴스 — 이녹스리튬 4월 양산 개시 (2026.02.13)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.etnews.com/20250110000042" target="_blank">전자신문 — 수산화리튬 공장 가동 6개월 연기 (2025.01.12)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.hankyung.com/article/202409096379i" target="_blank">한국경제 — KIW 2024 김경훈 CEO "2027년 1조원" (2024.09.09)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.hankyung.com/article/2024071054311" target="_blank">한국경제 — 이녹스첨단 "전지 소재로 매출 1조 도전" (2024.07.10)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.thelec.kr/news/articleView.html?idxno=20981" target="_blank">전자부품 디일렉 — 이차전지 수산화리튬 사업 진출 (2023.05)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://dealsite.co.kr/articles/64812" target="_blank">딜사이트 — 폰 부품사 환골탈태, OLED 판 키운다</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://news.mtn.co.kr/news-detail/2023050408470910090" target="_blank">머니투데이방송 — 2차전지 수산화리튬 시장 진출 (2023.05.04)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://namu.wiki/w/%EC%9D%B4%EB%85%B9%EC%8A%A4%EC%B2%A8%EB%8B%A8%EC%86%8C%EC%9E%AC" target="_blank">나무위키 — 이녹스첨단소재</a></div>
+</div>
+<p class="note">* 공식 자료(홈페이지·IR·DART) 5개, 증권사·전문 분석 3개, 뉴스 9개, 위키 1개 — 총 18개 레퍼런스. 한국 중견기업 특성상 미국 기업처럼 분기별 컨퍼런스콜 transcript는 부재 — 잠정실적 공시 + 증권사 리포트가 핵심.</p>
+</div>
+
+<div class="footer">이녹스첨단소재 (272290) 기업분석 · 2026.05.07 · 개인 사용 목적</div>
+</div>
+
+<script>
+// 33분기 라벨 — Q1'18 ~ Q1'26
+const L33=["Q1'18","Q2'18","Q3'18","Q4'18","Q1'19","Q2'19","Q3'19","Q4'19","Q1'20","Q2'20","Q3'20","Q4'20","Q1'21","Q2'21","Q3'21","Q4'21","Q1'22","Q2'22","Q3'22","Q4'22","Q1'23","Q2'23","Q3'23","Q4'23","Q1'24","Q2'24","Q3'24","Q4'24","Q1'25","Q2'25","Q3'25","Q4'25","Q1'26"];
+
+// 4개 세그먼트 - 33분기 (억원)
+// OLED 소재
+const oled=[200,220,250,260, 270,290,300,330, 290,310,420,460, 460,480,500,550, 600,615,540,450, 370,450,390,450, 490,555,485,495, 555,540,540,478, 440];
+// FPCB 소재
+const fpcb=[280,290,310,320, 320,330,340,360, 280,310,400,420, 460,470,490,520, 540,525,490,420, 350,385,325,370, 365,395,340,340, 385,385,385,350, 320];
+// 반도체 PKG
+const pkg=[100,110,120,130, 110,120,130,140, 130,140,160,170, 170,170,180,180, 180,175,180,150, 125,120,115,130, 140,155,140,155, 165,165,170,160, 150];
+// 이차전지/기타
+const lithium=[20,25,30,35, 28,32,35,40, 30,32,40,45, 50,50,55,60, 60,35,40,30, 25,28,25,25, 26,26,25,24, 26,28,30,36, 41];
+
+const totalRev=L33.map((_,i)=>oled[i]+fpcb[i]+pkg[i]+lithium[i]);
+
+// OPM% (2018~2022 추정, 2023~2026 실제)
+const opm=[
+  16,17,18,18,    // 2018
+  13,14,15,12,    // 2019
+  10,12,18,16,    // 2020
+  16,15,17,18,    // 2021
+  17,15,12,9,     // 2022
+  9,9,8,9,        // 2023 - 실제 (저점)
+  15.4,23.3,19.3,20.5, // 2024 - 실제
+  23.3,19.7,18.5,12.4, // 2025 - 실제 (Q4 부진)
+  17.8            // Q1'26 - 실제
+];
+
+const gc='rgba(0,0,0,0.05)',tc='#999';
+const xT={color:tc,font:{size:9},maxRotation:45,autoSkip:true,maxTicksLimit:18};
+const yT={color:tc,font:{size:11}};
+
+// 주가 차트 (Chart.js로 KRX 대체)
+// 월 4주 근사치 — 2024.05~2026.05 (104주, 2년)
+const wkLabels=[];
+const wkData=[];
+const startDate=new Date('2024-05-13');
+for(let i=0;i<104;i++){
+  const d=new Date(startDate.getTime()+i*7*86400000);
+  wkLabels.push(`${d.getFullYear().toString().slice(2)}/${(d.getMonth()+1).toString().padStart(2,'0')}/${d.getDate().toString().padStart(2,'0')}`);
+}
+// 주가 추정 (2024.05 ~3.7만 → 2025.04 4.5만 → 2025.08 1.95만 저점 → 2026.02 3.3만 → 2026.05 3.46만)
+const priceArr=[
+  37000,36500,38000,40000,41000,42000,43000,44000,45000,44500,43000,41500,40000, // 2024.05~07 상승
+  39500,38000,36000,34500,33000,32000,30500,29000,27500,26000,25000,24500,25000, // 2024.08~10 하락
+  26500,28000,30000,31000,32500,33000,32000,30500,29000,28500,28000,27000,28500, // 2024.11~01 회복후 재하락
+  29500,28500,27000,25500,24000,23000,22000,21500,20500,19800,19520,20500,21500, // 2025.02~07 저점
+  22500,23500,24500,25500,26500,27500,28500,29500,30500,31000,31500,32000,32500, // 2025.08~11 반등 시작
+  33000,32500,32000,31500,31000,30500,30000,30500,31000,31500,32000,32500,33000, // 2025.12~02
+  33500,34000,34500,35000,34500,34000,33500,33000,32500,32000,31500,32000,33000, // 2026.03~04
+  33500,34000,34200,34400,34600,34600,34600,34600,34600,34600,34600,34600,34600  // 2026.05
+];
+new Chart(document.getElementById('cPrice'),{
+  type:'line',
+  data:{labels:wkLabels,datasets:[{
+    label:'주가(원)',data:priceArr,borderColor:'#378ADD',backgroundColor:'rgba(55,138,221,0.08)',
+    borderWidth:1.5,pointRadius:0,fill:true,tension:0.2
+  }]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.parsed.y.toLocaleString()+'원'}}},
+    scales:{x:{grid:{color:gc},ticks:{...xT,maxTicksLimit:12}},y:{grid:{color:gc},ticks:{...yT,callback:v=>(v/1000)+'k원'}}}
+  }
+});
+
+// 세그먼트 차트
+const segBase=[
+  {label:'OLED 소재',data:oled,backgroundColor:'#1D9E75',stack:'s'},
+  {label:'FPCB 소재',data:fpcb,backgroundColor:'#378ADD',stack:'s'},
+  {label:'반도체 PKG',data:pkg,backgroundColor:'#D85A30',stack:'s'},
+  {label:'이차전지/기타',data:lithium,backgroundColor:'#BA7517',stack:'s'},
+];
+const segChart=new Chart(document.getElementById('cSeg'),{
+  type:'bar',
+  data:{labels:L33,datasets:segBase.map(d=>({...d}))},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.parsed.y+'억원'}}},scales:{x:{grid:{color:gc},ticks:xT,stacked:true},y:{grid:{color:gc},ticks:{...yT,callback:v=>v+'억'},stacked:true}}}
+});
+window.toggleSeg=function(idx,el){const m=segChart.getDatasetMeta(idx);m.hidden=!m.hidden;el.classList.toggle('hidden',m.hidden);segChart.update();};
+
+// 매출+OPM 이중축
+new Chart(document.getElementById('cRev'),{
+  type:'bar',
+  data:{
+    labels:L33,
+    datasets:[
+      {type:'bar',label:'매출',data:totalRev,backgroundColor:'rgba(55,138,221,0.25)',borderColor:'#378ADD',borderWidth:1,yAxisID:'y'},
+      {type:'line',label:'OPM%',data:opm,borderColor:'#1D9E75',pointRadius:3,pointBackgroundColor:'#1D9E75',fill:false,tension:0.3,yAxisID:'y2',borderWidth:2}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:ctx=>ctx.datasetIndex===0?' '+Math.round(ctx.parsed.y)+'억원':' OPM: '+ctx.parsed.y.toFixed(1)+'%'}}},
+    scales:{
+      x:{grid:{color:gc},ticks:xT},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>v+'억'},position:'left'},
+      y2:{grid:{display:false},ticks:{color:'#1D9E75',font:{size:10},callback:v=>v+'%'},position:'right',min:0,max:30}
+    }
+  }
+});
+</script>
+</body>
+</html>
