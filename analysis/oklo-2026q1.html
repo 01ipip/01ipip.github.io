@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oklo Inc. (OKLO) 기업분석 — 2026 Q1 (Pre-Q1 Preview)</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f3ef;color:#1a1a1a;padding:2rem;font-size:14px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto}
+.header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #e0e0dc;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.header-title{font-size:22px;font-weight:700}
+.header-meta{font-size:12px;color:#888;margin-top:4px}
+.toc{margin-bottom:2rem;padding:0}
+.toc-title{font-size:12px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+.toc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:1.1rem 1.3rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.toc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(8,auto);grid-auto-flow:column;gap:6px 28px}
+@media(max-width:650px){.toc-grid{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}}
+.toc-link{display:flex;align-items:center;gap:10px;padding:5px 0;text-decoration:none;color:#444;font-size:13px;border-bottom:0.5px dashed transparent;transition:all .15s ease}
+.toc-link:hover{color:#378ADD;border-bottom-color:#cfe1f5}
+.toc-link .toc-num{color:#aaa;font-weight:700;font-size:12px;min-width:30px;font-variant-numeric:tabular-nums;flex-shrink:0}
+.toc-link:hover .toc-num{color:#378ADD}
+.toc-link .toc-text{flex:1}
+.toc-link.sub{padding-left:18px;font-size:12.5px;color:#666}
+.toc-link.sub .toc-num{font-size:11px;color:#bbb}
+.section{margin-bottom:3rem}
+.section-anchor{display:block;position:relative;top:-70px;visibility:hidden}
+h2{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:6px;border-bottom:1.5px solid #e0e0dc}
+h3{font-size:14px;font-weight:600;margin:1.2rem 0 .6rem;color:#333}
+.chart-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:20px;position:relative;width:100%}
+.note{font-size:11px;color:#999;margin-top:8px;line-height:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;font-size:12px;color:#666}
+.legend-item{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:3px 8px;border-radius:6px;transition:opacity .15s}
+.legend-item:hover{background:#e8e8e3}
+.legend-item.hidden{opacity:.3;text-decoration:line-through}
+.legend-static{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0dc;margin-bottom:.5rem}
+th{background:#ebebe6;font-weight:600;padding:7px 8px;text-align:left;border-bottom:1px solid #e0e0dc;white-space:nowrap;font-size:11.5px}
+th.center{text-align:center}
+td{padding:6px 8px;border-bottom:0.5px solid #f0f0ee;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafaf6}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.center{text-align:center}
+.hl{background:#fffbe6 !important}
+.dn{color:#D85A30}
+.up2{color:#1D9E75}
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
+@media(max-width:650px){.overview-grid{grid-template-columns:1fr}}
+.overview-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.overview-box h4{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.kv{display:flex;justify-content:space-between;align-items:flex-start;padding:4px 0;border-bottom:0.5px solid #f5f4f0;font-size:12.5px;gap:10px}
+.kv:last-child{border-bottom:none}
+.kv-key{color:#666;min-width:90px;flex-shrink:0}
+.kv-val{font-weight:600;text-align:right;flex:1}
+.seg-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:1rem}
+.seg-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.seg-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:8px}
+.seg-card-name{font-size:13px;font-weight:700}
+.seg-card-share{font-size:11px;color:#888;font-weight:600}
+.seg-card-desc{font-size:12px;color:#444;line-height:1.55;margin-bottom:6px}
+.seg-card-margin{font-size:11px;font-weight:600}
+.badge{display:inline-block;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:600}
+.badge-up{background:#e6f7f0;color:#1D9E75}
+.badge-dn{background:#fce8e4;color:#D85A30}
+.badge-neu{background:#ebebe6;color:#666}
+.cc-table{width:100%;border-collapse:separate;border-spacing:6px;margin-bottom:1rem}
+.cc-table th{background:transparent;border:none;font-size:11px;color:#888;text-align:center;padding:4px;font-weight:600;white-space:nowrap}
+.cc-table th.year-col{width:50px;text-align:left}
+.cc-cell{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.65rem .75rem;vertical-align:top;height:100%}
+.cc-quarter{font-size:10px;font-weight:700;color:#378ADD;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.cc-msg{font-size:11px;color:#444;margin-bottom:6px;line-height:1.45}
+.cc-guide{font-size:10px;color:#888;border-top:0.5px solid #f0f0ee;padding-top:5px;line-height:1.5}
+.cc-hit{color:#1D9E75;font-weight:600}
+.cc-miss{color:#D85A30;font-weight:600}
+.cc-latest{border:1.5px solid #378ADD !important;box-shadow:0 0 0 2px rgba(55,138,221,0.1)}
+.year-label{font-size:13px;font-weight:700;color:#555;padding-right:8px;vertical-align:middle}
+.scenario-stack{display:flex;flex-direction:column;gap:12px}
+.scenario-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1.1rem 1.3rem}
+.scenario-title{font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid #f0f0ee}
+.s-bull .scenario-title{color:#1D9E75}
+.s-bear .scenario-title{color:#D85A30}
+.s-item{margin-bottom:9px;padding-bottom:9px;border-bottom:0.5px solid #f5f4f0;font-size:12px}
+.s-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-case{font-weight:600;margin-bottom:2px}
+.s-sub{color:#888;font-size:11px}
+.ww-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.ww-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.ww-sticker-item{padding:.7rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:14px;align-items:flex-start}
+.ww-sticker-item:last-child{border-bottom:none}
+.ww-sticker-date{font-size:11px;font-weight:700;color:#378ADD;white-space:nowrap;min-width:90px;flex-shrink:0;padding-top:1px}
+.ww-sticker-content{flex:1}
+.ww-sticker-event{font-size:12.5px;font-weight:700;color:#222;margin-bottom:2px}
+.ww-sticker-point{font-size:11.5px;color:#666;line-height:1.5}
+.source-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.4rem;font-size:12px;color:#888;line-height:2}
+.prose{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;margin-bottom:1rem;font-size:13px;line-height:1.7}
+.prose ul{padding-left:1.3rem}
+.prose li{margin-bottom:.25rem}
+.prose p{margin-bottom:.7rem}
+.prose p:last-child{margin-bottom:0}
+.thesis-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:12px;padding:1.2rem 1.4rem;margin-bottom:12px;border-left:5px solid #333;position:relative}
+.thesis-box-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.thesis-icon{font-size:22px;flex-shrink:0}
+.thesis-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:5px;background:#ebebe6;color:#444}
+.thesis-title{font-size:15px;font-weight:700;color:#222;flex:1;margin-bottom:0}
+.thesis-body{font-size:13px;line-height:1.7;color:#333}
+.thesis-body p{margin-bottom:.6rem}
+.thesis-body p:last-child{margin-bottom:0}
+.thesis-body strong{color:#222;font-weight:700}
+.thesis-body .hl-blue{font-weight:600;color:#222}
+.thesis-body .hl-green{font-weight:700;color:#1D9E75}
+.thesis-body .hl-red{font-weight:700;color:#D85A30}
+.cc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.cc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.cc-sticker-item{padding:.85rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:12px;align-items:flex-start}
+.cc-sticker-item:last-child{border-bottom:none}
+.cc-sticker-rank{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#378ADD;color:#fff;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.cc-sticker-content{flex:1}
+.cc-sticker-title{font-size:13px;font-weight:700;color:#222;margin-bottom:4px}
+.cc-sticker-desc{font-size:12px;color:#444;line-height:1.6}
+.cc-sticker-desc strong{color:#222}
+.hl-pos{color:#1D9E75;font-weight:700}
+.hl-neg{color:#D85A30;font-weight:700}
+.ir-na-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;font-size:12px;color:#666;line-height:1.6}
+.ir-slide{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;overflow:hidden;margin-bottom:14px}
+.ir-slide-frame{background:linear-gradient(135deg,#f8f8f5 0%,#ffffff 100%);padding:.85rem 1.4rem;border-bottom:0.5px solid #e0e0dc}
+.ir-slide-num{font-size:10px;color:#999;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+.ir-slide-title{font-size:14px;font-weight:700;color:#333}
+.ir-slide-img-wrap{padding:1rem 1.4rem;text-align:center;background:#fafaf6}
+.ir-slide-img-wrap iframe{display:block;width:100%;max-width:850px;height:480px;margin:0 auto;border:0.5px solid #e0e0dc;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.ir-slide-caption{font-size:11.5px;color:#555;padding:.85rem 1.4rem 1rem;line-height:1.55;background:#fff;border-top:0.5px solid #f0f0ee}
+.ir-slide-caption strong{color:#222}
+.footer{font-size:11px;color:#aaa;text-align:center;margin-top:2rem;padding-top:1rem;border-top:0.5px solid #e0e0dc}
+.tv-wrap{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:6px;overflow:hidden}
+.tv-wrap iframe{display:block;width:100%;height:420px;border:0;border-radius:6px}
+.ref-list{display:flex;flex-direction:column;gap:6px}
+.ref-item{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.6rem .9rem;display:flex;align-items:center;gap:10px;font-size:12px}
+.ref-tag{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600;flex-shrink:0;min-width:55px;text-align:center}
+.tag-official{background:#e0effc;color:#1565c0}
+.tag-broker{background:#fff4e0;color:#ed8936}
+.tag-news{background:#f0f0ed;color:#555}
+.tag-wiki{background:#e6f7f0;color:#1D9E75}
+.ref-item a{color:#378ADD;text-decoration:none;flex:1;word-break:break-all}
+.ref-item a:hover{text-decoration:underline}
+.pipe-table th{font-size:11.5px}
+.pipe-table td{font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div>
+    <div class="header-title">⚛️ Oklo Inc. (OKLO) 기업분석</div>
+    <div class="header-meta">회계연도: Calendar Year &nbsp;|&nbsp; 분석기간: Q3'24~Q4'25 (상장 후 7분기) &nbsp;|&nbsp; 최근 컨콜: 2026.03.17 (Q4'25) · Q1'26 컨콜 예정: 2026.05.12</div>
+  </div>
+  <div style="font-size:12px;color:#aaa">분석일: 2026.05.07</div>
+</div>
+
+<!-- 목차 -->
+<div class="toc">
+  <div class="toc-title">목차</div>
+  <div class="toc-sticker-box">
+    <div class="toc-grid">
+      <a class="toc-link" href="#s1"><span class="toc-num">01.</span><span class="toc-text">회사 개요</span></a>
+      <a class="toc-link" href="#s2"><span class="toc-num">02.</span><span class="toc-text">주가 흐름 — TradingView 일봉</span></a>
+      <a class="toc-link" href="#s3"><span class="toc-num">03.</span><span class="toc-text">사업 구조 및 제품 (사업 단위별)</span></a>
+      <a class="toc-link sub" href="#s3b"><span class="toc-num">3-1.</span><span class="toc-text">사업 단위 카드</span></a>
+      <a class="toc-link sub" href="#s4"><span class="toc-num">3-2.</span><span class="toc-text">고객 파이프라인 ~14GW</span></a>
+      <a class="toc-link sub" href="#s5"><span class="toc-num">3-3.</span><span class="toc-text">분기별 비용·현금 추이</span></a>
+      <a class="toc-link" href="#s6"><span class="toc-num">04.</span><span class="toc-text">재무제표 개요</span></a>
+      <a class="toc-link" href="#s7"><span class="toc-num">05.</span><span class="toc-text">핵심 투자아이디어</span></a>
+      <a class="toc-link sub" href="#s8"><span class="toc-num">5-1.</span><span class="toc-text">핵심 변동 요인</span></a>
+      <a class="toc-link sub" href="#s9"><span class="toc-num">5-2.</span><span class="toc-text">컨퍼런스콜 트래킹</span></a>
+      <a class="toc-link sub" href="#s10"><span class="toc-num">5-3.</span><span class="toc-text">Q4'25 컨콜 심층 정리 + Q1'26 프리뷰</span></a>
+      <a class="toc-link sub" href="#s11"><span class="toc-num">5-4.</span><span class="toc-text">강세 / 약세 시나리오</span></a>
+      <a class="toc-link" href="#s12"><span class="toc-num">06.</span><span class="toc-text">Worth Watching Events</span></a>
+      <a class="toc-link" href="#s13"><span class="toc-num">07.</span><span class="toc-text">데이터 출처</span></a>
+      <a class="toc-link sub" href="#s14"><span class="toc-num">7-1.</span><span class="toc-text">Reference</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- 1. 회사 개요 -->
+<span class="section-anchor" id="s1"></span>
+<div class="section">
+<h2>1. 회사 개요</h2>
+<div class="overview-grid">
+  <div class="overview-box">
+    <h4>기본 정보</h4>
+    <div class="kv"><span class="kv-key">설립</span><span class="kv-val">2013년 (Jacob &amp; Caroline DeWitte)</span></div>
+    <div class="kv"><span class="kv-key">상장</span><span class="kv-val">2024.05 NYSE (AltC SPAC 합병)</span></div>
+    <div class="kv"><span class="kv-key">본사</span><span class="kv-val">Santa Clara, CA, USA</span></div>
+    <div class="kv"><span class="kv-key">CEO</span><span class="kv-val">Jacob DeWitte (공동 창업자)</span></div>
+    <div class="kv"><span class="kv-key">CFO</span><span class="kv-val">Craig Bealmear</span></div>
+    <div class="kv"><span class="kv-key">前 이사회 의장</span><span class="kv-val">Sam Altman (2025.04 사임, OpenAI 전력공급 협상 이해상충)</span></div>
+    <div class="kv"><span class="kv-key">임직원</span><span class="kv-val">~215명</span></div>
+    <div class="kv"><span class="kv-key">티커</span><span class="kv-val">NYSE: OKLO</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>시장 정보 (2026.05.06 기준)</h4>
+    <div class="kv"><span class="kv-key">현재 주가</span><span class="kv-val">$77.38</span></div>
+    <div class="kv"><span class="kv-key">시가총액 USD</span><span class="kv-val" style="color:#378ADD">~$13.5B</span></div>
+    <div class="kv"><span class="kv-key">시가총액 KRW</span><span class="kv-val" style="color:#378ADD">~19.5조원 (환율 1,448원)</span></div>
+    <div class="kv"><span class="kv-key">발행주식</span><span class="kv-val">~173.9M주</span></div>
+    <div class="kv"><span class="kv-key">52주 고가</span><span class="kv-val">$193.84</span></div>
+    <div class="kv"><span class="kv-key">52주 저가</span><span class="kv-val">$25.70</span></div>
+    <div class="kv"><span class="kv-key">P/E</span><span class="kv-val">N/A (적자)</span></div>
+    <div class="kv"><span class="kv-key">매출</span><span class="kv-val" style="color:#D85A30">$0 (Pre-revenue)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>사업 운영</h4>
+    <div class="kv"><span class="kv-key">제조 모델</span><span class="kv-val">Build-Own-Operate (자체 건설·운영)</span></div>
+    <div class="kv"><span class="kv-key">핵심 기술</span><span class="kv-val">Sodium-cooled Fast Reactor (액체나트륨 냉각 고속로)</span></div>
+    <div class="kv"><span class="kv-key">주력 제품</span><span class="kv-val">Aurora Powerhouse (75 MWe SMR)</span></div>
+    <div class="kv"><span class="kv-key">기반 설계</span><span class="kv-val">EBR-II (1964~1994 운전 검증)</span></div>
+    <div class="kv"><span class="kv-key">연료</span><span class="kv-val">HALEU 금속연료 (10년 무재충전)</span></div>
+    <div class="kv"><span class="kv-key">3대 사업</span><span class="kv-val">Power (전력) · Fuel (연료) · Isotopes (방사성동위원소)</span></div>
+    <div class="kv"><span class="kv-key">최근 인수</span><span class="kv-val">Atomic Alchemy ($28.4M, 2025.03 — 의료동위원소)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>투자 포인트 요약</h4>
+    <div class="kv"><span class="kv-key">2025 매출</span><span class="kv-val" style="color:#D85A30">$0 (Pre-revenue)</span></div>
+    <div class="kv"><span class="kv-key">2025 영업손실</span><span class="kv-val" style="color:#D85A30">-$139.3M</span></div>
+    <div class="kv"><span class="kv-key">2025 현금사용</span><span class="kv-val">$82.2M (가이드 $65~80M 상회)</span></div>
+    <div class="kv"><span class="kv-key">현금 (Pro-forma)</span><span class="kv-val" style="color:#1D9E75">~$2.5B (2026.01 ATM 완료)</span></div>
+    <div class="kv"><span class="kv-key">고객 파이프라인</span><span class="kv-val" style="color:#1D9E75">~14GW (Switch 12GW + Equinix 0.5GW + Meta 1.2GW)</span></div>
+    <div class="kv"><span class="kv-key">Aurora-INL 임계 목표</span><span class="kv-val" style="color:#1D9E75">2026.07.04 (DOE 파일럿 프로그램)</span></div>
+    <div class="kv"><span class="kv-key">상업 가동 목표</span><span class="kv-val">2027 말 ~ 2028</span></div>
+  </div>
+</div>
+<p class="note">⚠️ <strong>SMR</strong>=Small Modular Reactor (소형모듈원자로). <strong>HALEU</strong>=High-Assay Low-Enriched Uranium (고순도 저농축 우라늄, 5~20% 농축). <strong>Aurora Powerhouse</strong>=Oklo의 75 MWe 액체나트륨 냉각 고속로. <strong>EBR-II</strong>=Experimental Breeder Reactor II (Aurora 설계 모태). <strong>PPA</strong>=Power Purchase Agreement (전력구매계약, 보통 20년). <strong>DOE</strong>=美 에너지부. <strong>NRC</strong>=美 원자력규제위원회. <strong>ATM</strong>=At-The-Market 주식발행 (시장가 자본조달). <strong>회계연도</strong>: Calendar Year (1~12월).</p>
+</div>
+
+<!-- 2. 주가 -->
+<span class="section-anchor" id="s2"></span>
+<div class="section">
+<h2>2. 주가 흐름 — TradingView 일봉</h2>
+<div class="tv-wrap">
+<iframe src="https://www.tradingview.com/widgetembed/?symbol=NYSE%3AOKLO&interval=D&style=1&theme=light&hidesidetoolbar=1&hidetoptoolbar=0&allow_symbol_change=0" allowfullscreen></iframe>
+</div>
+<p class="note">* 2024.05 SPAC 합병 상장 ($8 부근) → 2025.05 저점 $25.70 → 2026.01 Meta 1.2GW 발표 후 폭등 → 2026.04 $193.84 사상 최고가 → 5월 조정 중. 1년간 +168% 상승. 주요 상승 동력: AI 데이터센터 전력 수요 + DOE 파일럿 프로그램 + 규제 진전.</p>
+
+<h3 style="margin-top:1.2rem">주요 이벤트 연표</h3>
+<table>
+  <thead><tr><th>시기</th><th class="num">주가(근사)</th><th>이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2013</td><td class="num">—</td><td>Jacob &amp; Caroline DeWitte (MIT 핵공학) 창업, 캘리포니아</td></tr>
+    <tr><td>2020.03</td><td class="num">—</td><td>NRC에 첫 Aurora COLA(combined license) 제출 — 美 첫 advanced reactor 신청</td></tr>
+    <tr><td>2022.01</td><td class="num">—</td><td><span class="dn">NRC, 데이터 부족 사유로 신청 기각 (without prejudice)</span></td></tr>
+    <tr><td>2024.05</td><td class="num">$8</td><td>AltC Acquisition Corp(Sam Altman SPAC) 합병으로 NYSE 상장</td></tr>
+    <tr><td>2024.04</td><td class="num">$8</td><td>Equinix 첫 PPA LOI 체결 — 500MW + $25M pre-payment</td></tr>
+    <tr><td>2024.11</td><td class="num">$25</td><td>NRC 사이트 특성화 작업 승인 — INL Aurora 부지</td></tr>
+    <tr><td>2024.12</td><td class="num">$30</td><td><span class="up2">Switch와 12GW Master Power Agreement</span> — 史上 최대 규모 데이터센터 PPA 중 하나</td></tr>
+    <tr><td>2025.03</td><td class="num">$22</td><td>Atomic Alchemy 인수 완료 ($28.4M) — 의료동위원소 진입</td></tr>
+    <tr><td>2025.04</td><td class="num">$25</td><td>Sam Altman, OpenAI 전력공급 협상 이해상충으로 의장 사임</td></tr>
+    <tr><td>2025.05</td><td class="num">$25.70</td><td><strong>52주 저점</strong> — Aurora 디자인 50→75MW 확대 발표 직후 차익실현</td></tr>
+    <tr><td>2025.07</td><td class="num">$60</td><td>NRC Phase 1 Readiness Assessment 완료 — "유의미한 갭 없음"</td></tr>
+    <tr><td>2025.09.22</td><td class="num">$80</td><td>Aurora-INL 착공 — DOE 파일럿 프로그램 첫 reactor</td></tr>
+    <tr><td>2025.10</td><td class="num">$110</td><td>Q3'25 ATM $540M 자본조달 — 현금 $1.2B 확보</td></tr>
+    <tr><td>2025.11.11</td><td class="num">$130</td><td>DOE NSDA 승인 — Aurora 연료제조시설(A3F) 인가</td></tr>
+    <tr><td>2026.01.09</td><td class="num">$160</td><td><strong>Meta 1.2GW Pike County, Ohio 메가딜 발표 — Meta 선불 구조</strong></td></tr>
+    <tr><td>2026.01</td><td class="num">$170</td><td>ATM $1.18B 추가 완료 — 총 $1.5B 프로그램 마감, pro-forma cash $2.5B</td></tr>
+    <tr><td>2026.04.04</td><td class="num">$193.84</td><td><strong>52주 최고가</strong> — Texas Capital $138 PT 등 분석가 일제 상향</td></tr>
+    <tr><td>2026.04.23</td><td class="num">$70</td><td><span class="up2">NVIDIA + Los Alamos 3자 파트너십</span> — Pluto reactor 플루토늄 연료 AI 검증</td></tr>
+    <tr><td>2026.05.06</td><td class="num">$77.38</td><td><strong>NRC PDC Topical Report 승인 — 표준 검토기간의 절반 미만 가속처리</strong></td></tr>
+    <tr class="hl"><td><strong>2026.05.07</strong></td><td class="num"><strong>$77.38</strong></td><td><strong>Q1'26 컨콜 D-5 (5월 12일 예정), 시총 ~$13.5B</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 3. 사업 구조 -->
+<span class="section-anchor" id="s3"></span>
+<div class="section">
+<h2>3. 사업 구조 및 제품</h2>
+<div class="prose">
+<p><strong>Oklo는 Pre-revenue 단계</strong>로 별도 세그먼트 매출 보고가 없습니다. 대신 회사가 공식적으로 구분하는 <strong>3대 사업 단위</strong>를 기준으로 분석합니다. 모든 사업은 아직 매출이 없거나 미미하며, 2027~2028년부터 본격 매출 발생 예상.</p>
+<ul>
+  <li><strong>① Power Business</strong> — Aurora Powerhouse 건설·소유·운영, 20년 PPA로 전력 판매. 핵심 사업.</li>
+  <li><strong>② Fuel Business</strong> — HALEU 금속연료 자체 제조 + 사용후핵연료 재활용. Aurora Fuel Fabrication Facility(A3F) 건설 중.</li>
+  <li><strong>③ Isotopes Business</strong> — Atomic Alchemy 인수(2025.03)로 진입. 의료·산업용 방사성동위원소 (Mo-99 등). <strong>2026 첫 매출 발생 예상</strong> (Idaho Radiochemistry Lab).</li>
+</ul>
+</div>
+</div>
+
+<!-- 3-1. 사업 단위 카드 -->
+<span class="section-anchor" id="s3b"></span>
+<div class="section">
+<h2>3-1. 사업 단위 카드</h2>
+<div class="seg-cards">
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">Power (전력) ★</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">미래 핵심</span> · 첫 매출 2027~2028</div>
+    </div>
+    <div class="seg-card-desc">
+      Aurora Powerhouse — <strong>75 MWe sodium-cooled fast reactor</strong>. 1.5MWe 마이크로 reactor에서 50MW로, 2025.03 데이터센터 수요 대응 위해 75MW로 확장. 한 번 충전 시 <strong>10년 무재충전 가동</strong>. Build-Own-Operate 모델 — 자체 건설·운영하며 20년 PPA로 전력 판매. 첫 상업 powerhouse는 Aurora-INL (Idaho), 2025.09 착공. 2026.07.04 임계 목표(DOE 파일럿). 가격 가이드: <strong>$40~90/MWh</strong>. 14GW 풀 가동 시 이론적 연 매출 $5~11B.
+    </div>
+    <div class="seg-card-margin" style="color:#555">계약 파이프라인 <span style="color:#378ADD;font-weight:700">~14GW</span> · 모두 LOI/Master Agreement (비구속)</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">Fuel (연료)</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">중기 수직통합</span> · 2028+ 가동</div>
+    </div>
+    <div class="seg-card-desc">
+      <strong>HALEU 금속연료 자체 제조</strong> + <strong>사용후핵연료(SNF) 재활용</strong>. Aurora Fuel Fabrication Facility(A3F)를 INL에 건설 중 — 2025.11 DOE NSDA 승인. Tennessee에 Advanced Fuel Center 1단계 발표. 미국에 적치된 80,000+ 톤 사용후핵연료를 재처리해 자체 reactor 연료로 변환 — 산업 단일 의존도 해결책. 플루토늄 bridge fuel 임계 실험(LANL과 협력) 완료. <strong>2026.04 NVIDIA 협력</strong>으로 AI 기반 연료 검증 가속.
+    </div>
+    <div class="seg-card-margin" style="color:#555">전략 의의 <span style="color:#378ADD;font-weight:700">공급망 락인</span> · HALEU 부족이 SMR 산업 단일 위험</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">Isotopes (방사성동위원소)</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">단기 첫 매출</span> · 2026 가동</div>
+    </div>
+    <div class="seg-card-desc">
+      Atomic Alchemy 인수($28.4M, 2025.03)로 진입. <strong>Groves(Texas) 첫 방사성동위원소 시험로</strong> 건설 진행 중. <strong>Mo-99 등 의료용 + 산업용 동위원소</strong> 생산. 2026 첫 매출 인식 예상(Idaho Radiochemistry Laboratory) — Oklo 사상 첫 매출 발생 사업. Power 사업 가동 전 단기 현금흐름 다변화 역할. Plutonium 임계실험은 Pluto reactor와 동위원소 사업 양쪽에 활용.
+    </div>
+    <div class="seg-card-margin" style="color:#555">단기 의의 <span style="color:#378ADD;font-weight:700">Pre-revenue 탈출</span> · 2026 첫 매출 예상</div>
+  </div>
+</div>
+
+<table>
+  <thead><tr><th>사업</th><th>대표 제품/시설</th><th>주요 고객/파트너</th><th>현 상태</th><th>매출 시작</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Power</strong></td><td>Aurora Powerhouse 75MWe SMR</td><td>Switch, Equinix, Meta, Diamondback, Prometheus, DOE</td><td>Aurora-INL 건설 중</td><td class="num">2027~2028</td></tr>
+    <tr><td><strong>Fuel</strong></td><td>A3F 연료시설, Tennessee Advanced Fuel Center</td><td>DOE, INL, LANL, NVIDIA</td><td>A3F NSDA 승인, 건설 중</td><td class="num">2028+</td></tr>
+    <tr><td><strong>Isotopes</strong></td><td>Groves(TX) 시험로, Idaho Radiochemistry Lab</td><td>의료기관, 산업체 (Atomic Alchemy 채널)</td><td>건설 + 첫 매출 인식 임박</td><td class="num up2"><strong>2026</strong></td></tr>
+  </tbody>
+</table>
+<p class="note">* Oklo는 Build-Own-Operate 모델로 reactor를 직접 건설·소유·운영. 라이센싱 모델(예: NuScale)이 아닌 utility-like 사업. 매출은 reactor 가동 시점부터 20년간 PPA 기반으로 인식.</p>
+</div>
+
+<!-- 3-2. 고객 파이프라인 -->
+<span class="section-anchor" id="s4"></span>
+<div class="section">
+<h2>3-2. 고객 파이프라인 — ~14GW 누적</h2>
+<div class="legend" id="pipeLegend">
+  <span class="legend-item" onclick="togglePipe(0,this)"><span class="dot" style="background:#1D9E75"></span>Switch (12 GW)</span>
+  <span class="legend-item" onclick="togglePipe(1,this)"><span class="dot" style="background:#378ADD"></span>Meta (1.2 GW)</span>
+  <span class="legend-item" onclick="togglePipe(2,this)"><span class="dot" style="background:#D85A30"></span>Equinix (0.5 GW)</span>
+  <span class="legend-item" onclick="togglePipe(3,this)"><span class="dot" style="background:#BA7517"></span>Others (~0.3 GW)</span>
+  <span style="font-size:11px;color:#bbb;margin-left:4px">← 클릭하여 표시/숨김</span>
+</div>
+<div class="chart-box" style="height:380px"><canvas id="cPipe"></canvas></div>
+
+<h3 style="margin-top:1.2rem">계약 상세</h3>
+<table class="pipe-table">
+  <thead><tr><th>계약</th><th>규모</th><th>체결</th><th>유형</th><th>구속력</th><th>특징</th></tr></thead>
+  <tbody>
+    <tr class="hl"><td><strong>Switch</strong></td><td class="num"><strong>12 GW</strong></td><td>2024.12</td><td>Master Power Agreement</td><td><span class="badge badge-neu">비구속 LOI</span></td><td>2044년까지 단계적 배포. 史上 최대급 corporate PPA</td></tr>
+    <tr class="hl"><td><strong>Meta</strong></td><td class="num"><strong>1.2 GW</strong></td><td>2026.01.09</td><td>Pike County, OH 캠퍼스</td><td><span class="badge badge-up">Pre-payment 구조</span></td><td>Meta가 전력 선불 + 자금 지원. 2030 Phase 1 가동, 2034 1.2GW 풀</td></tr>
+    <tr><td>Equinix</td><td class="num">0.5 GW</td><td>2024.04</td><td>Master Supply Agreement</td><td><span class="badge badge-up">$25M 선납</span></td><td>최초 데이터센터 advanced nuclear PPA. 다수 사이트</td></tr>
+    <tr><td>Diamondback Energy</td><td class="num">~0.1 GW</td><td>2025</td><td>LOI (Permian 셰일)</td><td><span class="badge badge-neu">비구속</span></td><td>오일·가스 산업 적용 — 원격지 전력</td></tr>
+    <tr><td>Prometheus Hyperscale</td><td class="num">~0.1 GW</td><td>2024.05</td><td>LOI (Wyoming 데이터센터)</td><td><span class="badge badge-neu">비구속</span></td><td>Wyoming Hyperscale 신규명. 100MW PPA</td></tr>
+    <tr><td>RPower</td><td class="num">미공개</td><td>2025</td><td>Gas-to-Nuclear 전략</td><td><span class="badge badge-neu">파트너십</span></td><td>가스발전 → 원자력 전환 사이트 공유</td></tr>
+    <tr><td>DOE 정부 (Genesis Mission)</td><td class="num">N/A</td><td>2024~</td><td>4개 Pilot 프로그램</td><td><span class="badge badge-up">정부 백킹</span></td><td>Aurora-INL + Pluto reactor + A3F + Groves</td></tr>
+  </tbody>
+</table>
+<p class="note">⚠️ 핵심 우려: <strong>14GW 중 거의 전량이 비구속 LOI (Letter of Intent)</strong>. Texas Capital 분석가는 2026년 중 일부의 firm contract 전환을 기대. Meta 거래만 prepayment 구조로 사실상 구속력 보유. <strong>14GW = 75MW Aurora 기준 187기 필요</strong> — Oklo는 현재 1기도 없음. 실행 리스크가 가장 큰 변수. <span class="up2">2024.12 Switch 12GW 비구속이지만 신호효과 + 2026.01 Meta 1.2GW prepayment로 구체화 진전.</span></p>
+</div>
+
+<!-- 3-3. 분기별 비용·현금 -->
+<span class="section-anchor" id="s5"></span>
+<div class="section">
+<h2>3-3. 분기별 비용·현금 추이 (상장 후 7분기)</h2>
+<div class="legend">
+  <span class="legend-static"><span class="dot" style="background:rgba(216,90,48,0.5)"></span>분기 영업손실 ($M, 좌축)</span>
+  <span class="legend-static"><span class="dot" style="background:#1D9E75"></span>현금+유가증권 ($M, 우축)</span>
+</div>
+<div class="chart-box" style="height:400px"><canvas id="cBurn"></canvas></div>
+
+<h3 style="margin-top:1.2rem">연간 요약</h3>
+<table>
+  <thead><tr><th>연도</th><th class="num">매출</th><th class="num">영업손실</th><th class="num">현금사용 (Operations)</th><th class="num">기말 현금+유가증권</th><th>주요 이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2023</td><td class="num">$0</td><td class="num">-$17.9M</td><td class="num">-$10.4M</td><td class="num">~$30M</td><td>SPAC 합병 진행</td></tr>
+    <tr><td>2024</td><td class="num">$0</td><td class="num">-$52.8M</td><td class="num">-$38.4M</td><td class="num">$275.3M</td><td>NYSE 상장 ($276M 자금조달)</td></tr>
+    <tr><td>2025</td><td class="num">$0</td><td class="num">-$139.3M</td><td class="num">-$82.2M</td><td class="num">$1.4B</td><td>Aurora-INL 착공, $540M ATM, Switch 12GW</td></tr>
+    <tr class="hl"><td><strong>2026 Pro-forma</strong></td><td class="num"><strong>$0~&lt;$10M (예상)</strong></td><td class="num"><strong>가이드: opex ↑↑</strong></td><td class="num"><strong>가이드: -$80~100M</strong></td><td class="num"><strong>~$2.5B</strong></td><td><strong>Meta 1.2GW, $1.18B ATM 추가, NVIDIA 파트너십</strong></td></tr>
+  </tbody>
+</table>
+
+<h3 style="margin-top:1.2rem">분기별 손익 추이 (상장 후 7분기)</h3>
+<table>
+  <thead><tr><th>분기</th><th class="num">매출</th><th class="num">영업손실</th><th class="num">SBC</th><th class="num">EPS</th><th class="num">기말 현금+유가증권</th><th>주요 이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>Q3'24</td><td class="num">$0</td><td class="num">-$13.9M</td><td class="num">$3.1M</td><td class="num">-$0.13</td><td class="num">$288.5M</td><td>상장 후 첫 분기</td></tr>
+    <tr><td>Q4'24</td><td class="num">$0</td><td class="num">-$15.5M</td><td class="num">$3.8M</td><td class="num">-$0.74*</td><td class="num">$275.3M</td><td>Switch 12GW 발표</td></tr>
+    <tr><td>Q1'25</td><td class="num">$0</td><td class="num">-$17.9M</td><td class="num">$5.2M</td><td class="num">-$0.07</td><td class="num">$260.7M</td><td>Atomic Alchemy 인수 완료</td></tr>
+    <tr><td>Q2'25</td><td class="num">$0</td><td class="num">-$22.1M</td><td class="num">$8.3M</td><td class="num">-$0.18</td><td class="num">$683M</td><td>$460M Equity raise</td></tr>
+    <tr><td>Q3'25</td><td class="num">$0</td><td class="num">-$36.3M</td><td class="num">$10.6M</td><td class="num">-$0.20</td><td class="num">$1.2B</td><td>Aurora-INL 착공, $540M ATM</td></tr>
+    <tr class="hl"><td><strong>Q4'25</strong></td><td class="num">$0</td><td class="num"><strong>-$63.0M</strong></td><td class="num">$17.7M</td><td class="num"><strong>-$0.27</strong> (miss)</td><td class="num"><strong>$1.4B</strong></td><td><strong>Meta 협상 중, 컨센서스 -$0.17 미스</strong></td></tr>
+    <tr><td>Q1'26 (예정)</td><td class="num">예측: $0</td><td class="num">예측: ~-$45M</td><td class="num">—</td><td class="num">예측: -$0.19</td><td class="num">~$2.5B</td><td>2026.05.12 컨콜 예정</td></tr>
+  </tbody>
+</table>
+<p class="note">* Q4'24 EPS $-0.74는 SAFE 노트 FMV 조정 등 일회성 비현금 비용. 정상화 EPS는 -$0.10 부근. <strong>2025 영업손실 $139.3M의 30%(=$41.8M)가 비현금 SBC</strong> — 주가 상승에 따른 보상비용. <strong>Q4'25 -$63M 손실 급증</strong>은 ATM 자금조달 후 deployment 가속을 위한 인력·전문가비·자재비 동시 증가. Q1'26 컨콜에서 cash burn $80~100M 가이드 유지 여부가 핵심.</p>
+</div>
+
+<!-- 4. 재무제표 -->
+<span class="section-anchor" id="s6"></span>
+<div class="section">
+<h2>4. 재무제표 개요</h2>
+<table>
+  <thead><tr><th>항목 (USD)</th><th class="num">2023</th><th class="num">2024</th><th class="num">2025</th><th class="num">Pro-forma 2026.Q1</th></tr></thead>
+  <tbody>
+    <tr><td>매출</td><td class="num">$0</td><td class="num">$0</td><td class="num">$0</td><td class="num">$0~~소액</td></tr>
+    <tr><td>영업손실</td><td class="num dn">-$17.9M</td><td class="num dn">-$52.8M</td><td class="num dn">-$139.3M</td><td class="num">예측 -$45M</td></tr>
+    <tr><td>SBC (비현금)</td><td class="num">$0.1M</td><td class="num">~$11M</td><td class="num">$41.8M</td><td class="num">~$15M (E)</td></tr>
+    <tr><td>이자·배당 수익</td><td class="num">$2.0M</td><td class="num">$8.5M</td><td class="num">$29.1M</td><td class="num">~$15M (E)</td></tr>
+    <tr><td>세전손실</td><td class="num">-$15.9M</td><td class="num">-$44.3M</td><td class="num">-$110.2M</td><td class="num">~-$30M (E)</td></tr>
+    <tr><td>EPS (희석)</td><td class="num">-$0.20</td><td class="num">-$1.05*</td><td class="num">-$0.81</td><td class="num">예측 -$0.19</td></tr>
+    <tr><td>영업현금흐름</td><td class="num">-$10.4M</td><td class="num">-$38.4M</td><td class="num">-$82.2M</td><td class="num">가이드 연 -$80~100M</td></tr>
+    <tr><td>투자현금흐름 (CapEx)</td><td class="num">-$0.3M</td><td class="num">-$220M (M&amp;A 포함)</td><td class="num">~-$100M</td><td class="num">가이드 연 -$350~450M</td></tr>
+    <tr><td>현금+유가증권</td><td class="num">~$30M</td><td class="num">$275.3M</td><td class="num">$1.4B</td><td class="num up2">~$2.5B</td></tr>
+    <tr><td>총자산</td><td class="num">~$45M</td><td class="num">~$340M</td><td class="num">~$1.5B</td><td class="num">~$2.6B</td></tr>
+    <tr><td>총부채</td><td class="num">~$5M</td><td class="num">~$25M</td><td class="num">~$50M</td><td class="num">~$60M</td></tr>
+    <tr><td>자본총계</td><td class="num">~$40M</td><td class="num">~$315M</td><td class="num">~$1.45B</td><td class="num">~$2.55B</td></tr>
+    <tr><td>발행주식</td><td class="num">~120M주</td><td class="num">~135M주</td><td class="num">~155M주</td><td class="num">173.9M주</td></tr>
+  </tbody>
+</table>
+<p class="note">* 2024 EPS는 SAFE 노트 FMV·earnout shares 등 SPAC 합병 closing 일회성 비현금 비용($30M+) 대량 반영. 정상화 시 -$0.40 부근. 2025년 영업손실 $139.3M 중 <strong>$41.8M는 비현금 SBC</strong>(주가 상승 인센티브). 실질 현금사용액은 영업현금흐름 -$82.2M 기준이 더 정확.</p>
+<p class="note">⚠️ <strong>희석 우려</strong>: 2025년 ATM $540M + 2026.01 ATM $1.18B = 총 $1.5B 프로그램 완료. 2024 발행주식 ~135M → 현재 173.9M주 (~30% 희석). Pre-revenue 단계 추가 자본조달 가능성 잔존. <strong>현금 우위</strong>: $2.5B 현금으로 6~7년 운영 가능 (cash burn $80~100M 기준), CapEx 포함 시 4~5년 — 첫 매출 시점(2027~2028)까지 충분.</p>
+</div>
+
+<!-- 5. 핵심 투자아이디어 -->
+<span class="section-anchor" id="s7"></span>
+<div class="section">
+<h2>5. 핵심 투자아이디어</h2>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">⚛️</span>
+    <span class="thesis-tag">Thesis #1</span>
+    <div class="thesis-title">AI 데이터센터 24/7 baseload 전력 부족이 SMR 산업의 진입 장벽을 부수는 중</div>
+  </div>
+  <div class="thesis-body">
+    <p>AI 슈퍼컴퓨팅 수요로 미국 데이터센터 전력 수요가 2024~2030 사이 <strong>3배 증가</strong> 전망. 변압기·배터리 부족으로 <strong>2026 계획 데이터센터 절반 이상이 지연/취소</strong> 예상(Bloomberg 보고). 풍력·태양광은 간헐적, 천연가스는 탄소 부담 — <span class="hl-blue">24/7 무탄소 baseload는 사실상 원자력만 가능</span>.</p>
+    <p>Oklo는 이 공백을 정확히 노린다. <strong>Aurora 75MWe sodium-cooled fast reactor</strong>는 데이터센터 옆에 직접 배치(co-locate) 가능 — <span class="hl-green">변압기·송전망 우회</span>. <span class="hl-blue">EBR-II</span>(1964~1994 운전 검증)에 기반해 NRC가 데이터를 가지고 있는 유일한 fast reactor 설계. 부정적 반응성 피드백으로 사고 시 자체 정지 — operator 개입 불요.</p>
+    <p>2026년 5월 NRC <strong>Principal Design Criteria(PDC) 토픽컬 리포트</strong>가 표준 기간의 <span class="hl-green">절반 미만으로 가속 승인</span> — bear thesis(규제 통과 못한다)의 근거 일부 와해. 정부 ADVANCE Act + 행정명령 + DOE Pilot Program이 동시 추진.</p>
+  </div>
+</div>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">🤝</span>
+    <span class="thesis-tag">Thesis #2</span>
+    <div class="thesis-title">Meta 1.2GW Prepayment 구조 — Pipeline의 LOI가 firm contract로 전환되기 시작</div>
+  </div>
+  <div class="thesis-body">
+    <p>2026.01 <strong>Meta 1.2GW Pike County, Ohio 메가딜</strong>의 진짜 의미는 규모가 아니라 <span class="hl-blue">Pre-payment 구조</span>. 기존 Switch 12GW · Equinix 500MW는 모두 비구속 LOI였으나, Meta는 <span class="hl-green">전력 선불 + Aurora deployment 자금 직접 지원</span> — 사실상 구속력 보유.</p>
+    <p>2026 Phase 1 (150MW) 가동, 2034 1.2GW 풀 capacity 목표. Oklo는 Pike County 206 acres(전 DOE 부지) 직접 소유 → 사이트 리스크 ↓. <strong>NVIDIA + LANL 3자 파트너십(2026.04)</strong>은 추가 hyperscaler 협상 진행 중 신호 — Genesis Mission(연방정부 핵심 인프라) 지정으로 정부 지원 확보.</p>
+    <p>Texas Capital Securities: <span class="hl-green">2026년 중 14GW 파이프라인 일부의 firm contract 전환 기대</span>. 분석가 컨센서스 PT $101.55(Strong Buy), 최고 Tigress Financial $130, 최저 Goldman $55.</p>
+  </div>
+</div>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">⚠️</span>
+    <span class="thesis-tag">Thesis #3</span>
+    <div class="thesis-title">Pre-revenue $13.5B 시총 — 모든 게 미래 가치, 실행 실패 시 -50%+ 다운사이드</div>
+  </div>
+  <div class="thesis-body">
+    <p>Oklo는 <span class="hl-red">매출 $0 / 영업손실 -$139.3M / 시총 $13.5B</span>. P/S, P/E 산정 불가. 모든 가치는 2027~2030 첫 매출 + 2034 1.2GW 가동 + 2040+ 14GW 풀 가동 시나리오에 의존.</p>
+    <p><strong>실행 위험 4가지</strong>: <span class="hl-red">①</span> NRC 첫 advanced fast reactor 라이센스 — NuScale도 7년 걸렸음 ②  <span class="hl-red">HALEU 연료 공급</span> — 미국 내 거의 전무, Centrus·Oklo recycling 둘 다 미가동 ③  <span class="hl-red">FOAK 비용 초과</span> — 첫 1기 항상 예산 초과 ④  <span class="hl-red">Switch 12GW = 187기 필요</span>, 현재 0기.</p>
+    <p>52주 변동폭 $25.70~$193.84 — <span class="hl-red">752% 스프레드</span>. 14% 숏 인터레스트, 2026.04 인사이더 매도 $50.9M. Goldman Sachs Hold $55, UBS Hold $60 — 분석가도 양극단 분열. <strong>주식보유 시 매수가 = 실행 가설에 대한 베팅 가격</strong>.</p>
+  </div>
+</div>
+
+<!-- 5-1. 핵심 변동 요인 -->
+<span class="section-anchor" id="s8"></span>
+<div class="section">
+<h2>5-1. 핵심 변동 요인</h2>
+<table>
+  <thead><tr><th>구분</th><th>요인</th><th class="center">방향</th><th>설명</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>외부</strong></td><td>AI 데이터센터 전력 부족</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>2030년까지 美 데이터센터 전력수요 3배. 변압기·배터리 부족으로 2026 계획 절반 지연. SMR 직접 co-locate가 해결책</td></tr>
+    <tr><td>美 정부 정책 지원</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>ADVANCE Act, 2025.05 행정명령, DOE Reactor Pilot Program 4개 선정. NRC 검토기간 단축 의무화</td></tr>
+    <tr><td>NRC 라이센스 — 첫 fast reactor</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>2022.01 첫 신청 기각. 재신청 진행. NRC가 상업 fast reactor 라이센스 부여한 적 없음 — 미지의 영역</td></tr>
+    <tr><td>HALEU 연료 공급 부족</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>美 내 HALEU 농축 거의 전무. Centrus 시작 단계. Oklo 자체 재처리 + plutonium bridge fuel로 헷지 시도 중</td></tr>
+    <tr><td>SMR 경쟁사 — NuScale, X-Energy</td><td class="center"><span class="badge badge-neu">중립 ●</span></td><td>NuScale 첫 NRC 승인, X-Energy(Amazon 백킹) 상장 추진. 시장 충분히 큼 — 14GW 파이프라인 다수 LOI 가능</td></tr>
+    <tr><td>Hyperscaler 자체 SMR 인수</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>Google·Microsoft 자체 SMR 발주(Kairos·X-Energy). Meta가 Oklo 외 Vistra·TerraPower 동시 진행 — 다중 베팅 구조</td></tr>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>내부</strong></td><td>Aurora-INL 임계 — 2026.07.04 목표</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>DOE 파일럿 프로그램 첫 reactor. 임계 달성 시 첫 운영 데이터 확보 — 추후 라이센스 가속</td></tr>
+    <tr><td>Meta 1.2GW Prepayment 실행</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>2026 site characterization, 2030 Phase 1 가동 (150MW). 사이트 허가 연내 확보 시 사실상 첫 firm 매출 가시화</td></tr>
+    <tr><td>NRC PDC 승인 (2026.05.06)</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>표준 검토기간 절반으로 가속 처리. 향후 라이센스 신청 시 재인용 가능 — 검토 시간 단축</td></tr>
+    <tr><td>현금 burn 가속</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>2025 -$82.2M (가이드 -$65~80M 상회). 2026 -$80~100M + CapEx -$350~450M. 추가 ATM 가능성</td></tr>
+    <tr><td>인사이더 매도 (90일 -$50.9M)</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>2026.04 CEO DeWitte 본인 매도 등. 주가 $193 고점 부근에서 차익실현 — 신뢰 일부 훼손</td></tr>
+    <tr><td>Isotopes 첫 매출 (2026 예상)</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>Atomic Alchemy + Idaho Radiochemistry Lab. Pre-revenue 탈출 — 시장 인식 변화 트리거</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 5-2. 컨콜 트래킹 -->
+<span class="section-anchor" id="s9"></span>
+<div class="section">
+<h2>5-2. 컨퍼런스콜 트래킹 (상장 후 7분기 + 예정 1분기)</h2>
+<table class="cc-table">
+  <colgroup>
+    <col style="width:50px"><col><col><col><col>
+  </colgroup>
+  <thead>
+    <tr><th class="year-col">년</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="year-label">2024</td>
+      <td><div class="cc-cell"><div class="cc-quarter">상장 전</div><div class="cc-msg">2024.05 NYSE 상장 (AltC SPAC 합병)</div><div class="cc-guide">—</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">상장 직후</div><div class="cc-msg">최초 분기. 4월 Equinix LOI 500MW 발표</div><div class="cc-guide">—</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'24</div><div class="cc-msg">영업손실 -$13.9M. 현금 $288.5M. 2024 가이드 영업손실 -$40~50M 유지</div><div class="cc-guide">YTD 손실 가이드 내 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'24</div><div class="cc-msg">영업손실 -$15.5M. <strong>Switch 12GW 발표</strong>. 14GW 파이프라인 도달</div><div class="cc-guide">2024 cash burn -$38.4M (가이드 -$35~45M 하단) <span class="cc-hit">✅</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2025</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'25</div><div class="cc-msg">손실 -$17.9M. EPS -$0.07. Atomic Alchemy 인수 완료. Aurora 75MW 확장 발표</div><div class="cc-guide">cash burn YTD $12.2M, 가이드 -$65~80M 내 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'25</div><div class="cc-msg">손실 -$22.1M. NRC Phase 1 Readiness 완료 — 유의미한 갭 없음. $460M 자금조달</div><div class="cc-guide">현금 $683M 달성 — 가이드 상회 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'25</div><div class="cc-msg">손실 -$36.3M (예상 상회). $540M ATM. <strong>Aurora-INL 9.22 착공</strong>. DOE NSDA(A3F) 승인</div><div class="cc-guide">현금 $1.2B 달성 <span class="cc-hit">✅</span> · EPS -$0.20 (예상 -$0.12 미스 <span class="cc-miss">❌</span>)</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'25 (3.17 발표)</div><div class="cc-msg">손실 -$63M, EPS <strong>-$0.27 (예상 -$0.17 미스)</strong>. 2025 연간 -$139.3M / -$0.81. <strong>Meta 1.2GW Pike County 발표 임박</strong></div><div class="cc-guide">cash burn $82.2M (가이드 -$65~80M 약간 상회) <span class="cc-miss">❌</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2026</td>
+      <td><div class="cc-cell cc-latest"><div class="cc-quarter">Q1'26 ★ 5.12 예정</div><div class="cc-msg"><strong>1.09 Meta 1.2GW 발표. ATM $1.18B 추가. 4.23 NVIDIA·LANL 파트너십. 5.06 NRC PDC 승인. 7.4 임계 카운트다운</strong></div><div class="cc-guide">컨센 EPS -$0.19. 2026 가이드: cash burn -$80~100M, CapEx -$350~450M</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'26 (8월 예정)</div><div class="cc-msg"><strong>2026.07.04 Aurora-INL 임계 시도</strong>. 성공 시 사상 첫 운영 데이터</div><div class="cc-guide">—</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'26 (11월 예정)</div><div class="cc-msg">Isotopes 첫 매출 가능 시점. Idaho Radiochemistry Lab 가동</div><div class="cc-guide">—</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'26 (2027.03 예정)</div><div class="cc-msg">2026 연간 결산. 14GW 파이프라인 firm contract 전환 진척</div><div class="cc-guide">—</div></div></td>
+    </tr>
+  </tbody>
+</table>
+<p class="note">* Pre-revenue 기업이므로 <strong>매출 가이던스 없음</strong>. 가이던스 = cash burn / 영업손실 / 마일스톤. Q3'25 EPS, Q4'25 EPS 컨센 미스 — 인력·전문가비 가속이 원인. 2026.05.12 Q1'26 컨콜이 Meta 협상 후 첫 정식 IR — 시장 주목도 매우 높음. 1년간 +168% 상승 후 첫 정량 검증.</p>
+</div>
+
+<!-- 5-3. Q1'26 심층 -->
+<span class="section-anchor" id="s10"></span>
+<div class="section">
+<h2>5-3. Q4'25 컨콜 심층 정리 (2026.03.17) + Q1'26 프리뷰</h2>
+<div class="prose">
+  <p><strong>발언자</strong>: Jacob DeWitte (CEO) · Craig Bealmear (CFO)</p>
+  <p><strong>Q4'25 실적</strong>: 매출 <strong>$0</strong> (Pre-revenue 유지) / Q4 영업손실 <strong>-$63.0M</strong> (전분기 -$36.3M의 1.7배) / Q4 EPS <strong>-$0.27</strong> (컨센 -$0.17 미스 -$0.10) / 2025 연간 영업손실 -$139.3M / 연간 cash use $82.2M (가이드 -$65~80M 약간 상회) / 연말 현금+유가증권 <strong>$1.4B</strong></p>
+  <p><strong>Pro-forma 2026.01</strong>: ATM $1.18B 추가 완료 → 총 $1.5B 프로그램 마감 → <strong>현금+유가증권 ~$2.5B</strong> (전년대비 +84%)</p>
+  <p><strong>2026 가이던스</strong>: 영업 cash use <strong>-$80~100M</strong> (2025 -$82.2M에서 상향) / 투자 CapEx <strong>-$350~450M</strong> (Aurora-INL + A3F + Groves + Pike County 동시 건설)</p>
+  <p><strong>시장 반응</strong>: 발표 후 -1.3% (EPS 미스). 다음날 -6.3% $56.70 마감. 그러나 41일 후 +33.9% 회복. 2026.04 사상최고 $193.84 도달. <strong>Meta 1.2GW 발표(1월)와 NVIDIA 파트너십(4월)이 EPS 미스 노이즈를 압도</strong>.</p>
+</div>
+<h3 style="margin-top:1.2rem">Q4'25 컨콜 핵심 메시지 5가지</h3>
+<div class="cc-sticker-box">
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">1</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">2025 = "Step Change Year" — 제품 개발 → 능동 deployment 전환</div>
+      <div class="cc-sticker-desc">DeWitte CEO: <em>"제품 개발에서 모든 사업 단위에 걸친 능동 프로젝트 deployment로 전환했다"</em>. <span class="hl-pos">Aurora-INL 9.22 착공</span>, A3F 초기 건설 시작, Atomic Alchemy 인수 완료, Groves(TX) 건설 진척, plutonium fast-spectrum 임계실험 완료. 모든 단위 동시 진행</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">2</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">Meta 1.2GW Pike County, Ohio — Prepayment 구조 첫 도입</div>
+      <div class="cc-sticker-desc">2026.01.09 발표. <span class="hl-pos">Meta 전력 선불 + Aurora deployment 자금 직접 지원</span>. Phase 1 2030 가동, 2034 1.2GW 풀. 206 acres 부지 Oklo 직접 소유. 기존 Switch·Equinix LOI와 차별점 = <strong>구속력 있는 자금 흐름</strong></div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">3</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">2026 자금소모 가이드 cash $80~100M + CapEx $350~450M</div>
+      <div class="cc-sticker-desc">CFO Bealmear: <em>"인력 확장 + Aurora-INL/A3F/Groves/Pike County 4개 사이트 동시 건설"</em>. <span class="hl-neg">전년 대비 cash burn +20% 가속</span>. 그러나 <span class="hl-pos">$2.5B 현금으로 6~7년 운영 가능</span>, CapEx 포함 시 4~5년 — 첫 매출(2027~2028)까지 충분</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">4</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">2026.07.04 Aurora-INL 임계 목표 재확인</div>
+      <div class="cc-sticker-desc">DOE Reactor Pilot Program 핵심 마일스톤. Kiewit Nuclear Solutions와 EPC 진행 중. <span class="hl-pos">성공 시 美 첫 advanced fast reactor 임계</span> — 60년 만의 fast reactor 운영 데이터(EBR-II 1994 이후 첫). 추후 NRC 라이센스 가속 트리거</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">5</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">Q4'25 EPS -$0.27 미스 — SBC $17.7M 일회성 영향</div>
+      <div class="cc-sticker-desc">Q4 SBC가 분기 영업손실의 28% 차지. <span class="hl-neg">2025 연간 SBC $41.8M = 영업손실의 30%</span> — 주가 상승에 따른 보상비용. Bealmear CFO: <em>"비현금 항목 제외 시 정상 운영 트랙"</em>. 그러나 단기 시장 반응 -1.3%</div>
+    </div>
+  </div>
+</div>
+
+<h3 style="margin-top:1.2rem">Q1'26 컨콜 (2026.05.12 예정) 시장 기대치</h3>
+<table>
+  <thead><tr><th>지표</th><th class="num">Q4'25 실제</th><th class="num">Q1'26 컨센서스</th><th class="num">시장 핵심 관심사</th></tr></thead>
+  <tbody>
+    <tr><td>EPS (희석)</td><td class="num">-$0.27</td><td class="num">-$0.19</td><td>SBC 정상화 + cash burn 가이드 유지 여부</td></tr>
+    <tr><td>매출</td><td class="num">$0</td><td class="num">$0~소액</td><td class="hl"><strong>Idaho Radiochemistry Lab 첫 매출 인식 시점</strong></td></tr>
+    <tr><td>영업손실</td><td class="num">-$63.0M</td><td class="num">-$45M (E)</td><td>Q4 일회성 SBC 정상화 후 트랙 복귀</td></tr>
+    <tr><td>현금+유가증권</td><td class="num">$1.4B</td><td class="num hl"><strong>~$2.5B</strong></td><td>$1.18B ATM 자금 반영 첫 분기</td></tr>
+    <tr><td>2026 cash burn 가이드</td><td class="num">-$80~100M</td><td class="num">유지 / 상향?</td><td class="hl"><strong>핵심 — 4개 사이트 가속 시 상향 가능</strong></td></tr>
+    <tr><td>14GW 파이프라인</td><td class="num">~14GW LOI</td><td class="num">유지 / 신규?</td><td class="hl"><strong>firm contract 전환 진척, 신규 hyperscaler</strong></td></tr>
+    <tr><td>Aurora-INL 7.4 임계</td><td class="num">2025.09 착공</td><td class="num">D-50일</td><td>건설 진척률 + 임계 시점 재확인</td></tr>
+  </tbody>
+</table>
+<p class="note">* 5월 12일 컨콜은 <strong>Meta 1.2GW + NVIDIA 파트너십 + NRC PDC 승인 후 첫 IR</strong>. 분석가 컨센 PT $101.55 (Strong Buy). 분석가 14명 중 9 Buy / 11 Hold / 0 Sell. 핵심 트리거: 신규 hyperscaler LOI, Isotopes 첫 매출 가이드, Aurora-INL 임계 자신감, cash burn 가이드 유지.</p>
+
+<h3 style="margin-top:1.5rem">📊 IR 자료 핵심 슬라이드 (원본 캡쳐 — 재가공 없음)</h3>
+<div class="ir-na-box">
+  <strong>📌 IR 슬라이드 임베드 안내</strong>: Oklo의 공식 투자자 발표 자료는 외부 직접 임베드가 SEC EDGAR에서 가능하나, 가장 최근 Q4'25 (2026.03.17) Shareholder Letter는 보안 헤더로 iframe 직접 임베드가 차단되어 있음. 대신 SEC 8-K 원문 링크와 Oklo IR 페이지 링크를 7-1 Reference에 전체 수록. <br><br>
+  ✅ <strong>대체 자료</strong>: ① <a href="https://www.sec.gov/Archives/edgar/data/0001849056/000110465925027276/tm2510004d1_ex99-1.htm" target="_blank" style="color:#378ADD">SEC 8-K — FY2024 Shareholder Letter (Aurora 14GW 파이프라인, Switch·Equinix·Meta 구조 그래픽 포함)</a><br>
+  ② <a href="https://oklo.com/investors" target="_blank" style="color:#378ADD">Oklo Investor Relations — Events &amp; Presentations 섹션 (Q3'25 Investor Presentation PDF)</a><br>
+  ③ Q1'26 컨콜 (2026.05.12) 직후 신규 발표 자료 게시 예정 — 본 리포트는 발표 전 작성됨.
+</div>
+</div>
+
+<!-- 5-4. 시나리오 -->
+<span class="section-anchor" id="s11"></span>
+<div class="section">
+<h2>5-4. 강세 / 약세 시나리오</h2>
+<div class="scenario-stack">
+  <div class="scenario-box s-bull">
+    <div class="scenario-title">🟢 강세 시나리오</div>
+    <div class="s-item"><div class="s-case">2026.07.04 Aurora-INL 임계 성공</div><div class="s-sub">DOE Pilot 첫 reactor 임계. 美 첫 advanced fast reactor 운영 데이터. NRC 라이센스 가속 — Bear thesis(규제 통과 못함) 결정적 와해. 주가 +50%+ 트리거</div></div>
+    <div class="s-item"><div class="s-case">신규 Hyperscaler LOI — Microsoft / Google</div><div class="s-sub">Meta 모델(Prepayment) 복제. 14GW → 20GW 파이프라인 확장. 분석가 컨센 PT $101→$150 상향. 시총 $20B+ 가능</div></div>
+    <div class="s-item"><div class="s-case">Isotopes 2026 첫 매출 인식</div><div class="s-sub">Pre-revenue 탈출 — 시장 인식 변화 트리거. Mo-99 의료동위원소 안정 매출. 비록 소액(연 $5~20M)이지만 PSR 산정 가능 → 가치평가 모델 변환</div></div>
+    <div class="s-item"><div class="s-case">14GW LOI → firm contract 30% 전환</div><div class="s-sub">Texas Capital 시나리오 실현. Switch 12GW 일부(2~4GW) firm 전환 시 향후 매출 가시성 확보. 2030년 4GW 가동 시 연 $1.5~3B ARR</div></div>
+    <div class="s-item"><div class="s-case">$2.5B 현금 우위 → 추가 ATM 불필요</div><div class="s-sub">cash burn 가이드 -$80~100M 준수. CapEx -$350~450M 정상 진행. 2027 첫 매출 시점까지 추가 희석 없음 → EPS 모델 안정</div></div>
+    <div class="s-item"><div class="s-case">10년 시나리오: 2034 1.2GW 풀 가동</div><div class="s-sub">Meta Phase 1~3 완료. ARR $500M+ 첫 흑자. 2040 14GW 풀 가동 시 ARR $5~11B. EBITDA 마진 50%+ — utility 평균 상회. 시총 $50~100B 가능</div></div>
+  </div>
+  <div class="scenario-box s-bear">
+    <div class="scenario-title">🔴 약세 시나리오</div>
+    <div class="s-item"><div class="s-case">2026.07.04 임계 실패 / 지연</div><div class="s-sub">EBR-II 기반이지만 60년 만의 운영. 기술적 이슈 발생 시 전체 일정 1~2년 지연. 주가 -40%+ 충격. UBS Hold $60 시나리오 실현</div></div>
+    <div class="s-item"><div class="s-case">NRC 라이센스 신청 지연 / 기각</div><div class="s-sub">2022.01 1차 기각 전례. 첫 commercial fast reactor 라이센스 — 미지의 영역. NuScale도 7년 소요. 라이센스 없으면 매출 불가</div></div>
+    <div class="s-item"><div class="s-case">HALEU 연료 공급 부족 결정타</div><div class="s-sub">Centrus 가동 지연. Oklo 자체 재처리도 2028+. 연료 없으면 reactor 가동 불가. plutonium bridge fuel도 NRC 승인 필요 — 또 다른 라이센스 사이클</div></div>
+    <div class="s-item"><div class="s-case">14GW LOI 전환 실패 — Switch 철회</div><div class="s-sub">2024.12 Switch 12GW = 비구속. 가격·일정 합의 실패 시 철회 가능. AI 사이클 둔화 시 hyperscaler가 우선순위 조정. 파이프라인 축소</div></div>
+    <div class="s-item"><div class="s-case">FOAK 비용 초과 — CapEx $1B+ 가능</div><div class="s-sub">첫 1기 항상 예산 초과 (NuScale Carbon Free Power -$5B 취소 사례). Oklo CapEx -$350~450M 가이드도 미달. 추가 ATM 발행 → 추가 희석</div></div>
+    <div class="s-item"><div class="s-case">Pre-revenue $13.5B 시총 거품 인식</div><div class="s-sub">AI 사이클 조정 시 SMR 섹터 동반 -50%+. NuScale, X-Energy도 동반 하락. 2025.05 $25.70 저점 재방문 가능. UBS PT $60 = 현재 -22%</div></div>
+  </div>
+</div>
+</div>
+
+<!-- 6. Worth Watching -->
+<span class="section-anchor" id="s12"></span>
+<div class="section">
+<h2>6. Worth Watching Events</h2>
+<div class="ww-sticker-box">
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.05.12</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q1'26 컨퍼런스콜 (Pre-Q1 Preview 핵심 이벤트)</div>
+      <div class="ww-sticker-point">Meta 1.2GW 후 첫 IR. cash burn 가이드 유지 여부, Isotopes 첫 매출 시점, Aurora-INL 7.4 임계 자신감, 신규 hyperscaler LOI 가능성</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.06</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">NRC COLA Phase 1 신청 진척</div>
+      <div class="ww-sticker-point">2025.10 NRC 시간당 요율 변경 후 첫 phase 신청. 환경·사이트 검토 시작</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.07.04</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Aurora-INL 임계(criticality) 목표 — 핵심 마일스톤</div>
+      <div class="ww-sticker-point">DOE Pilot Program 핵심. 美 첫 advanced fast reactor 임계 시도. 성공 시 60년 만의 fast reactor 운영 데이터. 주가 가장 큰 변곡점</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026 H2</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Idaho Radiochemistry Lab 첫 매출 인식</div>
+      <div class="ww-sticker-point">Atomic Alchemy 채널. 의료·산업 동위원소. <strong>Oklo 사상 첫 매출</strong> — Pre-revenue 탈출 시점. 시장 인식 변환</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.08</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q2'26 컨퍼런스콜 + 7월 임계 결과</div>
+      <div class="ww-sticker-point">임계 성공/실패에 따른 가이드 업데이트. 14GW 파이프라인 firm contract 전환 진척</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026 Q3~Q4</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Pike County, Ohio Site Characterization 완료</div>
+      <div class="ww-sticker-point">Meta 1.2GW Phase 1 사전 작업. 사이트 허가 + 환경 평가. 2027 본격 건설 시작 위한 기반</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027 H1</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Aurora-INL 첫 상업 가동 (가능성)</div>
+      <div class="ww-sticker-point">DOE 가이드 "late 2027 / early 2028". 75MW 첫 power 생산 → DOE 또는 INL 자체 소비. Power 사업 첫 매출</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2028</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Pluto Reactor + A3F 가동 시작</div>
+      <div class="ww-sticker-point">두 번째 Aurora 사이트(Equinix). 자체 연료 제조 시작 — 수직통합 완성. plutonium bridge fuel 본격 활용</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2030</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Meta Pike County Phase 1 가동 (150MW)</div>
+      <div class="ww-sticker-point">첫 hyperscaler 데이터센터 직접 전력 공급. Switch 12GW 단계적 배포 본격 시작</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2034</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Meta Pike County 1.2GW 풀 가동</div>
+      <div class="ww-sticker-point">Phase 3 완료. 16기 Aurora 가동. 연 ARR $500M+ 가능. 첫 흑자 시점 가시화</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2040+</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">14GW 풀 가동 시나리오</div>
+      <div class="ww-sticker-point">Switch 12GW + Meta 1.2GW + 기타. 187기+ Aurora. 연 ARR $5~11B. EBITDA 마진 50%+. 시총 $50~100B 가능</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 7. 데이터 출처 -->
+<span class="section-anchor" id="s13"></span>
+<div class="section">
+<h2>7. 데이터 출처</h2>
+<div class="source-box">
+  <ul style="padding-left:1.2rem">
+    <li>Oklo SEC 8-K (분기·연간 실적 보도자료), 10-K/10-Q 2024~2026</li>
+    <li>Q4'25 Earnings Release (2026.03.17), Q4'25 Shareholder Letter, 2025 10-K</li>
+    <li>Q4'25 Earnings Conference Call Transcript (Motley Fool, Investing.com, TIKR)</li>
+    <li>Q3'25 (2025.11.11), Q2'25, Q1'25, Q4'24 Earnings Conference Calls</li>
+    <li>2026.01.09 Meta 1.2GW Pike County Joint Press Release</li>
+    <li>2026.04.23 NVIDIA + LANL 3자 파트너십 발표 (Genesis Mission)</li>
+    <li>2026.05.06 NRC PDC Topical Report 승인 보도자료</li>
+    <li>2024.12 Switch 12GW Master Power Agreement 발표</li>
+    <li>2024.04 Equinix 500MW Master Supply Agreement</li>
+    <li>주가·시총·EPS 데이터: TradingView, Yahoo Finance, Robinhood, Morningstar (2026.05.06 기준)</li>
+    <li>분석 기사: CNBC, Investing.com, Motley Fool, 24/7 Wall St., DCD, World Nuclear News</li>
+    <li>분석가 PT: TipRanks, Benzinga (Tigress $130, HSBC $96, UBS $60, Goldman $55, Texas Capital $138)</li>
+    <li>환율: 2026.05.07 USD/KRW 1,448원 (Trading Economics, FRED)</li>
+    <li>분석일: 2026년 5월 7일 (Q1'26 컨콜 5일 전)</li>
+  </ul>
+  <p style="margin-top:8px;color:#bbb">⚠️ Oklo는 Pre-revenue 단계 — 매출·세그먼트 매출 데이터 없음. 분석은 cash burn / 영업손실 / 마일스톤 / 파이프라인 LOI 기준. 본 리포트는 Q1'26 컨콜(5.12) <strong>이전</strong>에 작성되어 가장 최신 분기 실적은 Q4'25(3.17 발표) 기준. Q1'26 컨콜 후 별도 업데이트 필요. 14GW 파이프라인은 거의 전량 비구속 LOI — firm contract 전환 진척이 핵심 변수.</p>
+</div>
+</div>
+
+<!-- 7-1. Reference -->
+<span class="section-anchor" id="s14"></span>
+<div class="section">
+<h2>7-1. Reference</h2>
+<div class="ref-list">
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://oklo.com/investors" target="_blank">Oklo IR — Investor Relations</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://oklo.com/newsroom/news-details/2026/Oklos-NRC-Principal-Design-Criteria-Topical-Report-Approved-for-Aurora-Powerhouse-in-Idaho/default.aspx" target="_blank">NRC PDC Topical Report 승인 보도자료 (2026.05.06)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://oklo.com/newsroom/news-details/2026/Oklo-Meta-Announce-Agreement-in-Support-of-1-2-GW-Nuclear-Energy-Development-in-Southern-Ohio/default.aspx" target="_blank">Meta 1.2GW Pike County 발표 (2026.01.09)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://oklo.com/newsroom/news-details/2026/Oklo-NVIDIA-and-Los-Alamos-National-Laboratory-Collaborate-to-Advance-Nuclear-Fuel-Validation-at-Los-Alamos-in-Support-of-Nuclear-Powered-AI-Factories/default.aspx" target="_blank">NVIDIA + LANL 3자 파트너십 (2026.04.23)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.sec.gov/Archives/edgar/data/0001849056/000110465925027276/tm2510004d1_ex99-1.htm" target="_blank">Oklo SEC 8-K — FY2024 Shareholder Letter (14GW 파이프라인 그래픽)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.stocktitan.net/sec-filings/OKLO/10-k-oklo-inc-files-annual-report-b62ba72e281e.html" target="_blank">Oklo 2025 10-K Annual Report (2026.03.17)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://oklo.com/energy/Ohio/default.aspx" target="_blank">Oklo Ohio Energy Page — Pike County 프로젝트 상세</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://oklo.com/energy/default.aspx" target="_blank">Oklo Aurora Powerhouse 제품 페이지 (75MWe 사양)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.nrc.gov/reactors/new-reactors/advanced/who-were-working-with/pre-application-activities/okla-aurora-powerhouse" target="_blank">NRC Aurora Powerhouse 페이지 (pre-application docket 99902095)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.fool.com/earnings/call-transcripts/2026/03/18/oklo-oklo-q4-2025-earnings-call-transcript/" target="_blank">Motley Fool — Oklo Q4'25 컨콜 transcript (2026.03.18)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.fool.com/earnings/call-transcripts/2025/11/11/oklo-oklo-q3-2025-earnings-call-transcript/" target="_blank">Motley Fool — Oklo Q3'25 컨콜 transcript (2025.11.11)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.tipranks.com/stocks/oklo/forecast" target="_blank">TipRanks — Oklo 분석가 PT 종합 (Tigress $130, HSBC $96 등)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.benzinga.com/quote/OKLO/analyst-ratings" target="_blank">Benzinga — Oklo 분석가 등급 종합</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.investing.com/news/company-news/why-is-oklo-stock-rallying-today-93CH-4664679" target="_blank">Investing.com — NRC PDC 승인 분석 (2026.05.06)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.tikr.com/blog/oklo-nyse-stock-flat-despite-nuclear-tech-firm-reports-annual-loss" target="_blank">TIKR — Oklo Q4'25 실적 분석 (2026.03.18)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://247wallst.com/investing/2026/05/06/oklo-advances-12-on-nrc-aurora-approval-is-this-the-ai-infrastructure-nuclear-play/" target="_blank">24/7 Wall St. — NRC 승인 + AI 인프라 분석 (2026.05.06)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.datacenterdynamics.com/en/news/oklo-boosts-aurora-reactor-capacity-to-75mw-to-power-ai-data-centers/" target="_blank">DCD — Aurora 50→75MW 확장 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.world-nuclear-news.org/articles/oklo-breaks-ground-for-first-aurora-powerhouse" target="_blank">World Nuclear News — Aurora-INL 착공 (2025.09.22)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.utilitydive.com/news/oklo-75-mw-reactor-design-smr-nuclear/743578/" target="_blank">Utility Dive — Aurora 75MW 디자인 + 2027/28 deployment</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.fool.com/investing/2026/04/30/is-oklo-stock-a-buy-now/" target="_blank">Motley Fool — Oklo 14GW = 187기 분석 (2026.04.30)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.ans.org/news/article-7996/oklo-continues-plutonium-fuel-development-with-lanl-and-nvidia-partnership/" target="_blank">ANS — Oklo + LANL + NVIDIA Pluto reactor 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://en.wikipedia.org/wiki/Oklo_Inc." target="_blank">Wikipedia — Oklo Inc.</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://en.wikipedia.org/wiki/Aurora_nuclear_reactor" target="_blank">Wikipedia — Aurora Powerhouse Reactor</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://en.wikipedia.org/wiki/Sodium-cooled_fast_reactor" target="_blank">Wikipedia — Sodium-cooled Fast Reactor (SFR 기술)</a></div>
+</div>
+<p class="note">* 공식 자료(Oklo + SEC + NRC) 9개, 증권사·전문 분석 4개, 뉴스 8개, 위키 3개 — 총 24개 레퍼런스. 한국 자료는 Oklo 분석 글이 본격적이지 않아 미포함. Q1'26 컨콜(5.12) 후 추가 자료 업데이트 권장.</p>
+</div>
+
+<div class="footer">Oklo Inc. (OKLO) 기업분석 · 2026.05.07 · Q1'26 컨콜 D-5 작성 · 개인 사용 목적</div>
+</div>
+
+<script>
+// 상장 후 7분기 라벨 (2024 Q3 ~ 2025 Q4 + 2026 Q1 예측)
+const L7=["Q3'24","Q4'24","Q1'25","Q2'25","Q3'25","Q4'25","Q1'26(E)"];
+
+// 분기 영업손실 ($M, 음수)
+const opLoss=[-13.9,-15.5,-17.9,-22.1,-36.3,-63.0,-45];
+// 기말 현금+유가증권 ($M)
+const cash=[288.5,275.3,260.7,683,1200,1400,2500];
+
+// 고객 파이프라인 누적 ($MW)
+const pipeLabels=["2024.Q1","2024.Q2","2024.Q3","2024.Q4","2025.Q1","2025.Q2","2025.Q3","2025.Q4","2026.Q1"];
+// Switch 12GW (2024.12 발표)
+const switchPipe=[0,0,0,12000,12000,12000,12000,12000,12000];
+// Meta 1.2GW (2026.01 발표)
+const metaPipe=[0,0,0,0,0,0,0,0,1200];
+// Equinix 0.5GW (2024.04 발표)
+const equinixPipe=[0,500,500,500,500,500,500,500,500];
+// Others ~0.3GW
+const othersPipe=[0,100,200,300,300,300,300,300,300];
+
+const gc='rgba(0,0,0,0.05)',tc='#999';
+const xT={color:tc,font:{size:10}};
+const yT={color:tc,font:{size:11}};
+
+// 파이프라인 차트 (누적 막대)
+const pipeBase=[
+  {label:'Switch (12 GW)',data:switchPipe,backgroundColor:'#1D9E75',stack:'s'},
+  {label:'Meta (1.2 GW)',data:metaPipe,backgroundColor:'#378ADD',stack:'s'},
+  {label:'Equinix (0.5 GW)',data:equinixPipe,backgroundColor:'#D85A30',stack:'s'},
+  {label:'Others (~0.3 GW)',data:othersPipe,backgroundColor:'#BA7517',stack:'s'},
+];
+const pipeChart=new Chart(document.getElementById('cPipe'),{
+  type:'bar',
+  data:{labels:pipeLabels,datasets:pipeBase.map(d=>({...d}))},
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toLocaleString()+' MW'}}},
+    scales:{
+      x:{grid:{color:gc},ticks:xT,stacked:true},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>(v/1000).toFixed(1)+' GW'},stacked:true,title:{display:true,text:'누적 GW',color:tc}}
+    }
+  }
+});
+window.togglePipe=function(idx,el){const m=pipeChart.getDatasetMeta(idx);m.hidden=!m.hidden;el.classList.toggle('hidden',m.hidden);pipeChart.update();};
+
+// 영업손실 + 현금 이중축
+new Chart(document.getElementById('cBurn'),{
+  type:'bar',
+  data:{
+    labels:L7,
+    datasets:[
+      {type:'bar',label:'분기 영업손실',data:opLoss,backgroundColor:'rgba(216,90,48,0.5)',borderColor:'#D85A30',borderWidth:1,yAxisID:'y'},
+      {type:'line',label:'현금+유가증권',data:cash,borderColor:'#1D9E75',pointRadius:4,pointBackgroundColor:'#1D9E75',fill:false,tension:0.3,yAxisID:'y2',borderWidth:2}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:ctx=>ctx.datasetIndex===0?' 손실: $'+Math.abs(ctx.parsed.y).toFixed(1)+'M':' 현금: $'+ctx.parsed.y.toLocaleString()+'M'}}},
+    scales:{
+      x:{grid:{color:gc},ticks:xT},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>'$'+v+'M'},position:'left',title:{display:true,text:'영업손실 ($M)',color:'#D85A30'}},
+      y2:{grid:{display:false},ticks:{color:'#1D9E75',font:{size:10},callback:v=>'$'+(v/1000).toFixed(1)+'B'},position:'right',min:0,title:{display:true,text:'현금+유가증권',color:'#1D9E75'}}
+    }
+  }
+});
+</script>
+</body>
+</html>
