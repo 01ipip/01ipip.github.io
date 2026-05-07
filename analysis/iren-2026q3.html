@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IREN Limited 기업분석 — FY2026 Q3 (오늘 발표 예정)</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f3ef;color:#1a1a1a;padding:2rem;font-size:14px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto}
+.header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #e0e0dc;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.header-title{font-size:22px;font-weight:700}
+.header-meta{font-size:12px;color:#888;margin-top:4px}
+.toc{margin-bottom:2rem;padding:0}
+.toc-title{font-size:12px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+.toc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:1.1rem 1.3rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.toc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(8,auto);grid-auto-flow:column;gap:6px 28px}
+@media(max-width:650px){.toc-grid{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}}
+.toc-link{display:flex;align-items:center;gap:10px;padding:5px 0;text-decoration:none;color:#444;font-size:13px;border-bottom:0.5px dashed transparent;transition:all .15s ease}
+.toc-link:hover{color:#378ADD;border-bottom-color:#cfe1f5}
+.toc-link .toc-num{color:#aaa;font-weight:700;font-size:12px;min-width:30px;font-variant-numeric:tabular-nums;flex-shrink:0}
+.toc-link:hover .toc-num{color:#378ADD}
+.toc-link .toc-text{flex:1}
+.toc-link.sub{padding-left:18px;font-size:12.5px;color:#666}
+.toc-link.sub .toc-num{font-size:11px;color:#bbb}
+.section{margin-bottom:3rem}
+.section-anchor{display:block;position:relative;top:-70px;visibility:hidden}
+h2{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:6px;border-bottom:1.5px solid #e0e0dc}
+h3{font-size:14px;font-weight:600;margin:1.2rem 0 .6rem;color:#333}
+.chart-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:20px;position:relative;width:100%}
+.note{font-size:11px;color:#999;margin-top:8px;line-height:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;font-size:12px;color:#666}
+.legend-item{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:3px 8px;border-radius:6px;transition:opacity .15s}
+.legend-item:hover{background:#e8e8e3}
+.legend-item.hidden{opacity:.3;text-decoration:line-through}
+.legend-static{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0dc;margin-bottom:.5rem}
+th{background:#ebebe6;font-weight:600;padding:7px 8px;text-align:left;border-bottom:1px solid #e0e0dc;white-space:nowrap;font-size:11.5px}
+th.center{text-align:center}
+td{padding:6px 8px;border-bottom:0.5px solid #f0f0ee;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafaf6}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.center{text-align:center}
+.hl{background:#fffbe6 !important}
+.dn{color:#D85A30}
+.up2{color:#1D9E75}
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
+@media(max-width:650px){.overview-grid{grid-template-columns:1fr}}
+.overview-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.overview-box h4{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.kv{display:flex;justify-content:space-between;align-items:flex-start;padding:4px 0;border-bottom:0.5px solid #f5f4f0;font-size:12.5px;gap:10px}
+.kv:last-child{border-bottom:none}
+.kv-key{color:#666;min-width:90px;flex-shrink:0}
+.kv-val{font-weight:600;text-align:right;flex:1}
+.seg-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:1rem}
+.seg-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.seg-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:8px}
+.seg-card-name{font-size:13px;font-weight:700}
+.seg-card-share{font-size:11px;color:#888;font-weight:600}
+.seg-card-desc{font-size:12px;color:#444;line-height:1.55;margin-bottom:6px}
+.seg-card-margin{font-size:11px;font-weight:600}
+.badge{display:inline-block;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:600}
+.badge-up{background:#e6f7f0;color:#1D9E75}
+.badge-dn{background:#fce8e4;color:#D85A30}
+.badge-neu{background:#ebebe6;color:#666}
+.cc-table{width:100%;border-collapse:separate;border-spacing:6px;margin-bottom:1rem}
+.cc-table th{background:transparent;border:none;font-size:11px;color:#888;text-align:center;padding:4px;font-weight:600;white-space:nowrap}
+.cc-table th.year-col{width:50px;text-align:left}
+.cc-cell{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.65rem .75rem;vertical-align:top;height:100%}
+.cc-quarter{font-size:10px;font-weight:700;color:#378ADD;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.cc-msg{font-size:11px;color:#444;margin-bottom:6px;line-height:1.45}
+.cc-guide{font-size:10px;color:#888;border-top:0.5px solid #f0f0ee;padding-top:5px;line-height:1.5}
+.cc-hit{color:#1D9E75;font-weight:600}
+.cc-miss{color:#D85A30;font-weight:600}
+.cc-latest{border:1.5px solid #378ADD !important;box-shadow:0 0 0 2px rgba(55,138,221,0.1)}
+.year-label{font-size:13px;font-weight:700;color:#555;padding-right:8px;vertical-align:middle}
+.scenario-stack{display:flex;flex-direction:column;gap:12px}
+.scenario-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1.1rem 1.3rem}
+.scenario-title{font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid #f0f0ee}
+.s-bull .scenario-title{color:#1D9E75}
+.s-bear .scenario-title{color:#D85A30}
+.s-item{margin-bottom:9px;padding-bottom:9px;border-bottom:0.5px solid #f5f4f0;font-size:12px}
+.s-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-case{font-weight:600;margin-bottom:2px}
+.s-sub{color:#888;font-size:11px}
+.ww-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.ww-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.ww-sticker-item{padding:.7rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:14px;align-items:flex-start}
+.ww-sticker-item:last-child{border-bottom:none}
+.ww-sticker-date{font-size:11px;font-weight:700;color:#378ADD;white-space:nowrap;min-width:90px;flex-shrink:0;padding-top:1px}
+.ww-sticker-content{flex:1}
+.ww-sticker-event{font-size:12.5px;font-weight:700;color:#222;margin-bottom:2px}
+.ww-sticker-point{font-size:11.5px;color:#666;line-height:1.5}
+.source-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.4rem;font-size:12px;color:#888;line-height:2}
+.prose{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;margin-bottom:1rem;font-size:13px;line-height:1.7}
+.prose ul{padding-left:1.3rem}
+.prose li{margin-bottom:.25rem}
+.prose p{margin-bottom:.7rem}
+.prose p:last-child{margin-bottom:0}
+.thesis-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:12px;padding:1.2rem 1.4rem;margin-bottom:12px;border-left:5px solid #333;position:relative}
+.thesis-box-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.thesis-icon{font-size:22px;flex-shrink:0}
+.thesis-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:5px;background:#ebebe6;color:#444}
+.thesis-title{font-size:15px;font-weight:700;color:#222;flex:1;margin-bottom:0}
+.thesis-body{font-size:13px;line-height:1.7;color:#333}
+.thesis-body p{margin-bottom:.6rem}
+.thesis-body p:last-child{margin-bottom:0}
+.thesis-body strong{color:#222;font-weight:700}
+.thesis-body .hl-blue{font-weight:600;color:#222}
+.thesis-body .hl-green{font-weight:700;color:#1D9E75}
+.thesis-body .hl-red{font-weight:700;color:#D85A30}
+.cc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.cc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.cc-sticker-item{padding:.85rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:12px;align-items:flex-start}
+.cc-sticker-item:last-child{border-bottom:none}
+.cc-sticker-rank{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#378ADD;color:#fff;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.cc-sticker-content{flex:1}
+.cc-sticker-title{font-size:13px;font-weight:700;color:#222;margin-bottom:4px}
+.cc-sticker-desc{font-size:12px;color:#444;line-height:1.6}
+.cc-sticker-desc strong{color:#222}
+.hl-pos{color:#1D9E75;font-weight:700}
+.hl-neg{color:#D85A30;font-weight:700}
+.ir-na-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;font-size:12px;color:#666;line-height:1.6}
+.ir-slide{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;overflow:hidden;margin-bottom:14px}
+.ir-slide-frame{background:linear-gradient(135deg,#f8f8f5 0%,#ffffff 100%);padding:.85rem 1.4rem;border-bottom:0.5px solid #e0e0dc}
+.ir-slide-num{font-size:10px;color:#999;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+.ir-slide-title{font-size:14px;font-weight:700;color:#333}
+.ir-slide-img-wrap{padding:1rem 1.4rem;text-align:center;background:#fafaf6}
+.ir-slide-img-wrap iframe{display:block;width:100%;max-width:850px;height:480px;margin:0 auto;border:0.5px solid #e0e0dc;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.ir-slide-caption{font-size:11.5px;color:#555;padding:.85rem 1.4rem 1rem;line-height:1.55;background:#fff;border-top:0.5px solid #f0f0ee}
+.ir-slide-caption strong{color:#222}
+.footer{font-size:11px;color:#aaa;text-align:center;margin-top:2rem;padding-top:1rem;border-top:0.5px solid #e0e0dc}
+.seg-table-wrap{overflow-x:auto}
+.seg-table{min-width:680px}
+.seg-table th.seg-group{text-align:center;background:#e3e3de;border-left:2px solid #d0d0cc}
+.seg-table td.seg-border{border-left:2px solid #e0e0dc}
+.tv-wrap{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:6px;overflow:hidden}
+.tv-wrap iframe{display:block;width:100%;height:420px;border:0;border-radius:6px}
+.ref-list{display:flex;flex-direction:column;gap:6px}
+.ref-item{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.6rem .9rem;display:flex;align-items:center;gap:10px;font-size:12px}
+.ref-tag{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600;flex-shrink:0;min-width:55px;text-align:center}
+.tag-official{background:#e0effc;color:#1565c0}
+.tag-broker{background:#fff4e0;color:#ed8936}
+.tag-news{background:#f0f0ed;color:#555}
+.tag-wiki{background:#e6f7f0;color:#1D9E75}
+.ref-item a{color:#378ADD;text-decoration:none;flex:1;word-break:break-all}
+.ref-item a:hover{text-decoration:underline}
+.alert-box{background:#fff8e1;border:1px solid #f5d56e;border-radius:10px;padding:.9rem 1.2rem;margin-bottom:1rem;font-size:13px;color:#5a4a00;line-height:1.6}
+.alert-box strong{color:#222}
+.asset-grid{display:flex;flex-direction:column;gap:12px;margin-bottom:1rem}
+.asset-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:12px;padding:1.1rem 1.3rem;border-left:4px solid #378ADD}
+.asset-card.asset-tx{border-left-color:#378ADD}
+.asset-card.asset-ok{border-left-color:#1D9E75}
+.asset-card.asset-ca{border-left-color:#BA7517}
+.asset-card-header{display:flex;align-items:center;gap:12px;margin-bottom:10px;padding-bottom:8px;border-bottom:0.5px solid #f0f0ee}
+.asset-flag{font-size:24px;flex-shrink:0}
+.asset-region{font-size:14px;font-weight:700;color:#222}
+.asset-region-sub{font-size:11px;color:#888;margin-top:2px}
+.asset-power{margin-left:auto;font-size:18px;font-weight:700;color:#378ADD;font-variant-numeric:tabular-nums}
+.asset-list{display:flex;flex-direction:column;gap:8px}
+.asset-item{padding:6px 0;border-bottom:0.5px dashed #f0f0ee}
+.asset-item:last-child{border-bottom:none}
+.asset-name{font-size:12.5px;font-weight:700;color:#222;margin-bottom:3px}
+.asset-detail{font-size:11.5px;color:#555;line-height:1.55}
+.asset-detail strong{color:#222}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div>
+    <div class="header-title">⚡ IREN Limited 기업분석</div>
+    <div class="header-meta">회계연도: July~June (FY26 = 2025.7~2026.6) &nbsp;|&nbsp; 분석기간: Q1'FY22~Q2'FY26 (18분기) &nbsp;|&nbsp; 최근 컨콜: 2026.02.05 (Q2 FY26)</div>
+  </div>
+  <div style="font-size:12px;color:#aaa">분석일: 2026.05.07</div>
+</div>
+
+<div class="alert-box">
+  ⚠️ <strong>중요</strong>: IREN의 <strong>Q3 FY26 실적 발표는 오늘(2026.05.07 미국 동부시간 오후 5시)</strong> 예정입니다. 본 리포트는 발표 전 시점 기준이며, Q2 FY26(2026.02.05 발표)이 최신 공시 데이터입니다. Q3 FY26 컨센서스: 매출 $213M (+44% YoY), EPS -$0.18.
+</div>
+
+<!-- 목차 -->
+<div class="toc">
+  <div class="toc-title">목차</div>
+  <div class="toc-sticker-box">
+    <div class="toc-grid">
+      <a class="toc-link" href="#s1"><span class="toc-num">01.</span><span class="toc-text">회사 개요</span></a>
+      <a class="toc-link" href="#s2"><span class="toc-num">02.</span><span class="toc-text">주가 흐름 — TradingView 일봉</span></a>
+      <a class="toc-link" href="#s3"><span class="toc-num">03.</span><span class="toc-text">세그먼트별 매출 추이</span></a>
+      <a class="toc-link sub" href="#s3b"><span class="toc-num">3-1.</span><span class="toc-text">세그먼트 구조 및 제품</span></a>
+      <a class="toc-link sub" href="#s4"><span class="toc-num">3-2.</span><span class="toc-text">매출 &amp; Adj. EBITDA% 추이</span></a>
+      <a class="toc-link sub" href="#s5"><span class="toc-num">3-3.</span><span class="toc-text">세그먼트별 실적 테이블</span></a>
+      <a class="toc-link" href="#s6"><span class="toc-num">04.</span><span class="toc-text">재무제표 개요</span></a>
+      <a class="toc-link" href="#s7"><span class="toc-num">05.</span><span class="toc-text">핵심 투자아이디어</span></a>
+      <a class="toc-link sub" href="#s8"><span class="toc-num">5-1.</span><span class="toc-text">핵심 변동 요인</span></a>
+      <a class="toc-link sub" href="#s9"><span class="toc-num">5-2.</span><span class="toc-text">컨퍼런스콜 트래킹</span></a>
+      <a class="toc-link sub" href="#s10"><span class="toc-num">5-3.</span><span class="toc-text">Q2'FY26 컨콜 심층 정리</span></a>
+      <a class="toc-link sub" href="#s11"><span class="toc-num">5-4.</span><span class="toc-text">강세 / 약세 시나리오</span></a>
+      <a class="toc-link" href="#s12"><span class="toc-num">06.</span><span class="toc-text">Worth Watching Events</span></a>
+      <a class="toc-link" href="#s13"><span class="toc-num">07.</span><span class="toc-text">데이터 출처</span></a>
+      <a class="toc-link sub" href="#s14"><span class="toc-num">7-1.</span><span class="toc-text">Reference</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- 1. 회사 개요 -->
+<span class="section-anchor" id="s1"></span>
+<div class="section">
+<h2>1. 회사 개요</h2>
+<div class="overview-grid">
+  <div class="overview-box">
+    <h4>기본 정보</h4>
+    <div class="kv"><span class="kv-key">설립</span><span class="kv-val">2018년 (Daniel &amp; Will Roberts 형제)</span></div>
+    <div class="kv"><span class="kv-key">상장</span><span class="kv-val">2021.11 NASDAQ IPO</span></div>
+    <div class="kv"><span class="kv-key">본사</span><span class="kv-val">Sydney, Australia (호주 법인)</span></div>
+    <div class="kv"><span class="kv-key">Co-CEO</span><span class="kv-val">Daniel Roberts &amp; Will Roberts</span></div>
+    <div class="kv"><span class="kv-key">임직원</span><span class="kv-val">~270명 (Mirantis 인수 후 +400명 예정)</span></div>
+    <div class="kv"><span class="kv-key">사업 모델</span><span class="kv-val">100% 자체 데이터센터 운영 (Vertically Integrated)</span></div>
+    <div class="kv"><span class="kv-key">티커</span><span class="kv-val">NASDAQ: IREN (구 사명 Iris Energy → 2024.11 사명 변경)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>시장 정보 (2026.05.06 기준)</h4>
+    <div class="kv"><span class="kv-key">현재 주가</span><span class="kv-val">$60.18 (Mirantis 인수 +10.6% 급등)</span></div>
+    <div class="kv"><span class="kv-key">시가총액 USD</span><span class="kv-val" style="color:#378ADD">~$22.1B</span></div>
+    <div class="kv"><span class="kv-key">시가총액 KRW</span><span class="kv-val" style="color:#378ADD">~32조원 (환율 1,449원)</span></div>
+    <div class="kv"><span class="kv-key">발행주식</span><span class="kv-val">~367M주 (Mirantis 인수 후 ~378M주)</span></div>
+    <div class="kv"><span class="kv-key">52주 고가</span><span class="kv-val">$76.87 (2026.01)</span></div>
+    <div class="kv"><span class="kv-key">52주 저가</span><span class="kv-val">$6.01 (2025.05)</span></div>
+    <div class="kv"><span class="kv-key">P/E (TTM)</span><span class="kv-val">~62.5</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>사업 운영</h4>
+    <div class="kv"><span class="kv-key">데이터센터</span><span class="kv-val">100% 자체 소유·운영, 100% 재생에너지</span></div>
+    <div class="kv"><span class="kv-key">확보 전력</span><span class="kv-val" style="color:#378ADD">4.5GW+ 그리드 연결 확보 (Texas, BC, Oklahoma)</span></div>
+    <div class="kv"><span class="kv-key">가동 사이트</span><span class="kv-val">Childress(TX), Sweetwater 1(TX 1.4GW), British Columbia(CA)</span></div>
+    <div class="kv"><span class="kv-key">차세대 사이트</span><span class="kv-val">Horizon 1-4(TX 200MW MS용), Oklahoma 1.6GW(2028~)</span></div>
+    <div class="kv"><span class="kv-key">세그먼트</span><span class="kv-val">2개: AI Cloud Services / Bitcoin Mining</span></div>
+    <div class="kv"><span class="kv-key">GPU 보유</span><span class="kv-val">~23K (Mar'26 추정) → 150K 목표 (CY26 말, B300 50K+ 추가)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>투자 포인트 요약</h4>
+    <div class="kv"><span class="kv-key">Q2 FY26 매출</span><span class="kv-val" style="color:#1D9E75">$184.7M (+59% YoY)</span></div>
+    <div class="kv"><span class="kv-key">Adj. EBITDA</span><span class="kv-val" style="color:#1D9E75">$75.3M (+21% YoY)</span></div>
+    <div class="kv"><span class="kv-key">FY25 연간 매출</span><span class="kv-val" style="color:#1D9E75">$501.0M (+168% YoY)</span></div>
+    <div class="kv"><span class="kv-key">CY26 ARR 목표</span><span class="kv-val" style="color:#1D9E75">$3.4B (140K GPU 배포 시)</span></div>
+    <div class="kv"><span class="kv-key">MS 5년 계약</span><span class="kv-val" style="color:#1D9E75">$9.7B (200MW Horizon 1-4)</span></div>
+    <div class="kv"><span class="kv-key">현금</span><span class="kv-val" style="color:#1D9E75">$3.26B (Dec'25), 총 확보자금 $9.2B+</span></div>
+  </div>
+</div>
+<p class="note">⚠️ <strong>회계연도 주의</strong>: IREN은 호주 법인 출신으로 회계연도가 <strong>7월~다음해 6월</strong>입니다. 즉 <strong>FY26 = 2025.7~2026.6</strong>이며 본 리포트의 Q1 FY26은 2025.7~9월, Q2 FY26은 2025.10~12월, Q3 FY26은 <strong>2026.1~3월(오늘 발표)</strong>입니다. <strong>ARR</strong>=Annualized Run-Rate Revenue (현재 가동 기준 연간 환산 매출). <strong>EH/s</strong>=비트코인 마이닝 해시레이트(엑사해시/초). <strong>Hardware Profit</strong>=매출에서 전기료만 차감한 기여이익(IREN 고유 KPI). <strong>Horizon 1-4</strong>=Microsoft 전용 200MW 액체냉각 데이터센터.</p>
+</div>
+
+<!-- 2. 주가 -->
+<span class="section-anchor" id="s2"></span>
+<div class="section">
+<h2>2. 주가 흐름 — TradingView 일봉</h2>
+<div class="tv-wrap">
+<iframe src="https://www.tradingview.com/widgetembed/?symbol=NASDAQ%3AIREN&interval=D&style=1&theme=light&hidesidetoolbar=1&hidetoptoolbar=0&allow_symbol_change=0" allowfullscreen></iframe>
+</div>
+<p class="note">* 2025.05 $6.01 저점 → 2025.11 Microsoft $9.7B 메가딜 발표 후 폭등 → 2026.01 $76.87 역대 최고가. 이후 자금조달(전환사채·ATM) 희석 우려로 -50%+ 조정 → Mirantis 인수(2026.05.05) +10.6% 반등. 1년 +900% 상승.</p>
+
+<h3 style="margin-top:1.2rem">주요 이벤트 연표</h3>
+<table>
+  <thead><tr><th>시기</th><th class="num">주가(근사)</th><th>이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2018</td><td class="num">—</td><td>Iris Energy 호주 시드니 설립 (Daniel·Will Roberts 형제, Macquarie 출신)</td></tr>
+    <tr><td>2021.11</td><td class="num">$28</td><td><span class="up2">NASDAQ IPO</span> ($28/share, 약 $232M 조달)</td></tr>
+    <tr><td>2022.07</td><td class="num">$5</td><td><span class="dn">Crypto winter 직격 — 비트코인 폭락, 채권 디폴트 위기</span> (2022.11 Marshall Pollard 채권 손실)</td></tr>
+    <tr><td>2023.06</td><td class="num">$5</td><td><span class="up2">채권 정리</span> + Childress(TX) 마이닝 사이트 본격 가동, 4.5 EH/s 도달</td></tr>
+    <tr><td>2024.02</td><td class="num">$8</td><td>Iris Energy → IREN 사명 변경, <span class="up2">AI Cloud 진입 시작</span> (NVIDIA H100 248개)</td></tr>
+    <tr><td>2024.09</td><td class="num">$8</td><td>NVIDIA H200 1,080개 추가 — <span class="up2">AI Cloud 본격 확장</span> ($43.9M)</td></tr>
+    <tr><td>2025.05</td><td class="num">$6.01</td><td><strong class="dn">52주 저점</strong> — 비트코인 반감기 후 Hashprice 압박, AI Cloud 매출 미미 ($2.2M/월)</td></tr>
+    <tr><td>2025.06</td><td class="num">$11</td><td>Bitcoin 마이닝 50 EH/s 도달, 사실상 마이닝 확장 일시 중단 — <span class="up2">AI/HPC 전환 선언</span></td></tr>
+    <tr><td>2025.08</td><td class="num">$15</td><td>FY25 결산 — 매출 $501M (+168%), <span class="up2">첫 흑자 $86.9M</span>, AI Cloud 본격화 신호</td></tr>
+    <tr><td>2025.11.06</td><td class="num">$45</td><td><strong>Q1 FY26: 매출 $240M (+355% YoY), <span class="up2">첫 record 흑자 $384.6M</span></strong></td></tr>
+    <tr><td>2025.11</td><td class="num">$60</td><td><strong><span class="up2">Microsoft $9.7B 메가딜 발표</span> — 5년 200MW Horizon 1-4 사이트</strong></td></tr>
+    <tr><td>2026.01</td><td class="num">$76.87</td><td><strong><span class="up2">52주 고가 갱신</span></strong> — 분석가 PT 일제 상향 ($80~85)</td></tr>
+    <tr><td>2026.02.05</td><td class="num">$50</td><td>Q2 FY26: 매출 $184.7M, <span class="dn">순손실 -$155.4M (전환사채 평가손실), -11.5% 급락</span></td></tr>
+    <tr><td>2026.02</td><td class="num">$48</td><td><span class="up2">Oklahoma 1.6GW 신규 데이터센터 부지 확보</span> — 총 4.5GW+</td></tr>
+    <tr><td>2026.03</td><td class="num">$55</td><td><span class="up2">NVIDIA B300 GPU 50,000+ 추가 발주</span> — 총 150K GPU 목표 ($3.7B+ ARR)</td></tr>
+    <tr><td>2026.04</td><td class="num">$54</td><td><span class="dn">ATM equity 프로그램 $6B (희석 우려)</span> vs CapEx 자금 양면 평가</td></tr>
+    <tr><td>2026.05.01</td><td class="num">$49</td><td><strong><span class="up2">Sweetwater 1 (1.4GW Texas) 가동 개시</span></strong> — 미국 최대 단일 데이터센터급</td></tr>
+    <tr class="hl"><td><strong>2026.05.05</strong></td><td class="num"><strong>$60.18</strong></td><td><strong><span class="up2">Mirantis 인수 발표 ($625M 전액주식, +10.6%)</span></strong> — Kubernetes/AI 오케스트레이션 SW 추가</td></tr>
+    <tr><td><strong>2026.05.07</strong></td><td class="num">발표 대기</td><td><strong>Q3 FY26 실적 발표 예정 (오늘 미국 EST 오후 5시) — 컨센 매출 $213M (+44% YoY)</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 3. 세그먼트 -->
+<span class="section-anchor" id="s3"></span>
+<div class="section">
+<h2>3. 세그먼트별 매출 추이 — 18분기 ($M)</h2>
+<div class="legend" id="segLegend">
+  <span class="legend-item" onclick="toggleSeg(0,this)"><span class="dot" style="background:#1D9E75"></span>AI Cloud Services</span>
+  <span class="legend-item" onclick="toggleSeg(1,this)"><span class="dot" style="background:#378ADD"></span>Bitcoin Mining</span>
+  <span class="legend-item" onclick="toggleSeg(2,this)"><span class="dot" style="background:#BA7517"></span>Other (Energy 등)</span>
+  <span style="font-size:11px;color:#bbb;margin-left:4px">← 클릭하여 표시/숨김</span>
+</div>
+<div class="chart-box" style="height:460px"><canvas id="cSeg"></canvas></div>
+<p class="note">* FY22~FY24 분기 데이터는 결산자료·월간 업데이트 역산 추정 포함. AI Cloud Services는 2024.04 시작 — Q3 FY24부터 매출 기여. Q1 FY26($240M)에서 Bitcoin Mining 매출이 비트코인 가격 강세로 급증했고, Q2 FY26은 GPU 전환에 따른 일부 채굴 용량 재배치 영향. AI Cloud는 Microsoft 계약 효과로 2H FY26부터 폭증할 것으로 가이드.</p>
+</div>
+
+<!-- 3-1. 세그먼트 구조 -->
+<span class="section-anchor" id="s3b"></span>
+<div class="section">
+<h2>3-1. 세그먼트 구조 및 제품</h2>
+<div class="seg-cards">
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">AI Cloud Services ★ (성장 엔진)</div>
+      <div class="seg-card-share">Q2 FY26 비중 <span style="color:#378ADD;font-weight:700">~5%</span> · 매출 $9.6M (분기) · ARR 목표 <span style="color:#378ADD;font-weight:700">$3.4B</span></div>
+    </div>
+    <div class="seg-card-desc">
+      엔터프라이즈·하이퍼스케일러 대상 GPU-as-a-Service. NVIDIA <strong>H100/H200/B200/B300</strong> bare-metal cloud. 현재 23K GPU → CY26 말 <strong>140K~150K GPU</strong> 확장. <strong>Microsoft $9.7B 5년 계약(2025.11)</strong>이 핵심 — Horizon 1-4 데이터센터(200MW 액체냉각)에 GB300 19K개 배포로 ARR $1.9B 기여. Together AI, Fluidstack, Fireworks AI, Prince George 부문 ARR $0.4B 추가. <strong>Mirantis 인수(2026.05)</strong>로 Kubernetes 기반 AI 오케스트레이션 SW 확보 — 베어메탈 → 엔터프라이즈 풀스택 전환.
+    </div>
+    <div class="seg-card-margin" style="color:#555">Hardware Profit Margin <span style="color:#378ADD;font-weight:700">96~98%</span> · 회사 평균 압도적 상회</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">Bitcoin Mining (현재 매출 기둥)</div>
+      <div class="seg-card-share">Q2 FY26 비중 <span style="color:#378ADD;font-weight:700">~95%</span> · 매출 $175M+ · 50 EH/s 운영</div>
+    </div>
+    <div class="seg-card-desc">
+      자체 운영 ASIC 마이닝 — Bitmain S21 XP/T21 시리즈 <strong>15 J/TH</strong> 효율(업계 최고). Childress(TX, 750MW), British Columbia(CA, 220MW) 사이트. <strong>마이닝 확장은 50 EH/s에서 일시 중단</strong> — 모든 신규 전력은 AI/HPC로 배정. 비트코인 가격 $90K~120K 구간에서 분기당 $200M+ 매출 가능. 2026 BC 채굴 일부 → AI Cloud로 전환 중(Mining Hardware Impairment $31.8M Q2'FY26 발생). 일종의 "캐시카우 → 자금원" 역할로 활용.
+    </div>
+    <div class="seg-card-margin" style="color:#555">Hardware Profit Margin <span style="color:#378ADD;font-weight:700">70~77%</span> · 비트코인 가격 민감</div>
+  </div>
+</div>
+
+<table>
+  <thead><tr><th>세그먼트</th><th>대표 제품/서비스</th><th>주요 고객</th><th>Q2 FY26 매출 비중</th><th>YoY 성장</th></tr></thead>
+  <tbody>
+    <tr><td><strong>AI Cloud Services</strong></td><td>NVIDIA H100/H200/B200/B300 GPU 베어메탈, Mirantis Kubernetes</td><td>Microsoft, Together AI, Fluidstack, Fireworks AI, Poolside</td><td class="num">~5%</td><td class="num up2"><strong>+200%+</strong></td></tr>
+    <tr><td><strong>Bitcoin Mining</strong></td><td>50 EH/s 자체 ASIC 마이닝 (Bitmain S21 XP/T21)</td><td>Bitcoin network (block rewards)</td><td class="num"><strong>~95%</strong></td><td class="num up2">+55%</td></tr>
+  </tbody>
+</table>
+<p class="note">* Q1~Q2 FY26은 Bitcoin Mining이 여전히 매출 95%를 차지하지만 <strong>Q3 FY26부터 AI Cloud 비중 본격 상승 시작</strong>(Microsoft 계약 첫 ramp 2H FY26 시작). FY27 말 AI Cloud가 매출의 70%+를 차지할 것으로 가이드. Microsoft 계약 ARR $1.9B만으로 현재 분기 매출의 2배 이상.</p>
+</div>
+
+<!-- 3-2. 매출 + Adj.EBITDA -->
+<span class="section-anchor" id="s4"></span>
+<div class="section">
+<h2>3-2. 매출 &amp; Adj. EBITDA% 추이 — 18분기</h2>
+<div class="legend">
+  <span class="legend-static"><span class="dot" style="background:rgba(55,138,221,0.5)"></span>매출 ($M, 좌축)</span>
+  <span class="legend-static"><span class="dot" style="background:#1D9E75"></span>Adj. EBITDA% (우축)</span>
+</div>
+<div class="chart-box" style="height:420px"><canvas id="cRev"></canvas></div>
+
+<h3 style="margin-top:1.2rem">연간 요약 (회계연도 7월~6월 기준)</h3>
+<table>
+  <thead><tr><th>회계연도</th><th class="num">매출</th><th class="num">YoY</th><th class="num">Adj. EBITDA</th><th class="num">EBITDA%</th><th class="num">순이익</th><th>주요 이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>FY22</td><td class="num">$59M</td><td class="num">—</td><td class="num">$11M</td><td class="num">19%</td><td class="num dn">-$33M</td><td>NASDAQ IPO, Childress 1단계</td></tr>
+    <tr><td>FY23</td><td class="num">$75M</td><td class="num up2">+27%</td><td class="num dn">-$30M</td><td class="num dn">-40%</td><td class="num dn">-$172M</td><td>Crypto winter, 채권 디폴트</td></tr>
+    <tr><td>FY24</td><td class="num">$187M</td><td class="num up2">+149%</td><td class="num">$54.4M</td><td class="num">29%</td><td class="num dn">-$28.9M</td><td>50 EH/s 진입, 사명 변경</td></tr>
+    <tr><td>FY25</td><td class="num">$501M</td><td class="num up2">+168%</td><td class="num">$269.7M</td><td class="num">54%</td><td class="num up2">$86.9M</td><td>첫 흑자, AI Cloud 진입</td></tr>
+    <tr class="hl"><td><strong>FY26 H1</strong></td><td class="num"><strong>$425M</strong></td><td class="num up2"><strong>+148%</strong></td><td class="num"><strong>$167M</strong></td><td class="num"><strong>39%</strong></td><td class="num up2"><strong>+$229M</strong></td><td><strong>Microsoft $9.7B, Mirantis 인수</strong></td></tr>
+  </tbody>
+</table>
+
+<h3 style="margin-top:1.2rem">분기별 실적 (10분기)</h3>
+<table>
+  <thead><tr><th>분기</th><th class="num">매출</th><th class="num">YoY</th><th class="num">QoQ</th><th class="num">Bitcoin Mining</th><th class="num">AI Cloud</th><th class="num">Adj. EBITDA</th><th class="num">EBITDA%</th></tr></thead>
+  <tbody>
+    <tr><td>Q1 FY24 (23.7~9)</td><td class="num">$11M</td><td class="num">—</td><td class="num">—</td><td class="num">$11M</td><td class="num">$0M</td><td class="num dn">-$5M</td><td class="num dn">-45%</td></tr>
+    <tr><td>Q2 FY24 (23.10~12)</td><td class="num">$31M</td><td class="num">—</td><td class="num up2">+182%</td><td class="num">$31M</td><td class="num">$0.1M</td><td class="num">$2M</td><td class="num">6%</td></tr>
+    <tr><td>Q3 FY24 (24.1~3)</td><td class="num">$54M</td><td class="num">—</td><td class="num up2">+74%</td><td class="num">$53M</td><td class="num">$1M</td><td class="num">$15M</td><td class="num">28%</td></tr>
+    <tr><td>Q4 FY24 (24.4~6)</td><td class="num">$57M</td><td class="num">—</td><td class="num up2">+5%</td><td class="num">$54M</td><td class="num">$2.5M</td><td class="num">$12.2M</td><td class="num">21%</td></tr>
+    <tr><td>Q1 FY25 (24.7~9)</td><td class="num">$52.8M</td><td class="num up2">+380%</td><td class="num dn">-7%</td><td class="num">$49.6M</td><td class="num">$3.2M</td><td class="num">$2.5M</td><td class="num">5%</td></tr>
+    <tr><td>Q2 FY25 (24.10~12)</td><td class="num">$119.6M</td><td class="num up2">+286%</td><td class="num up2">+126%</td><td class="num">$113.5M</td><td class="num">$2.6M</td><td class="num">$62.4M</td><td class="num">52%</td></tr>
+    <tr><td>Q3 FY25 (25.1~3)</td><td class="num">$148.1M</td><td class="num up2">+174%</td><td class="num up2">+24%</td><td class="num">$141.2M</td><td class="num">$3.6M</td><td class="num">$83.3M</td><td class="num">56%</td></tr>
+    <tr><td>Q4 FY25 (25.4~6)</td><td class="num">$187.3M</td><td class="num up2">+229%</td><td class="num up2">+26%</td><td class="num">$184.1M</td><td class="num">$3.2M</td><td class="num">$121.9M</td><td class="num">65%</td></tr>
+    <tr><td>Q1 FY26 (25.7~9)</td><td class="num">$240.3M</td><td class="num up2">+355%</td><td class="num up2">+28%</td><td class="num">$232.9M</td><td class="num">$7.4M</td><td class="num">$91.7M</td><td class="num">38%</td></tr>
+    <tr class="hl"><td><strong>Q2 FY26 (25.10~12)</strong></td><td class="num"><strong>$184.7M</strong></td><td class="num up2"><strong>+54%</strong></td><td class="num dn"><strong>-23%</strong></td><td class="num">$175M</td><td class="num">$9.6M</td><td class="num"><strong>$75.3M</strong></td><td class="num"><strong>41%</strong></td></tr>
+    <tr><td><strong>Q3 FY26 (26.1~3)</strong></td><td class="num"><strong>발표 대기</strong></td><td class="num">컨센 +44%</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+  </tbody>
+</table>
+<p class="note">* Q1 FY26 매출 $240.3M는 비트코인 가격 강세 + 마이닝 확장 효과. Q2 FY26 -23% QoQ는 BC 마이너 일부 재배치(GPU 전환 준비) + 비트코인 가격 변동 영향. AI Cloud는 Q1→Q2 +30% QoQ 성장이지만 절대 규모 작아 전체에 미치는 영향 제한적. <strong>2H FY26부터 Microsoft 계약 첫 매출 인식 시작</strong>.</p>
+</div>
+
+<!-- 3-3. 세그먼트 테이블 -->
+<span class="section-anchor" id="s5"></span>
+<div class="section">
+<h2>3-3. 세그먼트별 실적 테이블 (10분기)</h2>
+<div class="seg-table-wrap">
+<table class="seg-table">
+  <thead>
+    <tr>
+      <th rowspan="2" style="vertical-align:middle">분기</th>
+      <th colspan="2" class="seg-group center">AI Cloud Services</th>
+      <th colspan="2" class="seg-group center">Bitcoin Mining</th>
+      <th rowspan="2" class="seg-group center" style="vertical-align:middle">Total</th>
+    </tr>
+    <tr>
+      <th class="seg-group center">$M</th><th class="seg-group center">%</th>
+      <th class="seg-group center">$M</th><th class="seg-group center">%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Q1 FY24</td><td class="num seg-border">$0.0</td><td class="num">0.0%</td><td class="num seg-border">$11</td><td class="num">100%</td><td class="num seg-border"><b>$11</b></td></tr>
+    <tr><td>Q2 FY24</td><td class="num seg-border">$0.1</td><td class="num">0.3%</td><td class="num seg-border">$31</td><td class="num">99.7%</td><td class="num seg-border"><b>$31</b></td></tr>
+    <tr><td>Q3 FY24</td><td class="num seg-border">$1.0</td><td class="num">1.9%</td><td class="num seg-border">$53</td><td class="num">98.1%</td><td class="num seg-border"><b>$54</b></td></tr>
+    <tr><td>Q4 FY24</td><td class="num seg-border">$2.5</td><td class="num">4.4%</td><td class="num seg-border">$54</td><td class="num">95.6%</td><td class="num seg-border"><b>$57</b></td></tr>
+    <tr><td>Q1 FY25</td><td class="num seg-border">$3.2</td><td class="num">6.1%</td><td class="num seg-border">$49.6</td><td class="num">93.9%</td><td class="num seg-border"><b>$52.8</b></td></tr>
+    <tr><td>Q2 FY25</td><td class="num seg-border">$2.6</td><td class="num">2.2%</td><td class="num seg-border">$113.5</td><td class="num">94.9%</td><td class="num seg-border"><b>$119.6</b></td></tr>
+    <tr><td>Q3 FY25</td><td class="num seg-border">$3.6</td><td class="num">2.4%</td><td class="num seg-border">$141.2</td><td class="num">95.3%</td><td class="num seg-border"><b>$148.1</b></td></tr>
+    <tr><td>Q4 FY25</td><td class="num seg-border">$3.2</td><td class="num">1.7%</td><td class="num seg-border">$184.1</td><td class="num">98.3%</td><td class="num seg-border"><b>$187.3</b></td></tr>
+    <tr><td>Q1 FY26</td><td class="num seg-border">$7.4</td><td class="num">3.1%</td><td class="num seg-border">$232.9</td><td class="num up2">96.9%</td><td class="num seg-border"><b>$240.3</b></td></tr>
+    <tr class="hl"><td><b>Q2 FY26</b></td><td class="num seg-border"><b>$9.6</b></td><td class="num up2"><b>5.2%</b></td><td class="num seg-border">$175.0</td><td class="num">94.8%</td><td class="num seg-border"><b>$184.7</b></td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">* AI Cloud는 Q4 FY24 4.4% 정점 후 비트코인 매출 폭증으로 비중 일시 하락(2.2~6%) → Q2 FY26 5.2%로 재상승. <strong>중요</strong>: Microsoft 계약 ARR $1.9B만 풀가동되면 분기당 $475M 추가 — 즉 단일 계약만으로 현재 전체 매출의 2배 이상이 AI Cloud에서 나올 예정. AI Cloud 비중 5% → 2H FY27 70%+ 시나리오는 IREN 평가가치의 핵심.</p>
+</div>
+
+<!-- 4. 재무제표 -->
+<span class="section-anchor" id="s6"></span>
+<div class="section">
+<h2>4. 재무제표 개요</h2>
+<table>
+  <thead><tr><th>항목 (USD)</th><th class="num">FY23</th><th class="num">FY24</th><th class="num">FY25</th><th class="num">Q1 FY26</th><th class="num">Q2 FY26</th></tr></thead>
+  <tbody>
+    <tr><td>매출</td><td class="num">$75M</td><td class="num">$187M</td><td class="num">$501M</td><td class="num">$240.3M</td><td class="num">$184.7M</td></tr>
+    <tr><td>Adj. EBITDA</td><td class="num dn">-$30M</td><td class="num">$54.4M</td><td class="num">$269.7M</td><td class="num">$91.7M</td><td class="num">$75.3M</td></tr>
+    <tr><td>EBITDA</td><td class="num dn">-$160M</td><td class="num">$19.3M</td><td class="num">$278M</td><td class="num">$662.7M</td><td class="num dn">-$243.9M</td></tr>
+    <tr><td>순이익</td><td class="num dn">-$172M</td><td class="num dn">-$28.9M</td><td class="num">$86.9M</td><td class="num">$384.6M</td><td class="num dn">-$155.4M</td></tr>
+    <tr><td>EPS (희석)</td><td class="num dn">-$2.81</td><td class="num dn">-$0.21</td><td class="num">$0.41</td><td class="num">$1.34</td><td class="num dn">-$0.52</td></tr>
+    <tr><td>현금+단기투자</td><td class="num">$11M</td><td class="num">$405M</td><td class="num">$424M</td><td class="num">~$2.5B</td><td class="num">$3,261M</td></tr>
+    <tr><td>전환사채/장기부채</td><td class="num">$110M</td><td class="num">$417M</td><td class="num">$497M</td><td class="num">~$2.7B</td><td class="num">~$5.0B</td></tr>
+    <tr><td>총자산</td><td class="num">$520M</td><td class="num">$910M</td><td class="num">$1.5B</td><td class="num">~$5B</td><td class="num">~$8B</td></tr>
+    <tr><td>자본총계</td><td class="num">$340M</td><td class="num">$465M</td><td class="num">$960M</td><td class="num">~$1.5B</td><td class="num">~$2.0B</td></tr>
+    <tr><td>현금성 자산 (Jan'26)</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">$2,800M</td></tr>
+  </tbody>
+</table>
+<p class="note">* IREN은 IFRS(국제회계기준) 사용 → 2025.07부터 US GAAP 전환 완료. Q1 FY26 순이익 $384.6M은 <strong>전환사채 prepaid forward·capped call의 미실현 평가이익(비현금)</strong> 포함 → Q2 FY26 -$155.4M은 그 반대 효과. Adj. EBITDA가 더 의미있는 지표.</p>
+<p class="note">⚠️ <strong>자금조달 구조</strong>: FY26까지 누적 <strong>$9.2B+ 자금 확보</strong> — Microsoft 선급금 $1.9B + GPU 파이낸싱 $3.6B(<6% 금리, GPU 95% CapEx 커버) + 전환사채 $2.3B + ATM equity $6B 한도. Mirantis 인수($625M 전액주식)는 약 11M주 추가 발행 → 희석 ~3%. <strong>현재까지 큰 희석은 없으나 ATM equity가 본격 활용되면 추가 희석 가능.</strong></p>
+</div>
+
+<!-- 5. 핵심 투자아이디어 -->
+<span class="section-anchor" id="s7"></span>
+<div class="section">
+<h2>5. 핵심 투자아이디어</h2>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">🎯</span>
+    <span class="thesis-tag">Thesis #1</span>
+    <div class="thesis-title">"비트코인 마이너 → AI 인프라 hyperscale 공급자" 진화 — Microsoft가 보증</div>
+  </div>
+  <div class="thesis-body">
+    <p>2025.11 발표된 <span class="hl-blue">Microsoft 5년 $9.7B 메가딜</span>은 IREN을 단순 GPU-as-a-Service에서 <strong>하이퍼스케일러의 1차 공급자(neocloud)</strong>로 격상시켰다. 200MW Horizon 1-4 데이터센터 전체가 Microsoft 전용 — 단순 임대가 아닌 <strong>5년간 ARR $1.9B 계약 매출 락인</strong>. CY26 말 AI Cloud ARR 목표 <span class="hl-green">$3.4B</span> 중 절반이 Microsoft에서 나옴.</p>
+    <p>핵심은 <strong>"신속 실행"</strong>: 2018년 비트코인 마이닝 → 2024년 AI Cloud 진입 → 2025년 Microsoft 메가딜 — <span class="hl-green">7년만에 hyperscale 단계 도달</span>. CoreWeave, Crusoe, Applied Digital 같은 neocloud 경쟁자 대비 <strong>100% 자체 데이터센터 + 100% 재생에너지 + 자체 운영 노하우</strong>가 차별화. Mirantis 인수($625M, 2026.05)로 SW 스택까지 확보 — 베어메탈 → 풀스택 클라우드.</p>
+  </div>
+</div>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">⚡</span>
+    <span class="thesis-tag">Thesis #2</span>
+    <div class="thesis-title">4.5GW+ 전력 포트폴리오 — AI 인프라의 가장 희소한 자원</div>
+  </div>
+  <div class="thesis-body">
+    <p>현 시점 AI 데이터센터의 가장 큰 병목은 GPU도 부지도 아닌 <strong>그리드 전력</strong>. IREN은 <span class="hl-green">4.5GW+ 그리드 연결 전력 확보</span> — Texas(Childress, Sweetwater 1·2 합 2.4GW), Oklahoma 1.6GW 신규(2028 ramp), British Columbia. 이 중 <span class="hl-blue">Microsoft 계약은 200MW(전체의 4.4%)만 사용</span> — 즉 ARR $3.4B 목표는 전력 자산의 <strong>10%만으로 달성 가능</strong>.</p>
+    <p>2026.05.01 <strong>Sweetwater 1 (1.4GW Texas)</strong> 가동 — 미국 최대급 단일 사이트. 2027~28년 추가 메가딜 협상 진행 중(Lisa Su 같은 Hyperscaler들이 IREN을 차세대 캐파로 검토). Roberts CEO: <em>"$3.4B ARR is an early stage of monetization relative to power portfolio"</em> — 즉 <span class="hl-green">잠재 ARR $30B+ 가능성 시사</span>.</p>
+  </div>
+</div>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">⚠️</span>
+    <span class="thesis-tag">Thesis #3</span>
+    <div class="thesis-title">자금조달 희석 vs 단일 고객 의존 — 실행 리스크가 핵심 변수</div>
+  </div>
+  <div class="thesis-body">
+    <p>강점에도 불구하고 <strong>3가지 리스크</strong>가 평가가치 압박: <span class="hl-red">①자금조달 희석</span> — ATM equity $6B 한도 + 전환사채 $2.3B → 본격 활용 시 발행주식 ~30% 희석 가능. <span class="hl-red">②Microsoft 단일 고객 의존</span> — ARR $3.4B 목표 중 56%가 Microsoft. 계약 변경·지연·취소 리스크. <span class="hl-red">③비트코인 마이닝 사이클 리스크</span> — 현재 매출의 95%가 BTC. 가격 하락 시 캐시플로우 직격.</p>
+    <p>또한 <span class="hl-red">실행 리스크</span>: Horizon 1-4 GB300 19K개 정시 인도 + 2H FY26 첫 ramp + Sweetwater 1 풀가동 등 다수 동시 진행 중인 메가 프로젝트가 일정대로 진행되지 않으면 매출 인식 지연. CapEx 부담은 분기 $1B+ 수준 — <span class="hl-blue">FCF 흑자 도달 시점이 가장 큰 변수</span>. 단, 2026.01 분석가 PT $80은 이미 일부 희석을 반영 — 현재 주가 $60은 그 압박이 30% 정도 가격에 반영되어 있음.</p>
+  </div>
+</div>
+
+<!-- 5-1. 핵심 변동 요인 -->
+<span class="section-anchor" id="s8"></span>
+<div class="section">
+<h2>5-1. 핵심 변동 요인</h2>
+<table>
+  <thead><tr><th>구분</th><th>요인</th><th class="center">방향</th><th>설명</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>외부</strong></td><td>AI Capex 슈퍼사이클</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>Hyperscaler 5사 합계 2026 Capex $400B+. neocloud 수요 폭증 — IREN MS 계약이 증거</td></tr>
+    <tr><td>Bitcoin 가격 사이클</td><td class="center"><span class="badge badge-neu">중립 ●</span></td><td>BTC $90K~120K = 마이닝 매출 안정. 반감기 4년 사이클 — 2028 다음 반감기까지 안정</td></tr>
+    <tr><td>그리드 전력 부족</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>2030년까지 1,000GW 데이터센터 신규 필요 — IREN 4.5GW 사전확보가 결정적 우위</td></tr>
+    <tr><td>NVIDIA GPU 공급</td><td class="center"><span class="badge badge-neu">중립 ●</span></td><td>B300 GPU 공급량 빡빡 — 50K+ 신규 발주 완료. HBM4 공급 의존도 ↑</td></tr>
+    <tr><td>금리 / 자금조달 비용</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>GPU 파이낸싱 <6% 금리는 양호하나 추가 차입 시 금리 상승 위험. 미연준 정책 영향</td></tr>
+    <tr><td>Neocloud 경쟁 (CRWV 등)</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>CoreWeave (시총 $80B+), Nebius, Crusoe 등 경쟁자. 그러나 IREN은 자체 데이터센터 우위</td></tr>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>내부</strong></td><td>Microsoft 계약 실행</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>2H FY26 첫 ramp — Horizon 1-4 정시 인도 시 ARR $1.9B 본격 인식. 모든 전제의 핵심</td></tr>
+    <tr><td>Sweetwater 1 확장</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>2026.05.01 가동 시작 — 1.4GW 미국 최대급. 추가 hyperscaler 계약 가능성</td></tr>
+    <tr><td>Mirantis 인수 시너지</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>$625M 전액주식. K8s 오케스트레이션 + 1,500개 엔터프라이즈 고객. 풀스택 전환</td></tr>
+    <tr><td>ATM Equity 희석</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>$6B 한도 — 본격 활용 시 발행주식 +20%+ 희석. CapEx 자금 vs 희석 양면</td></tr>
+    <tr><td>Bitcoin 마이닝 자산 손상</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>BC 마이닝 → AI 전환 과정에서 마이닝 하드웨어 손상 발생. Q2 FY26 -$31.8M 인식</td></tr>
+    <tr><td>FCF 흑자 도달 시점</td><td class="center"><span class="badge badge-neu">중립 ●</span></td><td>현재 분기 CapEx $1B+ 수준 — Microsoft 매출 본격 인식되는 FY27 이후 FCF 흑자 가능</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 5-2. 컨콜 트래킹 -->
+<span class="section-anchor" id="s9"></span>
+<div class="section">
+<h2>5-2. 컨퍼런스콜 트래킹 (최근 8분기)</h2>
+<table class="cc-table">
+  <colgroup>
+    <col style="width:50px"><col><col><col><col>
+  </colgroup>
+  <thead>
+    <tr><th class="year-col">FY</th><th>Q1 (7~9월)</th><th>Q2 (10~12월)</th><th>Q3 (1~3월)</th><th>Q4 (4~6월)</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="year-label">FY24</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1 FY24</div><div class="cc-msg">매출 $11M. 5.6 EH/s. AI Cloud 진입 검토 단계 (NVIDIA H100 248개 발주)</div><div class="cc-guide">FY24 30 EH/s 가이드 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2 FY24</div><div class="cc-msg">매출 $31M. 사명 "Iris Energy → IREN" 발표. 1.4GW Sweetwater 사이트 개시</div><div class="cc-guide">10 EH/s 도달 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3 FY24</div><div class="cc-msg">매출 $54M. AI Cloud H100 816개 도입. Poolside AI 첫 고객 계약</div><div class="cc-guide">20 EH/s 진행 중 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4 FY24</div><div class="cc-msg">매출 $57M. FY24 record EBITDA $54.7M. AI 비중 10% 목표</div><div class="cc-guide">FY24 record <span class="cc-hit">✅</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">FY25</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1 FY25</div><div class="cc-msg">매출 $52.8M (-9% QoQ). Bitcoin 반감기 직후 영향. 28 EH/s. NVIDIA H200 1,080개 추가</div><div class="cc-guide">31 EH/s 가이드 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2 FY25</div><div class="cc-msg">매출 $119.6M (+126% QoQ). 30 EH/s. 1.4GW Sweetwater 본격 건설</div><div class="cc-guide">EBITDA $62.4M 달성 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3 FY25</div><div class="cc-msg">매출 $148.1M (+24% QoQ). EBITDA record $83.3M. 50 EH/s 도달 목표</div><div class="cc-guide">50 EH/s 진행 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4 FY25</div><div class="cc-msg">매출 $187.3M record. <strong>마이닝 50 EH/s 일시 중단 → AI/HPC 본격 전환 선언</strong></div><div class="cc-guide">FY25 매출 $501M(+168%) <span class="cc-hit">✅</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">FY26</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1 FY26</div><div class="cc-msg">매출 $240.3M (+355% YoY) record. <strong>Microsoft $9.7B 메가딜 발표</strong>. Together AI/Fluidstack/Fireworks AI 추가</div><div class="cc-guide">$500M ARR 목표 → 곧 달성 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell cc-latest"><div class="cc-quarter">Q2 FY26 ★ 최신 공시</div><div class="cc-msg"><strong>매출 $184.7M (-23% QoQ)</strong>. <strong>$3.6B GPU 파이낸싱 (<6% 금리)</strong>. <strong>Oklahoma 1.6GW 신규</strong>. CY26 ARR $3.4B 가이드</div><div class="cc-guide">컨센 $226M 대비 -19% <span class="cc-miss">❌</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3 FY26 ★ 오늘 발표</div><div class="cc-msg"><strong>2026.05.07 EST 17:00 발표 예정</strong></div><div class="cc-guide">컨센 매출 $213M (+44% YoY), EPS -$0.18</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4 FY26</div><div class="cc-msg">예정: 2026.08~09</div><div class="cc-guide">Microsoft 첫 매출 인식 분기 (2H FY26)</div></div></td>
+    </tr>
+  </tbody>
+</table>
+<p class="note">* IREN은 매월 운영 업데이트 발표 — 모니터링 빈도가 매우 높음. Q2 FY26은 컨센서스 -19% 미스(매출 $184.7M vs 컨센 $226.9M)로 -11.5% 급락 — 그러나 비현금 항목 영향이 컸음. 시장 관심은 <strong>Q3 FY26 컨센 $213M 달성 여부 + 2H FY26 Microsoft ramp 시점 시사 여부</strong>.</p>
+</div>
+
+<!-- 5-3. Q2 FY26 심층 -->
+<span class="section-anchor" id="s10"></span>
+<div class="section">
+<h2>5-3. Q2 FY26 컨콜 심층 정리 (2026.02.05 — 가장 최근 공시)</h2>
+<div class="prose">
+  <p><strong>발언자</strong>: Daniel Roberts (Co-Founder &amp; Co-CEO) · Belinda Nucifora (CFO) · Michael Alfred (VP Capital Markets)</p>
+  <p><strong>실적</strong>: 매출 <strong>$184.7M</strong> (+54% YoY, -23% QoQ, 컨센 $226.9M 대비 <span class="hl-neg">-19% 미스</span>) / 순손실 <strong>-$155.4M</strong> (전환사채 평가손 -$219M 비현금) / Adj. EBITDA <strong>$75.3M</strong> (+21% YoY, 마진 41%) / 현금 <strong>$3.26B</strong> (Dec'25)</p>
+  <p><strong>시장 반응</strong>: 발표 후 시간외 <span class="hl-neg">-11.5% 급락</span>. 그러나 다음날 -3% 반등 — <strong>Microsoft GPU 파이낸싱 $3.6B + Oklahoma 1.6GW 발표가 충격 완화</strong>. 분석가 평균 PT $76 (현 주가 $60.18 대비 +26% 상승여력).</p>
+</div>
+<h3 style="margin-top:1.2rem">컨콜 핵심 메시지 5가지</h3>
+<div class="cc-sticker-box">
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">1</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">Microsoft 계약 GPU 파이낸싱 <span class="hl-pos">$3.6B 확보</span> (<6% 금리)</div>
+      <div class="cc-sticker-desc">CFO Nucifora: <em>"GPU CapEx의 <span class="hl-pos">95%가 Microsoft 선급금 $1.9B + GPU 파이낸싱 $3.6B</span>로 커버"</em>. <strong>실질적인 자기자본 부담 5%만 — 희석 우려 일부 해소</strong>. 금리 <6%는 GPU 자산 담보 대출의 강력한 시그널</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">2</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">CY26 말 <span class="hl-pos">ARR $3.4B 목표 재확인</span> + 140K GPU 확장 트랙</div>
+      <div class="cc-sticker-desc">기존 ARR 가이드 변동 없음. 현재까지 <span class="hl-pos">$2.3B 계약 락인</span> — Microsoft + Prince George ($0.4B) + 협상중 ($0.5B+). Roberts: <em>"<span class="hl-pos">$3.4B는 우리 4.5GW 전력의 10%만 사용한 결과</span> — 모네타이제이션 초기 단계"</em></div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">3</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">Oklahoma <span class="hl-pos">1.6GW 신규 데이터센터 캠퍼스</span> 확보</div>
+      <div class="cc-sticker-desc">2,000에이커 부지, 그리드 스터디 완료, 2028년 ramp. 총 확보 전력 <span class="hl-pos">4.5GW+</span>로 확대. Texas + BC + Oklahoma 3개 주 분산 — 주별 정전·기후 리스크 헤지. 저지연 네트워크 위치 (텔코 백본 인접)</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">4</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">매출 -23% QoQ <span class="hl-neg">컨센 미스</span> — BC 마이닝 재배치 영향</div>
+      <div class="cc-sticker-desc">Q1 FY26 → Q2 FY26 매출 $240M → $185M 하락 사유: ① BC 일부 마이너 de-rack(GPU 전환 준비), ② 비트코인 가격 변동, ③ AI Cloud 매출 아직 본격 인식 전. <span class="hl-neg">마이닝 하드웨어 손상 -$31.8M</span> 일회성 인식 — 시장은 "전환의 진짜 비용"으로 받아들임</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">5</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">자금조달 누적 <span class="hl-pos">$9.2B+</span> — 추가 ATM Equity & 데이터센터 파이낸싱 진행</div>
+      <div class="cc-sticker-desc">현금 $2.8B (Jan'26). FY26까지 누적 자금 $9.2B+ (선급금 + 전환사채 + GPU 파이낸싱 + ATM). <span class="hl-neg">ATM equity $6B 한도 활용 시 ~20% 추가 희석 가능</span>. 그러나 Roberts: <em>"ATM은 strategic backstop — execution certainty 높임"</em>. 데이터센터 자체에 대한 별도 파이낸싱 워크스트림 진행 중</div>
+    </div>
+  </div>
+</div>
+
+<h3 style="margin-top:1.2rem">Q3 FY26 가이던스 (2026.02.05 컨콜 + 분석가 컨센서스)</h3>
+<table>
+  <thead><tr><th>지표</th><th class="num">Q2 FY26 실제</th><th class="num">Q3 FY26 컨센서스</th><th class="num">시장 기대</th></tr></thead>
+  <tbody>
+    <tr><td>Revenue</td><td class="num">$184.7M</td><td class="num hl"><strong>$213M (+44% YoY, +15% QoQ)</strong></td><td class="num">Microsoft 첫 매출 시작 분기</td></tr>
+    <tr><td>EPS (GAAP)</td><td class="num dn">-$0.52</td><td class="num hl"><strong>-$0.18</strong></td><td class="num">전환사채 변동성 ↓</td></tr>
+    <tr><td>Adj. EBITDA</td><td class="num">$75.3M (41%)</td><td class="num hl"><strong>~$110M (~50%)</strong></td><td class="num">AI Cloud 매출 비중 ↑</td></tr>
+    <tr><td>AI Cloud Revenue</td><td class="num">$9.6M</td><td class="num hl"><strong>$25~50M (가속)</strong></td><td class="num">Microsoft Phase 1 ramp</td></tr>
+    <tr><td>BTC Mining 매출</td><td class="num">~$175M</td><td class="num">$140~160M</td><td class="num">BC 마이너 재배치 영향</td></tr>
+    <tr><td>현금 잔고</td><td class="num">$3.26B</td><td class="num">$2.5~3B 예상</td><td class="num">CapEx $700M~1B 분기 지출</td></tr>
+  </tbody>
+</table>
+<p class="note">* Q3 FY26 컨센 매출 $213M는 보수적 추정 — IREN의 매월 업데이트(Mar'26 monthly)에서 마이닝 매출 회복 신호 → 실제는 $220~240M 가능성. <strong>핵심 관전 포인트</strong>: ① Microsoft 계약 첫 매출 인식 시점 명확화, ② Sweetwater 1 가동 후 추가 hyperscaler 계약 시사, ③ AI Cloud ARR 진행률 (현재 contracted $2.3B → $3.4B 격차 메우기), ④ FY27 가이드 시사.</p>
+
+<h3 style="margin-top:1.5rem">📊 핵심 자산 요약 — 4.5GW+ 전력 포트폴리오</h3>
+<div class="asset-grid">
+  <div class="asset-card asset-tx">
+    <div class="asset-card-header">
+      <div class="asset-flag">🇺🇸</div>
+      <div>
+        <div class="asset-region">Texas (USA)</div>
+        <div class="asset-region-sub">메인 운영 사이트</div>
+      </div>
+      <div class="asset-power">2.4GW+</div>
+    </div>
+    <div class="asset-list">
+      <div class="asset-item">
+        <div class="asset-name">Childress (Wichita Falls)</div>
+        <div class="asset-detail">420에이커, 750MW 총용량, 650MW+ 가동중 (2025.08). ERCOT 345kV 전송선. <strong>50 EH/s Bitcoin Mining 본거지</strong> + <span class="hl-pos">Horizon 1-4 AI 데이터센터(Microsoft 200MW 전용)</span></div>
+      </div>
+      <div class="asset-item">
+        <div class="asset-name">Sweetwater 1</div>
+        <div class="asset-detail"><span class="hl-pos">1.4GW (2026.05.01 가동 개시)</span> — 미국 최대급 단일 사이트. 직접 액체냉각, Blackwell GPU 지원</div>
+      </div>
+      <div class="asset-item">
+        <div class="asset-name">Sweetwater 2</div>
+        <div class="asset-detail">600MW 추가 — Sweetwater 1 28마일 인접. 2028 가동 예정. <strong>합계 2GW 데이터센터 허브</strong> 형성</div>
+      </div>
+    </div>
+  </div>
+  <div class="asset-card asset-ok">
+    <div class="asset-card-header">
+      <div class="asset-flag">🇺🇸</div>
+      <div>
+        <div class="asset-region">Oklahoma (USA)</div>
+        <div class="asset-region-sub">2026.02 신규 확보</div>
+      </div>
+      <div class="asset-power">1.6GW</div>
+    </div>
+    <div class="asset-list">
+      <div class="asset-item">
+        <div class="asset-name">Oklahoma Campus</div>
+        <div class="asset-detail">2,000에이커 부지, 그리드 스터디 완료. <span class="hl-pos">2028년부터 ramp 시작</span>. 저지연 네트워크 위치(텔코 백본 인접). 차세대 hyperscaler 계약 잠재 부지</div>
+      </div>
+    </div>
+  </div>
+  <div class="asset-card asset-ca">
+    <div class="asset-card-header">
+      <div class="asset-flag">🇨🇦</div>
+      <div>
+        <div class="asset-region">British Columbia (Canada)</div>
+        <div class="asset-region-sub">초기 사이트 + AI 전환 중</div>
+      </div>
+      <div class="asset-power">~160MW</div>
+    </div>
+    <div class="asset-list">
+      <div class="asset-item">
+        <div class="asset-name">Prince George (50MW)</div>
+        <div class="asset-detail"><span class="hl-pos">$0.4B ARR 계약 락인</span> — 10MW 액체냉각 신규 데이터센터 건설 중. NVIDIA GB300 NVL72 대응. 60K+ Blackwell GPU 캐파</div>
+      </div>
+      <div class="asset-item">
+        <div class="asset-name">Mackenzie (80MW), Canal Flats (30MW)</div>
+        <div class="asset-detail">초기 비트코인 마이닝 사이트. 2026년부터 일부 GPU 전환 진행 — Q2'FY26 $31.8M 마이닝 하드웨어 손상 사유</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="prose" style="margin-top:14px">
+  <p style="margin-bottom:.5rem"><strong>제품 / 서비스 라인업</strong></p>
+  <ul style="margin-bottom:0">
+    <li><strong>AI Cloud (베어메탈 GPU-as-a-Service)</strong>: NVIDIA H100/H200/B200/B300 단일·멀티 노드 클러스터. 시간당 가격 책정. 고객: Microsoft, Together AI, Fluidstack, Fireworks AI, Poolside</li>
+    <li><strong>AI Cloud (콜로케이션)</strong>: Microsoft 같은 hyperscaler 전용 200MW 단위 캐파 임대. <span class="hl-pos">$9.7B 5년 계약 (Horizon 1-4)</span></li>
+    <li><strong>풀스택 클라우드 (Mirantis 인수 후, 2026.10~)</strong>: Kubernetes 오케스트레이션 + 엔터프라이즈 SaaS 기능 추가. NVIDIA AI Cloud Ready 인증</li>
+    <li><strong>Bitcoin Mining</strong>: 50 EH/s 자체 운영 — Bitmain S21 XP/T21 ASIC, 15 J/TH 효율(업계 최고). Childress 본거지</li>
+  </ul>
+</div>
+<p class="note">📌 본 섹션은 IREN의 <strong>4.5GW+ 그리드 연결 전력 포트폴리오</strong>를 한눈에 정리한 자료입니다. 공식 IR Presentation 원본 PDF는 다음 링크에서 확인하실 수 있습니다: <a href="https://iren.gcs-web.com/static-files/cb66edc1-790b-4460-8529-4f02c52217e0" target="_blank" style="color:#378ADD;text-decoration:underline"><strong>Q2 FY26 Earnings Presentation</strong> (2026.02.05, 29.8MB)</a> · <a href="https://irisenergy.gcs-web.com/events-and-presentations" target="_blank" style="color:#378ADD;text-decoration:underline">전체 IR 자료 페이지</a></p>
+</div>
+
+<!-- 5-4. 시나리오 -->
+<span class="section-anchor" id="s11"></span>
+<div class="section">
+<h2>5-4. 강세 / 약세 시나리오</h2>
+<div class="scenario-stack">
+  <div class="scenario-box s-bull">
+    <div class="scenario-title">🟢 강세 시나리오</div>
+    <div class="s-item"><div class="s-case">Microsoft 계약 정시 ramp + 추가 hyperscaler 계약</div><div class="s-sub">2H FY26 Horizon 1-4 첫 매출 인식 시작 → FY27 ARR $1.9B 풀 인식. Sweetwater 1 1.4GW 추가 hyperscaler 계약 시 ARR $5B+ 가시성</div></div>
+    <div class="s-item"><div class="s-case">CY26 말 ARR $3.4B 달성</div><div class="s-sub">140K GPU 배포 + Microsoft + Prince George + 신규 계약. Roberts 가이드대로 진행 시 FY27 매출 $2.5B+ 가능 (FY25 대비 5배)</div></div>
+    <div class="s-item"><div class="s-case">Mirantis 인수 시너지 본격화</div><div class="s-sub">1,500개 엔터프라이즈 고객 베이스 활용 — 베어메탈 GPU → Kubernetes 풀스택 클라우드. NVIDIA AI Cloud Ready 파트너 지위. ASP +20%+ 가능</div></div>
+    <div class="s-item"><div class="s-case">FCF 흑자 도달 (FY27 Q2~Q3)</div><div class="s-sub">Microsoft 매출 풀가동 + CapEx 정점 통과. 분기 FCF +$200M+ 가능. ATM equity 활용도 ↓ → 희석 우려 해소</div></div>
+    <div class="s-item"><div class="s-case">Bitcoin 가격 $150K+ 시나리오</div><div class="s-sub">현재 마이닝 50 EH/s = BTC $150K 시 분기 매출 $400M+. 마이닝이 캐시카우 역할로 AI 투자 자금 자체 조달 가능</div></div>
+    <div class="s-item"><div class="s-case">시총 $50B+ 도달 (PT $130 시나리오)</div><div class="s-sub">FY27 매출 $2.5B + EBITDA 50%+ + EV/Revenue 15x = 시총 $50B 가능. 현 PT 평균 $76 대비 +70% 추가 상승여력</div></div>
+  </div>
+  <div class="scenario-box s-bear">
+    <div class="scenario-title">🔴 약세 시나리오</div>
+    <div class="s-item"><div class="s-case">Microsoft 계약 지연 / 변경</div><div class="s-sub">Horizon 1-4 인도 지연(GPU 공급망, 액체냉각 시공) → 2H FY26 매출 인식 지연. ARR $1.9B 1년 지연 시 평가가치 -30%+ 직격</div></div>
+    <div class="s-item"><div class="s-case">ATM Equity 본격 활용 → 희석 폭발</div><div class="s-sub">$6B ATM 한도 풀 활용 시 ~20% 추가 희석 + Mirantis +3% = 발행주식 +25%. EPS dilution 본격 반영 시 PE 압박</div></div>
+    <div class="s-item"><div class="s-case">Bitcoin 가격 $50K 이하 폭락</div><div class="s-sub">매출 95% 의존 BTC 마이닝 직격. 분기 매출 -50% 가능. AI 매출 본격 시작 전 캐시플로우 위기 → 추가 자금조달 필요</div></div>
+    <div class="s-item"><div class="s-case">Neocloud 경쟁 격화</div><div class="s-sub">CoreWeave, Crusoe, Nebius, Applied Digital 경쟁 — 가격 압박 + 신규 hyperscaler 계약 경쟁 심화. ARR 단가 ↓</div></div>
+    <div class="s-item"><div class="s-case">전환사채 변동성 지속</div><div class="s-sub">전환사채 prepaid forward·capped call의 평가손익이 분기마다 ±$200M+ 변동 → 순이익 변동성. 시장 신뢰도 ↓</div></div>
+    <div class="s-item"><div class="s-case">AI Capex 사이클 조정 (2027 침체)</div><div class="s-sub">Hyperscaler Capex 삭감 시 추가 메가딜 부재 + Microsoft 옵션 행사 미진. ARR $3.4B → $2B 후퇴 가능</div></div>
+  </div>
+</div>
+</div>
+
+<!-- 6. Worth Watching -->
+<span class="section-anchor" id="s12"></span>
+<div class="section">
+<h2>6. Worth Watching Events</h2>
+<div class="ww-sticker-box">
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.05.07</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">★ Q3 FY26 실적 발표 (오늘)</div>
+      <div class="ww-sticker-point">컨센 매출 $213M (+44% YoY), EPS -$0.18. 핵심: Microsoft 첫 매출 시점 시사, AI Cloud 매출 가속, FY27 가이드</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.06</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Sweetwater 1 풀가동 + 2차 고객 발표</div>
+      <div class="ww-sticker-point">1.4GW Texas 첫 풀가동 분기. 추가 hyperscaler (Google·AWS·Oracle) 신규 계약 가능성</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.06.30</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">FY26 Q4 실적 (FY26 연간 결산)</div>
+      <div class="ww-sticker-point">8~9월 발표. FY26 매출 $900M~1B 가능. Microsoft 본격 ramp 시작 — FY27 가이드 공식</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026 H2</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Horizon 1-4 가동 + Microsoft 첫 매출 인식</div>
+      <div class="ww-sticker-point">200MW 액체냉각 데이터센터 가동. GB300 19K개 첫 deployment. ARR $1.9B 점진 인식 시작</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.10</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Mirantis 인수 클로징</div>
+      <div class="ww-sticker-point">규제 승인 후 클로징 — Kubernetes/AI 오케스트레이션 통합 본격. NVIDIA AI Cloud Ready 인증 강화</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027 Q1</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">CY26 말 ARR $3.4B 검증</div>
+      <div class="ww-sticker-point">140K GPU 배포 완료 시점. ARR run-rate 검증 분기. 미달 시 시장 충격</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">FCF 흑자 도달 + 추가 메가딜</div>
+      <div class="ww-sticker-point">Microsoft 풀가동 + Sweetwater 1·2 hyperscaler 계약 + Oklahoma 사이트 사전계약. 분기 FCF +$200M+</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2028</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Oklahoma 1.6GW 1단계 ramp</div>
+      <div class="ww-sticker-point">총 확보 전력 4.5GW+ 풀가동. ARR $5~10B 가시성. Bitcoin 다음 반감기(2028.04)와 시점 일치</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">FY28</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">매출 $5B+ 가능성 (PT $130 시나리오)</div>
+      <div class="ww-sticker-point">AI Cloud 비중 70%+ 도달. EBITDA 마진 50%+. 시총 $50B+ — neocloud Top 3 진입 (CRWV·Nebius·IREN)</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 7. 데이터 출처 -->
+<span class="section-anchor" id="s13"></span>
+<div class="section">
+<h2>7. 데이터 출처</h2>
+<div class="source-box">
+  <ul style="padding-left:1.2rem">
+    <li>IREN SEC 6-K, 8-K, 10-Q, 10-K 공시 자료 (FY22~FY26)</li>
+    <li>Q2 FY26 Earnings Press Release &amp; Presentation (2026.02.05)</li>
+    <li>Q1 FY26 Earnings Press Release &amp; Presentation (2025.11.06)</li>
+    <li>FY25 Annual Results (2025.08.28) — 매출 $501M, 첫 흑자</li>
+    <li>월간 운영 업데이트 (Monthly Investor Updates) — 매월 발표</li>
+    <li>Microsoft AI Cloud Contract 발표 자료 (2025.11)</li>
+    <li>Sweetwater 1 가동 발표 (2026.05.01) + Mirantis 인수 발표 (2026.05.05)</li>
+    <li>Q3 FY26 컨센서스 추정치: Zacks, Yahoo Finance, Investing.com (2026.05.07 기준)</li>
+    <li>주가·시총·EPS 데이터: TradingView, Robinhood, Yahoo Finance, Stockanalysis.com (2026.05.06 기준)</li>
+    <li>분석 기사: Motley Fool, ServeTheHome, DataCenterKnowledge, Investing.com, CoinDesk</li>
+    <li>환율: 2026.05.07 USD/KRW 1,449원 (Trading Economics, FRED)</li>
+    <li>분석일: 2026년 5월 7일 (미국 동부시간 Q3 FY26 실적 발표 당일 오전)</li>
+  </ul>
+  <p style="margin-top:8px;color:#bbb">⚠️ Adj. EBITDA는 SBC(주식보상비용)·M&amp;A 비용·전환사채 평가손익·일회성 손상 제외 수치. IREN은 IFRS → US GAAP 전환 완료 (2025.07~). Q1 FY26 record 순이익 $384.6M, Q2 FY26 -$155.4M는 모두 전환사채 prepaid forward·capped call 평가손익 비현금 변동 영향 — Adj. EBITDA가 더 의미있는 지표. ATM equity $6B 한도 본격 활용 시 발생할 잠재 EPS 희석 효과는 별도 분석 필요.</p>
+</div>
+</div>
+
+<!-- 7-1. Reference -->
+<span class="section-anchor" id="s14"></span>
+<div class="section">
+<h2>7-1. Reference</h2>
+<div class="ref-list">
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://iren.com/" target="_blank">IREN Limited 공식 홈페이지</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://irisenergy.gcs-web.com/" target="_blank">IREN Investor Relations (IR)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://irisenergy.gcs-web.com/events-and-presentations" target="_blank">IREN Events &amp; Presentations (IR 자료 PDF 모음)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://iren.gcs-web.com/static-files/9b1d3a9b-8657-4d9b-9f43-b267374dcf9c" target="_blank">IREN Q1 FY26 Earnings Presentation PDF (Microsoft 메가딜 포함, 27.3MB)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://iren.gcs-web.com/static-files/cb66edc1-790b-4460-8529-4f02c52217e0" target="_blank">IREN Q2 FY26 Earnings Presentation PDF (29.8MB, 최신)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.globenewswire.com/news-release/2026/02/05/3233417/0/en/IREN-Reports-Q2-FY26-Results.html" target="_blank">IREN Q2 FY26 보도자료 (2026.02.05)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://irisenergy.gcs-web.com/news-releases/news-release-details/iren-reports-q1-fy26-results" target="_blank">IREN Q1 FY26 보도자료 (2025.11.06)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.globenewswire.com/news-release/2026/05/05/3287514/0/en/iren-announces-acquisition-of-mirantis-to-strengthen-ai-cloud-delivery-capabilities.html" target="_blank">Mirantis 인수 발표 (2026.05.05)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://iren.com/who-we-are" target="_blank">IREN Who We Are — 창업 스토리 &amp; 비전</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://stockanalysis.com/stocks/iren/" target="_blank">StockAnalysis — IREN 분석가 PT $62.5 평균</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://simplywall.st/stocks/us/software/nasdaq-iren/iren" target="_blank">SimplyWall.st — IREN 분석 보고서 (PT $76 평균)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://finance.yahoo.com/markets/stocks/articles/iren-report-q3-earnings-buy-135700939.html" target="_blank">Zacks — Q3 FY26 컨센서스 매출 $213M, EPS -$0.18</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.fool.com/coverage/stock-market-today/2026/05/05/stock-market-today-may-5-iren-jumps-after-announcing-mirantis-acquisition-to-expand-ai-cloud-capabilities/" target="_blank">Motley Fool — Mirantis 인수 분석 (2026.05.05)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.coindesk.com/markets/2025/11/07/iren-shares-rise-in-pre-market-trading-on-earnings-report-ai-growth-outlook" target="_blank">CoinDesk — Q1 FY26 record + Microsoft 메가딜 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.theregister.com/off-prem/2026/05/07/neocloud-iren_buys_openstack_champion_mirantis/" target="_blank">The Register — Neocloud IREN buys OpenStack champion Mirantis</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://siliconangle.com/2026/05/05/ai-data-center-operator-iren-acquire-mirantis-625m/" target="_blank">SiliconANGLE — IREN to acquire Mirantis for $625M</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.datacenterknowledge.com/infrastructure/iren-buys-mirantis-for-625m-to-unlock-ai-compute-utilization" target="_blank">DataCenterKnowledge — Mirantis 인수 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.bailliegifford.com/en/uk/individual-investors/insights/ic-article/2025-q3-ewit-enlightenment-iren-10057545/" target="_blank">Baillie Gifford — IREN: from Bitcoin to AI datacentres (투자관점)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.disruptionbanking.com/2025/10/04/why-iren-is-shifting-away-from-bitcoin-mining-to-data-centers/" target="_blank">Disruption Banking — Why IREN is Shifting Away from Bitcoin Mining</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://markets.financialcontent.com/wral/article/predictstreet-2025-10-4-iris-energy-limited-iren-a-deep-dive-into-its-dual-engine-growth-in-bitcoin-mining-and-ai-cloud-services" target="_blank">PredictStreet — Iris Energy Deep Dive (2025.10)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://en.wikipedia.org/wiki/Iris_Energy" target="_blank">Wikipedia — Iris Energy / IREN Limited</a></div>
+</div>
+<p class="note">* 공식 자료(IREN IR·SEC) 9개, 증권사·전문 분석 3개, 뉴스 8개, 위키 1개 — 총 21개 레퍼런스. IREN은 호주 본사·미국 NASDAQ 상장 기업이라 한국어 자료는 매우 제한적 (네이버 블로그·카페 검색 결과 본격 분석글 부족 — 미포함).</p>
+</div>
+
+<div class="footer">IREN Limited (NASDAQ: IREN) 기업분석 · 2026.05.07 · 개인 사용 목적 · ⚠️ Q3 FY26 실적 발표 당일 오전 작성 (실적 반영 미포함)</div>
+</div>
+
+<script>
+// 18분기 라벨 — Q1 FY22 ~ Q2 FY26 (회계연도 7월~6월)
+// FY22 = 21.7~22.6 / FY23 = 22.7~23.6 / FY24 = 23.7~24.6 / FY25 = 24.7~25.6 / FY26 = 25.7~26.6
+const L18=[
+  "Q1 FY22","Q2 FY22","Q3 FY22","Q4 FY22",
+  "Q1 FY23","Q2 FY23","Q3 FY23","Q4 FY23",
+  "Q1 FY24","Q2 FY24","Q3 FY24","Q4 FY24",
+  "Q1 FY25","Q2 FY25","Q3 FY25","Q4 FY25",
+  "Q1 FY26","Q2 FY26"
+];
+
+// AI Cloud Services - Q3 FY24부터 시작 (2024.04~)
+const aiCloud = [
+  0,0,0,0,           // FY22
+  0,0,0,0,           // FY23
+  0,0.1,1.0,2.5,     // FY24 - AI Cloud 첫 시작
+  3.2,2.6,3.6,3.2,   // FY25
+  7.4,9.6            // FY26 H1
+];
+
+// Bitcoin Mining
+const btcMining = [
+  10,12,14,15,        // FY22 - IPO 직후, 0.7 EH/s
+  16,17,17,18,        // FY23 - Crypto winter
+  11,31,53,54,        // FY24 - 2H 회복, 10→20 EH/s
+  49.6,113.5,141.2,184.1,  // FY25 - 28→50 EH/s, 반감기 후 회복
+  232.9,175.0         // FY26 H1 - record, 일부 GPU 전환
+];
+
+// Other revenue (energy trading, services 등 - 매우 작음, 거의 0)
+const other = [
+  3,4,4,4,
+  4,5,5,4,
+  0,0,0,0,
+  0,0,0,0,
+  0,0
+];
+
+const totalRev = L18.map((_,i)=>aiCloud[i]+btcMining[i]+other[i]);
+
+// Adj. EBITDA% (FY22~FY24 추정 + 정확 데이터)
+const ebitdaPct = [
+  15,18,20,22,        // FY22 - IPO 직후
+  -10,-30,-40,-50,    // FY23 - Crypto winter, 채권 디폴트
+  -45,6,28,21,        // FY24 - 회복
+  5,52,56,65,         // FY25 - 본격 흑자
+  38,41               // FY26 H1
+];
+
+const gc='rgba(0,0,0,0.05)',tc='#999';
+const xT={color:tc,font:{size:9},maxRotation:45,autoSkip:true,maxTicksLimit:18};
+const yT={color:tc,font:{size:11}};
+
+// 세그먼트 차트
+const segBase=[
+  {label:'AI Cloud Services',data:aiCloud,backgroundColor:'#1D9E75',stack:'s'},
+  {label:'Bitcoin Mining',data:btcMining,backgroundColor:'#378ADD',stack:'s'},
+  {label:'Other',data:other,backgroundColor:'#BA7517',stack:'s'},
+];
+const segChart=new Chart(document.getElementById('cSeg'),{
+  type:'bar',
+  data:{labels:L18,datasets:segBase.map(d=>({...d}))},
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' $'+ctx.parsed.y.toFixed(1)+'M'}}},
+    scales:{
+      x:{grid:{color:gc},ticks:xT,stacked:true},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>'$'+v+'M'},stacked:true}
+    }
+  }
+});
+window.toggleSeg=function(idx,el){const m=segChart.getDatasetMeta(idx);m.hidden=!m.hidden;el.classList.toggle('hidden',m.hidden);segChart.update();};
+
+// 매출+EBITDA 이중축
+new Chart(document.getElementById('cRev'),{
+  type:'bar',
+  data:{
+    labels:L18,
+    datasets:[
+      {type:'bar',label:'매출',data:totalRev,backgroundColor:'rgba(55,138,221,0.25)',borderColor:'#378ADD',borderWidth:1,yAxisID:'y'},
+      {type:'line',label:'Adj. EBITDA%',data:ebitdaPct,borderColor:'#1D9E75',pointRadius:3,pointBackgroundColor:'#1D9E75',fill:false,tension:0.3,yAxisID:'y2',borderWidth:2}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:ctx=>ctx.datasetIndex===0?' $'+Math.round(ctx.parsed.y)+'M':' EBITDA: '+ctx.parsed.y.toFixed(1)+'%'}}},
+    scales:{
+      x:{grid:{color:gc},ticks:xT},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>'$'+v+'M'},position:'left'},
+      y2:{grid:{display:false},ticks:{color:'#1D9E75',font:{size:10},callback:v=>v+'%'},position:'right',min:-60,max:80}
+    }
+  }
+});
+</script>
+</body>
+</html>
