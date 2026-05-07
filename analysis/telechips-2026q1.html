@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>텔레칩스 (Telechips) 기업분석 — 2026 Q1</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f3ef;color:#1a1a1a;padding:2rem;font-size:14px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto}
+.header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #e0e0dc;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.header-title{font-size:22px;font-weight:700}
+.header-meta{font-size:12px;color:#888;margin-top:4px}
+.toc{margin-bottom:2rem;padding:0}
+.toc-title{font-size:12px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+.toc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:1.1rem 1.3rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.toc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(8,auto);grid-auto-flow:column;gap:6px 28px}
+@media(max-width:650px){.toc-grid{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}}
+.toc-link{display:flex;align-items:center;gap:10px;padding:5px 0;text-decoration:none;color:#444;font-size:13px;border-bottom:0.5px dashed transparent;transition:all .15s ease}
+.toc-link:hover{color:#378ADD;border-bottom-color:#cfe1f5}
+.toc-link .toc-num{color:#aaa;font-weight:700;font-size:12px;min-width:30px;font-variant-numeric:tabular-nums;flex-shrink:0}
+.toc-link:hover .toc-num{color:#378ADD}
+.toc-link .toc-text{flex:1}
+.toc-link.sub{padding-left:18px;font-size:12.5px;color:#666}
+.toc-link.sub .toc-num{font-size:11px;color:#bbb}
+.section{margin-bottom:3rem}
+.section-anchor{display:block;position:relative;top:-70px;visibility:hidden}
+h2{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:6px;border-bottom:1.5px solid #e0e0dc}
+h3{font-size:14px;font-weight:600;margin:1.2rem 0 .6rem;color:#333}
+.chart-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:20px;position:relative;width:100%}
+.note{font-size:11px;color:#999;margin-top:8px;line-height:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;font-size:12px;color:#666}
+.legend-item{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:3px 8px;border-radius:6px;transition:opacity .15s}
+.legend-item:hover{background:#e8e8e3}
+.legend-item.hidden{opacity:.3;text-decoration:line-through}
+.legend-static{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0dc;margin-bottom:.5rem}
+th{background:#ebebe6;font-weight:600;padding:7px 8px;text-align:left;border-bottom:1px solid #e0e0dc;white-space:nowrap;font-size:11.5px}
+th.center{text-align:center}
+td{padding:6px 8px;border-bottom:0.5px solid #f0f0ee;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafaf6}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.center{text-align:center}
+.hl{background:#fffbe6 !important}
+.dn{color:#D85A30}
+.up2{color:#1D9E75}
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
+@media(max-width:650px){.overview-grid{grid-template-columns:1fr}}
+.overview-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.overview-box h4{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.kv{display:flex;justify-content:space-between;align-items:flex-start;padding:4px 0;border-bottom:0.5px solid #f5f4f0;font-size:12.5px;gap:10px}
+.kv:last-child{border-bottom:none}
+.kv-key{color:#666;min-width:90px;flex-shrink:0}
+.kv-val{font-weight:600;text-align:right;flex:1}
+.seg-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:1rem}
+.seg-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.seg-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:8px}
+.seg-card-name{font-size:13px;font-weight:700}
+.seg-card-share{font-size:11px;color:#888;font-weight:600}
+.seg-card-desc{font-size:12px;color:#444;line-height:1.55;margin-bottom:6px}
+.seg-card-margin{font-size:11px;font-weight:600}
+.badge{display:inline-block;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:600}
+.badge-up{background:#e6f7f0;color:#1D9E75}
+.badge-dn{background:#fce8e4;color:#D85A30}
+.badge-neu{background:#ebebe6;color:#666}
+.cc-table{width:100%;border-collapse:separate;border-spacing:6px;margin-bottom:1rem}
+.cc-table th{background:transparent;border:none;font-size:11px;color:#888;text-align:center;padding:4px;font-weight:600;white-space:nowrap}
+.cc-table th.year-col{width:50px;text-align:left}
+.cc-cell{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.65rem .75rem;vertical-align:top;height:100%}
+.cc-quarter{font-size:10px;font-weight:700;color:#378ADD;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.cc-msg{font-size:11px;color:#444;margin-bottom:6px;line-height:1.45}
+.cc-guide{font-size:10px;color:#888;border-top:0.5px solid #f0f0ee;padding-top:5px;line-height:1.5}
+.cc-hit{color:#1D9E75;font-weight:600}
+.cc-miss{color:#D85A30;font-weight:600}
+.cc-latest{border:1.5px solid #378ADD !important;box-shadow:0 0 0 2px rgba(55,138,221,0.1)}
+.year-label{font-size:13px;font-weight:700;color:#555;padding-right:8px;vertical-align:middle}
+.scenario-stack{display:flex;flex-direction:column;gap:12px}
+.scenario-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1.1rem 1.3rem}
+.scenario-title{font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid #f0f0ee}
+.s-bull .scenario-title{color:#1D9E75}
+.s-bear .scenario-title{color:#D85A30}
+.s-item{margin-bottom:9px;padding-bottom:9px;border-bottom:0.5px solid #f5f4f0;font-size:12px}
+.s-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-case{font-weight:600;margin-bottom:2px}
+.s-sub{color:#888;font-size:11px}
+.ww-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.ww-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.ww-sticker-item{padding:.7rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:14px;align-items:flex-start}
+.ww-sticker-item:last-child{border-bottom:none}
+.ww-sticker-date{font-size:11px;font-weight:700;color:#378ADD;white-space:nowrap;min-width:90px;flex-shrink:0;padding-top:1px}
+.ww-sticker-content{flex:1}
+.ww-sticker-event{font-size:12.5px;font-weight:700;color:#222;margin-bottom:2px}
+.ww-sticker-point{font-size:11.5px;color:#666;line-height:1.5}
+.source-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.4rem;font-size:12px;color:#888;line-height:2}
+.prose{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;margin-bottom:1rem;font-size:13px;line-height:1.7}
+.prose ul{padding-left:1.3rem}
+.prose li{margin-bottom:.25rem}
+.prose p{margin-bottom:.7rem}
+.prose p:last-child{margin-bottom:0}
+.thesis-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:12px;padding:1.2rem 1.4rem;margin-bottom:12px;border-left:5px solid #333;position:relative}
+.thesis-box-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.thesis-icon{font-size:22px;flex-shrink:0}
+.thesis-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:5px;background:#ebebe6;color:#444}
+.thesis-title{font-size:15px;font-weight:700;color:#222;flex:1;margin-bottom:0}
+.thesis-body{font-size:13px;line-height:1.7;color:#333}
+.thesis-body p{margin-bottom:.6rem}
+.thesis-body p:last-child{margin-bottom:0}
+.thesis-body strong{color:#222;font-weight:700}
+.thesis-body .hl-blue{font-weight:600;color:#222}
+.thesis-body .hl-green{font-weight:700;color:#1D9E75}
+.thesis-body .hl-red{font-weight:700;color:#D85A30}
+.cc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.cc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.cc-sticker-item{padding:.85rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:12px;align-items:flex-start}
+.cc-sticker-item:last-child{border-bottom:none}
+.cc-sticker-rank{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#378ADD;color:#fff;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.cc-sticker-content{flex:1}
+.cc-sticker-title{font-size:13px;font-weight:700;color:#222;margin-bottom:4px}
+.cc-sticker-desc{font-size:12px;color:#444;line-height:1.6}
+.cc-sticker-desc strong{color:#222}
+.hl-pos{color:#1D9E75;font-weight:700}
+.hl-neg{color:#D85A30;font-weight:700}
+.ir-na-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;font-size:12px;color:#666;line-height:1.6}
+.ir-slide{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;overflow:hidden;margin-bottom:14px}
+.ir-slide-frame{background:linear-gradient(135deg,#f8f8f5 0%,#ffffff 100%);padding:.85rem 1.4rem;border-bottom:0.5px solid #e0e0dc}
+.ir-slide-num{font-size:10px;color:#999;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+.ir-slide-title{font-size:14px;font-weight:700;color:#333}
+.ir-slide-img-wrap{padding:1rem 1.4rem;text-align:center;background:#fafaf6}
+.ir-slide-img-wrap img{display:block;max-width:75%;width:100%;height:auto;margin:0 auto;border:0.5px solid #e0e0dc;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+@media(max-width:650px){.ir-slide-img-wrap img{max-width:95%}}
+.ir-slide-caption{font-size:11.5px;color:#555;padding:.85rem 1.4rem 1rem;line-height:1.55;background:#fff;border-top:0.5px solid #f0f0ee}
+.ir-slide-caption strong{color:#222}
+.footer{font-size:11px;color:#aaa;text-align:center;margin-top:2rem;padding-top:1rem;border-top:0.5px solid #e0e0dc}
+.seg-table-wrap{overflow-x:auto}
+.seg-table{min-width:780px}
+.seg-table th.seg-group{text-align:center;background:#e3e3de;border-left:2px solid #d0d0cc}
+.seg-table td.seg-border{border-left:2px solid #e0e0dc}
+.tv-wrap{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:6px;overflow:hidden}
+.tv-wrap iframe{display:block;width:100%;height:420px;border:0;border-radius:6px}
+.ref-list{display:flex;flex-direction:column;gap:6px}
+.ref-item{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.6rem .9rem;display:flex;align-items:center;gap:10px;font-size:12px}
+.ref-tag{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600;flex-shrink:0;min-width:55px;text-align:center}
+.tag-official{background:#e0effc;color:#1565c0}
+.tag-broker{background:#fff4e0;color:#ed8936}
+.tag-news{background:#f0f0ed;color:#555}
+.tag-wiki{background:#e6f7f0;color:#1D9E75}
+.ref-item a{color:#378ADD;text-decoration:none;flex:1;word-break:break-all}
+.ref-item a:hover{text-decoration:underline}
+.naver-fallback{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:.8rem 1.2rem;font-size:11.5px;color:#666;margin-top:8px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.naver-fallback a{color:#03C75A;font-weight:600;text-decoration:none}
+.naver-fallback a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div>
+    <div class="header-title">🚗 텔레칩스 (Telechips · 054450) 기업분석</div>
+    <div class="header-meta">회계연도: Calendar Year &nbsp;|&nbsp; 분석기간: Q1'18~Q4'25 (32분기) &nbsp;|&nbsp; Q1'26 발표예정: 2026.05.18</div>
+  </div>
+  <div style="font-size:12px;color:#aaa">분석일: 2026.05.07</div>
+</div>
+
+<!-- 목차 -->
+<div class="toc">
+  <div class="toc-title">목차</div>
+  <div class="toc-sticker-box">
+    <div class="toc-grid">
+      <a class="toc-link" href="#s1"><span class="toc-num">01.</span><span class="toc-text">회사 개요</span></a>
+      <a class="toc-link" href="#s2"><span class="toc-num">02.</span><span class="toc-text">주가 흐름 — 일봉 차트</span></a>
+      <a class="toc-link" href="#s3"><span class="toc-num">03.</span><span class="toc-text">제품/사업부별 매출 추이</span></a>
+      <a class="toc-link sub" href="#s3b"><span class="toc-num">3-1.</span><span class="toc-text">사업부 구조 및 제품</span></a>
+      <a class="toc-link sub" href="#s4"><span class="toc-num">3-2.</span><span class="toc-text">매출 &amp; 영업이익률 추이</span></a>
+      <a class="toc-link sub" href="#s5"><span class="toc-num">3-3.</span><span class="toc-text">제품별 실적 테이블</span></a>
+      <a class="toc-link" href="#s6"><span class="toc-num">04.</span><span class="toc-text">재무제표 개요</span></a>
+      <a class="toc-link" href="#s7"><span class="toc-num">05.</span><span class="toc-text">핵심 투자아이디어</span></a>
+      <a class="toc-link sub" href="#s8"><span class="toc-num">5-1.</span><span class="toc-text">핵심 변동 요인</span></a>
+      <a class="toc-link sub" href="#s9"><span class="toc-num">5-2.</span><span class="toc-text">분기별 실적 트래킹</span></a>
+      <a class="toc-link sub" href="#s10"><span class="toc-num">5-3.</span><span class="toc-text">최근 분기 심층 정리</span></a>
+      <a class="toc-link sub" href="#s11"><span class="toc-num">5-4.</span><span class="toc-text">강세 / 약세 시나리오</span></a>
+      <a class="toc-link" href="#s12"><span class="toc-num">06.</span><span class="toc-text">Worth Watching Events</span></a>
+      <a class="toc-link" href="#s13"><span class="toc-num">07.</span><span class="toc-text">데이터 출처</span></a>
+      <a class="toc-link sub" href="#s14"><span class="toc-num">7-1.</span><span class="toc-text">Reference</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- 1. 회사 개요 -->
+<span class="section-anchor" id="s1"></span>
+<div class="section">
+<h2>1. 회사 개요</h2>
+<div class="overview-grid">
+  <div class="overview-box">
+    <h4>기본 정보</h4>
+    <div class="kv"><span class="kv-key">설립</span><span class="kv-val">1999년</span></div>
+    <div class="kv"><span class="kv-key">상장</span><span class="kv-val">2004.12 코스닥</span></div>
+    <div class="kv"><span class="kv-key">본사</span><span class="kv-val">경기도 성남시</span></div>
+    <div class="kv"><span class="kv-key">CEO</span><span class="kv-val">이장규 (창업자/단독 CEO)</span></div>
+    <div class="kv"><span class="kv-key">임직원</span><span class="kv-val">~600명</span></div>
+    <div class="kv"><span class="kv-key">사업 모델</span><span class="kv-val">Fabless (삼성 파운드리 위탁)</span></div>
+    <div class="kv"><span class="kv-key">티커</span><span class="kv-val">KOSDAQ: 054450</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>시장 정보 (2026.05 기준)</h4>
+    <div class="kv"><span class="kv-key">현재 주가</span><span class="kv-val">~13,900원</span></div>
+    <div class="kv"><span class="kv-key">시가총액 KRW</span><span class="kv-val" style="color:#378ADD">~2,100억원</span></div>
+    <div class="kv"><span class="kv-key">시가총액 USD</span><span class="kv-val" style="color:#378ADD">~$1.45억 (환율 1,448원)</span></div>
+    <div class="kv"><span class="kv-key">발행주식</span><span class="kv-val">15,144천주</span></div>
+    <div class="kv"><span class="kv-key">52주 고가</span><span class="kv-val">19,700원</span></div>
+    <div class="kv"><span class="kv-key">52주 저가</span><span class="kv-val">9,900원</span></div>
+    <div class="kv"><span class="kv-key">PER (2026F)</span><span class="kv-val">~13.7배 (EPS 1,177원 기준)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>사업 운영</h4>
+    <div class="kv"><span class="kv-key">제조 모델</span><span class="kv-val">Fabless (삼성 14nm/7nm)</span></div>
+    <div class="kv"><span class="kv-key">핵심 제품</span><span class="kv-val">차량용 AP, MCU, NPU, 게이트웨이</span></div>
+    <div class="kv"><span class="kv-key">주요 IP 협력</span><span class="kv-val">사피온, 오픈엣지테크, 시놉시스</span></div>
+    <div class="kv"><span class="kv-key">자회사</span><span class="kv-val">마인드인테크(AI), 텔레칩스 USA/HK/상해</span></div>
+    <div class="kv"><span class="kv-key">관계회사</span><span class="kv-val">오토실리콘(BMIC) 31.3%</span></div>
+    <div class="kv"><span class="kv-key">주주</span><span class="kv-val">이장규 외 4인 30.2%, LX세미콘 10%</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>투자 포인트 요약</h4>
+    <div class="kv"><span class="kv-key">2025 매출</span><span class="kv-val">1,928억원 (+3.3% YoY)</span></div>
+    <div class="kv"><span class="kv-key">2025 영업손실</span><span class="kv-val" style="color:#D85A30">-62억 (적자전환)</span></div>
+    <div class="kv"><span class="kv-key">2025 순손실</span><span class="kv-val" style="color:#D85A30">-616억 (무형자산손상)</span></div>
+    <div class="kv"><span class="kv-key">해외매출 비중</span><span class="kv-val" style="color:#1D9E75">65% (3Q25)</span></div>
+    <div class="kv"><span class="kv-key">핵심 모멘텀</span><span class="kv-val" style="color:#1D9E75">콘티넨탈 돌핀3 본격공급 (2026 H2)</span></div>
+    <div class="kv"><span class="kv-key">증권사 의견</span><span class="kv-val">유진 BUY · 목표주가 17,000원</span></div>
+  </div>
+</div>
+<p class="note">⚠️ <strong>팹리스</strong>=설계만 하고 제조는 외주(삼성 파운드리). <strong>AP</strong>=Application Processor (차량 인포테인먼트의 두뇌 칩). <strong>MCU</strong>=Micro Controller Unit. <strong>NPU</strong>=Neural Processing Unit (AI 가속기). <strong>SDV</strong>=Software-Defined Vehicle (소프트웨어 중심 차량). <strong>SoC</strong>=System on Chip. <strong>IVI</strong>=In-Vehicle Infotainment. <strong>티어1</strong>=완성차에 모듈을 직접 납품하는 1차 부품사 (콘티넨탈, 보쉬, 현대모비스 등).</p>
+</div>
+
+<!-- 2. 주가 -->
+<span class="section-anchor" id="s2"></span>
+<div class="section">
+<h2>2. 주가 흐름 — 일봉 차트</h2>
+<div class="chart-box" style="height:380px"><canvas id="cPrice"></canvas></div>
+<div class="naver-fallback">
+  <span>📌 KRX 종목으로 TradingView 데이터 미제공 — Chart.js 주봉 근사치 표시</span>
+  <a href="https://finance.naver.com/item/main.naver?code=054450" target="_blank">네이버 증권에서 실시간 차트 보기 →</a>
+</div>
+<p class="note">* 2024년 초 19,700원 고점 → 2025년 4월 9,900원 저점(-50%) → 2026년 들어 12,000~14,000원 박스권. Q1'25~Q3'25 적자 지속에도 콘티넨탈 돌핀3 양산 기대로 하방 지지. Q1'26 실적 발표(5/18) 및 신제품 매출 가시화 시 모멘텀 회복 가능.</p>
+
+<h3 style="margin-top:1.2rem">주요 이벤트 연표</h3>
+<table>
+  <thead><tr><th>시기</th><th class="num">주가(근사)</th><th>이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>1999.07</td><td class="num">—</td><td>이장규 대표 창업, 멀티미디어 칩 사업 시작</td></tr>
+    <tr><td>2004.12</td><td class="num">상장</td><td>코스닥 상장 (Caller ID·MP3 칩 기반)</td></tr>
+    <tr><td>2007</td><td class="num">—</td><td>국내 최초 카오디오용 AP 개발/공급</td></tr>
+    <tr><td>2013</td><td class="num">3,500원</td><td>태블릿 AP 사업 구조조정 (영업손실 -79억), 모바일 철수</td></tr>
+    <tr><td>2015</td><td class="num">6,000원</td><td>국내 최초 차량 AVN용 AP 납품 시작</td></tr>
+    <tr><td>2021.05</td><td class="num">25,000원</td><td>국내 최초 차량 인포테인먼트용 MCU 출시 (코로나 PC 폭증과 차량 반도체 부족)</td></tr>
+    <tr><td>2022.05</td><td class="num">17,000원</td><td>LX세미콘이 지분 10% 투자 (전장 사업 확대 목적)</td></tr>
+    <tr><td>2023.12</td><td class="num">15,000원</td><td><strong>콘티넨탈 돌핀3 공급 계약 체결</strong> — 글로벌 티어1 첫 진입</td></tr>
+    <tr><td>2024.02</td><td class="num">17,000원</td><td>2023 연간 매출 1,911억 (+27% YoY) 사상 최대 기록</td></tr>
+    <tr><td>2024.03</td><td class="num">17,500원</td><td>美 보스턴 레이더 기업 AURA에 수백만 달러 지분투자</td></tr>
+    <tr><td>2024.04</td><td class="num">19,700원</td><td><strong>52주 고점</strong> — 신한투자 목표가 30,000원 상향</td></tr>
+    <tr><td>2024.11</td><td class="num">14,000원</td><td>3Q24 매출 -9% YoY, 영업이익 -78% — 차량 시장 둔화</td></tr>
+    <tr><td>2025.04</td><td class="num">9,900원</td><td><strong>52주 저점</strong> — 1Q25 영업이익 -62% YoY, R&amp;D 비용 부담</td></tr>
+    <tr><td>2025.08</td><td class="num">11,500원</td><td>2Q25 영업손실 -36억 적자전환, 유진 목표가 21,000→17,000원 하향</td></tr>
+    <tr><td>2025.10</td><td class="num">13,000원</td><td>3Q25 매출 502억(+5.5% YoY) 회복 시작, 해외매출 65% 돌파</td></tr>
+    <tr class="hl"><td><strong>2026.02.10</strong></td><td class="num"><strong>13,500원</strong></td><td><strong>2025 연간 영업손실 -62억 적자전환 공시, 무형자산손상차손으로 순손실 -616억</strong></td></tr>
+    <tr><td>2026.05.18</td><td class="num">~13,900원</td><td>Q1'26 실적 발표 예정 (컨센서스 매출 526억)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 3. 사업부 매출 -->
+<span class="section-anchor" id="s3"></span>
+<div class="section">
+<h2>3. 제품/사업부별 매출 추이 — 32분기 (억원)</h2>
+<div class="legend" id="segLegend">
+  <span class="legend-item" onclick="toggleSeg(0,this)"><span class="dot" style="background:#1D9E75"></span>IVI (인포테인먼트 AP)</span>
+  <span class="legend-item" onclick="toggleSeg(1,this)"><span class="dot" style="background:#378ADD"></span>Cockpit (콕핏/HUD)</span>
+  <span class="legend-item" onclick="toggleSeg(2,this)"><span class="dot" style="background:#D85A30"></span>Royalty/License</span>
+  <span class="legend-item" onclick="toggleSeg(3,this)"><span class="dot" style="background:#BA7517"></span>기타 (MCU/NPU/Mobile TV)</span>
+  <span style="font-size:11px;color:#bbb;margin-left:4px">← 클릭하여 표시/숨김</span>
+</div>
+<div class="chart-box" style="height:460px"><canvas id="cSeg"></canvas></div>
+<p class="note">* 텔레칩스는 2022년부터 제품군별 매출 공시 시작 — 이전(2018~2021)은 DMP 단일 항목 → 역산 추정. IVI(인포테인먼트 AP)가 매출의 75~80% 압도적 비중. Cockpit(클러스터+HUD)이 2024년부터 두 자릿수 성장 중. Royalty는 LG전자·콘티넨탈향 IP 라이선스 수익으로 안정적 마진 기여. 신제품 돌핀3·엔돌핀·MCU는 2025~2026 양산 시작 → 2027 본격 매출 기여 전망.</p>
+</div>
+
+<!-- 3-1. 사업부 구조 -->
+<span class="section-anchor" id="s3b"></span>
+<div class="section">
+<h2>3-1. 사업부 구조 및 제품</h2>
+<div class="seg-cards">
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">IVI (In-Vehicle Infotainment) ★</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">~75%</span> · 2025E ~1,440억</div>
+    </div>
+    <div class="seg-card-desc">
+      텔레칩스의 핵심 사업. 차량 내 AVN(오디오/비디오/내비게이션)에 들어가는 <strong>애플리케이션 프로세서(AP)</strong>. 주력 제품은 <strong>돌핀+ → 돌핀3 → 돌핀5</strong> 라인업 (성능·ASP 단계적 상승). 주고객은 현대차/기아(60~65%) + 콘티넨탈·폭스바겐 등 글로벌 티어1. 2023.12 콘티넨탈과 돌핀3 공급계약 체결, 2025 H2 양산 시작 → <span style="color:#378ADD;font-weight:700">2026 본격 매출</span>. ASP는 돌핀+ 대비 돌핀3가 약 2배 수준.
+    </div>
+    <div class="seg-card-margin" style="color:#555">3Q25 IVI 매출 +7.5% YoY · GM <span style="color:#378ADD;font-weight:700">~30%</span> 추정</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">Cockpit (콕핏 + 클러스터 + HUD)</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">~12%</span> · 2025E ~230억</div>
+    </div>
+    <div class="seg-card-desc">
+      통합 디지털 콕핏(운전석) 솔루션. 디지털 클러스터 + HUD(Head-Up Display) + 인포테인먼트를 하나의 SoC로 통합. 2019년 국내 최초 디지털 클러스터 칩 양산. 2Q25 +19.1% YoY, 3Q25 +13.9% YoY로 두 자릿수 성장 지속. 차량 한 대당 콕핏 디스플레이 수 증가(평균 3~4개) 트렌드의 직접 수혜.
+    </div>
+    <div class="seg-card-margin" style="color:#555">분기 두 자릿수 성장 · 신차 채택률 확대 단계</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">Royalty &amp; License</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">~5%</span> · 2025E ~95억</div>
+    </div>
+    <div class="seg-card-desc">
+      자사 IP를 글로벌 칩 회사·티어1에 라이선싱. 2Q25 +26.6% YoY, 가장 높은 성장률. 매출은 작지만 <strong>마진율 80%+</strong>로 회사 수익성에 결정적 기여. 콘티넨탈향 돌핀3 ASIL-D 인증 IP 라이선스가 핵심. SDV 시대 IP 의존도 증가로 장기 성장성 우수.
+    </div>
+    <div class="seg-card-margin" style="color:#555">GM <span style="color:#378ADD;font-weight:700">80%+</span> · 가장 수익성 높은 사업</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">기타 (MCU · NPU · Mobile TV · 신제품)</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">~8%</span> · 2025E ~165억</div>
+    </div>
+    <div class="seg-card-desc">
+      성장 옵션 사업. 2021년 국내 최초 차량 인포테인먼트용 MCU 출시. <strong>엔돌핀(N-Dolphin)</strong>: NPU 탑재 ADAS 비전 프로세서, 2025~2026 양산. <strong>AXON</strong>: 차량 게이트웨이 칩(ASIL-D). <strong>A2X</strong>: NPU 가속기. <strong>VCP3 MCU</strong>: 바디샷시용 국산화 신제품, 2026 개발 완료. Mobile TV 수신칩은 사실상 sunset (~2%).
+    </div>
+    <div class="seg-card-margin" style="color:#555">2025~2027 양산 ramp · 회사의 미래 성장축</div>
+  </div>
+</div>
+
+<table>
+  <thead><tr><th>제품군</th><th>대표 제품</th><th>주요 고객</th><th>매출 비중</th><th>2025 성장</th></tr></thead>
+  <tbody>
+    <tr><td><strong>IVI (인포테인먼트)</strong></td><td>돌핀+, 돌핀3, 돌핀5</td><td>현대차/기아, 콘티넨탈, 폭스바겐, 일본 OEM</td><td class="num"><strong>~75%</strong></td><td class="num up2">+7.5% (3Q25)</td></tr>
+    <tr><td><strong>Cockpit</strong></td><td>디지털 클러스터, HUD 통합 SoC</td><td>현대차/기아, 글로벌 티어1</td><td class="num">~12%</td><td class="num up2">+13.9% (3Q25)</td></tr>
+    <tr><td><strong>Royalty/License</strong></td><td>AP IP, ASIL-D 인증 IP</td><td>LG전자, 콘티넨탈, 글로벌 OEM</td><td class="num">~5%</td><td class="num up2">+26.6% (2Q25)</td></tr>
+    <tr><td><strong>기타 (신제품)</strong></td><td>엔돌핀(NPU), AXON(게이트웨이), VCP3 MCU</td><td>현대차/기아, 글로벌 OEM (양산 시작 단계)</td><td class="num">~8%</td><td class="num">2026 본격 ramp</td></tr>
+  </tbody>
+</table>
+<p class="note">* 텔레칩스 사업보고서 기준 매출 분류는 "디지털미디어프로세서(DMP) 85.8% / Mobile TV 1.7% / 기타 12.5%"로 단순 공시되나, 유진투자증권 등 증권사 보고서는 IVI/Cockpit/Royalty/Others 4분류로 세분화. 본 리포트는 4분류 기준. 콘티넨탈향 돌핀3는 ASP가 돌핀+ 대비 약 2배로 추정되며, 본격 매출은 2026 H2~2027.</p>
+</div>
+
+<!-- 3-2. 매출 + OPM -->
+<span class="section-anchor" id="s4"></span>
+<div class="section">
+<h2>3-2. 매출 &amp; 영업이익률 추이 — 32분기</h2>
+<div class="legend">
+  <span class="legend-static"><span class="dot" style="background:rgba(55,138,221,0.5)"></span>매출 (억원, 좌축)</span>
+  <span class="legend-static"><span class="dot" style="background:#1D9E75"></span>영업이익률% (우축)</span>
+</div>
+<div class="chart-box" style="height:420px"><canvas id="cRev"></canvas></div>
+
+<h3 style="margin-top:1.2rem">연간 요약</h3>
+<table>
+  <thead><tr><th>연도</th><th class="num">매출(억)</th><th class="num">YoY</th><th class="num">영업이익(억)</th><th class="num">OPM</th><th class="num">순이익(억)</th><th class="num">EPS(원)</th><th>주요 이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2018</td><td class="num">1,261</td><td class="num up2">+2.8%</td><td class="num">28</td><td class="num">2.2%</td><td class="num">21</td><td class="num">142</td><td>차량 AP 본격 양산</td></tr>
+    <tr><td>2019</td><td class="num">1,322</td><td class="num up2">+4.8%</td><td class="num">36</td><td class="num">2.7%</td><td class="num">28</td><td class="num">189</td><td>디지털 클러스터 첫 양산</td></tr>
+    <tr><td>2020</td><td class="num">1,007</td><td class="num dn">-23.8%</td><td class="num">21</td><td class="num">2.1%</td><td class="num">15</td><td class="num">100</td><td>코로나 차량 시장 충격</td></tr>
+    <tr><td>2021</td><td class="num">1,364</td><td class="num up2">+35.4%</td><td class="num">68</td><td class="num">5.0%</td><td class="num">55</td><td class="num">370</td><td>차량 반도체 부족, MCU 출시</td></tr>
+    <tr><td>2022</td><td class="num">1,504</td><td class="num up2">+10.3%</td><td class="num">92</td><td class="num">6.1%</td><td class="num">459</td><td class="num">3,090</td><td>칩스앤미디어 매각차익 (515억)</td></tr>
+    <tr><td>2023</td><td class="num">1,911</td><td class="num up2">+27.1%</td><td class="num">168</td><td class="num up2">8.8%</td><td class="num">626</td><td class="num">4,212</td><td>역대 최대 매출, 콘티넨탈 계약</td></tr>
+    <tr><td>2024</td><td class="num">1,866</td><td class="num dn">-2.3%</td><td class="num">49</td><td class="num">2.6%</td><td class="num dn">-386</td><td class="num dn">-2,597</td><td>차량 수요 둔화, R&amp;D 인력 확충</td></tr>
+    <tr class="hl"><td><strong>2025</strong></td><td class="num"><strong>1,928</strong></td><td class="num up2"><strong>+3.3%</strong></td><td class="num dn"><strong>-62</strong></td><td class="num dn"><strong>-3.2%</strong></td><td class="num dn"><strong>-616</strong></td><td class="num dn"><strong>-4,175</strong></td><td><strong>적자전환, 무형자산손상차손</strong></td></tr>
+    <tr><td>2026F</td><td class="num">2,184</td><td class="num up2">+13.3%</td><td class="num">178</td><td class="num up2">8.1%</td><td class="num">178</td><td class="num">1,177</td><td>유진증권 컨센서스, 돌핀3 양산</td></tr>
+  </tbody>
+</table>
+
+<h3 style="margin-top:1.2rem">분기별 실적 (12분기)</h3>
+<table>
+  <thead><tr><th>분기</th><th class="num">매출(억)</th><th class="num">YoY</th><th class="num">QoQ</th><th class="num">영업이익(억)</th><th class="num">OPM</th><th>비고</th></tr></thead>
+  <tbody>
+    <tr><td>Q2'23</td><td class="num">443</td><td class="num up2">+27%</td><td class="num up2">-2%</td><td class="num">31</td><td class="num">7.0%</td><td>해외 비중 확대</td></tr>
+    <tr><td>Q3'23</td><td class="num">525</td><td class="num up2">+47%</td><td class="num up2">+19%</td><td class="num">52</td><td class="num up2">9.9%</td><td>역대 분기 최대 매출</td></tr>
+    <tr><td>Q4'23</td><td class="num">445</td><td class="num">~0%</td><td class="num dn">-15%</td><td class="num">22</td><td class="num">4.9%</td><td>3Q 호조 후 정상화</td></tr>
+    <tr><td>Q1'24</td><td class="num">459</td><td class="num">+1%</td><td class="num up2">+3%</td><td class="num">26</td><td class="num">5.7%</td><td>전년동기 비슷</td></tr>
+    <tr><td>Q2'24</td><td class="num">460</td><td class="num up2">+4%</td><td class="num">+0%</td><td class="num">30</td><td class="num">6.5%</td><td>안정적 흐름</td></tr>
+    <tr><td>Q3'24</td><td class="num">476</td><td class="num dn">-9%</td><td class="num up2">+3%</td><td class="num">14</td><td class="num">2.9%</td><td>차량 시장 둔화</td></tr>
+    <tr><td>Q4'24</td><td class="num">476</td><td class="num up2">+7%</td><td class="num">+0%</td><td class="num">14</td><td class="num">2.9%</td><td>4분기 둔화 지속</td></tr>
+    <tr><td>Q1'25</td><td class="num">454</td><td class="num dn">-1%</td><td class="num dn">-5%</td><td class="num">10</td><td class="num">2.2%</td><td>R&amp;D 비용 본격 증가</td></tr>
+    <tr><td>Q2'25</td><td class="num">443</td><td class="num dn">-4%</td><td class="num dn">-2%</td><td class="num dn">-36</td><td class="num dn">-8.1%</td><td><strong>적자전환</strong>, 신제품 R&amp;D</td></tr>
+    <tr><td>Q3'25</td><td class="num">502</td><td class="num up2">+6%</td><td class="num up2">+13%</td><td class="num dn">-27</td><td class="num dn">-5.4%</td><td>매출 회복, 적자 지속</td></tr>
+    <tr><td>Q4'25</td><td class="num">529*</td><td class="num up2">+11%</td><td class="num up2">+5%</td><td class="num dn">-9*</td><td class="num dn">-1.7%*</td><td>잠정, 무형자산손상차손 -550억</td></tr>
+    <tr class="hl"><td><strong>Q1'26F</strong></td><td class="num">~526</td><td class="num up2">+16%</td><td class="num">-1%</td><td class="num up2">~10</td><td class="num">~2%</td><td><strong>5/18 발표 예정</strong></td></tr>
+  </tbody>
+</table>
+<p class="note">* Q4'25 매출 529억은 연간 1,928억 - Q1~Q3 누적 1,399억 역산. 영업이익은 연간 -62억 - Q1~Q3 누적 -53억 = -9억 추정. 2025년 무형자산손상차손 약 -550억은 별도 비영업항목으로 순손실 -616억의 주된 원인. 2025 매출 자체는 +3.3% 성장했으나 R&amp;D 인력 확충 + 무형자산 평가손실 동시 반영으로 손익 악화.</p>
+</div>
+
+<!-- 3-3. 제품별 실적 테이블 -->
+<span class="section-anchor" id="s5"></span>
+<div class="section">
+<h2>3-3. 제품별 실적 테이블 (16분기, 추정)</h2>
+<div class="seg-table-wrap">
+<table class="seg-table">
+  <thead>
+    <tr>
+      <th rowspan="2" style="vertical-align:middle">분기</th>
+      <th colspan="2" class="seg-group center">IVI</th>
+      <th colspan="2" class="seg-group center">Cockpit</th>
+      <th colspan="2" class="seg-group center">Royalty</th>
+      <th colspan="2" class="seg-group center">기타</th>
+      <th rowspan="2" class="seg-group center" style="vertical-align:middle">Total</th>
+    </tr>
+    <tr>
+      <th class="seg-group center">억원</th><th class="seg-group center">%</th>
+      <th class="seg-group center">억원</th><th class="seg-group center">%</th>
+      <th class="seg-group center">억원</th><th class="seg-group center">%</th>
+      <th class="seg-group center">억원</th><th class="seg-group center">%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Q2'23</td><td class="num seg-border">340</td><td class="num">76.7%</td><td class="num seg-border">53</td><td class="num">12.0%</td><td class="num seg-border">22</td><td class="num">5.0%</td><td class="num seg-border">28</td><td class="num">6.3%</td><td class="num seg-border"><b>443</b></td></tr>
+    <tr><td>Q3'23</td><td class="num seg-border">410</td><td class="num">78.1%</td><td class="num seg-border">63</td><td class="num">12.0%</td><td class="num seg-border">26</td><td class="num">5.0%</td><td class="num seg-border">26</td><td class="num">5.0%</td><td class="num seg-border"><b>525</b></td></tr>
+    <tr><td>Q4'23</td><td class="num seg-border">347</td><td class="num">78.0%</td><td class="num seg-border">53</td><td class="num">11.9%</td><td class="num seg-border">22</td><td class="num">5.0%</td><td class="num seg-border">23</td><td class="num">5.2%</td><td class="num seg-border"><b>445</b></td></tr>
+    <tr><td>Q1'24</td><td class="num seg-border">368</td><td class="num">80.2%</td><td class="num seg-border">52</td><td class="num">11.3%</td><td class="num seg-border">19</td><td class="num">4.1%</td><td class="num seg-border">20</td><td class="num">4.4%</td><td class="num seg-border"><b>459</b></td></tr>
+    <tr><td>Q2'24</td><td class="num seg-border">365</td><td class="num">79.3%</td><td class="num seg-border">55</td><td class="num">12.0%</td><td class="num seg-border">22</td><td class="num">4.8%</td><td class="num seg-border">18</td><td class="num">3.9%</td><td class="num seg-border"><b>460</b></td></tr>
+    <tr><td>Q3'24</td><td class="num seg-border">372</td><td class="num">78.2%</td><td class="num seg-border">60</td><td class="num">12.6%</td><td class="num seg-border">22</td><td class="num">4.6%</td><td class="num seg-border">22</td><td class="num">4.6%</td><td class="num seg-border"><b>476</b></td></tr>
+    <tr><td>Q4'24</td><td class="num seg-border">365</td><td class="num">76.7%</td><td class="num seg-border">62</td><td class="num">13.0%</td><td class="num seg-border">25</td><td class="num">5.3%</td><td class="num seg-border">24</td><td class="num">5.0%</td><td class="num seg-border"><b>476</b></td></tr>
+    <tr><td>Q1'25</td><td class="num seg-border">340</td><td class="num">74.9%</td><td class="num seg-border">63</td><td class="num">13.9%</td><td class="num seg-border">26</td><td class="num">5.7%</td><td class="num seg-border">25</td><td class="num">5.5%</td><td class="num seg-border"><b>454</b></td></tr>
+    <tr><td>Q2'25</td><td class="num seg-border">324</td><td class="num">73.1%</td><td class="num seg-border">66</td><td class="num up2">14.9%</td><td class="num seg-border">28</td><td class="num up2">6.3%</td><td class="num seg-border">25</td><td class="num">5.6%</td><td class="num seg-border"><b>443</b></td></tr>
+    <tr><td>Q3'25</td><td class="num seg-border">400</td><td class="num">79.7%</td><td class="num seg-border">68</td><td class="num">13.5%</td><td class="num seg-border">22</td><td class="num">4.4%</td><td class="num seg-border">12</td><td class="num">2.4%</td><td class="num seg-border"><b>502</b></td></tr>
+    <tr class="hl"><td><b>Q4'25</b></td><td class="num seg-border"><b>410</b></td><td class="num">77.5%</td><td class="num seg-border">70</td><td class="num">13.2%</td><td class="num seg-border">25</td><td class="num">4.7%</td><td class="num seg-border">24</td><td class="num">4.5%</td><td class="num seg-border"><b>529</b></td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">* 텔레칩스는 8-K급 상세 분기공시 ❌ — 본 표는 연결재무제표 매출과 증권사 리포트 분류 비율 역산 추정. IVI 비중 75~80% 안정적 유지, Cockpit이 13~15%로 점진 확대, Royalty가 가장 빠르게 성장. 신제품(엔돌핀·MCU)는 아직 "기타"에 묶여 있으며 2026~2027 분리 공시 가능성. 콘티넨탈향 돌핀3는 IVI 카테고리에 포함되며, 2026 H2부터 분기 매출 50~80억 추가 기여 예상.</p>
+</div>
+
+<!-- 4. 재무제표 -->
+<span class="section-anchor" id="s6"></span>
+<div class="section">
+<h2>4. 재무제표 개요</h2>
+<table>
+  <thead><tr><th>항목 (억원)</th><th class="num">2022</th><th class="num">2023</th><th class="num">2024</th><th class="num">2025</th></tr></thead>
+  <tbody>
+    <tr><td>매출</td><td class="num">1,504</td><td class="num">1,911</td><td class="num">1,866</td><td class="num">1,928</td></tr>
+    <tr><td>매출원가</td><td class="num">1,066</td><td class="num">1,331</td><td class="num">1,330</td><td class="num">1,388</td></tr>
+    <tr><td>매출총이익</td><td class="num">438</td><td class="num">580</td><td class="num">536</td><td class="num">540</td></tr>
+    <tr><td>판관비</td><td class="num">346</td><td class="num">412</td><td class="num">487</td><td class="num">602</td></tr>
+    <tr><td>영업이익</td><td class="num">92</td><td class="num up2">168</td><td class="num">49</td><td class="num dn">-62</td></tr>
+    <tr><td>OPM</td><td class="num">6.1%</td><td class="num up2">8.8%</td><td class="num">2.6%</td><td class="num dn">-3.2%</td></tr>
+    <tr><td>당기순이익</td><td class="num">459*</td><td class="num">626</td><td class="num dn">-386</td><td class="num dn">-616</td></tr>
+    <tr><td>EPS (원)</td><td class="num">3,090</td><td class="num">4,212</td><td class="num dn">-2,597</td><td class="num dn">-4,175</td></tr>
+    <tr><td>영업현금흐름</td><td class="num">120</td><td class="num">280</td><td class="num">85</td><td class="num">~50</td></tr>
+    <tr><td>현금+단기금융자산</td><td class="num">450</td><td class="num">580</td><td class="num">450</td><td class="num">~380</td></tr>
+    <tr><td>총자산</td><td class="num">3,200</td><td class="num">3,650</td><td class="num">3,750</td><td class="num">3,675</td></tr>
+    <tr><td>총부채</td><td class="num">1,850</td><td class="num">2,050</td><td class="num">2,180</td><td class="num">2,246</td></tr>
+    <tr><td>자본총계</td><td class="num">1,350</td><td class="num">1,600</td><td class="num">1,570</td><td class="num">1,430</td></tr>
+    <tr><td>부채비율</td><td class="num">137%</td><td class="num">128%</td><td class="num">139%</td><td class="num dn">157%</td></tr>
+  </tbody>
+</table>
+<p class="note">* 2022 순이익 459억은 칩스앤미디어 지분 매각차익 515억(관계기업투자손익) 일회성 반영분 포함. 2024~2025 적자는 1) R&amp;D 인력 확충 + 신제품 개발비 지속 증가, 2) 2025년 무형자산손상차손 약 -550억(자체 개발 IP 평가손실) 반영이 주된 원인.</p>
+<p class="note">⚠️ 텔레칩스의 2025 영업손실 -62억은 매출이 +3.3% 성장했음에도 발생 — <strong>판관비 +24% YoY 증가</strong>가 핵심. 신제품(돌핀3·엔돌핀·VCP3 MCU) 양산을 위한 인력 충원, 해외 프로모션 확대, 글로벌 인증(ASIL-D, ASPICE) 비용 누적의 결과. 무형자산손상차손은 비현금 항목으로 영업이익에는 영향 없으나 순이익은 크게 악화. 2026년 신제품 매출 본격 기여 시 영업레버리지 효과로 이익 회복 가능 (유진증권 영업이익 178억 전망).</p>
+</div>
+
+<!-- 5. 핵심 투자아이디어 -->
+<span class="section-anchor" id="s7"></span>
+<div class="section">
+<h2>5. 핵심 투자아이디어</h2>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">🎯</span>
+    <span class="thesis-tag">Thesis #1</span>
+    <div class="thesis-title">콘티넨탈 돌핀3 양산 — 5년 만에 찾아온 글로벌 티어1 진입의 결실</div>
+  </div>
+  <div class="thesis-body">
+    <p>2023.12 텔레칩스는 독일 글로벌 티어1 <span class="hl-blue">콘티넨탈에 돌핀3 SoC 공급계약</span>을 체결했다. 한국 차량용 반도체 팹리스가 NXP·미디어텍·르네사스 등 글로벌 강자들을 비딩에서 제치고 따낸 첫 메이저 디자인 윈이다. 2025 H2 양산 시작 → <strong>2026년 본격 매출 기여</strong>가 시작된다.</p>
+    <p>핵심 의미: 콘티넨탈은 BMW·메르세데스·폭스바겐·포드·GM 등 거의 모든 글로벌 OEM에 모듈을 납품하는 <strong>"OEM-OEM-OEM 게이트웨이"</strong>. 한 번 진입하면 다수의 완성차 모델에 자동 확산. 신한투자증권 추정: <span class="hl-green">현대차/기아 대비 1/2~1/3 수준의 공급 물량 + ASP 약 2배</span> = 단일 고객으로 매출 기여도 매우 큼. 장기적으로 현대차 비중을 60% → 50% 이하로 낮추는 <span class="hl-green">고객 다변화의 결정적 한 수</span>.</p>
+  </div>
+</div>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">⚡</span>
+    <span class="thesis-tag">Thesis #2</span>
+    <div class="thesis-title">SDV 전환 = 칩 수 폭증 = 텔레칩스의 시간</div>
+  </div>
+  <div class="thesis-body">
+    <p>내연기관 차량의 반도체는 200~300개. <strong>자율주행(L3+) 차량은 최대 2,000개 이상</strong> 필요. 즉 한 대당 반도체 가치(SAM)가 <span class="hl-green">10배 이상 확장</span>. 텔레칩스는 이 확장의 모든 영역(인포테인먼트 AP, 콕핏 SoC, ADAS NPU, 게이트웨이, MCU)에 제품 라인업을 갖췄다.</p>
+    <p>주요 신제품: <strong>엔돌핀(N-Dolphin)</strong> NPU 탑재 ADAS 비전 프로세서, <strong>AXON</strong> 게이트웨이 칩(ASIL-D), <strong>A2X</strong> NPU 가속기, <strong>VCP3 MCU</strong> 바디샷시용 국산화 칩. <span class="hl-blue">SDV(Software-Defined Vehicle) 전환 시 ADAS·NPU 칩 신규 공급</span> 기회가 본격 열린다. 텔레칩스 CEO 이장규 대표: <em>"AP·NPU·HPC가 출시되는 2028년 이후 매출이 크게 늘 것"</em>.</p>
+  </div>
+</div>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">⚠️</span>
+    <span class="thesis-tag">Thesis #3</span>
+    <div class="thesis-title">2년 연속 적자 — R&amp;D 투자 회수 불확실성이 핵심 리스크</div>
+  </div>
+  <div class="thesis-body">
+    <p>2024 영업이익 49억(-71% YoY) → 2025 <span class="hl-red">영업손실 -62억(적자전환)</span> + 순손실 <span class="hl-red">-616억</span>(무형자산손상차손 -550억 포함). 매출은 성장 중이나 신제품 R&amp;D 투자 부담이 손익을 압박.</p>
+    <p>핵심 리스크: <span class="hl-red">신제품(돌핀3·엔돌핀·VCP3) 양산 일정 지연</span> 시 R&amp;D 비용 회수 시점 늦어져 2026년에도 적자 지속 가능. <span class="hl-red">현대차/기아 의존도 60%+</span>로 한국 자동차 판매 둔화 직격탄. <span class="hl-red">유럽 완성차 시장 위기</span> 지속 시 콘티넨탈향 양산 ramp 지연 가능. 단, 2025년 매출 +3.3% 성장 + 해외매출 65% 돌파 + Royalty +27% YoY로 <span class="hl-green">탑라인 회복 신호</span>는 명확. 2026 신제품 매출 본격 기여 시 영업레버리지 효과로 이익 V자 반등 가능.</p>
+  </div>
+</div>
+
+<!-- 5-1. 핵심 변동 요인 -->
+<span class="section-anchor" id="s8"></span>
+<div class="section">
+<h2>5-1. 핵심 변동 요인</h2>
+<table>
+  <thead><tr><th>구분</th><th>요인</th><th class="center">방향</th><th>설명</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>외부</strong></td><td>SDV 전환 가속</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>차량 1대당 반도체 200~300개 → 2,000개+ 확대. 텔레칩스 전 제품군이 수혜</td></tr>
+    <tr><td>유럽 완성차 시장 회복</td><td class="center"><span class="badge badge-neu">중립 ●</span></td><td>고금리·경기 둔화로 위기 지속. 콘티넨탈향 양산 본격화 시점이 핵심 변수</td></tr>
+    <tr><td>현대차/기아 신차 판매</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>매출의 60~65%. 2026 EV·SDV 신차 라인업 확대 시 직접 수혜</td></tr>
+    <tr><td>NXP/르네사스 경쟁</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>글로벌 차량 반도체 강자. 텔레칩스는 보급형/중가형 시장 중심으로 차별화</td></tr>
+    <tr><td>중국 차량 반도체 굴기</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>중국 OEM의 자국 칩 채택 확대 추세. 텔레칩스 중국 매출 위협 가능</td></tr>
+    <tr><td>삼성 파운드리 공급</td><td class="center"><span class="badge badge-neu">중립 ●</span></td><td>텔레칩스는 삼성 14nm/7nm 활용. 단, 신제품(엔돌핀)은 삼성 5nm 채택 예정 — 공정 안정성이 양산 성패</td></tr>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>내부</strong></td><td>콘티넨탈 돌핀3 양산</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>2025 H2 ramp → 2026 본격. ASP 돌핀+ 대비 2배. 매출 기여 분기 50~80억 예상</td></tr>
+    <tr><td>해외매출 비중 확대</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>1Q25 50% → 2Q25 60% → 3Q25 65% 가파른 상승. 2026 70%+ 돌파 가능</td></tr>
+    <tr><td>엔돌핀 NPU 양산</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>ADAS NPU 첫 양산. 러시아 등 신흥 OEM 채택. 2025~2026 매출 기여 시작</td></tr>
+    <tr><td>R&amp;D 인력 확충 부담</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>2024~2025 인력 50%+ 확충. 판관비 +24% YoY. 양산 매출 미발생 시 적자 지속</td></tr>
+    <tr><td>무형자산손상차손 재발</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>2025 -550억 손상. 2026 신제품 회수 부진 시 추가 손상 가능 — 자기자본 감소</td></tr>
+    <tr><td>VCP3 MCU 국산화</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>2026 개발 완료 → 2027 양산. 바디샷시용은 신뢰성·안정성 기준 ↑로 진입장벽 높음</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 5-2. 분기별 트래킹 -->
+<span class="section-anchor" id="s9"></span>
+<div class="section">
+<h2>5-2. 분기별 실적 트래킹 (최근 12분기)</h2>
+<p class="note" style="margin-bottom:8px">⚠️ 텔레칩스는 미국식 컨퍼런스콜·가이던스를 별도로 진행하지 않음. 본 트래킹은 분기 잠정실적 발표 + 증권사 컨센서스 비교 기준.</p>
+<table class="cc-table">
+  <colgroup>
+    <col style="width:50px"><col><col><col><col>
+  </colgroup>
+  <thead>
+    <tr><th class="year-col">년</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="year-label">2023</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'23</div><div class="cc-msg">매출 약 460억. 차량 AP 견조. 일본 OEM 비중 30%대 진입</div><div class="cc-guide">컨센 ~440억 → 실제 460억 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'23</div><div class="cc-msg">443억. 영업이익 31억 (OPM 7%). 해외 비중 30%대 유지</div><div class="cc-guide">컨센 ~430억 → 실제 443억 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'23</div><div class="cc-msg">525억 <strong>역대 최대</strong>. OPM 9.9%. 해외 매출 폭증</div><div class="cc-guide">컨센 ~480억 → 실제 525억 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'23</div><div class="cc-msg">445억. <strong>콘티넨탈 돌핀3 계약 체결</strong>. 영업이익 22억(+80% YoY)</div><div class="cc-guide">컨센 ~440억 → 실제 445억 <span class="cc-hit">✅</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2024</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'24</div><div class="cc-msg">459억(+1% YoY). 영업이익 26억. AURA 레이더 기업 지분투자</div><div class="cc-guide">컨센 ~470억 → 실제 459억 <span class="cc-miss">❌</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'24</div><div class="cc-msg">460억(+4%). 영업이익 30억. 안정적 흐름</div><div class="cc-guide">컨센 ~460억 → 실제 460억 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'24</div><div class="cc-msg">476억(-9% YoY). 영업이익 14억(-78%) — 차량 시장 둔화 + R&amp;D 비용 증가</div><div class="cc-guide">컨센 ~510억 → 실제 476억 <span class="cc-miss">❌</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'24</div><div class="cc-msg">476억(+7%). 영업이익 14억. 4분기 둔화 지속</div><div class="cc-guide">컨센 ~490억 → 실제 476억 <span class="cc-miss">❌</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2025</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'25</div><div class="cc-msg">454억(-1%). 영업이익 10억(-62%). R&amp;D 비용 본격 증가</div><div class="cc-guide">컨센 ~470억 → 실제 454억 <span class="cc-miss">❌</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'25</div><div class="cc-msg">443억(-3.7%). <strong>영업손실 -36억 적자전환</strong>. Cockpit/Royalty 두 자릿수 성장</div><div class="cc-guide">컨센 511억/30억 → 실제 443억/-36억 <span class="cc-miss">❌</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'25</div><div class="cc-msg">502억(+5.5%). <strong>해외매출 65%</strong>. 영업손실 -27억(적자 지속)</div><div class="cc-guide">컨센 518억/2억 → 실제 502억/-27억 <span class="cc-miss">❌</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'25</div><div class="cc-msg">~529억. <strong>2025 연간 영업손실 -62억, 순손실 -616억(무형자산손상)</strong></div><div class="cc-guide">컨센 526억/21억 → 실제 ~529억/~-9억 <span class="cc-miss">❌</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2026</td>
+      <td><div class="cc-cell cc-latest"><div class="cc-quarter">Q1'26 ★ 발표예정</div><div class="cc-msg">5/18 발표. <strong>콘티넨탈 돌핀3 첫 분기 매출 기여</strong> 여부가 핵심</div><div class="cc-guide">컨센 매출 526억, 영업이익 ~10억</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'26</div><div class="cc-msg">8월 발표 예정</div><div class="cc-guide">콘티넨탈 매출 본격 기여 시작</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'26</div><div class="cc-msg">11월 발표 예정</div><div class="cc-guide">엔돌핀(NPU) 양산 ramp 본격화</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'26</div><div class="cc-msg">2027.02 발표 예정</div><div class="cc-guide">2026 흑자전환 여부 확인 (유진 178억 전망)</div></div></td>
+    </tr>
+  </tbody>
+</table>
+<p class="note">* 텔레칩스는 2024년 3분기부터 5분기 연속 컨센서스 미달 — 시장이 신제품 양산 일정을 너무 낙관적으로 추정. 단, 매출 자체는 2024 H2 저점 → 2025 H2 회복 패턴 명확. 2026 Q1 실적이 콘티넨탈 매출 가시화의 첫 시험대가 될 전망. 유진증권 2026 매출 2,184억(+13%) / 영업이익 178억 전망 — 달성 시 V자 반등 가능.</p>
+</div>
+
+<!-- 5-3. 최근 분기 심층 -->
+<span class="section-anchor" id="s10"></span>
+<div class="section">
+<h2>5-3. 2025년 연간 실적 심층 정리 (Q1'26 발표 전 점검)</h2>
+<div class="prose">
+  <p><strong>발표일</strong>: 2026.02.10 (연간 확정실적) · 다음 분기 실적 발표 예정 2026.05.18</p>
+  <p><strong>2025 연간 실적</strong>: 매출 <strong>1,928억</strong> (+3.3% YoY) / <strong>영업손실 -62억</strong> (전년 49억 → 적자전환) / <strong>당기순손실 -616억</strong> (전년 -386억) / 매출 +3% 성장에도 손익 악화는 1) 신제품 양산 위한 인력 확충 → 판관비 +24% YoY, 2) 무형자산손상차손 약 -550억(자체 개발 IP 평가손실 일회성).</p>
+  <p><strong>주가 반응</strong>: 2025 4월 9,900원 저점 → 2026 5월 13,900원(+40%) — 적자 발표에도 콘티넨탈 양산 기대 + Q3'25 매출 회복(+5.5%) + 해외매출 65% 돌파로 시장은 <em>"적자는 바닥, 성장 모멘텀 유효"</em> 관점. 다만 19,700원 고점 대비 -30% 수준으로 본격 반등에는 신제품 매출 가시화 필요.</p>
+</div>
+<h3 style="margin-top:1.2rem">2025년 핵심 메시지 5가지</h3>
+<div class="cc-sticker-box">
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">1</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">매출 +3.3% 성장 vs 영업손실 -62억 — <span class="hl-neg">투자 부담의 고통</span></div>
+      <div class="cc-sticker-desc">2025 매출 1,928억 (역대 최대 1,911억 갱신). 그러나 신제품 양산 준비로 R&amp;D·인력·해외 프로모션 비용 폭증 → <span class="hl-neg">판관비 487→602억 (+24%)</span>. 매출총이익은 540억으로 큰 변화 없음 — <strong>판관비가 영업적자의 100% 원인</strong></div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">2</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">해외매출 비중 <span class="hl-pos">30%대 → 65%</span> 가파른 상승</div>
+      <div class="cc-sticker-desc">1Q25 50% → 2Q25 60%(북미) → 3Q25 65%(일본·동남아). <strong>2026년 50% 돌파 목표를 1년 일찍 달성</strong>. 일본 토요타·혼다 라인, 폭스바겐 돌핀+ 양산, 콘티넨탈 진입 결과. <span class="hl-pos">현대차 의존도 종속 탈피의 결정적 변곡점</span></div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">3</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">콘티넨탈 돌핀3 <span class="hl-pos">2025 H2 양산 시작</span> — 2026 본격 매출</div>
+      <div class="cc-sticker-desc">2023.12 계약 → 2년 만에 양산 진입. ASP는 돌핀+ 대비 약 2배 추정. 신한투자: <em>"단일 고객 매출 기여도 현대차 다음 2위 가능"</em>. <span class="hl-pos">2026 분기 50~80억 매출 추가 기여</span> 전망 — 2026 연간 매출 2,184억(+13%) 컨센서스의 핵심 동인</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">4</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">Cockpit + Royalty <span class="hl-pos">두 자릿수 성장</span> — 수익성 칩 비중 확대</div>
+      <div class="cc-sticker-desc">2Q25 Cockpit +19.1% YoY, Royalty +26.6% YoY. 3Q25 Cockpit +13.9%. <strong>매출 비중은 작지만 마진율이 높은</strong> 사업의 더블 디지트 성장 — 향후 GM 회복의 키. SDV 시대 IP 라이선스 수요 폭증의 직접 수혜</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">5</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">무형자산손상차손 <span class="hl-neg">-550억 일회성 반영</span></div>
+      <div class="cc-sticker-desc">2025 순손실 -616억의 주범. 자체 개발 IP의 회수가능액이 장부가액 미달로 평가 → <span class="hl-neg">비현금 손실</span>로 처리. 영업이익에는 영향 없으나 자기자본 -140억 감소(부채비율 139→157% 상승). <strong>2026 신제품 매출 성공 시 추가 손상 우려 해소</strong>, 실패 시 재발 가능</div>
+    </div>
+  </div>
+</div>
+
+<h3 style="margin-top:1.2rem">2026년 컨센서스</h3>
+<table>
+  <thead><tr><th>지표</th><th class="num">2024 실제</th><th class="num">2025 실제</th><th class="num">2026 컨센서스 (유진)</th><th class="num">YoY</th></tr></thead>
+  <tbody>
+    <tr><td>매출 (억)</td><td class="num">1,866</td><td class="num">1,928</td><td class="num hl"><strong>2,184</strong></td><td class="num up2">+13.3%</td></tr>
+    <tr><td>영업이익 (억)</td><td class="num">49</td><td class="num dn">-62</td><td class="num hl"><strong>178</strong></td><td class="num up2">흑자전환</td></tr>
+    <tr><td>OPM</td><td class="num">2.6%</td><td class="num dn">-3.2%</td><td class="num hl"><strong>~8.1%</strong></td><td class="num up2">+11.3%p</td></tr>
+    <tr><td>EPS (원)</td><td class="num dn">-2,597</td><td class="num dn">-4,175</td><td class="num hl"><strong>1,177</strong></td><td class="num up2">흑자전환</td></tr>
+    <tr><td>해외매출 비중</td><td class="num">~50%</td><td class="num">65%</td><td class="num hl"><strong>~70%</strong></td><td class="num up2">+5%p</td></tr>
+    <tr><td>현재 주가 PER</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">~13.7배</td><td class="num">유사기업 평균 18.6배</td></tr>
+  </tbody>
+</table>
+<p class="note">* 유진투자증권 2025.11.07 보고서 기준 컨센서스. 목표주가 17,000원 = 2026 EPS 1,177원 × PER 14.5배. 현재 주가 13,900원 대비 +22% 업사이드. 2026 흑자전환 시나리오 핵심 가정: 1) 콘티넨탈 양산 본격화, 2) 엔돌핀 매출 기여 시작, 3) 판관비 +5% 이내 통제. 유진 외 신한·NH는 커버리지 중단 또는 보고서 미발간 상태.</p>
+
+<h3 style="margin-top:1.5rem">📊 IR 자료 — 텔레칩스 공식 IR 미발행 (대체 자료)</h3>
+<div class="ir-na-box">
+<p>📌 <strong>텔레칩스는 미국식 분기 IR 슬라이드를 발행하지 않습니다.</strong> 한국 중견 팹리스 기업 특성상 별도 Earnings Presentation PDF가 없으며, IR은 1) 분기 사업보고서(DART), 2) IR 페이지 회사 소개자료, 3) CES·IAA 등 전시회 부스 자료로 대체됩니다.</p>
+<p style="margin-top:8px">대체 IR 자료:</p>
+<ul style="padding-left:1.3rem;margin-top:4px">
+  <li><a href="https://www.telechips.com/kr/ir/financial.do" target="_blank" style="color:#378ADD">텔레칩스 IR 페이지 — 재무정보 (분기 잠정실적)</a></li>
+  <li><a href="https://dart.fss.or.kr/dsab007/main.do?selectKey=05445020260210" target="_blank" style="color:#378ADD">DART — 텔레칩스 매출액 또는 손익구조 30% 이상 변동 공시 (2026.02.10)</a></li>
+  <li>유진투자증권 2025.11.07 텔레칩스 보고서 (Q3'25 Review · 2026 Outlook) — 본 리포트 5-2/5-3절 데이터 출처</li>
+</ul>
+<p style="margin-top:8px">한국 중견기업의 경우 <strong>증권사 분석 보고서가 사실상 IR 역할</strong>을 합니다. 본 리포트의 컨센서스·전망치는 유진투자증권 박종선 연구원 보고서를 주로 참조했습니다.</p>
+</div>
+</div>
+
+<!-- 5-4. 시나리오 -->
+<span class="section-anchor" id="s11"></span>
+<div class="section">
+<h2>5-4. 강세 / 약세 시나리오</h2>
+<div class="scenario-stack">
+  <div class="scenario-box s-bull">
+    <div class="scenario-title">🟢 강세 시나리오</div>
+    <div class="s-item"><div class="s-case">콘티넨탈 돌핀3 양산 무사 ramp + 추가 모델 확대</div><div class="s-sub">2026 분기 50~80억 매출 기여 → 연간 +250~300억 추가. ASP 2배 효과로 GM 전사 평균 +2~3%p 상승. 2027 BMW·메르세데스 추가 채택 시 매출 +500억 가능</div></div>
+    <div class="s-item"><div class="s-case">엔돌핀 NPU + AXON 게이트웨이 본격 양산</div><div class="s-sub">SDV 차량 1대당 텔레칩스 칩 5~7개 채택 가능. 단가 합산 ASP 차원이 다름. 2027~2028 매출 3,000억 돌파 가시성</div></div>
+    <div class="s-item"><div class="s-case">판관비 통제 + 영업레버리지 효과</div><div class="s-sub">R&amp;D 인력 2026 안정화. 매출 +13% 성장 vs 판관비 +5% 통제 시 영업이익 178억(OPM 8.1%) 달성. 2027 OPM 10%+ 회복 가능</div></div>
+    <div class="s-item"><div class="s-case">현대차 EV/SDV 신차 라인업 확대</div><div class="s-sub">아이오닉/EV3/EV4 콕핏 채택 + 기아 PV5 + 제네시스 GV90 등 신차 다수 양산. 매출 비중 60% 안정화 + 신차 ASP 상승</div></div>
+    <div class="s-item"><div class="s-case">VCP3 MCU 국산화 성공</div><div class="s-sub">2026 개발 완료 → 2027 양산. 바디샷시용 MCU 시장 진입. NXP·인피니언 독점 시장 침투. 한국 정부 차량 반도체 국산화 정책 수혜</div></div>
+    <div class="s-item"><div class="s-case">목표주가 17,000원 → 30,000원 회복</div><div class="s-sub">2026 EPS 1,177원 × PER 18배(유사기업 평균) = 21,000원. 2027 EPS 2,000원+ 시 30,000원 가능. 2024년 4월 고점(19,700원) 회복 + 알파</div></div>
+  </div>
+  <div class="scenario-box s-bear">
+    <div class="scenario-title">🔴 약세 시나리오</div>
+    <div class="s-item"><div class="s-case">콘티넨탈 돌핀3 양산 지연/실패</div><div class="s-sub">유럽 OEM 신차 출시 지연 + 차량 인증 지연 시 2026 매출 기여도 미미. 2026 매출 컨센서스 -10~-15% 미달 → 영업이익 단기 적자 지속</div></div>
+    <div class="s-item"><div class="s-case">현대차/기아 판매 부진</div><div class="s-sub">매출의 60~65% 의존. 한국 EV 판매 둔화 + 미국 IRA 변동 시 직격탄. 2026 매출 -5~-10% 감소 가능</div></div>
+    <div class="s-item"><div class="s-case">R&amp;D 인력 비용 추가 증가</div><div class="s-sub">신제품(엔돌핀·VCP3) 추가 인력 충원 시 판관비 +10%+ 가능. 매출 +10% 성장 가정 시 영업이익 흑자전환 어려움 — 3년 연속 적자 위험</div></div>
+    <div class="s-item"><div class="s-case">중국 차량 반도체 굴기</div><div class="s-sub">중국 OEM 자국 칩(Geely, BYD 등 자체 개발) 채택 확대. 텔레칩스 중국 매출 -20%+ 감소 가능. 미국 수출규제 추가 시 추가 압박</div></div>
+    <div class="s-item"><div class="s-case">무형자산손상차손 재발</div><div class="s-sub">2025 -550억 손상 후 2026 추가 손상 시 자기자본 -200억 감소. 부채비율 170%+ 진입. 운영자금 조달 압박 가능</div></div>
+    <div class="s-item"><div class="s-case">목표주가 17,000원 → 9,900원 저점 재테스트</div><div class="s-sub">2026 적자 지속 + 매출 둔화 시 PBR 0.7배 시나리오 → 시총 1,500억 (주가 9,900원 수준). 2025 4월 저점 재테스트 가능</div></div>
+  </div>
+</div>
+</div>
+
+<!-- 6. Worth Watching -->
+<span class="section-anchor" id="s12"></span>
+<div class="section">
+<h2>6. Worth Watching Events</h2>
+<div class="ww-sticker-box">
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.05.18</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q1'26 잠정실적 발표 ★ 가장 임박</div>
+      <div class="ww-sticker-point">컨센서스 매출 526억 (+16% YoY), 영업이익 ~10억 흑자전환 여부. <strong>콘티넨탈 돌핀3 첫 분기 매출 기여</strong> 여부가 핵심</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026 H1</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">콘티넨탈 돌핀3 1차 ramp 본격화</div>
+      <div class="ww-sticker-point">유럽 주요 완성차(VW·BMW·메르세데스 추정) 신차 모델 양산 시작. ASP 돌핀+ 대비 2배 효과 본격 반영</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.06</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">CES Asia / Embedded World 2026 참가</div>
+      <div class="ww-sticker-point">엔돌핀 NPU + 돌핀5 시연. 글로벌 OEM 추가 비딩 발표 가능. 신규 디자인 윈 모멘텀</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.08</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q2'26 잠정실적 발표</div>
+      <div class="ww-sticker-point">콘티넨탈 매출 본격 기여 분기. 영업이익 흑자전환 가시화 여부. 해외매출 비중 70% 돌파 여부</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.09</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">IAA Mobility 2026 (독일 뮌헨)</div>
+      <div class="ww-sticker-point">유럽 최대 모빌리티 박람회. 콘티넨탈 공동부스 가능성. AXON 게이트웨이 + A2X NPU 신제품 발표</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.11</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q3'26 잠정실적 발표</div>
+      <div class="ww-sticker-point">엔돌핀 NPU 양산 ramp 본격화. 2026 연간 흑자전환 가시성 + 2027 가이던스 시사</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027.01</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">CES 2027 — VCP3 MCU 양산 발표</div>
+      <div class="ww-sticker-point">바디샷시용 MCU 양산 시작. 한국 차량 반도체 국산화 상징적 이벤트. 정부 정책 수혜 가시화</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027.02</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q4'26 + 2026 연간 결산</div>
+      <div class="ww-sticker-point">매출 2,184억(+13%) 달성 여부. 영업이익 178억 흑자전환 확인. <strong>2년 적자 종결 여부</strong> 결정적 분기</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027 H2</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">엔돌핀(N-Dolphin) ADAS 양산 본격화</div>
+      <div class="ww-sticker-point">NPU 탑재 ADAS 비전 프로세서. 러시아 포함 신흥 OEM 본격 매출. SDV 시대 진입 신호탄</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2028+</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">매출 5,000억 + 글로벌 20위 팹리스 진입 목표</div>
+      <div class="ww-sticker-point">이장규 대표 공언: <em>"AP·NPU·HPC 출시되는 2028년 이후 매출 크게 늘 것"</em>. 수주잔고 3~4조원 확보 필요</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 7. 데이터 출처 -->
+<span class="section-anchor" id="s13"></span>
+<div class="section">
+<h2>7. 데이터 출처</h2>
+<div class="source-box">
+  <ul style="padding-left:1.2rem">
+    <li>텔레칩스 DART 분기·연간 사업보고서 (2018~2025)</li>
+    <li>텔레칩스 2025 연간 실적 공시 (2026.02.10) — 매출액 또는 손익구조 30% 이상 변동</li>
+    <li>유진투자증권 텔레칩스 분석 보고서 — 2025.08.08 (Q2'25 Review), 2025.11.07 (Q3'25 Review · 2026 Outlook)</li>
+    <li>신한투자증권 텔레칩스 보고서 (2024.04.18, 목표가 30,000원)</li>
+    <li>한국기업데이터(KED) FnGuide — 분기별 매출/영업이익/순이익 시계열</li>
+    <li>주가·시총·EPS 데이터: 네이버 금융, Investing.com, Google Finance (2026.05 기준)</li>
+    <li>텔레칩스 공식 보도자료 — 2023.12 콘티넨탈 돌핀3 계약 / 2024.01 CES 2024 / 2024.03 AURA 투자</li>
+    <li>분석 기사: ZDNet Korea, 디지털데일리, 파이낸셜뉴스, 더일렉, 디지털투데이</li>
+    <li>환율: 2026.05.07 USD/KRW 1,448원</li>
+    <li>분석일: 2026년 5월 7일</li>
+  </ul>
+  <p style="margin-top:8px;color:#bbb">⚠️ 텔레칩스는 미국식 컨퍼런스콜·가이던스를 진행하지 않으며, 분기 잠정실적 + 사업보고서 + 증권사 추정치를 종합. 2018~2021 일부 분기 제품별 매출 분류는 추정치 (당시는 DMP 단일 항목 공시). 무형자산손상차손 -550억은 비현금 일회성 항목으로 영업이익에 영향 없음. 2026 컨센서스는 유진투자증권 단일 보고서 기준 — 다른 증권사 커버리지 부재 또는 보고서 미발간 상태.</p>
+</div>
+</div>
+
+<!-- 7-1. Reference -->
+<span class="section-anchor" id="s14"></span>
+<div class="section">
+<h2>7-1. Reference</h2>
+<div class="ref-list">
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.telechips.com/kr/main.do" target="_blank">텔레칩스 공식 홈페이지</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.telechips.com/kr/ir/financial.do" target="_blank">텔레칩스 IR — 재무정보</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://dart.fss.or.kr/dsab007/main.do?selectKey=05445020260210" target="_blank">DART — 텔레칩스 2025 연간실적 공시 (2026.02.10)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.telechips.com/kr/product/list.do" target="_blank">텔레칩스 제품 페이지 — 돌핀/엔돌핀/AXON 라인업</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">IR Page</span><a href="https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?gicode=A054450" target="_blank">FnGuide — 텔레칩스 기업개요 및 재무</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.eugenefn.com/common/files/amail/20250808_054450_jongsun.park_2426.pdf" target="_blank">유진투자증권 — 텔레칩스 Q2'25 Review (2025.08.08)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://file.alphasquare.co.kr/media/pdfs/company-report/%EC%9C%A0%EC%A7%8420251107%ED%85%94%EB%A0%88%EC%B9%A9%EC%8A%A4.pdf" target="_blank">유진투자증권 — 텔레칩스 Q3'25 Review · 2026 Outlook (2025.11.07)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://files-scs.pstatic.net/2024/11/22/sHHARarucp/241122_%ED%85%94%EB%A0%88%EC%B9%A9%EC%8A%A4.pdf" target="_blank">FnGuide 기업분석 — 텔레칩스 (2024.11.22)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=629683" target="_blank">디지털투데이 — 텔레칩스 2025 영업손실 -62억 적자전환 (2026.02.10)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://zdnet.co.kr/view/?no=20231215084444" target="_blank">ZDNet Korea — 텔레칩스, 콘티넨탈에 차량용 AP '돌핀3' 공급 (2023.12.15)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://zdnet.co.kr/view/?no=20231206161427" target="_blank">ZDNet Korea — 텔레칩스, 차량용 AP로 2025년 해외매출 50% (2023.12.06)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.fnnews.com/news/202401131619168326" target="_blank">파이낸셜뉴스 — 텔레칩스, AI 대응 차량용 반도체 공개 [CES 2024]</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://m.ddaily.co.kr/page/view/2023090416342114101" target="_blank">디지털데일리 — 텔레칩스, IAA 2023 데뷔 ADAS 반도체 '엔돌핀' 공개</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.thelec.kr/news/articleView.html?idxno=25192" target="_blank">더일렉 — 텔레칩스, CES 2024 돌핀5·엔돌핀 선봬</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://namu.wiki/w/%ED%85%94%EB%A0%88%EC%B9%A9%EC%8A%A4" target="_blank">나무위키 — 텔레칩스</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://ko.wikipedia.org/wiki/%ED%85%94%EB%A0%88%EC%B9%A9%EC%8A%A4" target="_blank">위키백과 — 텔레칩스</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://comp.wisereport.co.kr/company/c1010001.aspx?cmp_cd=054450" target="_blank">기업모니터 — 텔레칩스 기업현황</a></div>
+</div>
+<p class="note">* 공식 자료(텔레칩스·DART·FnGuide) 5개, 증권사 분석 3개, 뉴스 6개, 위키 3개 — 총 17개 레퍼런스. 텔레칩스는 코스닥 중견 팹리스로 현재 정기 커버리지 증권사는 유진투자증권 1곳. 신한·NH 등은 2024년 이후 보고서 미발간. 한국 차량용 반도체 국산화 정책 수혜주로 향후 커버리지 확대 가능.</p>
+</div>
+
+<div class="footer">텔레칩스 (Telechips · 054450) 기업분석 · 2026.05.07 · 개인 사용 목적</div>
+</div>
+
+<script>
+// 32분기 라벨 — Q1'18 ~ Q4'25
+const L32=["Q1'18","Q2'18","Q3'18","Q4'18","Q1'19","Q2'19","Q3'19","Q4'19","Q1'20","Q2'20","Q3'20","Q4'20","Q1'21","Q2'21","Q3'21","Q4'21","Q1'22","Q2'22","Q3'22","Q4'22","Q1'23","Q2'23","Q3'23","Q4'23","Q1'24","Q2'24","Q3'24","Q4'24","Q1'25","Q2'25","Q3'25","Q4'25"];
+
+// 4개 사업부 - 32분기 (억원), 2018~2021은 DMP 단일 → 추정 분배
+// IVI: 인포테인먼트 AP (전체의 75~80%)
+const ivi      = [240,250,260,270, 250,260,270,290, 200,210,220,240, 270,280,290,300, 320,340,330,310, 350,340,410,347, 368,365,372,365, 340,324,400,410];
+// Cockpit: 디지털 클러스터 + HUD
+const cockpit  = [25,28,30,32, 30,32,35,38, 25,28,32,38, 50,55,58,62, 60,55,52,55, 50,53,63,53, 52,55,60,62, 63,66,68,70];
+// Royalty/License
+const royalty  = [10,11,12,13, 12,13,14,15, 10,11,13,14, 16,18,20,22, 18,20,22,20, 20,22,26,22, 19,22,22,25, 26,28,22,25];
+// 기타: MCU/NPU/Mobile TV/신제품
+const others   = [25,26,28,30, 28,30,32,34, 22,24,28,30, 30,32,30,30, 28,28,28,30, 30,28,26,23, 20,18,22,24, 25,25,12,24];
+
+const totalRev=L32.map((_,i)=>ivi[i]+cockpit[i]+royalty[i]+others[i]);
+
+// 영업이익률 - 2018~2021 추정, 2022~2025 실제
+const opm=[
+  2.5,3,3,3.5,        // 2018
+  3,3.5,4,4,          // 2019
+  -2,1,3,4,           // 2020 코로나
+  4,5,5.5,6,          // 2021
+  5,6,7,7,            // 2022
+  4,7,9.9,4.9,        // 2023 - 실제
+  5.7,6.5,2.9,2.9,    // 2024 - 실제
+  2.2,-8.1,-5.4,-1.7  // 2025 - 실제 (Q2 적자전환)
+];
+
+const gc='rgba(0,0,0,0.05)',tc='#999';
+const xT={color:tc,font:{size:9},maxRotation:45,autoSkip:true,maxTicksLimit:18};
+const yT={color:tc,font:{size:11}};
+
+// 주가 데이터 (월간 근사치, 2024.01~2026.05)
+const priceLabels=["24/01","24/02","24/03","24/04","24/05","24/06","24/07","24/08","24/09","24/10","24/11","24/12","25/01","25/02","25/03","25/04","25/05","25/06","25/07","25/08","25/09","25/10","25/11","25/12","26/01","26/02","26/03","26/04","26/05"];
+const priceData=[15500,17000,17500,19700,17800,16200,15500,14800,14200,14500,14000,13500,12800,12000,11200,9900,10500,11200,13800,11500,12500,13000,13190,13500,13800,13500,13700,13900,13900];
+
+// 주가 차트
+new Chart(document.getElementById('cPrice'),{
+  type:'line',
+  data:{
+    labels:priceLabels,
+    datasets:[{
+      label:'주가(원)',
+      data:priceData,
+      borderColor:'#378ADD',
+      backgroundColor:'rgba(55,138,221,0.08)',
+      fill:true,
+      pointRadius:2,
+      pointBackgroundColor:'#378ADD',
+      tension:0.3,
+      borderWidth:2
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.parsed.y.toLocaleString()+'원'}}},
+    scales:{
+      x:{grid:{color:gc},ticks:xT},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>v.toLocaleString()+'원'}}
+    }
+  }
+});
+
+// 사업부 차트
+const segBase=[
+  {label:'IVI',data:ivi,backgroundColor:'#1D9E75',stack:'s'},
+  {label:'Cockpit',data:cockpit,backgroundColor:'#378ADD',stack:'s'},
+  {label:'Royalty',data:royalty,backgroundColor:'#D85A30',stack:'s'},
+  {label:'기타',data:others,backgroundColor:'#BA7517',stack:'s'},
+];
+const segChart=new Chart(document.getElementById('cSeg'),{
+  type:'bar',
+  data:{labels:L32,datasets:segBase.map(d=>({...d}))},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+Math.round(ctx.parsed.y)+'억'}}},scales:{x:{grid:{color:gc},ticks:xT,stacked:true},y:{grid:{color:gc},ticks:{...yT,callback:v=>v+'억'},stacked:true}}}
+});
+window.toggleSeg=function(idx,el){const m=segChart.getDatasetMeta(idx);m.hidden=!m.hidden;el.classList.toggle('hidden',m.hidden);segChart.update();};
+
+// 매출+OPM 이중축
+new Chart(document.getElementById('cRev'),{
+  type:'bar',
+  data:{
+    labels:L32,
+    datasets:[
+      {type:'bar',label:'매출',data:totalRev,backgroundColor:'rgba(55,138,221,0.25)',borderColor:'#378ADD',borderWidth:1,yAxisID:'y'},
+      {type:'line',label:'OPM%',data:opm,borderColor:'#1D9E75',pointRadius:3,pointBackgroundColor:'#1D9E75',fill:false,tension:0.3,yAxisID:'y2',borderWidth:2}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:ctx=>ctx.datasetIndex===0?' '+Math.round(ctx.parsed.y)+'억':' OPM: '+ctx.parsed.y.toFixed(1)+'%'}}},
+    scales:{
+      x:{grid:{color:gc},ticks:xT},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>v+'억'},position:'left'},
+      y2:{grid:{display:false},ticks:{color:'#1D9E75',font:{size:10},callback:v=>v+'%'},position:'right',min:-12,max:12}
+    }
+  }
+});
+</script>
+</body>
+</html>
