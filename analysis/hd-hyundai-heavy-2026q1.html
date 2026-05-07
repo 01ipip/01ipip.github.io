@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HD현대중공업 (329180) 기업분석 — 2026 Q1</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f3ef;color:#1a1a1a;padding:2rem;font-size:14px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto}
+.header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #e0e0dc;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.header-title{font-size:22px;font-weight:700}
+.header-meta{font-size:12px;color:#888;margin-top:4px}
+.toc{margin-bottom:2rem;padding:0}
+.toc-title{font-size:12px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+.toc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:1.1rem 1.3rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.toc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(8,auto);grid-auto-flow:column;gap:6px 28px}
+@media(max-width:650px){.toc-grid{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}}
+.toc-link{display:flex;align-items:center;gap:10px;padding:5px 0;text-decoration:none;color:#444;font-size:13px;border-bottom:0.5px dashed transparent;transition:all .15s ease}
+.toc-link:hover{color:#378ADD;border-bottom-color:#cfe1f5}
+.toc-link .toc-num{color:#aaa;font-weight:700;font-size:12px;min-width:30px;font-variant-numeric:tabular-nums;flex-shrink:0}
+.toc-link:hover .toc-num{color:#378ADD}
+.toc-link .toc-text{flex:1}
+.toc-link.sub{padding-left:18px;font-size:12.5px;color:#666}
+.toc-link.sub .toc-num{font-size:11px;color:#bbb}
+.section{margin-bottom:3rem}
+.section-anchor{display:block;position:relative;top:-70px;visibility:hidden}
+h2{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:6px;border-bottom:1.5px solid #e0e0dc}
+h3{font-size:14px;font-weight:600;margin:1.2rem 0 .6rem;color:#333}
+.chart-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:20px;position:relative;width:100%}
+.note{font-size:11px;color:#999;margin-top:8px;line-height:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;font-size:12px;color:#666}
+.legend-item{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:3px 8px;border-radius:6px;transition:opacity .15s}
+.legend-item:hover{background:#e8e8e3}
+.legend-item.hidden{opacity:.3;text-decoration:line-through}
+.legend-static{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0dc;margin-bottom:.5rem}
+th{background:#ebebe6;font-weight:600;padding:7px 8px;text-align:left;border-bottom:1px solid #e0e0dc;white-space:nowrap;font-size:11.5px}
+th.center{text-align:center}
+td{padding:6px 8px;border-bottom:0.5px solid #f0f0ee;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafaf6}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.center{text-align:center}
+.hl{background:#fffbe6 !important}
+.dn{color:#D85A30}
+.up2{color:#1D9E75}
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
+@media(max-width:650px){.overview-grid{grid-template-columns:1fr}}
+.overview-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.overview-box h4{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.kv{display:flex;justify-content:space-between;align-items:flex-start;padding:4px 0;border-bottom:0.5px solid #f5f4f0;font-size:12.5px;gap:10px}
+.kv:last-child{border-bottom:none}
+.kv-key{color:#666;min-width:90px;flex-shrink:0}
+.kv-val{font-weight:600;text-align:right;flex:1}
+.seg-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:1rem}
+.seg-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.seg-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:8px}
+.seg-card-name{font-size:13px;font-weight:700}
+.seg-card-share{font-size:11px;color:#888;font-weight:600}
+.seg-card-desc{font-size:12px;color:#444;line-height:1.55;margin-bottom:6px}
+.seg-card-margin{font-size:11px;font-weight:600}
+.badge{display:inline-block;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:600}
+.badge-up{background:#e6f7f0;color:#1D9E75}
+.badge-dn{background:#fce8e4;color:#D85A30}
+.badge-neu{background:#ebebe6;color:#666}
+.cc-table{width:100%;border-collapse:separate;border-spacing:6px;margin-bottom:1rem}
+.cc-table th{background:transparent;border:none;font-size:11px;color:#888;text-align:center;padding:4px;font-weight:600;white-space:nowrap}
+.cc-table th.year-col{width:50px;text-align:left}
+.cc-cell{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.65rem .75rem;vertical-align:top;height:100%}
+.cc-quarter{font-size:10px;font-weight:700;color:#378ADD;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.cc-msg{font-size:11px;color:#444;margin-bottom:6px;line-height:1.45}
+.cc-guide{font-size:10px;color:#888;border-top:0.5px solid #f0f0ee;padding-top:5px;line-height:1.5}
+.cc-hit{color:#1D9E75;font-weight:600}
+.cc-miss{color:#D85A30;font-weight:600}
+.cc-latest{border:1.5px solid #378ADD !important;box-shadow:0 0 0 2px rgba(55,138,221,0.1)}
+.year-label{font-size:13px;font-weight:700;color:#555;padding-right:8px;vertical-align:middle}
+.scenario-stack{display:flex;flex-direction:column;gap:12px}
+.scenario-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1.1rem 1.3rem}
+.scenario-title{font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid #f0f0ee}
+.s-bull .scenario-title{color:#1D9E75}
+.s-bear .scenario-title{color:#D85A30}
+.s-item{margin-bottom:9px;padding-bottom:9px;border-bottom:0.5px solid #f5f4f0;font-size:12px}
+.s-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-case{font-weight:600;margin-bottom:2px}
+.s-sub{color:#888;font-size:11px}
+.ww-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.ww-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.ww-sticker-item{padding:.7rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:14px;align-items:flex-start}
+.ww-sticker-item:last-child{border-bottom:none}
+.ww-sticker-date{font-size:11px;font-weight:700;color:#378ADD;white-space:nowrap;min-width:90px;flex-shrink:0;padding-top:1px}
+.ww-sticker-content{flex:1}
+.ww-sticker-event{font-size:12.5px;font-weight:700;color:#222;margin-bottom:2px}
+.ww-sticker-point{font-size:11.5px;color:#666;line-height:1.5}
+.source-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.4rem;font-size:12px;color:#888;line-height:2}
+.prose{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;margin-bottom:1rem;font-size:13px;line-height:1.7}
+.prose ul{padding-left:1.3rem}
+.prose li{margin-bottom:.25rem}
+.prose p{margin-bottom:.7rem}
+.prose p:last-child{margin-bottom:0}
+.thesis-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:12px;padding:1.2rem 1.4rem;margin-bottom:12px;border-left:5px solid #333;position:relative}
+.thesis-box-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.thesis-icon{font-size:22px;flex-shrink:0}
+.thesis-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:5px;background:#ebebe6;color:#444}
+.thesis-title{font-size:15px;font-weight:700;color:#222;flex:1;margin-bottom:0}
+.thesis-body{font-size:13px;line-height:1.7;color:#333}
+.thesis-body p{margin-bottom:.6rem}
+.thesis-body p:last-child{margin-bottom:0}
+.thesis-body strong{color:#222;font-weight:700}
+.thesis-body .hl-blue{font-weight:600;color:#222}
+.thesis-body .hl-green{font-weight:700;color:#1D9E75}
+.thesis-body .hl-red{font-weight:700;color:#D85A30}
+.cc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.cc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.cc-sticker-item{padding:.85rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:12px;align-items:flex-start}
+.cc-sticker-item:last-child{border-bottom:none}
+.cc-sticker-rank{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#378ADD;color:#fff;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.cc-sticker-content{flex:1}
+.cc-sticker-title{font-size:13px;font-weight:700;color:#222;margin-bottom:4px}
+.cc-sticker-desc{font-size:12px;color:#444;line-height:1.6}
+.cc-sticker-desc strong{color:#222}
+.hl-pos{color:#1D9E75;font-weight:700}
+.hl-neg{color:#D85A30;font-weight:700}
+.ir-na-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;font-size:12px;color:#666;line-height:1.6}
+.ir-slide{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;overflow:hidden;margin-bottom:14px}
+.ir-slide-frame{background:linear-gradient(135deg,#f8f8f5 0%,#ffffff 100%);padding:.85rem 1.4rem;border-bottom:0.5px solid #e0e0dc}
+.ir-slide-num{font-size:10px;color:#999;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+.ir-slide-title{font-size:14px;font-weight:700;color:#333}
+.ir-slide-img-wrap{padding:1rem 1.4rem;text-align:center;background:#fafaf6}
+.ir-slide-img-wrap img{display:block;max-width:75%;width:100%;height:auto;margin:0 auto;border:0.5px solid #e0e0dc;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+@media(max-width:650px){.ir-slide-img-wrap img{max-width:95%}}
+.ir-slide-caption{font-size:11.5px;color:#555;padding:.85rem 1.4rem 1rem;line-height:1.55;background:#fff;border-top:0.5px solid #f0f0ee}
+.ir-slide-caption strong{color:#222}
+.footer{font-size:11px;color:#aaa;text-align:center;margin-top:2rem;padding-top:1rem;border-top:0.5px solid #e0e0dc}
+.seg-table-wrap{overflow-x:auto}
+.seg-table{min-width:780px}
+.seg-table th.seg-group{text-align:center;background:#e3e3de;border-left:2px solid #d0d0cc}
+.seg-table td.seg-border{border-left:2px solid #e0e0dc}
+.naver-link{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:.7rem 1rem;display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:12px}
+.naver-link a{color:#03C75A;font-weight:600;text-decoration:none}
+.naver-link a:hover{text-decoration:underline}
+.ref-list{display:flex;flex-direction:column;gap:6px}
+.ref-item{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.6rem .9rem;display:flex;align-items:center;gap:10px;font-size:12px}
+.ref-tag{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600;flex-shrink:0;min-width:55px;text-align:center}
+.tag-official{background:#e0effc;color:#1565c0}
+.tag-broker{background:#fff4e0;color:#ed8936}
+.tag-news{background:#f0f0ed;color:#555}
+.tag-wiki{background:#e6f7f0;color:#1D9E75}
+.ref-item a{color:#378ADD;text-decoration:none;flex:1;word-break:break-all}
+.ref-item a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div>
+    <div class="header-title">⚓ HD현대중공업 (329180) 기업분석</div>
+    <div class="header-meta">회계연도: Calendar Year &nbsp;|&nbsp; 분석기간: Q1'18~Q1'26 (33분기) &nbsp;|&nbsp; 최근 실적발표: 2026.05.07</div>
+  </div>
+  <div style="font-size:12px;color:#aaa">분석일: 2026.05.07</div>
+</div>
+
+<!-- 목차 -->
+<div class="toc">
+  <div class="toc-title">목차</div>
+  <div class="toc-sticker-box">
+    <div class="toc-grid">
+      <a class="toc-link" href="#s1"><span class="toc-num">01.</span><span class="toc-text">회사 개요</span></a>
+      <a class="toc-link" href="#s2"><span class="toc-num">02.</span><span class="toc-text">주가 흐름 — 주봉 차트</span></a>
+      <a class="toc-link" href="#s3"><span class="toc-num">03.</span><span class="toc-text">부문별 매출 추이</span></a>
+      <a class="toc-link sub" href="#s3b"><span class="toc-num">3-1.</span><span class="toc-text">사업부 구조 및 제품</span></a>
+      <a class="toc-link sub" href="#s4"><span class="toc-num">3-2.</span><span class="toc-text">매출 &amp; 영업이익률 추이</span></a>
+      <a class="toc-link sub" href="#s5"><span class="toc-num">3-3.</span><span class="toc-text">부문별 실적 테이블</span></a>
+      <a class="toc-link" href="#s6"><span class="toc-num">04.</span><span class="toc-text">재무제표 개요</span></a>
+      <a class="toc-link" href="#s7"><span class="toc-num">05.</span><span class="toc-text">핵심 투자아이디어</span></a>
+      <a class="toc-link sub" href="#s8"><span class="toc-num">5-1.</span><span class="toc-text">핵심 변동 요인</span></a>
+      <a class="toc-link sub" href="#s9"><span class="toc-num">5-2.</span><span class="toc-text">컨퍼런스콜 트래킹</span></a>
+      <a class="toc-link sub" href="#s10"><span class="toc-num">5-3.</span><span class="toc-text">Q1'26 컨콜 심층 정리</span></a>
+      <a class="toc-link sub" href="#s11"><span class="toc-num">5-4.</span><span class="toc-text">강세 / 약세 시나리오</span></a>
+      <a class="toc-link" href="#s12"><span class="toc-num">06.</span><span class="toc-text">Worth Watching Events</span></a>
+      <a class="toc-link" href="#s13"><span class="toc-num">07.</span><span class="toc-text">데이터 출처</span></a>
+      <a class="toc-link sub" href="#s14"><span class="toc-num">7-1.</span><span class="toc-text">Reference</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- 1. 회사 개요 -->
+<span class="section-anchor" id="s1"></span>
+<div class="section">
+<h2>1. 회사 개요</h2>
+<div class="overview-grid">
+  <div class="overview-box">
+    <h4>기본 정보</h4>
+    <div class="kv"><span class="kv-key">설립</span><span class="kv-val">1972년 (현대중공업 모태)</span></div>
+    <div class="kv"><span class="kv-key">상장</span><span class="kv-val">2021.09.17 KOSPI</span></div>
+    <div class="kv"><span class="kv-key">본사</span><span class="kv-val">울산광역시 동구 방어진순환도로 1000</span></div>
+    <div class="kv"><span class="kv-key">대표이사</span><span class="kv-val">이상균 사장 / 주원호 사장(함정·중형선)</span></div>
+    <div class="kv"><span class="kv-key">임직원</span><span class="kv-val">~17,000명 (합병 후)</span></div>
+    <div class="kv"><span class="kv-key">최대주주</span><span class="kv-val">HD한국조선해양 (~74%)</span></div>
+    <div class="kv"><span class="kv-key">티커</span><span class="kv-val">KOSPI: 329180</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>시장 정보 (2026.05.07 기준)</h4>
+    <div class="kv"><span class="kv-key">현재 주가</span><span class="kv-val">₩680,000</span></div>
+    <div class="kv"><span class="kv-key">시가총액</span><span class="kv-val" style="color:#378ADD">~71.9조원 (~$49.6B)</span></div>
+    <div class="kv"><span class="kv-key">발행주식</span><span class="kv-val">~1.058억주</span></div>
+    <div class="kv"><span class="kv-key">52주 고가</span><span class="kv-val">₩710,000</span></div>
+    <div class="kv"><span class="kv-key">52주 저가</span><span class="kv-val">₩370,000</span></div>
+    <div class="kv"><span class="kv-key">P/E (TTM)</span><span class="kv-val">~50배</span></div>
+    <div class="kv"><span class="kv-key">목표주가 평균</span><span class="kv-val">₩789,227 (+16% 여력)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>사업 운영</h4>
+    <div class="kv"><span class="kv-key">사업 구조</span><span class="kv-val">3개 부문: 조선 / 해양플랜트 / 엔진기계</span></div>
+    <div class="kv"><span class="kv-key">주력 야드</span><span class="kv-val">울산 본사 (도크 11기 + 미포 4기 합병)</span></div>
+    <div class="kv"><span class="kv-key">합병 이력</span><span class="kv-val">HD현대미포와 2025.12 합병 완료</span></div>
+    <div class="kv"><span class="kv-key">엔진 점유율</span><span class="kv-val">힘센엔진 글로벌 35%</span></div>
+    <div class="kv"><span class="kv-key">2026 수주목표</span><span class="kv-val">조선 145억$ (특수선 30억$)</span></div>
+    <div class="kv"><span class="kv-key">해외 거점</span><span class="kv-val">베트남(1996)·필리핀(2024)·인도(MOU)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>투자 포인트 요약</h4>
+    <div class="kv"><span class="kv-key">Q1'26 매출</span><span class="kv-val" style="color:#1D9E75">5조 9,163억 (+54.8% YoY)</span></div>
+    <div class="kv"><span class="kv-key">Q1'26 영업이익</span><span class="kv-val" style="color:#1D9E75">9,054억 (+108.8% YoY)</span></div>
+    <div class="kv"><span class="kv-key">Q1'26 OPM</span><span class="kv-val" style="color:#1D9E75">15.3% (+3.5%p YoY)</span></div>
+    <div class="kv"><span class="kv-key">Q1'26 순이익</span><span class="kv-val" style="color:#1D9E75">7,738억 (+172.3% YoY)</span></div>
+    <div class="kv"><span class="kv-key">Q1 수주</span><span class="kv-val" style="color:#1D9E75">61.19억$ (+29.6% YoY)</span></div>
+    <div class="kv"><span class="kv-key">2026E 영업이익</span><span class="kv-val" style="color:#1D9E75">3.7조원 (+82% YoY 추정)</span></div>
+  </div>
+</div>
+<p class="note">⚠️ <strong>HD현대중공업</strong>은 HD한국조선해양(중간지주)의 핵심 자회사로, 2025.12 HD현대미포와 합병 완료. <strong>힘센엔진</strong>=자체 중형엔진 브랜드(원자력/육상 발전 시장도 진출), <strong>HDF-6000</strong>=사우디 차기 호위함 모델, <strong>KDDX</strong>=한국형 차기 구축함(7.8조), <strong>MASGA</strong>=한미 조선 협력 프로젝트(Make American Shipbuilding Great Again), <strong>이중연료엔진</strong>=LNG·암모니아 등 친환경 추진 엔진. 환율: 2026.05.07 USD/KRW 1,448원.</p>
+</div>
+
+<!-- 2. 주가 -->
+<span class="section-anchor" id="s2"></span>
+<div class="section">
+<h2>2. 주가 흐름 — 주봉 차트 (월 4주 근사)</h2>
+<div class="chart-box" style="height:380px"><canvas id="cPrice"></canvas></div>
+<div class="naver-link">
+  <span style="color:#666">⚠️ KRX 종목 — TradingView 데이터 제공 불가, Chart.js 대체 차트</span>
+  <a href="https://finance.naver.com/item/main.naver?code=329180" target="_blank">📊 네이버 증권에서 실시간 차트 보기 →</a>
+</div>
+
+<h3 style="margin-top:1.2rem">주요 이벤트 연표</h3>
+<table>
+  <thead><tr><th>시기</th><th class="num">주가(근사)</th><th>이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2021.09</td><td class="num">₩115,000</td><td>코스피 분할상장 — 공모가 6만원 대비 첫날 +89% 상승</td></tr>
+    <tr><td>2022.06</td><td class="num">₩94,000</td><td>저점 형성 — 조선업 침체기, 후판 가격 급등 부담</td></tr>
+    <tr><td>2023.11</td><td class="num">₩125,000</td><td>흑자 전환 — 고선가 수주 잔고 본격 매출 인식 시작</td></tr>
+    <tr><td>2024.07</td><td class="num">₩170,000</td><td>친환경선 LNG 슈퍼사이클 진입 — 클락슨 신조선가 지수 사상 최고치</td></tr>
+    <tr><td>2024.12</td><td class="num">₩240,000</td><td>HD현대미포 합병 발표 — 도크 합병 시너지 + 특수선 캐파 확대</td></tr>
+    <tr><td>2025.05</td><td class="num">₩370,000</td><td>52주 저점 후 본격 랠리 시작 — Q1'25 영업이익 +73% 서프라이즈</td></tr>
+    <tr><td>2025.10</td><td class="num">₩440,000</td><td><strong>MASGA(한미 조선 협력) 출범, 헌팅턴 잉걸스 협업 발표</strong></td></tr>
+    <tr><td>2025.12</td><td class="num">₩470,000</td><td>HD현대미포 합병 완료, 도크 4기 중 2기 특수선 전환 결정</td></tr>
+    <tr><td>2026.01</td><td class="num">₩490,000</td><td>2026 특수선 수주목표 30억$ 발표 (전년 대비 178%↑)</td></tr>
+    <tr><td>2026.02</td><td class="num">₩520,000</td><td>iM증권 목표가 86만원 28.7% 상향, 조선업 Top Pick 선정</td></tr>
+    <tr><td>2026.03</td><td class="num">₩560,000</td><td>HD한국조선해양 15.5억$ 교환사채 발행 (해외투자 재원 확보)</td></tr>
+    <tr><td>2026.04</td><td class="num">₩524,000</td><td>미국 차세대 군수지원함 개념설계 입찰 탈락 (단기 조정)</td></tr>
+    <tr class="hl"><td><strong>2026.05.07</strong></td><td class="num"><strong>₩680,000</strong></td><td><strong>Q1'26 영업이익 9,054억 +109% YoY 서프라이즈, 시총 71.9조 도달</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 3. 부문별 매출 추이 -->
+<span class="section-anchor" id="s3"></span>
+<div class="section">
+<h2>3. 부문별 매출 추이 — 33분기 (억원)</h2>
+<div class="legend" id="segLegend">
+  <span class="legend-item" onclick="toggleSeg(0,this)"><span class="dot" style="background:#1D9E75"></span>조선</span>
+  <span class="legend-item" onclick="toggleSeg(1,this)"><span class="dot" style="background:#378ADD"></span>엔진기계</span>
+  <span class="legend-item" onclick="toggleSeg(2,this)"><span class="dot" style="background:#D85A30"></span>해양플랜트</span>
+  <span class="legend-item" onclick="toggleSeg(3,this)"><span class="dot" style="background:#BA7517"></span>기타·연결조정</span>
+  <span style="font-size:11px;color:#bbb;margin-left:4px">← 클릭하여 표시/숨김</span>
+</div>
+<div class="chart-box" style="height:460px"><canvas id="cSeg"></canvas></div>
+<p class="note">* 2018~2021 분기별 데이터는 구 사업체계(조선해양사업부 통합) 기준 역산 추정치. 2022 Q1~ 신규 3부문 체계 (조선 / 해양플랜트 / 엔진기계). 2025.12 HD현대미포 합병으로 Q1'26부터 미포 매출 통합 반영. 조선 부문이 매출의 70%+ 차지. 엔진기계는 이중연료 엔진 슈퍼사이클로 영업이익률 22%대 도달 — 가장 수익성 높은 부문. 해양플랜트는 2024년 5월 재분할 후 루야 프로젝트 매출 인식으로 흑자 전환.</p>
+</div>
+
+<!-- 3-1. 사업부 구조 -->
+<span class="section-anchor" id="s3b"></span>
+<div class="section">
+<h2>3-1. 사업부 구조 및 제품</h2>
+<div class="seg-cards">
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">조선 ★</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">~71%</span> · Q1'26 약 4.2조원</div>
+    </div>
+    <div class="seg-card-desc">
+      AMD의 핵심 사업. <strong>상선(컨테이너선·LNG선·VLCC·LPG선)</strong> + <strong>특수선(군함·잠수함·해경 경비정)</strong> 2개 축. 2026 조선 수주목표 145억$ (상선 115억$ + 특수선 30억$). Q1'26 누계 수주 49.19억$ (+51.5% YoY) — 연간 목표 43% 조기 달성. 클락슨 신조선가 지수 사상 최고치 + 친환경선 슈퍼사이클로 고선가 수주 잔고 매출 인식. 2025.12 HD현대미포 합병으로 <strong>중형선 라인업 통합</strong>, 도크 4기 중 2기 특수선 전환 — 함정 캐파 3척→10척 확대.
+    </div>
+    <div class="seg-card-margin" style="color:#555">OPM <span style="color:#378ADD;font-weight:700">13~15%</span> · 고선가 매출 본격 반영</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">엔진기계</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">~24%</span> · Q1'26 약 1.4조원</div>
+    </div>
+    <div class="seg-card-desc">
+      회사의 <strong>숨은 보석</strong>. 자체 브랜드 <strong>힘센엔진(HiMSEN)</strong> 글로벌 35% 점유. 대형엔진은 MAN/WinGD 라이선스. <strong>이중연료엔진(LNG·암모니아)</strong> 수요 폭증 — 신규 선박 50%+가 대체연료 추진선. 2026 Q1 컨콜: <span style="color:#378ADD;font-weight:700">데이터센터 발전용 엔진</span> 신규 수요 — 캐파 확장 검토 중 (현 연 400만마력·3GW). 원자력 비상발전기·육상발전 시장도 진출. 영업이익률 22% — 가장 수익성 높은 부문.
+    </div>
+    <div class="seg-card-margin" style="color:#555">OPM <span style="color:#378ADD;font-weight:700">~22%</span> · 회사 수익성 1위 부문</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">해양플랜트</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">~5~8%</span> · Q1'26 약 0.3조원</div>
+    </div>
+    <div class="seg-card-desc">
+      2014년 유가 전쟁 이후 적자 누적 → 2021년 조선과 통합 → <strong>2024.5 재분할</strong>. 고정식·부유식 생산설비. 카타르 메이단마흐잠 해상유전 현대화, 카타르 LNG 시설 피격 후 재건 사업. <strong>루야 프로젝트</strong> 매출 인식 (상반기 종료 예상) — 신규 프로젝트 수주 필요. Q1'26 영업이익률 21.9% — 매출 성장에 따른 영업레버리지 본격화. 2026 해양플랜트 수주 목표 32.6억$. 신재생 해상풍력 사업도 병행.
+    </div>
+    <div class="seg-card-margin" style="color:#555">OPM <span style="color:#378ADD;font-weight:700">~22%</span> · 영업레버리지 진입</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">특수선·방산 (조선 내 세부)</div>
+      <div class="seg-card-share">2026E 비중 <span style="color:#378ADD;font-weight:700">~10%</span> · 수주목표 30억$</div>
+    </div>
+    <div class="seg-card-desc">
+      국내 특수선 1위(108척 건조, 20척 수출). 정조대왕급 이지스 구축함. <strong>KDDX 7.8조 수주전</strong> — 한화오션과 경쟁, 2026년 말 사업자 선정. <strong>사우디 호위함 사업</strong> 3조, 태국 2단계 호위함 3조, 페루 잠수함, 에스토니아 OPV 2척. <strong>미국 헌팅턴 잉걸스(HII) MOU</strong> — 미 해군 차세대 군수지원함 입찰 탈락(2026.04)했으나 MASGA 협력 지속, 미 함정 MRO 사업 본격화. 2027년부터 페루 원해경비함 매출 인식.
+    </div>
+    <div class="seg-card-margin" style="color:#555">2026 신성장 축 · 글로벌 안보 수요 폭증</div>
+  </div>
+</div>
+
+<table>
+  <thead><tr><th>사업부</th><th>대표 제품</th><th>주요 고객</th><th>Q1'26 매출 비중</th><th>OPM</th></tr></thead>
+  <tbody>
+    <tr><td><strong>조선</strong></td><td>LNG선·컨테이너선·VLCC·LPG선·군함</td><td>글로벌 선주, 한국 해군, 필리핀·태국·사우디 해군</td><td class="num"><strong>~71%</strong></td><td class="num up2"><strong>~13%</strong></td></tr>
+    <tr><td><strong>엔진기계</strong></td><td>힘센엔진, 이중연료 엔진, 발전용 엔진, 평형수처리장치</td><td>HD현대 조선 3사 + 글로벌 모든 조선소, 발전소</td><td class="num">~24%</td><td class="num up2">~22%</td></tr>
+    <tr><td><strong>해양플랜트</strong></td><td>고정식·부유식 생산설비, 해상풍력 하부구조</td><td>Aramco, Qatar Energy, 국내 해상풍력 프로젝트</td><td class="num">~5%</td><td class="num up2">~22%</td></tr>
+  </tbody>
+</table>
+<p class="note">* 매출 비중은 Q1'26 잠정치 기준 추정. 정식 사업부별 공시는 5월 중하순 사업보고서 통해 확정. 엔진기계는 매출 비중 24%지만 영업이익 기여도는 30%+ 수준. 군산조선소는 2026.03.13 매각 합의각서 체결 (블록 생산만 담당, 인수자 HJ중공업).</p>
+</div>
+
+<!-- 3-2. 매출 + OPM -->
+<span class="section-anchor" id="s4"></span>
+<div class="section">
+<h2>3-2. 매출 &amp; 영업이익률 추이 — 33분기</h2>
+<div class="legend">
+  <span class="legend-static"><span class="dot" style="background:rgba(55,138,221,0.5)"></span>매출 (억원, 좌축)</span>
+  <span class="legend-static"><span class="dot" style="background:#1D9E75"></span>영업이익률% (우축)</span>
+</div>
+<div class="chart-box" style="height:420px"><canvas id="cRev"></canvas></div>
+
+<h3 style="margin-top:1.2rem">연간 요약</h3>
+<table>
+  <thead><tr><th>연도</th><th class="num">매출</th><th class="num">YoY</th><th class="num">영업이익</th><th class="num">OPM</th><th class="num">순이익</th><th>주요 이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2018</td><td class="num">8.99조</td><td class="num dn">-23%</td><td class="num">2,887억</td><td class="num">3.2%</td><td class="num">-784억</td><td>조선 침체 — 저가 수주 매출 인식</td></tr>
+    <tr><td>2019</td><td class="num">9.41조</td><td class="num up2">+5%</td><td class="num">3,029억</td><td class="num">3.2%</td><td class="num">-2,131억</td><td>대우조선 인수 시도 (이후 무산)</td></tr>
+    <tr><td>2020</td><td class="num">8.32조</td><td class="num dn">-12%</td><td class="num">325억</td><td class="num">0.4%</td><td class="num">-3,790억</td><td>코로나로 신조 발주 일시 중단</td></tr>
+    <tr><td>2021</td><td class="num">8.36조</td><td class="num">~0%</td><td class="num">-7,889억</td><td class="num">-9.4%</td><td class="num">-7,997억</td><td>후판가 폭등, 충당금 일시 인식</td></tr>
+    <tr><td>2022</td><td class="num">8.83조</td><td class="num up2">+6%</td><td class="num">-3,533억</td><td class="num">-4.0%</td><td class="num">-5,498억</td><td>친환경선 슈퍼사이클 진입 시작</td></tr>
+    <tr><td>2023</td><td class="num">11.96조</td><td class="num up2">+35%</td><td class="num">811억</td><td class="num">0.7%</td><td class="num">524억</td><td>흑자 전환 — 고선가 매출 본격</td></tr>
+    <tr><td>2024</td><td class="num">14.74조</td><td class="num up2">+23%</td><td class="num">5,232억</td><td class="num">3.5%</td><td class="num">3,210억</td><td>이중연료 엔진 호황, 해양 흑자 전환</td></tr>
+    <tr><td>2025</td><td class="num">17.66조</td><td class="num up2">+20%</td><td class="num">2.04조</td><td class="num">11.5%</td><td class="num">1.43조</td><td>HD현대미포 합병 12월, 영업익 +290%</td></tr>
+    <tr class="hl"><td><strong>2026 Q1</strong></td><td class="num"><strong>5.92조</strong></td><td class="num up2"><strong>+55%</strong></td><td class="num up2"><strong>9,054억</strong></td><td class="num up2"><strong>15.3%</strong></td><td class="num up2"><strong>7,738억</strong></td><td><strong>합병 첫 분기, OPM 두 자릿수 안착</strong></td></tr>
+  </tbody>
+</table>
+
+<h3 style="margin-top:1.2rem">분기별 실적 (12분기)</h3>
+<table>
+  <thead><tr><th>분기</th><th class="num">매출(억원)</th><th class="num">YoY</th><th class="num">QoQ</th><th class="num">영업이익</th><th class="num">OPM</th><th class="num">순이익</th><th>비고</th></tr></thead>
+  <tbody>
+    <tr><td>Q2'23</td><td class="num">29,453</td><td class="num up2">+33%</td><td class="num up2">+3%</td><td class="num">711</td><td class="num">2.4%</td><td class="num">589</td><td>흑자 정착</td></tr>
+    <tr><td>Q3'23</td><td class="num">28,452</td><td class="num up2">+26%</td><td class="num dn">-3%</td><td class="num">352</td><td class="num">1.2%</td><td class="num">320</td><td>충당금 일시 인식</td></tr>
+    <tr><td>Q4'23</td><td class="num">33,128</td><td class="num up2">+38%</td><td class="num up2">+16%</td><td class="num">-870</td><td class="num">-2.6%</td><td class="num">-685</td><td>일시적 적자, 후판가 변동</td></tr>
+    <tr><td>Q1'24</td><td class="num">33,331</td><td class="num up2">+35%</td><td class="num up2">+1%</td><td class="num">1,602</td><td class="num">4.8%</td><td class="num">887</td><td>고선가 본격 인식</td></tr>
+    <tr><td>Q2'24</td><td class="num">36,506</td><td class="num up2">+24%</td><td class="num up2">+10%</td><td class="num">967</td><td class="num">2.6%</td><td class="num">657</td><td>—</td></tr>
+    <tr><td>Q3'24</td><td class="num">37,346</td><td class="num up2">+31%</td><td class="num up2">+2%</td><td class="num">1,580</td><td class="num">4.2%</td><td class="num">1,109</td><td>엔진기계 호조</td></tr>
+    <tr><td>Q4'24</td><td class="num">40,206</td><td class="num up2">+21%</td><td class="num up2">+8%</td><td class="num">1,083</td><td class="num">2.7%</td><td class="num">557</td><td>—</td></tr>
+    <tr><td>Q1'25</td><td class="num">38,225</td><td class="num up2">+15%</td><td class="num dn">-5%</td><td class="num">4,337</td><td class="num">11.3%</td><td class="num">2,841</td><td>OPM 두 자릿수 첫 진입</td></tr>
+    <tr><td>Q2'25</td><td class="num">42,750</td><td class="num up2">+17%</td><td class="num up2">+12%</td><td class="num">5,030</td><td class="num">11.8%</td><td class="num">3,510</td><td>—</td></tr>
+    <tr><td>Q3'25</td><td class="num">43,200</td><td class="num up2">+16%</td><td class="num up2">+1%</td><td class="num">5,400</td><td class="num">12.5%</td><td class="num">3,820</td><td>매출 -14.5% but 영업익 +107% (저가물량 빠짐)</td></tr>
+    <tr><td>Q4'25</td><td class="num">51,940</td><td class="num up2">+29%</td><td class="num up2">+20%</td><td class="num">5,750</td><td class="num">11.1%</td><td class="num">4,090</td><td>HD현대미포 합병 12월</td></tr>
+    <tr class="hl"><td><strong>Q1'26</strong></td><td class="num"><strong>59,163</strong></td><td class="num up2"><strong>+54.8%</strong></td><td class="num up2"><strong>+13.9%</strong></td><td class="num up2"><strong>9,054</strong></td><td class="num up2"><strong>15.3%</strong></td><td class="num up2"><strong>7,738</strong></td><td><strong>합병 첫 분기 풀반영, 시장 컨센 +6% 상회</strong></td></tr>
+  </tbody>
+</table>
+<p class="note">* Q1'26 OPM 15.3%은 2018~2024년 평균 0~3%대비 압도적 점프. 합병 효과 + 고선가 수주 잔고 본격 매출 인식 + 후판가 안정 + 환율 효과 종합. 메리츠증권 추정치(매출 5.72조, 영업익 8,496억) 모두 상회. 2025년 분기별 매출 일부는 추정치 (Q3'25 매출 일시 감소는 인도 일정 조정 영향).</p>
+</div>
+
+<!-- 3-3. 부문별 실적 테이블 (16분기) -->
+<span class="section-anchor" id="s5"></span>
+<div class="section">
+<h2>3-3. 부문별 실적 테이블 (16분기)</h2>
+<div class="seg-table-wrap">
+<table class="seg-table">
+  <thead>
+    <tr>
+      <th rowspan="2" style="vertical-align:middle">분기</th>
+      <th colspan="2" class="seg-group center">조선</th>
+      <th colspan="2" class="seg-group center">엔진기계</th>
+      <th colspan="2" class="seg-group center">해양플랜트</th>
+      <th rowspan="2" class="seg-group center" style="vertical-align:middle">Total<br>(억원)</th>
+    </tr>
+    <tr>
+      <th class="seg-group center">매출(억)</th><th class="seg-group center">OPM</th>
+      <th class="seg-group center">매출(억)</th><th class="seg-group center">OPM</th>
+      <th class="seg-group center">매출(억)</th><th class="seg-group center">OPM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Q2'23</td><td class="num seg-border">22,090</td><td class="num">1.6%</td><td class="num seg-border">5,890</td><td class="num">5.7%</td><td class="num seg-border">1,470</td><td class="num">0.6%</td><td class="num seg-border"><b>29,453</b></td></tr>
+    <tr><td>Q3'23</td><td class="num seg-border">21,340</td><td class="num">1.7%</td><td class="num seg-border">5,690</td><td class="num">7.0%</td><td class="num seg-border">1,420</td><td class="num">0.1%</td><td class="num seg-border"><b>28,452</b></td></tr>
+    <tr><td>Q4'23</td><td class="num seg-border">25,300</td><td class="num">1.7%</td><td class="num seg-border">6,150</td><td class="num">2.4%</td><td class="num seg-border">1,680</td><td class="num">5.8%</td><td class="num seg-border"><b>33,128</b></td></tr>
+    <tr><td>Q1'24</td><td class="num seg-border">25,540</td><td class="num">1.4%</td><td class="num seg-border">6,500</td><td class="num">2.2%</td><td class="num seg-border">1,290</td><td class="num">0.7%</td><td class="num seg-border"><b>33,331</b></td></tr>
+    <tr><td>Q2'24</td><td class="num seg-border">28,150</td><td class="num">1.2%</td><td class="num seg-border">6,990</td><td class="num">2.6%</td><td class="num seg-border">1,360</td><td class="num">2.7%</td><td class="num seg-border"><b>36,506</b></td></tr>
+    <tr><td>Q3'24</td><td class="num seg-border">28,750</td><td class="num">1.4%</td><td class="num seg-border">7,250</td><td class="num">3.0%</td><td class="num seg-border">1,340</td><td class="num">7.2%</td><td class="num seg-border"><b>37,346</b></td></tr>
+    <tr><td>Q4'24</td><td class="num seg-border">30,720</td><td class="num">1.4%</td><td class="num seg-border">7,990</td><td class="num">1.8%</td><td class="num seg-border">1,490</td><td class="num">6.5%</td><td class="num seg-border"><b>40,206</b></td></tr>
+    <tr><td>Q1'25</td><td class="num seg-border">29,030</td><td class="num">2.1%</td><td class="num seg-border">8,360</td><td class="num">21.7%</td><td class="num seg-border">830</td><td class="num">12.2%</td><td class="num seg-border"><b>38,225</b></td></tr>
+    <tr><td>Q2'25</td><td class="num seg-border">32,500</td><td class="num">5.5%</td><td class="num seg-border">9,160</td><td class="num">20.1%</td><td class="num seg-border">1,090</td><td class="num">8.4%</td><td class="num seg-border"><b>42,750</b></td></tr>
+    <tr><td>Q3'25</td><td class="num seg-border">32,800</td><td class="num">8.3%</td><td class="num seg-border">9,300</td><td class="num">17.4%</td><td class="num seg-border">1,100</td><td class="num">4.5%</td><td class="num seg-border"><b>43,200</b></td></tr>
+    <tr><td>Q4'25</td><td class="num seg-border">39,640</td><td class="num">7.0%</td><td class="num seg-border">10,800</td><td class="num">16.7%</td><td class="num seg-border">1,500</td><td class="num">2.7%</td><td class="num seg-border"><b>51,940</b></td></tr>
+    <tr class="hl"><td><b>Q1'26</b></td><td class="num seg-border"><b>42,200</b></td><td class="num up2"><b>~13%</b></td><td class="num seg-border">14,000</td><td class="num up2">~22%</td><td class="num seg-border">2,963</td><td class="num up2">~22%</td><td class="num seg-border"><b>59,163</b></td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">* 부문별 OPM은 분기별 사업보고서 공시 기준 추정치. Q1'25부터 엔진기계 OPM 20%대 진입은 이중연료엔진 단가 상승 + 적체 물량 인식. Q1'26 조선 OPM 13%는 메리츠증권 추정 (성과급 일시 비용 감소 반영). 해양플랜트 OPM 22%는 매출 성장 영업레버리지 본격화. HD현대미포 합병으로 Q1'26 매출 약 6,000억 추가 효과. 2025년 분기별 부문 매출은 일부 추정치 — 정확한 수치는 사업보고서 공시 후 업데이트 필요.</p>
+</div>
+
+<!-- 4. 재무제표 -->
+<span class="section-anchor" id="s6"></span>
+<div class="section">
+<h2>4. 재무제표 개요</h2>
+<table>
+  <thead><tr><th>항목 (억원)</th><th class="num">2023</th><th class="num">2024</th><th class="num">2025</th><th class="num">Q1'26</th></tr></thead>
+  <tbody>
+    <tr><td>매출</td><td class="num">119,605</td><td class="num">147,400</td><td class="num">176,600</td><td class="num">59,163</td></tr>
+    <tr><td>매출원가</td><td class="num">109,200</td><td class="num">132,500</td><td class="num">152,800</td><td class="num">48,000</td></tr>
+    <tr><td>매출총이익</td><td class="num">10,405</td><td class="num">14,900</td><td class="num">23,800</td><td class="num">11,163</td></tr>
+    <tr><td>영업이익</td><td class="num">811</td><td class="num">5,232</td><td class="num">20,500</td><td class="num">9,054</td></tr>
+    <tr><td>영업이익률</td><td class="num">0.7%</td><td class="num">3.5%</td><td class="num">11.6%</td><td class="num">15.3%</td></tr>
+    <tr><td>당기순이익</td><td class="num">524</td><td class="num">3,210</td><td class="num">14,300</td><td class="num">7,738</td></tr>
+    <tr><td>EPS (원)</td><td class="num">~590</td><td class="num">~3,600</td><td class="num">~16,000</td><td class="num">~7,300</td></tr>
+    <tr><td>영업현금흐름</td><td class="num">8,200</td><td class="num">10,400</td><td class="num">22,000</td><td class="num">~5,500</td></tr>
+    <tr><td>현금성자산</td><td class="num">11,500</td><td class="num">15,300</td><td class="num">22,800</td><td class="num">~28,000</td></tr>
+    <tr><td>총자산</td><td class="num">157,000</td><td class="num">169,000</td><td class="num">192,000</td><td class="num">~205,000</td></tr>
+    <tr><td>총부채</td><td class="num">110,000</td><td class="num">115,000</td><td class="num">128,000</td><td class="num">~133,000</td></tr>
+    <tr><td>자본총계</td><td class="num">47,000</td><td class="num">54,000</td><td class="num">64,000</td><td class="num">~72,000</td></tr>
+    <tr><td>부채비율</td><td class="num">234%</td><td class="num">213%</td><td class="num">200%</td><td class="num">~185%</td></tr>
+    <tr><td>수주잔고 ($)</td><td class="num">~452억</td><td class="num">~530억</td><td class="num">~620억</td><td class="num">~680억</td></tr>
+  </tbody>
+</table>
+<p class="note">* Q1'26 재무상태표 항목은 잠정 추정치 — HD현대미포 합병으로 자산·자본 모두 약 5~10% 점프. 부채비율은 합병 직후에도 200% 이내 유지로 안정. 수주잔고 6.8조달러는 약 3~4년치 일감 — 매출 가시성 매우 높음.</p>
+<p class="note">⚠️ HD한국조선해양이 2026.03.31 보유 HD현대중공업 지분 대상 <strong>15.5억$ 교환사채(EB)</strong> 발행 — 단기 주가 부담 요소 (잠재 신규주 발행 효과). 그러나 그룹 차원 해외투자 재원 확보 목적으로 펀더멘탈은 긍정적. 군산조선소 매각 진행 중 (2026.03 MOA 체결, HJ중공업 인수).</p>
+</div>
+
+<!-- 5. 핵심 투자아이디어 -->
+<span class="section-anchor" id="s7"></span>
+<div class="section">
+<h2>5. 핵심 투자아이디어</h2>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">🎯</span>
+    <span class="thesis-tag">Thesis #1</span>
+    <div class="thesis-title">친환경선 슈퍼사이클 + HD현대미포 합병 시너지의 동시 폭발</div>
+  </div>
+  <div class="thesis-body">
+    <p>2022년부터 시작된 친환경선(LNG·암모니아·메탄올 추진) 발주 슈퍼사이클이 본격적으로 매출에 반영되는 구간. 클락슨 신조선가 지수는 사상 최고치 갱신 중이며, <span class="hl-blue">2028년까지 전 세계 슬롯이 사실상 매진</span>됐다. AMD의 데이터센터처럼 HD현대중공업도 <strong>"슈퍼사이클 매출 인식 단계"</strong> 진입. Q1'26 OPM <span class="hl-green">15.3%</span>은 2018~2024년 평균 0~3% 대비 압도적 점프 — 고선가 잔고가 매출로 전환되는 결정적 증거.</p>
+    <p>2025.12 <span class="hl-blue">HD현대미포 합병</span>으로 도크 4기 중 2기를 특수선 전환 — 함정 캐파 3척→10척 확대. 합병 첫 분기인 Q1'26부터 통합 시너지 가시화. <span class="hl-green">2026 연간 영업이익 3.7조원(+82% YoY)</span> 추정 (메리츠증권). 시장 컨센서스 6.1조 매출을 +10% 상회한 5.92조 기록.</p>
+  </div>
+</div>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">⚓</span>
+    <span class="thesis-tag">Thesis #2</span>
+    <div class="thesis-title">특수선·방산 모멘텀 — 30억$ 수주 목표 + KDDX + MASGA</div>
+  </div>
+  <div class="thesis-body">
+    <p>2026년 특수선 수주 목표 <span class="hl-blue">30억$(전년의 178%↑)</span>로 상향. 파이프라인: <strong>사우디 호위함 3조, KDDX 7.8조</strong>(2026년 말 사업자 선정), 태국 호위함 2단계, 페루 잠수함, 에스토니아 OPV 2척. 글로벌 안보 수요 폭증 + 한국 조선의 군함 건조 우위로 <span class="hl-green">5년치 이상 수주 가시성</span>.</p>
+    <p>미국 차세대 군수지원함 개념설계 입찰은 2026.04 탈락했으나, <span class="hl-blue">MASGA(Make American Shipbuilding Great Again)</span> 협력은 지속. 헌팅턴 잉걸스(HII)와 MOU 체결, <span class="hl-green">미 함정 MRO 사업</span> 본격화 — 'USNS 세사르 차베즈' 정비 수주(2026.01) + 'USNS 앨런 셰퍼드' 정비 완료 사례 축적. 미 해군 MRO는 항목 추가로 계약금 증가 → 예상보다 수익성 높음.</p>
+  </div>
+</div>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">⚡</span>
+    <span class="thesis-tag">Thesis #3</span>
+    <div class="thesis-title">엔진기계 = 데이터센터 발전 신성장 + 이중연료엔진 슈퍼사이클</div>
+  </div>
+  <div class="thesis-body">
+    <p>회사의 <strong>숨은 보석</strong>. 자체 브랜드 <span class="hl-blue">힘센엔진 글로벌 35% 점유</span>. 신규 발주 50%+가 이중연료(LNG·암모니아) 추진선 — 단가는 일반 디젤 대비 1.5배 + 캐파 부족으로 가격 협상력 ↑. Q1'26 영업이익률 <span class="hl-green">22%</span> — 회사 평균(15.3%) 압도적 상회.</p>
+    <p>2026.05.07 컨콜에서 <strong>새로운 변수 등장</strong>: <span class="hl-blue">데이터센터 발전용 엔진 수요 급증</span>. 현 캐파 연 400만마력·3GW가 박용+발전용으로 가득찬 상태 — <span class="hl-green">캐파 확장 검토 중</span>. AI 데이터센터 전력 수요 + LNG 추진선 발주 동반 성장으로 2027~2028년 가장 강력한 이익 드라이버 가능성.</p>
+  </div>
+</div>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">⚠️</span>
+    <span class="thesis-tag">Thesis #4</span>
+    <div class="thesis-title">단기 리스크 — EB 희석 + 미 함정 입찰 탈락 + 이란 사태 변동성</div>
+  </div>
+  <div class="thesis-body">
+    <p>HD한국조선해양 <span class="hl-red">15.5억$ 교환사채(EB)</span> 2026.03.31 발행 — 신주 전환 시 잠재 희석. 단기 주가 부담 요인이나, 그룹 해외투자(인도·필리핀·미국 야드) 재원으로 펀더멘탈은 긍정적. <span class="hl-red">미국 차세대 군수지원함 개념설계 입찰 탈락</span>(2026.04) — MASGA 첫 협력안에서 고배. 다만 이는 추가 입찰 기회 존재.</p>
+    <p>장기 리스크: <span class="hl-red">중국 조선소 점유율 상승</span>(범용 선박 50%+ 잠식), 후판 가격 변동, <span class="hl-red">이란-미국 호르무즈 봉쇄</span>로 LNG 수송 차질 시 단기 발주 둔화 가능. 그러나 톤마일 증가는 신조 발주 더 자극할 수도 — 양방향 영향.</p>
+  </div>
+</div>
+
+<!-- 5-1. 핵심 변동 요인 -->
+<span class="section-anchor" id="s8"></span>
+<div class="section">
+<h2>5-1. 핵심 변동 요인</h2>
+<table>
+  <thead><tr><th>구분</th><th>요인</th><th class="center">방향</th><th>설명</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>외부</strong></td><td>친환경선 발주 사이클</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>IMO 환경규제로 LNG·암모니아·메탄올 추진선 발주 50%+ 비중. 2030년까지 사이클 지속 전망</td></tr>
+    <tr><td>클락슨 신조선가 지수</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>사상 최고치 갱신 중. 2028년까지 +20% 추가 상승 예상 (대신증권)</td></tr>
+    <tr><td>중국 조선업 점유율</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>범용 선박(컨테이너·벌커) 50%+ 잠식. 한국은 LNG·특수선·방산 등 고부가가치로 회피 전략</td></tr>
+    <tr><td>후판 가격 변동</td><td class="center"><span class="badge badge-neu">중립 ●</span></td><td>2024년 -19% 하락 후 안정. 2026년 철강 수요 회복 시 일부 상승 압력 가능</td></tr>
+    <tr><td>이란-미 호르무즈 사태</td><td class="center"><span class="badge badge-neu">중립 ●</span></td><td>유조선 수요↑ vs LNG 수송 차질. 단기 양방향 영향 — 톤마일 증가 시 오히려 신조 발주 자극</td></tr>
+    <tr><td>글로벌 방산 수요</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>지정학 긴장으로 각국 해군 전력 보강. 폐쇄적이던 함정 시장 점차 개방</td></tr>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>내부</strong></td><td>HD현대미포 합병 시너지</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>도크 4기 중 2기 특수선 전환. 함정 캐파 3→10척. Q1'26부터 통합 매출·이익 점프</td></tr>
+    <tr><td>특수선 수주 목표 30억$</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>전년 대비 178% 상향. KDDX·사우디·태국·페루 등 다중 파이프라인. 2027년 매출 인식 본격</td></tr>
+    <tr><td>이중연료 엔진 수요</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>신조 50%+ 친환경 추진. 엔진 단가 1.5배. 데이터센터용 발전 엔진 신규 시장</td></tr>
+    <tr><td>15.5억$ 교환사채</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>HD한국조선해양 발행. 신주 전환 시 잠재 희석. 단기 주가 부담</td></tr>
+    <tr><td>미국 차세대 군수지원함 탈락</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>2026.04 입찰 탈락 — MASGA 첫 협력안 실패. 추가 입찰 기회 모색 중</td></tr>
+    <tr><td>해외 야드 확장 (베·필·인)</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>국내 고부가가치 + 해외 볼륨 투트랙. 인도 타밀나두 MOU(2025.12), 필리핀 본격 가동(2024)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 5-2. 컨콜 트래킹 -->
+<span class="section-anchor" id="s9"></span>
+<div class="section">
+<h2>5-2. 컨퍼런스콜 트래킹 (최근 12분기)</h2>
+<table class="cc-table">
+  <colgroup>
+    <col style="width:50px"><col><col><col><col>
+  </colgroup>
+  <thead>
+    <tr><th class="year-col">년</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="year-label">2023</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'23</div><div class="cc-msg">매출 +29% YoY. 흑자 전환 가시화. 친환경선 수주 잔고 증가</div><div class="cc-guide">컨센 부합 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'23</div><div class="cc-msg">매출 2.95조. 영업이익 711억 흑자 정착. 후판가 안정</div><div class="cc-guide">컨센 부합 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'23</div><div class="cc-msg">영업이익 352억. 충당금 일시 인식. 카타르 LNG선 16척 수주</div><div class="cc-guide">컨센 하회 <span class="cc-miss">❌</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'23</div><div class="cc-msg">일시적 적자(-870억). 후판가 변동·일회성 비용. 연간 흑자 유지</div><div class="cc-guide">컨센 하회 <span class="cc-miss">❌</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2024</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'24</div><div class="cc-msg">영업이익 1,602억. 고선가 매출 본격 인식. 이중연료엔진 호조</div><div class="cc-guide">컨센 상회 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'24</div><div class="cc-msg">매출 3.65조 +24%. 해양플랜트 재분할 5월. 루야 프로젝트 진행</div><div class="cc-guide">컨센 부합 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'24</div><div class="cc-msg">영업이익 1,580억. 엔진기계 OPM 점프. MASGA 협력 검토 시작</div><div class="cc-guide">컨센 상회 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'24</div><div class="cc-msg">매출 4.02조 record. HD현대미포 합병 발표 12월. 특수선 캐파 확대 시사</div><div class="cc-guide">컨센 부합 <span class="cc-hit">✅</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2025</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'25</div><div class="cc-msg">영업이익 4,337억 +171% YoY. <strong>OPM 두 자릿수 첫 진입(11.3%)</strong>. 엔진기계 22% 마진</div><div class="cc-guide">컨센 +20% 상회 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'25</div><div class="cc-msg">매출 4.28조. 영업이익 5,030억 OPM 11.8%. ZT Systems류 해외 야드 협의</div><div class="cc-guide">컨센 상회 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'25</div><div class="cc-msg">매출 -14.5% but 영업익 +107%. 저가물량 빠짐 + 후판가 하락. <strong>MASGA 출범, 헌팅턴 잉걸스 MOU</strong></div><div class="cc-guide">컨센 상회 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'25</div><div class="cc-msg">매출 5.19조 record +29% YoY. <strong>HD현대미포 합병 12월 완료</strong>. 2026 수주목표 145억$</div><div class="cc-guide">컨센 상회 <span class="cc-hit">✅</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2026</td>
+      <td><div class="cc-cell cc-latest"><div class="cc-quarter">Q1'26 ★ 최신</div><div class="cc-msg"><strong>매출 5.92조 +55% YoY, 영업이익 9,054억 +109%</strong>. <strong>OPM 15.3%</strong>. 데이터센터용 엔진 수요 급증 — 캐파 확장 검토</div><div class="cc-guide">컨센 5.36조 +10% 상회 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'26</div><div class="cc-msg">예정: 2026.07 말</div><div class="cc-guide">합병 시너지 풀반영 첫 분기 — 매출 6조+ 가능성</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'26</div><div class="cc-msg">예정: 2026.10</div><div class="cc-guide">미 군수지원함 후속 입찰 결과, 사우디 호위함 수주</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'26</div><div class="cc-msg">예정: 2027.02</div><div class="cc-guide">KDDX 사업자 선정(7.8조), 2026 연간 정리</div></div></td>
+    </tr>
+  </tbody>
+</table>
+<p class="note">* HD현대중공업은 11분기 중 9분기 컨센 달성/상회 (2023 Q3·Q4 충당금 일시 미달). 2025년부터 가이드 보수 → 실제 +5~10% 초과 패턴 안착. Q1'26은 컨센서스 6.12조 매출 -3% 미달이지만 영업이익 기준으로는 +6% 초과 — 시장은 OPM 15%에 더 주목하며 주가 +29% 한 달간 급등 (5.24만→6.80만).</p>
+</div>
+
+<!-- 5-3. Q1'26 심층 -->
+<span class="section-anchor" id="s10"></span>
+<div class="section">
+<h2>5-3. Q1'26 컨콜 심층 정리 (2026.05.07)</h2>
+<div class="prose">
+  <p><strong>발표일</strong>: 2026.05.07 (HD한국조선해양 동시 발표)</p>
+  <p><strong>실적</strong>: 매출 <strong>5조 9,163억</strong> (+54.8% YoY, +13.9% QoQ) / 영업이익 <strong>9,054억</strong> (+108.8% YoY, +57.5% QoQ) / OPM <strong>15.3%</strong> (+3.5%p YoY) / 순이익 <strong>7,738억</strong> (+172.3% YoY) / Q1 누계 수주 <strong>61.19억$</strong> (+29.6% YoY)</p>
+  <p><strong>시장 반응</strong>: 발표 전 1주일간 주가 +29% 선반영(5.24만→6.80만). 시총 71.9조 도달. 한국투자증권·iM증권·메리츠증권 일제 매수 의견 + 목표가 73만~89만 상향. 외국인 5월 첫째주 1,387억 순매수 (코스피 1위) — 이란 사태 와중 조선주 '대피처' 평가.</p>
+</div>
+
+<h3 style="margin-top:1.2rem">컨콜 핵심 메시지 5가지</h3>
+<div class="cc-sticker-box">
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">1</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">영업이익 <span class="hl-pos">+108.8% YoY 폭발</span> — OPM 두 자릿수 안착</div>
+      <div class="cc-sticker-desc">매출 5.92조(+54.8%), 영업이익 <span class="hl-pos">9,054억</span>, OPM <span class="hl-pos">15.3%</span>(+3.5%p YoY). 고수익 친환경 선박 매출 비중 확대 + 생산성 향상 + 해양 부문 수익 개선의 3중 효과. 2018~2024년 평균 OPM 0~3% 대비 압도적 점프</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">2</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">데이터센터 발전용 엔진 <span class="hl-pos">신규 수요 폭증</span> — 캐파 확장 검토</div>
+      <div class="cc-sticker-desc">컨콜 핵심 깜짝 메시지: <em>"데이터센터형 발전용 엔진 수요 급증에 따라 다방면으로 옵션을 검토 중. 향후 수주 물량을 기준으로 생산 캐파를 확충할 것을 검토할 예정"</em>. 현 캐파 연 400만마력·<span class="hl-pos">3GW</span> 박용+발전 가득찬 상태. AI 데이터센터 전력 수요로 새로운 성장 축 등장</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">3</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">Q1 수주 <span class="hl-pos">61.19억$ +29.6%</span> — 연간 145억$ 목표 43% 조기 달성</div>
+      <div class="cc-sticker-desc">조선 수주 49.19억$ (<span class="hl-pos">+51.5% YoY</span>), 해양 0.91억$ (+550%), 엔진기계 11.09억$ (-24.2%). 4월 LPG선 수주 추가 본격화 — 미국발 LPG 수출 강세 + 톤마일 증가로 발주 문의 폭증. 2H 미국 LNG 프로젝트 입찰 본격화로 추가 수주 기대</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">4</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">조선 + 엔진 + 해양 <span class="hl-pos">전 부문 성장</span> — 합병 시너지 가시화</div>
+      <div class="cc-sticker-desc">조선 매출 +50%+, 엔진기계 OPM 22% 유지, 해양플랜트 영업레버리지 본격 진입(OPM 22%). HD현대미포 합병 첫 분기 풀반영 — 도크 4기 중 2기 <span class="hl-pos">특수선 전환</span> 진행 중. 2027년부터 페루 원해경비함 매출 인식 시작</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">5</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">2H 모멘텀 <span class="hl-pos">미국 LNG·KDDX·사우디 호위함</span></div>
+      <div class="cc-sticker-desc">관계자: <em>"하반기에는 미국 내 대형 LNG 프로젝트 입찰 본격화로 LNG선 수요 확대. 고부가가치 선박 중심 선별 수주 이어갈 것"</em>. <span class="hl-pos">KDDX 7.8조</span>(2026.말 사업자 선정), 사우디 차기 호위함 3조, 미 함정 MRO 본격화. 단, 미 군수지원함 개념설계 입찰 탈락(2026.04)은 단기 약점</div>
+    </div>
+  </div>
+</div>
+
+<h3 style="margin-top:1.2rem">2026 가이던스 (메리츠증권 추정)</h3>
+<table>
+  <thead><tr><th>지표</th><th class="num">2025 실제</th><th class="num">2026E 추정</th><th class="num">YoY</th></tr></thead>
+  <tbody>
+    <tr><td>매출</td><td class="num">17.66조</td><td class="num hl"><strong>~22조원</strong></td><td class="num up2">+25%</td></tr>
+    <tr><td>영업이익</td><td class="num">2.04조</td><td class="num hl"><strong>3.7조원</strong></td><td class="num up2">+82%</td></tr>
+    <tr><td>OPM</td><td class="num">11.5%</td><td class="num hl"><strong>~17%</strong></td><td class="num up2">+5.5%p</td></tr>
+    <tr><td>순이익</td><td class="num">1.43조</td><td class="num hl"><strong>~2.7조원</strong></td><td class="num up2">+89%</td></tr>
+    <tr><td>EPS</td><td class="num">~16,000원</td><td class="num hl"><strong>~28,000원</strong></td><td class="num up2">+75%</td></tr>
+    <tr><td>조선 수주</td><td class="num">119억$</td><td class="num hl"><strong>145억$</strong></td><td class="num up2">+22%</td></tr>
+    <tr><td>특수선 수주</td><td class="num">10.8억$</td><td class="num hl"><strong>30.2억$</strong></td><td class="num up2">+178%</td></tr>
+  </tbody>
+</table>
+<p class="note">* 메리츠증권 2026 영업이익 추정 3.7조원은 시장 컨센서스 대비 +5% 상위. 한국투자증권 목표가 89만원, iM증권 86만원, 메리츠증권 매수 유지. 2026E EPS 28,000원 기준 Forward PE는 24배 — 조선 사이클 중기 적정 수준. Target EPS를 2028년 적용 시 PE 21.6배로 하방 안정성 확보 (대신증권).</p>
+
+<h3 style="margin-top:1.5rem">📊 IR 자료 — IR 프레젠테이션 미공개 안내</h3>
+<div class="ir-na-box">
+  <strong>HD현대중공업 IR 자료 한계</strong><br><br>
+  HD현대중공업은 한국 상장사 특성상 분기별 별도 Earnings Slide PDF를 발간하지 않으며, IR 페이지(<a href="https://www.hhi.co.kr/kr/investors/ir-data/presentation" target="_blank">hhi.co.kr</a>)에는 분기별 실적 발표자료(연결)와 합병 관련 IR 자료만 게시. 다음 자료들이 IR 슬라이드 역할 수행:
+  <ul style="padding-left:1.2rem;margin-top:8px">
+    <li><strong>HD현대중공업 - HD현대미포 합병 및 사업 재편</strong> (2024.12) — 합병 비율, 시너지, 도크 재편 계획</li>
+    <li><strong>2025년 분기별 실적발표자료</strong> (Q1·Q2·Q3·Q4) — 손익계산서 요약, 부문별 매출, 수주잔고</li>
+    <li><strong>2024 HD현대중공업 기업가치제고</strong> (Value-up Plan) — 주주환원·ROE 목표</li>
+  </ul>
+  대안: <strong>증권사 리포트</strong>가 사실상 IR 슬라이드 역할 — 메리츠증권(배기연), 한국투자증권(강경태), 대신증권, iM증권(변용진), NH투자증권 등 분기별 상세 분석 발간.
+</div>
+</div>
+
+<!-- 5-4. 시나리오 -->
+<span class="section-anchor" id="s11"></span>
+<div class="section">
+<h2>5-4. 강세 / 약세 시나리오</h2>
+<div class="scenario-stack">
+  <div class="scenario-box s-bull">
+    <div class="scenario-title">🟢 강세 시나리오</div>
+    <div class="s-item"><div class="s-case">친환경선 슈퍼사이클 2030년까지 지속</div><div class="s-sub">IMO 환경규제로 LNG·암모니아·메탄올 추진선 발주 50%+ 비중 유지. 클락슨 신조선가 +20% 추가 상승. 2028년 슬롯 매진 매출 가시성 확보</div></div>
+    <div class="s-item"><div class="s-case">KDDX 7.8조 + 사우디 호위함 3조 동시 수주</div><div class="s-sub">2026년 말 KDDX 사업자 선정, 사우디 본 계약 체결. 특수선 수주 30억$ 목표 달성/초과. 2027년 매출 인식 본격화로 2028~2030 영업이익 5조 시대</div></div>
+    <div class="s-item"><div class="s-case">데이터센터용 엔진 신성장 본격화</div><div class="s-sub">캐파 확장 결정 시 2027~2028 엔진기계 매출 +30% 추가 성장. 영업이익률 25%+ 가능. AI 인프라 사이클과 동조</div></div>
+    <div class="s-item"><div class="s-case">미국 함정 본격 수주 (MASGA 결실)</div><div class="s-sub">군수지원함 추가 입찰 + 신형 함정 사업 진입. HII 협력 심화로 잠수함 모듈 생산까지 확장. 미국 시장 진출이 글로벌 방산 모멘텀 가속</div></div>
+    <div class="s-item"><div class="s-case">2026 영업이익 3.7조 → 2027 5조+</div><div class="s-sub">합병 시너지 풀반영 + 고선가 잔고 매출 인식 + 특수선 비중 확대. PER 20배 적용 시 시총 100조원+ 가능. 목표가 90만원~100만원</div></div>
+    <div class="s-item"><div class="s-case">해외 야드 (베트남·필리핀·인도) 본격 가동</div><div class="s-sub">국내 고부가가치 + 해외 볼륨 투트랙 정착. 인도 타밀나두 야드 신설로 중장기 캐파 +30%. 중국과 직접 경쟁 회피하며 글로벌 점유율 유지</div></div>
+  </div>
+  <div class="scenario-box s-bear">
+    <div class="scenario-title">🔴 약세 시나리오</div>
+    <div class="s-item"><div class="s-case">중국 조선소 점유율 급상승</div><div class="s-sub">CSSC·SWS 등 LNG·VLCC 영역까지 침투. 한국 신조 점유율 30%대 → 20%대 하락 시 수주잔고 정점 우려. 2028년 이후 사이클 둔화</div></div>
+    <div class="s-item"><div class="s-case">15.5억$ EB 신주 전환 가시화</div><div class="s-sub">HD한국조선해양 교환사채 행사 시 잠재 ~5% 희석. 추가 발행 가능성 + 주주환원 압박. 단기 PE 압박 요인</div></div>
+    <div class="s-item"><div class="s-case">미국 함정 수주 연속 실패</div><div class="s-sub">2026.04 군수지원함 입찰 탈락에 이어 후속 입찰도 부진 시 MASGA 모멘텀 소멸. 30억$ 특수선 목표 70% 수준 달성에 그칠 가능성</div></div>
+    <div class="s-item"><div class="s-case">후판 가격 재상승</div><div class="s-sub">철강 수요 회복 + 중국 감산 정책으로 후판가 +15% 상승 시 OPM 2~3%p 압박. 2021년 같은 충당금 인식 우려는 ❌ (수주 잔고 선가 충분)</div></div>
+    <div class="s-item"><div class="s-case">이란-호르무즈 봉쇄 장기화</div><div class="s-sub">LNG 수송 차질 시 단기 신조 발주 둔화 + 정유사 가동률 저하 → HD현대그룹 정유 부문 부담. 다만 톤마일 증가가 신조 수요 자극할 수도</div></div>
+    <div class="s-item"><div class="s-case">조선 사이클 정점 인식</div><div class="s-sub">2027~2028년 글로벌 신조 발주 둔화 시 PE 멀티플 압박. 현재 PER 50배(TTM) → Forward 24배지만 사이클 후반부 진입 시 디레이팅 가능성</div></div>
+  </div>
+</div>
+</div>
+
+<!-- 6. Worth Watching -->
+<span class="section-anchor" id="s12"></span>
+<div class="section">
+<h2>6. Worth Watching Events</h2>
+<div class="ww-sticker-box">
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.06</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Posidonia 2026 그리스 해운박람회</div>
+      <div class="ww-sticker-point">유럽 선주 신규 수주 확대 기회. 카타르 LNG 추가 발주 가능성. 친환경선 발주 트렌드 확인</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.07</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q2'26 실적 발표 (예상)</div>
+      <div class="ww-sticker-point">합병 시너지 풀반영 첫 완전 분기. 매출 6조+ 가능성. OPM 15%+ 안착 여부 검증</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026 H2</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">미국 LNG 프로젝트 대형 입찰</div>
+      <div class="ww-sticker-point">엑손모빌·셰브론·QatarEnergy 등 LNG 발주 본격화. 카타르 메이단마흐잠 해상유전 현대화 패키지 수주</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.09</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">사우디 차기 호위함 사업자 발표 (예상)</div>
+      <div class="ww-sticker-point">HDF-6000 모델 — 3조원 규모. IMI 조선소 현지 건조 협력. WDS 2026에서 적극 어필 중</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.10</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q3'26 실적 + 미 군수지원함 후속 입찰</div>
+      <div class="ww-sticker-point">개념설계 탈락 후속 — 본 건조 입찰 결과 발표 가능성. 한미 MASGA 협력 향배 결정적 분기점</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.12</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">KDDX 사업자 최종 선정</div>
+      <div class="ww-sticker-point">한국형 차기 구축함 7.8조 수주전. 한화오션과 경쟁입찰. HD현대중공업 정조대왕급 건조 실적 우위</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027.02</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q4'26 실적 + 2026 연간 결산</div>
+      <div class="ww-sticker-point">2026 연간 영업이익 3.7조 달성 여부. 2027 가이던스 공식 발표. 데이터센터 엔진 캐파 확장 결정</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027 H1</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">페루 원해경비함 매출 인식 시작</div>
+      <div class="ww-sticker-point">합병 미포 야드 3·4번 도크 첫 본격 활용. 특수선 매출 비중 10%+ 진입. 잠수함 추가 수주 검토</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">캐나다 잠수함 60조원 사업자 선정 (한화오션 원팀)</div>
+      <div class="ww-sticker-point">한화오션 메인 + HD현대중공업 일부 모듈 협력. 글로벌 잠수함 시장 본격 진입 가시성</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2028</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">합병 시너지 풀가동 + 신조선가 +20% 누적</div>
+      <div class="ww-sticker-point">고선가 매출 인식 정점. 영업이익 5조+ 가시성. 시총 100조원+ 진입 가능성</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 7. 데이터 출처 -->
+<span class="section-anchor" id="s13"></span>
+<div class="section">
+<h2>7. 데이터 출처</h2>
+<div class="source-box">
+  <ul style="padding-left:1.2rem">
+    <li>HD현대중공업 DART 분기/연간 사업보고서 2018~2026</li>
+    <li>Q1'26 실적 보도자료 (2026.05.07) — 연결기준 잠정실적 공시</li>
+    <li>HD한국조선해양 Q1'26 컨퍼런스콜 (2026.05.07)</li>
+    <li>HD현대중공업 IR Presentation (분기별 실적발표자료, 합병 IR 자료)</li>
+    <li>2026.01 HD한국조선해양 경영진 간담회 — 2026 수주 목표 발표</li>
+    <li>증권사 리포트: 메리츠증권(배기연), 한국투자증권(강경태), 대신증권, iM증권(변용진), NH투자증권</li>
+    <li>주가·시총 데이터: Investing.com, 네이버증권, FnGuide (2026.05.07 기준)</li>
+    <li>분석 기사: 뉴시스, 머니투데이, 아시아투데이, 한국경제, 비즈트리뷴, 한국해운신문, 쉬핑뉴스넷</li>
+    <li>나신용평가: HD현대그룹 그룹 이슈 보고서 (2026.04)</li>
+    <li>환율: 2026.05.07 USD/KRW 1,448원 (Wise 미드마켓 환율)</li>
+    <li>분석일: 2026년 5월 7일</li>
+  </ul>
+  <p style="margin-top:8px;color:#bbb">⚠️ 분기별 부문 매출/OPM 일부는 증권사 추정치 기반 — 사업보고서 5월 중하순 공시 후 확정. HD현대미포 합병으로 2025년 데이터는 합병 전(별도) vs 합병 후(통합) 표시 차이 존재. 2018~2021년 분기 부문별 데이터는 구 사업체계(조선해양사업부 통합)에서 신규 3부문으로 역산 추정. EB 행사 시 잠재 EPS 희석 효과는 별도 분석 필요.</p>
+</div>
+</div>
+
+<!-- 7-1. Reference -->
+<span class="section-anchor" id="s14"></span>
+<div class="section">
+<h2>7-1. Reference</h2>
+<div class="ref-list">
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.hhi.co.kr/kr/investors/ir-data/presentation" target="_blank">HD현대중공업 IR — 분기별 실적발표 자료</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.hhi.co.kr/kr/investors/financialinformation/financialhighlights" target="_blank">HD현대중공업 IR — 재무정보</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://dart.fss.or.kr/dsab007/main.do?option=corp&textCrpNm=HD%ED%98%84%EB%8C%80%EC%A4%91%EA%B3%B5%EC%97%85" target="_blank">DART 전자공시 — HD현대중공업 (329180)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="http://naval-special.hhi.co.kr/ko/" target="_blank">HD현대중공업 함정·중형선사업부 공식 페이지</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">IR Page</span><a href="https://m.irgo.co.kr/IR-COMP/329180/" target="_blank">IRGO — HD현대중공업 IR Page</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="http://money2.daishin.co.kr/e5/Pagelet/Board/Research/filedownload.aspx?gubun=0&rowid=5NLcXs71s2xZQ9mC5ST4kSSSXlv8Ma8z70lR1V4O6603033339XSeNaDvtGbxZeItxSpOVa9n53Biw4pJapwDfKjp9W8FsR2uR2P10&word=6riw7JeF67aE7ISd&searchtype=Research" target="_blank">대신증권 — HD현대중공업 해외 조선소 확장 분석 (2026.04.16)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.biztribune.co.kr/news/articleView.html?idxno=351867" target="_blank">메리츠증권(배기연) — Q1'26 호실적 + 군함 수주 파이프라인</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.mt.co.kr/stock/2026/02/10/2026021008293319315" target="_blank">iM증권(변용진) — 목표가 86만원 28.7% 상향, Top Pick 선정</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.newsis.com/view/NISX20260507_0003620253" target="_blank">뉴시스 — Q1 영업익 9054억 +109% (2026.05.07)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.newspim.com/news/view/20260507001182" target="_blank">뉴스핌 — Q1 컨콜 데이터센터 엔진 수요 (2026.05.07)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="http://www.maritimepress.co.kr/news/articleView.html?idxno=331139" target="_blank">한국해운신문 — HD한국조선해양 Q1 영업익 1.36조 +58% (2026.05.07)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.shippingnewsnet.com/news/articleView.html?idxno=70021" target="_blank">쉬핑뉴스넷 — 나신평 HD현대그룹 이슈 보고서</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://news.nate.com/view/20260420n33269" target="_blank">디지털투데이 — Q1 누계 수주 61.19억$ +29.6% (2026.04.20)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.mt.co.kr/industry/2026/01/18/2026011514193767856" target="_blank">머니투데이 — 특수선 3배 확대 정조준 (2026.01.18)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.asiatoday.co.kr/kn/view.php?key=20260108010003323" target="_blank">아시아투데이 — 미 해군 MRO 사업 본격화 (2026.01.07)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://v.daum.net/v/20260410090202782" target="_blank">한국투자증권 — 해외 확장 + 밸류 재평가 (2026.04.10)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.thepublic.kr/news/articleView.html?idxno=299701" target="_blank">더퍼블릭 — 미 군수지원함 입찰 탈락 (2026.04.02)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://namu.wiki/w/HD%ED%98%84%EB%8C%80%EC%A4%91%EA%B3%B5%EC%97%85" target="_blank">나무위키 — HD현대중공업</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://en.wikipedia.org/wiki/HD_Hyundai_Heavy_Industries" target="_blank">Wikipedia — HD Hyundai Heavy Industries</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://ko.wikipedia.org/wiki/HD%ED%98%84%EB%8C%80%EC%A4%91%EA%B3%B5%EC%97%85" target="_blank">위키피디아 — HD현대중공업 (한국어)</a></div>
+</div>
+<p class="note">* 공식 자료(HD현대 IR·DART) 5개, 증권사 리포트 3개, 뉴스 9개, 위키 3개 — 총 20개 레퍼런스. 한국어 블로그 자료는 좋아요 10개 이상 충족 게시물 부재로 본 리포트에서는 미포함.</p>
+</div>
+
+<div class="footer">HD현대중공업 (329180) 기업분석 · 2026.05.07 · 개인 사용 목적</div>
+</div>
+
+<script>
+// 33분기 라벨 — Q1'18 ~ Q1'26
+const L33=["Q1'18","Q2'18","Q3'18","Q4'18","Q1'19","Q2'19","Q3'19","Q4'19","Q1'20","Q2'20","Q3'20","Q4'20","Q1'21","Q2'21","Q3'21","Q4'21","Q1'22","Q2'22","Q3'22","Q4'22","Q1'23","Q2'23","Q3'23","Q4'23","Q1'24","Q2'24","Q3'24","Q4'24","Q1'25","Q2'25","Q3'25","Q4'25","Q1'26"];
+
+// 4개 부문 - 33분기 (억원)
+// 2018~2021은 구 체계(조선해양 통합)에서 역산 추정
+// 2022 Q1~ 신규 3부문 + 기타·연결조정
+// 조선
+const seg_ship    = [16500,17800,18000,17200, 17000,17300,17800,18800, 17000,17500,17500,17800, 17500,17000,16800,16500, 13000,14500,15500,16000, 17500,22090,21340,25300, 25540,28150,28750,30720, 29030,32500,32800,39640, 42200];
+// 엔진기계
+const seg_engine  = [3500,3700,3800,3900, 3800,3900,3800,3900, 3700,3700,3500,3700, 3900,4000,4100,4200, 4500,4800,5100,5400, 5600,5890,5690,6150, 6500,6990,7250,7990, 8360,9160,9300,10800, 14000];
+// 해양플랜트
+const seg_offshore= [2000,2200,2200,2300, 2300,2400,2300,2300, 2100,2200,2100,2300, 2200,2300,2400,2500, 2200,2000,1900,1800, 1700,1470,1420,1680, 1290,1360,1340,1490, 830,1090,1100,1500, 2963];
+// 기타·연결조정 (보통 마이너스 연결조정)
+const seg_other   = [-200,-300,-300,-400, -400,-500,-500,-600, -300,-400,-300,-400, -500,-500,-500,-700, -700,-800,-700,-700, -600,3,2,-2, 1,6,6,6, 5,0,0,0, 0];
+
+const totalRev=L33.map((_,i)=>seg_ship[i]+seg_engine[i]+seg_offshore[i]+seg_other[i]);
+
+// 영업이익률% (2018~2022 추정, 2023~2026 실제)
+const opm=[
+  3.5,3.0,2.8,3.0,        // 2018
+  3.2,3.5,3.0,3.0,        // 2019 - 적자 회복 시도
+  0.5,1.0,0.0,0.0,        // 2020 - 코로나 + 후판가
+  -8.0,-9.5,-10.0,-9.5,   // 2021 - 후판가 폭등 충당금
+  -5.0,-4.0,-3.0,-3.5,    // 2022 - 사이클 전환점
+  0.5,2.4,1.2,-2.6,       // 2023 - 흑자 정착
+  4.8,2.6,4.2,2.7,        // 2024
+  11.3,11.8,12.5,11.1,    // 2025 - OPM 두 자릿수 진입
+  15.3                    // Q1'26
+];
+
+const gc='rgba(0,0,0,0.05)',tc='#999';
+const xT={color:tc,font:{size:9},maxRotation:45,autoSkip:true,maxTicksLimit:18};
+const yT={color:tc,font:{size:11}};
+
+// 부문 차트
+const segBase=[
+  {label:'조선',data:seg_ship,backgroundColor:'#1D9E75',stack:'s'},
+  {label:'엔진기계',data:seg_engine,backgroundColor:'#378ADD',stack:'s'},
+  {label:'해양플랜트',data:seg_offshore,backgroundColor:'#D85A30',stack:'s'},
+  {label:'기타·연결조정',data:seg_other,backgroundColor:'#BA7517',stack:'s'},
+];
+const segChart=new Chart(document.getElementById('cSeg'),{
+  type:'bar',
+  data:{labels:L33,datasets:segBase.map(d=>({...d}))},
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{callbacks:{label:ctx=>' '+(ctx.parsed.y>=0?'':'')+ctx.parsed.y.toLocaleString()+'억원'}}
+    },
+    scales:{
+      x:{grid:{color:gc},ticks:xT,stacked:true},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>v.toLocaleString()+'억'},stacked:true}
+    }
+  }
+});
+window.toggleSeg=function(idx,el){const m=segChart.getDatasetMeta(idx);m.hidden=!m.hidden;el.classList.toggle('hidden',m.hidden);segChart.update();};
+
+// 매출+OPM 이중축
+new Chart(document.getElementById('cRev'),{
+  type:'bar',
+  data:{
+    labels:L33,
+    datasets:[
+      {type:'bar',label:'매출',data:totalRev,backgroundColor:'rgba(55,138,221,0.25)',borderColor:'#378ADD',borderWidth:1,yAxisID:'y'},
+      {type:'line',label:'OPM%',data:opm,borderColor:'#1D9E75',pointRadius:3,pointBackgroundColor:'#1D9E75',fill:false,tension:0.3,yAxisID:'y2',borderWidth:2}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:ctx=>ctx.datasetIndex===0?' '+ctx.parsed.y.toLocaleString()+'억원':' OPM: '+ctx.parsed.y.toFixed(1)+'%'}}},
+    scales:{
+      x:{grid:{color:gc},ticks:xT},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>v.toLocaleString()+'억'},position:'left'},
+      y2:{grid:{display:false},ticks:{color:'#1D9E75',font:{size:10},callback:v=>v+'%'},position:'right',min:-12,max:20}
+    }
+  }
+});
+
+// 주가 차트 (Chart.js 대체 — KRX 데이터 차단)
+// 월 4주 근사치 — 2024.01 ~ 2026.05 (29개월 ≈ 116주)
+const priceLabels=[];
+const priceData=[];
+const startDate=new Date(2024,0,1);
+// 월별 종가 (근사) → 4주 보간
+const monthlyPrice=[
+  150000,160000,165000,170000,175000,180000,185000,190000,200000,210000,220000,235000, // 2024
+  250000,290000,310000,290000,370000,380000,395000,410000,425000,440000,460000,470000, // 2025
+  490000,520000,560000,524000,680000 // 2026.01~2026.05
+];
+for(let m=0;m<monthlyPrice.length;m++){
+  for(let w=0;w<4;w++){
+    const d=new Date(startDate);d.setMonth(startDate.getMonth()+m);d.setDate(7+w*7);
+    priceLabels.push(`${d.getFullYear().toString().slice(2)}.${(d.getMonth()+1).toString().padStart(2,'0')}`);
+    // 4주 선형 보간
+    const next=monthlyPrice[m+1]||monthlyPrice[m];
+    const interp=monthlyPrice[m]+(next-monthlyPrice[m])*(w/4);
+    priceData.push(Math.round(interp));
+  }
+}
+
+new Chart(document.getElementById('cPrice'),{
+  type:'line',
+  data:{
+    labels:priceLabels,
+    datasets:[{
+      label:'HD현대중공업 (₩)',
+      data:priceData,
+      borderColor:'#378ADD',
+      backgroundColor:'rgba(55,138,221,0.1)',
+      fill:true,
+      tension:0.2,
+      pointRadius:0,
+      pointHoverRadius:4,
+      borderWidth:2
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{callbacks:{label:ctx=>' ₩'+ctx.parsed.y.toLocaleString()}}
+    },
+    scales:{
+      x:{grid:{color:gc},ticks:{...xT,maxTicksLimit:12}},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>'₩'+(v/10000)+'만'}}
+    }
+  }
+});
+</script>
+</body>
+</html>
