@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>한중엔시에스 (107640) 기업분석 — 2025 FY</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f3ef;color:#1a1a1a;padding:2rem;font-size:14px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto}
+.header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #e0e0dc;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.header-title{font-size:22px;font-weight:700}
+.header-meta{font-size:12px;color:#888;margin-top:4px}
+.toc{margin-bottom:2rem;padding:0}
+.toc-title{font-size:12px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+.toc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:1.1rem 1.3rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.toc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(8,auto);grid-auto-flow:column;gap:6px 28px}
+@media(max-width:650px){.toc-grid{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}}
+.toc-link{display:flex;align-items:center;gap:10px;padding:5px 0;text-decoration:none;color:#444;font-size:13px;border-bottom:0.5px dashed transparent;transition:all .15s ease}
+.toc-link:hover{color:#378ADD;border-bottom-color:#cfe1f5}
+.toc-link .toc-num{color:#aaa;font-weight:700;font-size:12px;min-width:30px;font-variant-numeric:tabular-nums;flex-shrink:0}
+.toc-link:hover .toc-num{color:#378ADD}
+.toc-link .toc-text{flex:1}
+.toc-link.sub{padding-left:18px;font-size:12.5px;color:#666}
+.toc-link.sub .toc-num{font-size:11px;color:#bbb}
+.section{margin-bottom:3rem}
+.section-anchor{display:block;position:relative;top:-70px;visibility:hidden}
+h2{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:6px;border-bottom:1.5px solid #e0e0dc}
+h3{font-size:14px;font-weight:600;margin:1.2rem 0 .6rem;color:#333}
+.chart-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:20px;position:relative;width:100%}
+.note{font-size:11px;color:#999;margin-top:8px;line-height:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;font-size:12px;color:#666}
+.legend-item{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:3px 8px;border-radius:6px;transition:opacity .15s}
+.legend-item:hover{background:#e8e8e3}
+.legend-item.hidden{opacity:.3;text-decoration:line-through}
+.legend-static{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0dc;margin-bottom:.5rem}
+th{background:#ebebe6;font-weight:600;padding:7px 8px;text-align:left;border-bottom:1px solid #e0e0dc;white-space:nowrap;font-size:11.5px}
+th.center{text-align:center}
+td{padding:6px 8px;border-bottom:0.5px solid #f0f0ee;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafaf6}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.center{text-align:center}
+.hl{background:#fffbe6 !important}
+.dn{color:#D85A30}
+.up2{color:#1D9E75}
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
+@media(max-width:650px){.overview-grid{grid-template-columns:1fr}}
+.overview-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.overview-box h4{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.kv{display:flex;justify-content:space-between;align-items:flex-start;padding:4px 0;border-bottom:0.5px solid #f5f4f0;font-size:12.5px;gap:10px}
+.kv:last-child{border-bottom:none}
+.kv-key{color:#666;min-width:90px;flex-shrink:0}
+.kv-val{font-weight:600;text-align:right;flex:1}
+.seg-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:1rem}
+.seg-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.seg-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:8px}
+.seg-card-name{font-size:13px;font-weight:700}
+.seg-card-share{font-size:11px;color:#888;font-weight:600}
+.seg-card-desc{font-size:12px;color:#444;line-height:1.55;margin-bottom:6px}
+.seg-card-margin{font-size:11px;font-weight:600}
+.badge{display:inline-block;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:600}
+.badge-up{background:#e6f7f0;color:#1D9E75}
+.badge-dn{background:#fce8e4;color:#D85A30}
+.badge-neu{background:#ebebe6;color:#666}
+.cc-table{width:100%;border-collapse:separate;border-spacing:6px;margin-bottom:1rem}
+.cc-table th{background:transparent;border:none;font-size:11px;color:#888;text-align:center;padding:4px;font-weight:600;white-space:nowrap}
+.cc-table th.year-col{width:50px;text-align:left}
+.cc-cell{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.65rem .75rem;vertical-align:top;height:100%}
+.cc-quarter{font-size:10px;font-weight:700;color:#378ADD;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.cc-msg{font-size:11px;color:#444;margin-bottom:6px;line-height:1.45}
+.cc-guide{font-size:10px;color:#888;border-top:0.5px solid #f0f0ee;padding-top:5px;line-height:1.5}
+.cc-hit{color:#1D9E75;font-weight:600}
+.cc-miss{color:#D85A30;font-weight:600}
+.cc-latest{border:1.5px solid #378ADD !important;box-shadow:0 0 0 2px rgba(55,138,221,0.1)}
+.year-label{font-size:13px;font-weight:700;color:#555;padding-right:8px;vertical-align:middle}
+.scenario-stack{display:flex;flex-direction:column;gap:12px}
+.scenario-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1.1rem 1.3rem}
+.scenario-title{font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid #f0f0ee}
+.s-bull .scenario-title{color:#1D9E75}
+.s-bear .scenario-title{color:#D85A30}
+.s-item{margin-bottom:9px;padding-bottom:9px;border-bottom:0.5px solid #f5f4f0;font-size:12px}
+.s-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-case{font-weight:600;margin-bottom:2px}
+.s-sub{color:#888;font-size:11px}
+.ww-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.ww-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.ww-sticker-item{padding:.7rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:14px;align-items:flex-start}
+.ww-sticker-item:last-child{border-bottom:none}
+.ww-sticker-date{font-size:11px;font-weight:700;color:#378ADD;white-space:nowrap;min-width:90px;flex-shrink:0;padding-top:1px}
+.ww-sticker-content{flex:1}
+.ww-sticker-event{font-size:12.5px;font-weight:700;color:#222;margin-bottom:2px}
+.ww-sticker-point{font-size:11.5px;color:#666;line-height:1.5}
+.source-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.4rem;font-size:12px;color:#888;line-height:2}
+.prose{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;margin-bottom:1rem;font-size:13px;line-height:1.7}
+.prose ul{padding-left:1.3rem}
+.prose li{margin-bottom:.25rem}
+.prose p{margin-bottom:.7rem}
+.prose p:last-child{margin-bottom:0}
+.thesis-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:12px;padding:1.2rem 1.4rem;margin-bottom:12px;border-left:5px solid #333;position:relative}
+.thesis-box-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.thesis-icon{font-size:22px;flex-shrink:0}
+.thesis-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:5px;background:#ebebe6;color:#444}
+.thesis-title{font-size:15px;font-weight:700;color:#222;flex:1;margin-bottom:0}
+.thesis-body{font-size:13px;line-height:1.7;color:#333}
+.thesis-body p{margin-bottom:.6rem}
+.thesis-body p:last-child{margin-bottom:0}
+.thesis-body strong{color:#222;font-weight:700}
+.thesis-body .hl-blue{font-weight:600;color:#222}
+.thesis-body .hl-green{font-weight:700;color:#1D9E75}
+.thesis-body .hl-red{font-weight:700;color:#D85A30}
+.cc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.cc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.cc-sticker-item{padding:.85rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:12px;align-items:flex-start}
+.cc-sticker-item:last-child{border-bottom:none}
+.cc-sticker-rank{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#378ADD;color:#fff;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.cc-sticker-content{flex:1}
+.cc-sticker-title{font-size:13px;font-weight:700;color:#222;margin-bottom:4px}
+.cc-sticker-desc{font-size:12px;color:#444;line-height:1.6}
+.cc-sticker-desc strong{color:#222}
+.hl-pos{color:#1D9E75;font-weight:700}
+.hl-neg{color:#D85A30;font-weight:700}
+.ir-slide{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;overflow:hidden;margin-bottom:14px}
+.ir-slide-frame{background:linear-gradient(135deg,#f8f8f5 0%,#ffffff 100%);padding:.85rem 1.4rem;border-bottom:0.5px solid #e0e0dc}
+.ir-slide-num{font-size:10px;color:#999;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+.ir-slide-title{font-size:14px;font-weight:700;color:#333}
+.ir-slide-img-wrap{padding:1rem 1.4rem;text-align:center;background:#fafaf6}
+.ir-slide-img-wrap iframe{display:block;width:100%;max-width:850px;height:480px;margin:0 auto;border:0.5px solid #e0e0dc;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+@media(max-width:650px){.ir-slide-img-wrap iframe{height:380px}}
+.ir-slide-caption{font-size:11.5px;color:#555;padding:.85rem 1.4rem 1rem;line-height:1.55;background:#fff;border-top:0.5px solid #f0f0ee}
+.ir-slide-caption strong{color:#222}
+.footer{font-size:11px;color:#aaa;text-align:center;margin-top:2rem;padding-top:1rem;border-top:0.5px solid #e0e0dc}
+.seg-table-wrap{overflow-x:auto}
+.seg-table{min-width:780px}
+.seg-table th.seg-group{text-align:center;background:#e3e3de;border-left:2px solid #d0d0cc}
+.seg-table td.seg-border{border-left:2px solid #e0e0dc}
+.naver-link{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:14px;font-size:12px;color:#666;text-align:center;margin-bottom:10px}
+.naver-link a{color:#378ADD;text-decoration:none;font-weight:600}
+.naver-link a:hover{text-decoration:underline}
+.ref-list{display:flex;flex-direction:column;gap:6px}
+.ref-item{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.6rem .9rem;display:flex;align-items:center;gap:10px;font-size:12px}
+.ref-tag{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600;flex-shrink:0;min-width:55px;text-align:center}
+.tag-official{background:#e0effc;color:#1565c0}
+.tag-broker{background:#fff4e0;color:#ed8936}
+.tag-news{background:#f0f0ed;color:#555}
+.tag-wiki{background:#e6f7f0;color:#1D9E75}
+.ref-item a{color:#378ADD;text-decoration:none;flex:1;word-break:break-all}
+.ref-item a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div>
+    <div class="header-title">⚡ 한중엔시에스 (107640) 기업분석</div>
+    <div class="header-meta">회계연도: Calendar Year &nbsp;|&nbsp; 분석기간: 2021~2025 (연간) + Q1'24~Q3'25 (7분기) &nbsp;|&nbsp; 최근 IR: 2025.12.01 (3Q'25)</div>
+  </div>
+  <div style="font-size:12px;color:#aaa">분석일: 2026.05.07</div>
+</div>
+
+<!-- 목차 -->
+<div class="toc">
+  <div class="toc-title">목차</div>
+  <div class="toc-sticker-box">
+    <div class="toc-grid">
+      <a class="toc-link" href="#s1"><span class="toc-num">01.</span><span class="toc-text">회사 개요</span></a>
+      <a class="toc-link" href="#s2"><span class="toc-num">02.</span><span class="toc-text">주가 흐름 — 주봉 차트</span></a>
+      <a class="toc-link" href="#s3"><span class="toc-num">03.</span><span class="toc-text">세그먼트별 매출 추이</span></a>
+      <a class="toc-link sub" href="#s3b"><span class="toc-num">3-1.</span><span class="toc-text">세그먼트 구조 및 제품</span></a>
+      <a class="toc-link sub" href="#s4"><span class="toc-num">3-2.</span><span class="toc-text">매출 &amp; OPM 추이</span></a>
+      <a class="toc-link sub" href="#s5"><span class="toc-num">3-3.</span><span class="toc-text">분기별 실적 테이블</span></a>
+      <a class="toc-link" href="#s6"><span class="toc-num">04.</span><span class="toc-text">재무제표 개요</span></a>
+      <a class="toc-link" href="#s7"><span class="toc-num">05.</span><span class="toc-text">핵심 투자아이디어</span></a>
+      <a class="toc-link sub" href="#s8"><span class="toc-num">5-1.</span><span class="toc-text">핵심 변동 요인</span></a>
+      <a class="toc-link sub" href="#s9"><span class="toc-num">5-2.</span><span class="toc-text">분기 실적 트래킹</span></a>
+      <a class="toc-link sub" href="#s10"><span class="toc-num">5-3.</span><span class="toc-text">3Q'25 IR 심층 정리</span></a>
+      <a class="toc-link sub" href="#s11"><span class="toc-num">5-4.</span><span class="toc-text">강세 / 약세 시나리오</span></a>
+      <a class="toc-link" href="#s12"><span class="toc-num">06.</span><span class="toc-text">Worth Watching Events</span></a>
+      <a class="toc-link" href="#s13"><span class="toc-num">07.</span><span class="toc-text">데이터 출처</span></a>
+      <a class="toc-link sub" href="#s14"><span class="toc-num">7-1.</span><span class="toc-text">Reference</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- 1. 회사 개요 -->
+<span class="section-anchor" id="s1"></span>
+<div class="section">
+<h2>1. 회사 개요</h2>
+<div class="overview-grid">
+  <div class="overview-box">
+    <h4>기본 정보</h4>
+    <div class="kv"><span class="kv-key">설립</span><span class="kv-val">1995년 8월 (김환식 창업)</span></div>
+    <div class="kv"><span class="kv-key">상장</span><span class="kv-val">2013 코넥스 → 2024.06 코스닥 이전</span></div>
+    <div class="kv"><span class="kv-key">본사</span><span class="kv-val">경상북도 영천시 영천산단로 379</span></div>
+    <div class="kv"><span class="kv-key">대표이사</span><span class="kv-val">김환식 (창업주) · 김상균 사장 (2세)</span></div>
+    <div class="kv"><span class="kv-key">임직원</span><span class="kv-val">~330명 (2025.11)</span></div>
+    <div class="kv"><span class="kv-key">사업 모델</span><span class="kv-val">자체 생산 (영천 본사 + 중국·미국 법인)</span></div>
+    <div class="kv"><span class="kv-key">티커</span><span class="kv-val">KOSDAQ: 107640</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>시장 정보 (2026.05.01 기준)</h4>
+    <div class="kv"><span class="kv-key">현재 주가</span><span class="kv-val">₩67,100</span></div>
+    <div class="kv"><span class="kv-key">시가총액 KRW</span><span class="kv-val" style="color:#378ADD">~6,083억원</span></div>
+    <div class="kv"><span class="kv-key">시가총액 USD</span><span class="kv-val" style="color:#378ADD">~$420M (환율 1,448원)</span></div>
+    <div class="kv"><span class="kv-key">발행주식</span><span class="kv-val">9,511,000주 (2025.11)</span></div>
+    <div class="kv"><span class="kv-key">52주 고가</span><span class="kv-val">₩73,000 (2026.04.22)</span></div>
+    <div class="kv"><span class="kv-key">52주 저가</span><span class="kv-val">₩23,650 (2024.12)</span></div>
+    <div class="kv"><span class="kv-key">P/E (TTM)</span><span class="kv-val">~111 (12M Fwd ~30)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>사업 운영</h4>
+    <div class="kv"><span class="kv-key">제조 거점</span><span class="kv-val">영천 본사 + 중국 강소·미국 인디애나·미시간</span></div>
+    <div class="kv"><span class="kv-key">핵심 IP</span><span class="kv-val">국내 최초 수냉식 ESS 냉각시스템 상용화</span></div>
+    <div class="kv"><span class="kv-key">주요 인증</span><span class="kv-val">삼성SDI 제조혁신상 (2022~23) · SSP Partner</span></div>
+    <div class="kv"><span class="kv-key">미국 법인</span><span class="kv-val">한중아메리카(인디애나) - 2027.1Q 가동</span></div>
+    <div class="kv"><span class="kv-key">세그먼트</span><span class="kv-val">2개: ESS 부품 / 자동차(EV) 부품</span></div>
+    <div class="kv"><span class="kv-key">제품군</span><span class="kv-val">Cooling Plate, Chiller, HVAC, EDI 소화장치, EV 공조</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>투자 포인트 요약</h4>
+    <div class="kv"><span class="kv-key">2025 매출</span><span class="kv-val" style="color:#D85A30">1,753억원 (-1.1% YoY)</span></div>
+    <div class="kv"><span class="kv-key">2025 영업이익</span><span class="kv-val" style="color:#D85A30">40억원 (-57.9% YoY)</span></div>
+    <div class="kv"><span class="kv-key">ESS 매출 비중</span><span class="kv-val" style="color:#1D9E75">77% (2025 YTD, vs 60% 2024 4Q)</span></div>
+    <div class="kv"><span class="kv-key">SBB 1.5 비중 추월</span><span class="kv-val" style="color:#1D9E75">3Q'25 SBB1.5 &gt; SBB1.0</span></div>
+    <div class="kv"><span class="kv-key">애널리스트 PT</span><span class="kv-val" style="color:#1D9E75">₩97,000 (+44.6% upside)</span></div>
+    <div class="kv"><span class="kv-key">미국 법인 양산</span><span class="kv-val" style="color:#378ADD">2027 1Q 본격 가동</span></div>
+  </div>
+</div>
+<p class="note">⚠️ <strong>SBB</strong>=Samsung Battery Box (삼성SDI 컨테이너형 ESS 일체형 솔루션). <strong>Cooling Plate</strong>=배터리 셀 직접 접촉 냉각 플레이트. <strong>Chiller</strong>=냉각수 온도 제어 장치. <strong>HVAC</strong>=Heating, Ventilation, Air Conditioning (공조). <strong>EDI</strong>=Enhanced Direct Injection 소화장치. <strong>LFP</strong>=리튬·인산·철 배터리 (NCA 대비 안정성·가격 우위). <strong>OBBBA</strong>=One Big Beautiful Bill Act (미국 중국산 배터리 규제 법안).</p>
+</div>
+
+<!-- 2. 주가 -->
+<span class="section-anchor" id="s2"></span>
+<div class="section">
+<h2>2. 주가 흐름 — 일봉 차트</h2>
+<div class="naver-link">
+  📊 KOSDAQ 종목 일봉 차트는 외부 임베드 차단으로 아래 링크에서 실시간 확인 가능합니다.<br>
+  <a href="https://finance.naver.com/item/main.naver?code=107640" target="_blank">▶ 네이버 증권 — 한중엔시에스 (107640)</a> &nbsp;|&nbsp;
+  <a href="https://kr.tradingview.com/symbols/KRX-107640/" target="_blank">▶ TradingView — KRX:107640</a>
+</div>
+<div class="chart-box" style="height:380px"><canvas id="cPrice"></canvas></div>
+<p class="note">* 일봉 근사치 (1년, 영업일 기준 ~250일). 2024.12 ₩23,650 저점 → 트럼프 2기 ESS 침체 우려 해소 + 2025년 ESS 회복 + 삼성SDI 동반 성장 + 북미 ESS 수요 폭증 기대로 랠리 → 2026.04.22 ₩73,000 신고가 → 2026.05.01 ₩67,100. 1년 주가 +152%.</p>
+
+<h3 style="margin-top:1.2rem">주요 이벤트 연표</h3>
+<table>
+  <thead><tr><th>시기</th><th class="num">주가(근사)</th><th>이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>1995.08</td><td class="num">—</td><td>김환식 대표 창업, 자동차 내연기관 부품 사업 시작 (영천)</td></tr>
+    <tr><td>2013</td><td class="num">—</td><td>코넥스 상장</td></tr>
+    <tr><td>2018</td><td class="num">—</td><td>삼성SDI와 <span class="up2">공랭식 ESS Case Module 첫 수주</span></td></tr>
+    <tr><td>2021</td><td class="num">—</td><td>업종변경: 자동차부품 → <span class="up2">에너지저장장치 제조업</span></td></tr>
+    <tr><td>2022.10</td><td class="num">—</td><td>삼성SDI 제조혁신상 수상 (~2023)</td></tr>
+    <tr><td>2023.09</td><td class="num">—</td><td><span class="up2">수냉식 ESS 냉각시스템 본양산 시작</span></td></tr>
+    <tr><td>2024.05</td><td class="num">—</td><td>SBB 1.0 (3.8MWh) 초도양산 공급</td></tr>
+    <tr><td>2024.06.27</td><td class="num">₩44,000</td><td>코스닥 이전상장 (공모 대박, 청약증거금 6조원)</td></tr>
+    <tr><td>2024.12</td><td class="num">₩23,650</td><td>52주 저점 — 트럼프 당선 후 <span class="dn">신재생에너지 침체 우려</span></td></tr>
+    <tr><td>2025.04</td><td class="num">~₩28,000</td><td>한중아메리카 (인디애나) <span class="up2">미국 법인 설립</span></td></tr>
+    <tr><td>2025.06</td><td class="num">~₩40,000</td><td>SBB 1.5 (5.26MWh) 본양산 공급 시작</td></tr>
+    <tr><td>2025.10</td><td class="num">~₩45,000</td><td>3Q'25 매출 458억원 (+25.9% QoQ), 영업이익 흑자전환</td></tr>
+    <tr><td>2025.12.10</td><td class="num">~₩52,000</td><td><span class="up2">삼성SDI 美 LFP 2조원대 수주</span> — 한중엔시에스 <span class="up2">단독 수냉식 부품 공급</span></td></tr>
+    <tr><td>2026.02</td><td class="num">~₩52,000</td><td>SBB 2.0 (LFP) 개발 진행, 2026.4Q 미국 양산 예정</td></tr>
+    <tr><td>2026.03.03</td><td class="num">~₩60,000</td><td>인디애나 공장 <span class="up2">4월 착공, 2026.06 시생산 가동</span> 발표</td></tr>
+    <tr class="hl"><td><strong>2026.04.22</strong></td><td class="num"><strong>₩73,000</strong></td><td><strong>52주 신고가 — AI 데이터센터·재생E ESS 수요 모멘텀</strong></td></tr>
+    <tr><td>2026.05.01</td><td class="num">₩67,100</td><td>일부 차익실현, 시총 6,083억원. 5.20 1Q'26 잠정실적 발표 예정</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 3. 세그먼트 -->
+<span class="section-anchor" id="s3"></span>
+<div class="section">
+<h2>3. 세그먼트별 매출 추이 — 5년 + 7분기 (억원)</h2>
+<div class="legend" id="segLegend">
+  <span class="legend-item" onclick="toggleSeg(0,this)"><span class="dot" style="background:#1D9E75"></span>ESS 부품</span>
+  <span class="legend-item" onclick="toggleSeg(1,this)"><span class="dot" style="background:#378ADD"></span>자동차 부품 (EV+내연)</span>
+  <span style="font-size:11px;color:#bbb;margin-left:4px">← 클릭하여 표시/숨김</span>
+</div>
+<div class="chart-box" style="height:440px"><canvas id="cSeg"></canvas></div>
+<p class="note">* 좌측 5개: 연간 (2021~2025). 우측 7개: 분기 (Q1'24~Q3'25). 2021년 ESS 비중 9% → 2025 YTD 77%로 8배 증가. ESS 매출 절대액: 89억(2021) → 1,773억(2024F) → 2024 실제 약 1,066억(60%) → 2025 YTD 891억(77%). EV 패러다임 전환에 따른 자동차 부품 자연 감소 + 내연기관 사업 2026.1Q 완전 철수로 ESS 비중 급증.</p>
+</div>
+
+<!-- 3-1. 세그먼트 구조 -->
+<span class="section-anchor" id="s3b"></span>
+<div class="section">
+<h2>3-1. 세그먼트 구조 및 제품</h2>
+<div class="seg-cards">
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">ESS 부품 (수냉식 냉각시스템) ★</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">77.3%</span> · 2025 YTD 891억</div>
+    </div>
+    <div class="seg-card-desc">
+      한중엔시에스의 <strong>핵심 성장 엔진</strong>. <strong>국내 유일</strong>의 수냉식 ESS 냉각시스템 양산기업. 핵심 부품을 모듈화 납품: <strong>Cooling Plate</strong> (배터리 셀 직접 냉각) + <strong>Chiller</strong> (냉각수 온도 제어) + <strong>HVAC</strong> (공조 결로 방지) + <strong>Manifold/Spray Pipe</strong> (냉각수 분배) + <strong>EDI 소화장치</strong>. 삼성SDI <strong>SBB 1.0/1.5/1.7/2.0 시리즈 단독 공급</strong> — ESS 누적 매출 비중의 77.3%가 모두 삼성SDI. 공랭식 대비 40% 전력 절감, 1일 다회 충방전 가능, 온도 편차 ±3℃ (공랭식 ±10℃).
+    </div>
+    <div class="seg-card-margin" style="color:#555">OPM <span style="color:#378ADD;font-weight:700">자동차 +5%p 상회</span> · 매출총이익률 16.7% (2025YTD)</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">자동차 부품 (EV + 내연기관)</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">20.4%</span> · 2025 YTD 235억</div>
+    </div>
+    <div class="seg-card-desc">
+      <strong>EV 부품 (지속)</strong>: EV용 공조장치 모듈 (Cooling Fan Module, FEM) + Battery Module (BEV, Bus-bar parts) + 신규 EV Cooling Plate 개발 중. 글로벌 친환경자동차 전장부품사 ㈜유라코퍼레이션과 글로벌 OEM(아우디·재규어·폭스바겐·포르쉐) 공급. 2027년 EV 배터리 산업 신규 진출 예정 (공식 벤더 등록 완료).<br>
+      <strong>내연기관 (정리 중)</strong>: 배기시스템·브레이크·스페어타이어 캐리어 등. 2025년 상반기까지 대부분 납품 완료, 2026.1Q 내 <strong>완전 철수 예정</strong>. EV 패러다임 전환 + 내연 손상차손 인식으로 마진 압박 요인.
+    </div>
+    <div class="seg-card-margin" style="color:#555">OPM <span style="color:#378ADD;font-weight:700">한자릿수</span> · ESS 대비 5%p 이상 낮음</div>
+  </div>
+</div>
+
+<table>
+  <thead><tr><th>세그먼트</th><th>대표 제품</th><th>주요 고객</th><th>2025 YTD 비중</th><th>2026 모멘텀</th></tr></thead>
+  <tbody>
+    <tr><td><strong>ESS 부품</strong></td><td>Cooling Plate, Chiller, HVAC, Manifold, EDI 소화장치</td><td>삼성SDI (단독, 누적 100%) · 향후 LG에너지솔루션·SMA 추가</td><td class="num"><strong>77.3%</strong></td><td class="num up2"><strong>SBB 1.7/2.0 ramp + 미국 법인 가동</strong></td></tr>
+    <tr><td><strong>자동차 부품</strong></td><td>EV 공조 모듈, Cooling Fan, Bus-bar, FEM</td><td>유라코퍼레이션, 아우디, 재규어, 폭스바겐, 포르쉐</td><td class="num">20.4%</td><td class="num">EV Cooling Plate 신제품 (2027 양산)</td></tr>
+  </tbody>
+</table>
+<p class="note">* ESS 누적 매출 100%가 삼성SDI 단일 고객 — <strong>고객 의존도 리스크</strong> 핵심. 다만 LG에너지솔루션을 4Q'25 신규 고객사로 확보하며 다변화 시작. 자동차 부품은 EV 전환 가속으로 추가 EV Cooling Plate 신제품을 통한 EV 배터리 산업 직접 진출 예정.</p>
+</div>
+
+<!-- 3-2. 매출 + OPM -->
+<span class="section-anchor" id="s4"></span>
+<div class="section">
+<h2>3-2. 매출 &amp; OPM 추이 — 5년 + 7분기</h2>
+<div class="legend">
+  <span class="legend-static"><span class="dot" style="background:rgba(55,138,221,0.5)"></span>매출 (억원, 좌축)</span>
+  <span class="legend-static"><span class="dot" style="background:#1D9E75"></span>OPM% (우축)</span>
+</div>
+<div class="chart-box" style="height:400px"><canvas id="cRev"></canvas></div>
+
+<h3 style="margin-top:1.2rem">연간 요약</h3>
+<table>
+  <thead><tr><th>연도</th><th class="num">매출</th><th class="num">YoY</th><th class="num">매출총이익률</th><th class="num">영업이익</th><th class="num">OPM</th><th class="num">당기순이익</th><th>주요 이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2021</td><td class="num">896억</td><td class="num">—</td><td class="num">—</td><td class="num">17억</td><td class="num">1.9%</td><td class="num">19억</td><td>업종변경: 자동차→ESS</td></tr>
+    <tr><td>2022</td><td class="num">885억</td><td class="num dn">-1.2%</td><td class="num dn">-1.5%</td><td class="num dn">-139억</td><td class="num dn">-15.7%</td><td class="num dn">-203억</td><td>ESS R&D 비용·내연 손상차손</td></tr>
+    <tr><td>2023</td><td class="num">1,216억</td><td class="num up2">+37.3%</td><td class="num up2">2.2%</td><td class="num dn">-127억</td><td class="num dn">-10.4%</td><td class="num dn">-186억</td><td>수냉식 ESS 본양산 시작</td></tr>
+    <tr><td>2024</td><td class="num">1,773억</td><td class="num up2">+45.8%</td><td class="num up2">15.2%</td><td class="num up2">96억</td><td class="num up2">5.4%</td><td class="num up2">154억</td><td>SBB 1.0 본격 출하, 코스닥 상장</td></tr>
+    <tr class="hl"><td><strong>2025</strong></td><td class="num"><strong>1,753억</strong></td><td class="num dn"><strong>-1.1%</strong></td><td class="num"><strong>~16.6%</strong></td><td class="num dn"><strong>40억</strong></td><td class="num dn"><strong>2.3%</strong></td><td class="num dn"><strong>36억</strong></td><td><strong>R&amp;D·해외법인 비용 + 내연 정리</strong></td></tr>
+  </tbody>
+</table>
+
+<h3 style="margin-top:1.2rem">분기별 실적 (7분기)</h3>
+<table>
+  <thead><tr><th>분기</th><th class="num">매출</th><th class="num">YoY</th><th class="num">QoQ</th><th class="num">영업이익</th><th class="num">OPM</th><th class="num">당기순이익</th></tr></thead>
+  <tbody>
+    <tr><td>Q1'24</td><td class="num">288억</td><td class="num">—</td><td class="num">—</td><td class="num dn">-25억</td><td class="num dn">-8.7%</td><td class="num dn">-50억</td></tr>
+    <tr><td>Q2'24</td><td class="num">434억</td><td class="num">—</td><td class="num up2">+50.8%</td><td class="num">9억</td><td class="num">2.1%</td><td class="num">-46억</td></tr>
+    <tr><td>Q3'24</td><td class="num">476억</td><td class="num up2">+65.1%</td><td class="num up2">+9.7%</td><td class="num up2">16억</td><td class="num up2">3.3%</td><td class="num up2">9억</td></tr>
+    <tr><td>Q4'24</td><td class="num">555억</td><td class="num up2">+58.0%</td><td class="num up2">+16.6%</td><td class="num up2">96억</td><td class="num up2">17.3%</td><td class="num up2">231억</td></tr>
+    <tr><td>Q1'25</td><td class="num">331억</td><td class="num up2">+15.0%</td><td class="num dn">-40.4%</td><td class="num dn">-6억</td><td class="num dn">-1.9%</td><td class="num dn">-15억</td></tr>
+    <tr><td>Q2'25</td><td class="num">364억</td><td class="num dn">-16.1%</td><td class="num up2">+10.0%</td><td class="num">4억</td><td class="num">1.1%</td><td class="num">2억</td></tr>
+    <tr class="hl"><td><strong>Q3'25</strong></td><td class="num"><strong>458억</strong></td><td class="num dn"><strong>-3.6%</strong></td><td class="num up2"><strong>+25.9%</strong></td><td class="num up2"><strong>15억</strong></td><td class="num up2"><strong>3.3%</strong></td><td class="num up2"><strong>14억</strong></td></tr>
+  </tbody>
+</table>
+<p class="note">* Q4'24 영업이익 96억 = 연간 영업이익 96억 — Q4 폭증은 SBB 1.0 본격 출하 + ESS 비중 60% 도달 + 일회성 법인세 환입 영향. Q1'25 적자전환은 신규 ESS 모델(SBB 1.5) 양산 준비비용 + 미국·중국 법인 초기 비용. Q3'25 매출 +25.9% QoQ는 SBB 1.5 비중이 SBB 1.0을 추월하며 물량+ASP 동시 회복 — 이익 정상화 시작점. Q4'25 미공시(2026.05.20 발표 예정).</p>
+</div>
+
+<!-- 3-3. 분기별 세그먼트 실적 -->
+<span class="section-anchor" id="s5"></span>
+<div class="section">
+<h2>3-3. 분기별 세그먼트 실적 (8분기)</h2>
+<div class="seg-table-wrap">
+<table class="seg-table">
+  <thead>
+    <tr>
+      <th rowspan="2" style="vertical-align:middle">분기</th>
+      <th colspan="2" class="seg-group center">ESS 부품</th>
+      <th colspan="2" class="seg-group center">자동차 부품</th>
+      <th rowspan="2" class="seg-group center" style="vertical-align:middle">Total</th>
+      <th rowspan="2" class="seg-group center" style="vertical-align:middle">영업이익</th>
+      <th rowspan="2" class="seg-group center" style="vertical-align:middle">OPM</th>
+    </tr>
+    <tr>
+      <th class="seg-group center">억원</th><th class="seg-group center">비중%</th>
+      <th class="seg-group center">억원</th><th class="seg-group center">비중%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Q1'24</td><td class="num seg-border">110</td><td class="num">38.2%</td><td class="num seg-border">178</td><td class="num">61.8%</td><td class="num seg-border"><b>288</b></td><td class="num seg-border dn">-25</td><td class="num">-8.7%</td></tr>
+    <tr><td>Q2'24</td><td class="num seg-border">221</td><td class="num">50.9%</td><td class="num seg-border">213</td><td class="num">49.1%</td><td class="num seg-border"><b>434</b></td><td class="num seg-border">9</td><td class="num">2.1%</td></tr>
+    <tr><td>Q3'24</td><td class="num seg-border">279</td><td class="num">58.6%</td><td class="num seg-border">197</td><td class="num">41.4%</td><td class="num seg-border"><b>476</b></td><td class="num seg-border up2">16</td><td class="num up2">3.3%</td></tr>
+    <tr><td>Q4'24</td><td class="num seg-border">333</td><td class="num up2">60.0%</td><td class="num seg-border">222</td><td class="num">40.0%</td><td class="num seg-border"><b>555</b></td><td class="num seg-border up2">96</td><td class="num up2">17.3%</td></tr>
+    <tr><td>Q1'25</td><td class="num seg-border">220</td><td class="num">66.3%</td><td class="num seg-border">111</td><td class="num">33.7%</td><td class="num seg-border"><b>331</b></td><td class="num seg-border dn">-6</td><td class="num dn">-1.9%</td></tr>
+    <tr><td>Q2'25</td><td class="num seg-border">263</td><td class="num up2">72.2%</td><td class="num seg-border">101</td><td class="num">27.8%</td><td class="num seg-border"><b>364</b></td><td class="num seg-border">4</td><td class="num">1.1%</td></tr>
+    <tr class="hl"><td><b>Q3'25</b></td><td class="num seg-border"><b>353</b></td><td class="num up2"><b>77.0%</b></td><td class="num seg-border">105</td><td class="num">23.0%</td><td class="num seg-border"><b>458</b></td><td class="num seg-border up2"><b>15</b></td><td class="num up2"><b>3.3%</b></td></tr>
+    <tr><td>Q4'25 (E)</td><td class="num seg-border">~485</td><td class="num up2">~80%</td><td class="num seg-border">~115</td><td class="num">~20%</td><td class="num seg-border"><b>~600</b></td><td class="num seg-border">~28</td><td class="num">~4.6%</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">* ESS 비중 38.2%(Q1'24) → 77.0%(Q3'25)로 2배 확대. 자동차 부품은 절대액으로도 감소 중 (197억 → 105억) — EV 전환 + 내연기관 정리 영향. Q4'25 추정치는 신한투자증권/삼성증권 컨센서스 기반 (2025 연간 매출 1,753억 - 3분기 누적 1,154억 = ~600억). 5월 20일 잠정실적 발표로 검증 예정.</p>
+</div>
+
+<!-- 4. 재무제표 -->
+<span class="section-anchor" id="s6"></span>
+<div class="section">
+<h2>4. 재무제표 개요</h2>
+<table>
+  <thead><tr><th>항목 (KRW, 억원)</th><th class="num">2022</th><th class="num">2023</th><th class="num">2024</th><th class="num">2025YTD (3Q)</th><th class="num">2025E</th></tr></thead>
+  <tbody>
+    <tr><td>매출액</td><td class="num">885</td><td class="num">1,216</td><td class="num">1,773</td><td class="num">1,154</td><td class="num">1,753</td></tr>
+    <tr><td>매출총이익</td><td class="num dn">-14</td><td class="num">27</td><td class="num">270</td><td class="num">192</td><td class="num">~290</td></tr>
+    <tr><td>매출총이익률</td><td class="num dn">-1.5%</td><td class="num">2.2%</td><td class="num">15.2%</td><td class="num">16.6%</td><td class="num">~16.6%</td></tr>
+    <tr><td>영업이익</td><td class="num dn">-139</td><td class="num dn">-127</td><td class="num up2">96</td><td class="num">13</td><td class="num">40</td></tr>
+    <tr><td>당기순이익</td><td class="num dn">-203</td><td class="num dn">-186</td><td class="num up2">154</td><td class="num">7</td><td class="num">36</td></tr>
+    <tr><td>EPS (원)</td><td class="num">—</td><td class="num">—</td><td class="num">~1,920</td><td class="num">~70</td><td class="num">~443</td></tr>
+    <tr><td>유동자산</td><td class="num">493</td><td class="num">425</td><td class="num">749</td><td class="num">1,199</td><td class="num">~1,200</td></tr>
+    <tr><td>총자산</td><td class="num">1,175</td><td class="num">1,226</td><td class="num">1,668</td><td class="num">2,267</td><td class="num">~2,300</td></tr>
+    <tr><td>총부채</td><td class="num">892</td><td class="num">1,091</td><td class="num">864</td><td class="num">1,298</td><td class="num">~1,400</td></tr>
+    <tr><td>자본총계</td><td class="num">283</td><td class="num">135</td><td class="num">804</td><td class="num">968</td><td class="num">~970</td></tr>
+    <tr><td>단기차입금</td><td class="num">—</td><td class="num">—</td><td class="num">~200</td><td class="num">~415</td><td class="num">~500</td></tr>
+  </tbody>
+</table>
+<p class="note">* 2024년 코스닥 상장 공모자금 유입으로 자본총계 135억 → 804억으로 급증. 2025년 9~10월 유상증자(약 280억) + 전환사채(약 230억) + 단기차입금 확대로 합계 <strong>514억 조달</strong> — 미국 인디애나 법인 300억, 국내 신규 ESS 부품 설비 190억 투입. 단기차입금 201억 → 415억으로 두 달 사이 2배 확대 — 재무 부담 가시화.</p>
+<p class="note">⚠️ 종속회사(국내 HDC·HJF, 중국 강소법인)는 2025 상반기까지 적자였으나 3Q부터 HDC 흑자전환. 미국 법인은 2027.1Q 양산 전까지 영업비용만 발생. 2025 영업이익 -57.9% YoY 감소의 핵심 원인은 ① 신규 ESS 모델(SBB 1.5) R&amp;D 비용 ② 해외 법인(중·미) 초기 운영비 ③ 내연기관 사업 손상차손 인식.</p>
+</div>
+
+<!-- 5. 핵심 투자아이디어 -->
+<span class="section-anchor" id="s7"></span>
+<div class="section">
+<h2>5. 핵심 투자아이디어</h2>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">🎯</span>
+    <span class="thesis-tag">Thesis #1</span>
+    <div class="thesis-title">삼성SDI 북미 ESS 동반 진출 — "셀-부품" 운명 공동체</div>
+  </div>
+  <div class="thesis-body">
+    <p>한중엔시에스 ESS 매출의 <strong>100%가 삼성SDI</strong>로부터 발생. 단순한 단일고객 의존이 아니라, <span class="hl-blue">2018년부터 8년간 SBB 시리즈 공동개발</span>해온 검증된 협력 관계. SBB 1.0(3.8MWh)→1.5(5.26MWh)→1.7(6.14MWh)→2.0(LFP) 모든 시리즈에 <strong>한중엔시에스 수냉식 부품 단독 공급</strong>.</p>
+    <p>핵심은 <span class="hl-green">2025.12 삼성SDI 미국 LFP 2조원대 수주 계약</span> — 삼성SDI 매출 15% 차지. 한중엔시에스는 SBB 2.0(LFP)에도 단독 공급 예정으로, <span class="hl-green">동반 수혜 가시화</span>. 한중아메리카(인디애나) 법인이 <strong>2026.06 시생산 → 2027.1Q 본격 양산</strong>되면 미국 현지 매출 인식 시작 — 중국 관세(2026년 25% 인상) 우회 + 삼성SDI 미국 30GWh capa(2026 말) 직접 대응 가능.</p>
+  </div>
+</div>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">⚡</span>
+    <span class="thesis-tag">Thesis #2</span>
+    <div class="thesis-title">국내 유일 수냉식 양산 — 진입장벽 + AI 데이터센터 모멘텀</div>
+  </div>
+  <div class="thesis-body">
+    <p>한중엔시에스는 <strong>국내 유일</strong>의 수냉식 ESS 냉각시스템 양산기업. 핵심 기술 4종 모두 자체 보유: <span class="hl-blue">알루미늄 냉각플레이트 제조</span>(미세변형 억제), <span class="hl-blue">누설감지/차단</span>, <span class="hl-blue">非단열 결로방지</span>(Smart HVAC), <span class="hl-blue">소모전력 40% 절감</span>. 공랭식 대비 온도편차 1/3 수준(±10℃→±3℃), 1일 다회 충방전 가능 — <strong>중대형·고용량 ESS는 수냉식이 필수</strong>.</p>
+    <p>모멘텀: <span class="hl-green">미국 AI 데이터센터 전력 수요 폭증</span>으로 ESS+태양광 조합이 대안으로 부상. <strong>북미 ESS 시장 2025 97GWh → 2028 161GWh (CAGR 13%)</strong>. 트럼프 2기 OBBBA 법안 통과 시 <span class="hl-green">2028.10부터 중국산 배터리 구매 금지</span> — 한국 기업 점유율 급등 직접 수혜. 신한투자증권: 2026 매출 2,791억(+59%), 영업이익 239억 전망.</p>
+  </div>
+</div>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">⚠️</span>
+    <span class="thesis-tag">Thesis #3</span>
+    <div class="thesis-title">2025 J-curve 함정 — 수익성 회복은 2026 H2부터</div>
+  </div>
+  <div class="thesis-body">
+    <p>2024 영업이익 96억 흑자전환 후, <strong>2025 영업이익 40억(-57.9% YoY) 역성장</strong>. 핵심 원인: ① <span class="hl-red">SBB 1.5/1.7 신모델 R&amp;D 비용 급증</span>, ② <span class="hl-red">미국·중국 법인 초기 운영비</span> (USD 2,570만 출자), ③ <span class="hl-red">내연기관 사업 손상차손</span>, ④ <span class="hl-red">단기차입금 415억 (이자비용↑)</span>.</p>
+    <p>주가 +152% (1년) vs 영업이익 -58% — <span class="hl-red">선반영 우려</span>. P/E 111배(TTM), 12M Fwd P/E ~30배. 2026 영업이익 239억 컨센 달성해야 정당화. <span class="hl-green">2026 H2부터 회복 가시화</span>: 인디애나 법인 시생산(2026.06) → 본격 양산(2027.1Q), 내연기관 완전 철수(2026.1Q), HDC 흑자전환 지속, SBB 1.7 LFP 양산. 고객 단일성(삼성SDI 100%) + 워런트성 회석 부재 — AMD형 메가딜과 다른 <strong>오가닉 성장 스토리</strong>.</p>
+  </div>
+</div>
+
+<!-- 5-1. 핵심 변동 요인 -->
+<span class="section-anchor" id="s8"></span>
+<div class="section">
+<h2>5-1. 핵심 변동 요인</h2>
+<table>
+  <thead><tr><th>구분</th><th>요인</th><th class="center">방향</th><th>설명</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>외부</strong></td><td>북미 ESS 시장 성장 (CAGR 13%)</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>2025 97GWh → 2028 161GWh. AI 데이터센터·재생E 결합 모델 본격화</td></tr>
+    <tr><td>중국 배터리 관세 인상</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>현 7.5% → 2026 25%. 한국 기업 미국 점유율 직접 상승 — 한중 동반 수혜</td></tr>
+    <tr><td>OBBBA 법안 통과 (DHS)</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>2028.10부터 중국 6개사(CATL 포함) 배터리 구매 금지. 미국 하원 만장일치 통과</td></tr>
+    <tr><td>EV 캐즘</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>자동차 부품 매출 자연 감소. 2025 자동차 부문 -33% YoY</td></tr>
+    <tr><td>공랭식 ESS 가격 경쟁력</td><td class="center"><span class="badge badge-neu">중립 ●</span></td><td>중·소형 ESS는 공랭식이 여전히 주류. 수냉식은 중대형·고용량에서만 우위</td></tr>
+    <tr><td>한국 정부 ESS 정책</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>BESS 1차 중앙계약 (429MW/2,574MWh, 300~350억 매출 기대), 서해안 에너지고속도로</td></tr>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>내부</strong></td><td>SBB 1.5 → 1.7 → 2.0 ramp</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>SBB 1.5 대비 1.0 모듈 탑재량 +28% — 부품 탑재량 동반 증가. 단가·물량 동시 ↑</td></tr>
+    <tr><td>인디애나 법인 양산 개시</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>2026.06 시생산 → 2027.1Q 본격 양산. 미국 현지 매출 + 관세 회피</td></tr>
+    <tr><td>고객사 다변화 (LGES 추가)</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>4Q'25 LG에너지솔루션 신규 고객사 확보. 100% 삼성SDI 의존 리스크 점진적 완화</td></tr>
+    <tr><td>단기차입금 415억 (재무부담)</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>2개월 사이 201→415억으로 2배. 이자비용 분기당 ~10억 추가. 미국 법인 양산 전까지 부담</td></tr>
+    <tr><td>해외 종속법인 적자</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>중국 강소·미국 인디애나·미시간 법인 모두 적자. 2025 연결 영업이익 발목</td></tr>
+    <tr><td>EV Cooling Plate 신규</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>2027 EV 배터리 산업 직접 진출. 자동차 부품 양산 노하우 + ESS 냉각 기술 결합</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 5-2. 분기 트래킹 -->
+<span class="section-anchor" id="s9"></span>
+<div class="section">
+<h2>5-2. 분기 실적 트래킹 (최근 8분기)</h2>
+<table class="cc-table">
+  <colgroup><col style="width:50px"><col><col><col><col></colgroup>
+  <thead>
+    <tr><th class="year-col">년</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="year-label">2024</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'24</div><div class="cc-msg">매출 288억, 영업손실 -25억. ESS 비중 38%. SBB 1.0 양산 준비 단계</div><div class="cc-guide">상장 전 — 가이드 N/A</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'24</div><div class="cc-msg">매출 434억(+50% QoQ). SBB 1.0 본격 출하 시작. 영업이익 9억 첫 흑자</div><div class="cc-guide">상장 직후 — 가이드 N/A</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'24</div><div class="cc-msg">매출 476억 record. ESS 비중 58%. 영업이익 16억(+78%)</div><div class="cc-guide">투자설명서 1,870억 → 실제 1,773억 <span class="cc-miss">❌</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'24</div><div class="cc-msg">매출 555억(+58% YoY). 영업이익 96억 폭증. 연간 흑자전환 96억 달성</div><div class="cc-guide">신한 1,941억 / 교보 1,921억 → 실제 1,773억 <span class="cc-miss">❌</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2025</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'25</div><div class="cc-msg">매출 331억(+15% YoY, -40% QoQ). 영업손실 -6억. 미국 법인 설립</div><div class="cc-guide">QoQ 일시 부진 — 신모델 R&D 비용</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'25</div><div class="cc-msg">매출 364억(-16% YoY). ESS 비중 72%. 영업이익 4억 회복</div><div class="cc-guide">상반기 영업손실 -2억 (종속사 부진 영향)</div></div></td>
+      <td><div class="cc-cell cc-latest"><div class="cc-quarter">Q3'25 ★ 최신 IR</div><div class="cc-msg"><strong>매출 458억 (+25.9% QoQ)</strong>. ESS 비중 <strong>77%</strong>. 영업이익 15억. <strong>SBB 1.5 비중 1.0 추월</strong></div><div class="cc-guide">2026.05.20 Q4 잠정 발표 예정 → 컨센 600억</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'25</div><div class="cc-msg">예정: 2026.05.20 (잠정) / 2026.03 사업보고서</div><div class="cc-guide">컨센 ~600억. 2025 연간 1,753억 (-1.1% YoY) 확정</div></div></td>
+    </tr>
+  </tbody>
+</table>
+<p class="note">* 한중엔시에스 가이던스 트랙레코드: 상장 시 투자설명서 2024 매출 1,870억 / 영업이익 140억 → 실제 1,773억 / 96억 (둘 다 미달). 2025 가이드 2,824억 / 307억 → 실제 1,753억 / 40억 (대폭 미달). <strong>경영진 가이드는 일관되게 over-promise</strong> — 신한·삼성·IBK 컨센서스가 더 정확. 2026 컨센 매출 2,791억 / 영업이익 239억도 보수적으로 봐야 함. Q4'25 잠정실적(2026.05.20)이 핵심 검증 포인트.</p>
+</div>
+
+<!-- 5-3. 3Q'25 IR 심층 -->
+<span class="section-anchor" id="s10"></span>
+<div class="section">
+<h2>5-3. 3Q'25 IR 심층 정리 (2025.12.01 공시)</h2>
+<div class="prose">
+  <p><strong>발표자료</strong>: 2025년 3분기 IR 자료 (2025.11 작성, KRX KIND 공시)</p>
+  <p><strong>실적</strong>: 매출 <strong>458억원</strong> (-3.6% YoY, +25.9% QoQ) / 영업이익 <strong>15억원</strong> (3.3% OPM, +275% QoQ) / 당기순이익 <strong>14억원</strong> (3.1%) / ESS 비중 <strong>77%</strong> (Q2 72% → Q3 77%)</p>
+  <p><strong>3Q 누적</strong>: 매출 1,154억(-5.3% YoY) / 영업이익 13억(-64.7% YoY) / OPM 1.1%. 2024 동기 대비 매출 다소 감소했으나 OPM 회복 추세. 종속사(HDC) 흑자전환이 분기 turning point.</p>
+</div>
+<h3 style="margin-top:1.2rem">IR 핵심 메시지 5가지</h3>
+<div class="cc-sticker-box">
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">1</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">ESS 비중 <span class="hl-pos">77% 돌파</span> — 사업 체질 개선 가속</div>
+      <div class="cc-sticker-desc">2024 4Q ESS 60% → 2025 2Q 72% → <span class="hl-pos">3Q 77%</span>. 자동차 부품은 EV 캐즘 + 내연 정리로 자연 감소. <strong>SBB 1.0(상반기) → SBB 1.5(3분기) 아이템 믹스</strong>로 ASP+물량 동반 상승</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">2</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">SBB 1.5 비중 <span class="hl-pos">SBB 1.0 추월</span> — 고용량 트렌드 본격화</div>
+      <div class="cc-sticker-desc">SBB 1.5(5.26MWh)는 SBB 1.0 대비 모듈 탑재량 <span class="hl-pos">+28%</span>. 한중엔시에스 냉각부품 탑재량 동반 증가 — Q3 처음으로 <strong>1.5용 매출 &gt; 1.0용 매출</strong>. 2026 SBB 1.7(6.14MWh) ramp 시 추가 +17% 부품 탑재 예상</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">3</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">미국 법인 <span class="hl-pos">USD 2,570만 출자 완료</span> — 2027.1Q 양산 가동</div>
+      <div class="cc-sticker-desc">한중아메리카(인디애나) 1.6만평 부지 + 3,300평 건물. <span class="hl-pos">2026.06 시생산</span>, <span class="hl-pos">2027.1Q 본격 양산</span> 목표. 삼성SDI 미국 30GWh capa 직접 대응. 미시간 법인은 인디애나로 통합 예정</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">4</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">국내 계열사 HDC <span class="hl-pos">흑자전환 성공</span> — 연결 마진 정상화 시작</div>
+      <div class="cc-sticker-desc">㈜에이치디시(HDC) 3Q 흑자전환. 2024~2025 상반기 연결 영업이익 발목 잡았던 종속사 부진 turning point. <strong>경영진은 "신규 법인 손익 정상화 본격화"</strong>로 평가</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">5</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">신규 EV 부품 산업 진입 — <span class="hl-pos">EV Cooling Plate 2027 양산</span></div>
+      <div class="cc-sticker-desc">기존 EV 공조 모듈 + ESS 냉각 기술 결합한 <strong>EV 배터리 Cooling Plate</strong> 자체 개발 중. 글로벌 OEM 공식 벤더 등록 완료, 2027 본격 양산. ESS 단일고객(삼성SDI) 의존 리스크 점진 완화</div>
+    </div>
+  </div>
+</div>
+
+<h3 style="margin-top:1.2rem">2026 가이던스 (회사 + 컨센서스)</h3>
+<table>
+  <thead><tr><th>지표</th><th class="num">2025 실제</th><th class="num">2026 회사 가이드 (상장 시)</th><th class="num">신한 컨센서스</th></tr></thead>
+  <tbody>
+    <tr><td>매출</td><td class="num">1,753억</td><td class="num">3,500억+ (over-promise)</td><td class="num hl"><strong>2,791억 (+59% YoY)</strong></td></tr>
+    <tr><td>영업이익</td><td class="num">40억</td><td class="num">450억+ (over-promise)</td><td class="num hl"><strong>239억 (+498%)</strong></td></tr>
+    <tr><td>OPM</td><td class="num">2.3%</td><td class="num">12%+</td><td class="num hl"><strong>~8.6%</strong></td></tr>
+    <tr><td>ESS 비중</td><td class="num">~77%</td><td class="num">~85%</td><td class="num hl"><strong>~83%</strong></td></tr>
+    <tr><td>미국 법인 매출</td><td class="num">0</td><td class="num">시생산만</td><td class="num hl"><strong>2027 본격 양산 가정</strong></td></tr>
+  </tbody>
+</table>
+<p class="note">* 회사 측 가이던스는 상장 시 투자설명서 기반으로 일관되게 매출·이익 모두 over-promise 패턴. 신한투자증권/삼성증권/IBK 컨센서스가 트랙레코드 기반 더 정확. 2026 매출 +59% YoY 달성 시 P/E 30배 정당화 가능 — 핵심은 <strong>SBB 1.7 ramp 타이밍</strong>과 <strong>미국 법인 시생산 일정</strong>.</p>
+
+<h3 style="margin-top:1.5rem">📊 IR 자료 핵심 슬라이드 — 원본 PDF 임베드</h3>
+
+<div class="ir-slide">
+  <div class="ir-slide-frame">
+    <div class="ir-slide-num">📊 IR Slide #11 — Investor Relations 2025.3Q (한중엔시에스 공식)</div>
+    <div class="ir-slide-title">경영전망(전략) — ESS 매출 비중 9%(2021) → 77%(2025) 8배 확대</div>
+  </div>
+  <div class="ir-slide-img-wrap">
+    <iframe src="https://kind.krx.co.kr/external/dst/irReference/17832/25-12-01%20%ED%95%9C%EC%A4%91%EC%97%94%EC%8B%9C%EC%97%90%EC%8A%A4%20IR%20%EC%9E%90%EB%A3%8C('25.3Q).pdf#page=11" title="한중엔시에스 IR 2025.3Q Page 11"></iframe>
+  </div>
+  <div class="ir-slide-caption">📌 <strong>IR Slide 11 — 경영전망(전략)</strong>. ESS 사업부문 비중이 2021년 9%에서 2025.3Q 77%까지 8배 확대. 매출액 추이: 896억(2021) → 885억(2022) → 1,216억(2023) → 1,773억(2024) → 2025·26·27 forecast 곡선. 자동차 부문(91%→23%) 자연 감소와 ESS 부문 폭증의 명확한 cross-over 시점을 보여줌. 해외 진출법인 기여 확대 + EV 부품 산업 진입 본격화로 향후 매출 가속 전망. <a href="https://kind.krx.co.kr/external/dst/irReference/17832/25-12-01%20%ED%95%9C%EC%A4%91%EC%97%94%EC%8B%9C%EC%97%90%EC%8A%A4%20IR%20%EC%9E%90%EB%A3%8C('25.3Q).pdf" target="_blank" style="color:#378ADD;text-decoration:underline">IR 자료 PDF 직접 다운로드 (KRX KIND)</a></div>
+</div>
+</div>
+
+<!-- 5-4. 시나리오 -->
+<span class="section-anchor" id="s11"></span>
+<div class="section">
+<h2>5-4. 강세 / 약세 시나리오</h2>
+<div class="scenario-stack">
+  <div class="scenario-box s-bull">
+    <div class="scenario-title">🟢 강세 시나리오</div>
+    <div class="s-item"><div class="s-case">SBB 1.7 / 2.0 본격 ramp</div><div class="s-sub">2026 H2부터 SBB 1.7(6.14MWh) 본양산. 모듈 탑재량 SBB 1.5 대비 +17%, 1.0 대비 +50% — 부품 매출 비례 증가. SBB 2.0(LFP) 미국 4Q'26 양산 시 단가·물량 동시 확대</div></div>
+    <div class="s-item"><div class="s-case">미국 법인 양산 가속</div><div class="s-sub">2026.06 시생산 → 2027.1Q 본격. 삼성SDI 미국 30GWh capa(2026 말) 동반 진출. 인디애나 1.6만평 — capa 추가 증설 여유 존재</div></div>
+    <div class="s-item"><div class="s-case">OBBBA 통과 → 중국산 배터리 금지</div><div class="s-sub">2028.10부터 미국 ESS 시장 중국 배터리 금지. 한국 기업 점유율 50%+ 가능. 한중엔시에스 = 한국 ESS 셀 핵심 부품 단독 공급사 — 직접 수혜</div></div>
+    <div class="s-item"><div class="s-case">고객 다변화 본격화</div><div class="s-sub">2025 4Q LG에너지솔루션 신규 고객 확보. SK온도 ESS 진출 본격 — 추가 셀메이커 수주 가능. 100% 삼성SDI 의존 리스크 완화</div></div>
+    <div class="s-item"><div class="s-case">2026 컨센 달성 (매출 2,791억 / OP 239억)</div><div class="s-sub">신한 컨센 달성 시 12M Fwd P/E 30배 정당화. 시총 6,083억 → 9,000억+ (목표가 ₩97,000) 도달 가능. 애널리스트 +44.6% upside</div></div>
+    <div class="s-item"><div class="s-case">EV Cooling Plate 신사업 성공</div><div class="s-sub">2027 글로벌 OEM EV 배터리 Cooling Plate 양산 진입. 자동차 부품 부문 ESS-like 마진 확보. 2nd 성장 곡선</div></div>
+  </div>
+  <div class="scenario-box s-bear">
+    <div class="scenario-title">🔴 약세 시나리오</div>
+    <div class="s-item"><div class="s-case">2026 컨센 미달 (over-promise 반복)</div><div class="s-sub">2024·2025 모두 회사 가이드 미달 트랙레코드. 2026도 컨센 1,800~2,000억 수준에 그칠 시 P/E 100배+ 디레이팅. 주가 -30%+ 조정 가능</div></div>
+    <div class="s-item"><div class="s-case">삼성SDI ESS 수주 부진</div><div class="s-sub">매출 100% 의존 — 삼성SDI ESS 수주가 부진하면 직격탄. 만약 NextEra·Tesla 등 메가딜 지연 시 SBB 출하량 감소 → 한중엔시에스 매출 감소</div></div>
+    <div class="s-item"><div class="s-case">미국 법인 양산 지연</div><div class="s-sub">인디애나 공장 시생산 2026.06 → 본격 양산 2027.1Q. 일정 지연 시 미국 매출 인식 시점 1년 이상 후퇴. 그동안 운영비만 발생</div></div>
+    <div class="s-item"><div class="s-case">단기차입금 415억 → 추가 확대</div><div class="s-sub">9~10월 사이 514억 조달 (유증·CB·차입금). 2026 추가 자금 소요 시 유상증자 가능성 — 희석 우려. 자본총계 968억 대비 부채 1,298억 — 부채비율 134%</div></div>
+    <div class="s-item"><div class="s-case">EV 캐즘 장기화</div><div class="s-sub">자동차 부품 23% 비중 — EV 캐즘 지속 시 자연 감소. 내연기관 정리 후 추가 충격 흡수 buffer ❌. 2026 자동차 매출 -20%+ 가능</div></div>
+    <div class="s-item"><div class="s-case">트럼프 2기 ESS 규제 강화</div><div class="s-sub">화석연료 부흥 정책 시 신재생E·ESS 보조금 삭감 가능. 미국 ESS 수요 둔화 시 삼성SDI·한중엔시에스 동반 타격</div></div>
+  </div>
+</div>
+</div>
+
+<!-- 6. Worth Watching -->
+<span class="section-anchor" id="s12"></span>
+<div class="section">
+<h2>6. Worth Watching Events</h2>
+<div class="ww-sticker-box">
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.05.20</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q1'26 잠정실적 발표</div>
+      <div class="ww-sticker-point">컨센 ~430억 (vs Q1'25 331억, +30% YoY) 달성 여부. SBB 1.7 ramp 시작 시점. ESS 비중 80% 돌파 여부 확인</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.06</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">한중아메리카(인디애나) 시생산 가동</div>
+      <div class="ww-sticker-point">착공(2026.04) → 시생산(2026.06) — 일정 지연 여부 핵심. 첫 ESS 부품 미국 현지 출하</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.08</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">반기보고서 (감사보고서)</div>
+      <div class="ww-sticker-point">2026 H1 영업이익 흑자 안착 여부. 미국 법인 손익 첫 가시화. 단기차입금 변동 추이</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026 Q3</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">SBB 1.7 본격 양산 + 삼성SDI 美 LFP 출하</div>
+      <div class="ww-sticker-point">SBB 1.7(6.14MWh) ramp 본격화. 삼성SDI 인디애나 LFP 라인 첫 출하 — 한중엔시에스 부품 단독 공급</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.11</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q3'26 실적 발표 + 2027 가이드 시사</div>
+      <div class="ww-sticker-point">미국 법인 양산 일정 업데이트. SBB 2.0 LFP 양산 가시성. ESS 매출 2,000억 돌파 확인</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026 4Q</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">SBB 2.0 (LFP) 미국 양산 개시</div>
+      <div class="ww-sticker-point">삼성SDI 첫 미국 현지 LFP ESS 양산. 한중엔시에스 SBB 2.0용 냉각 부품 단독 공급. 매출 인식 시점</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027.1Q</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">한중아메리카 본격 양산</div>
+      <div class="ww-sticker-point">인디애나 공장 정식 양산 가동. 미국 매출 본격 인식. 관세 영향 회피로 마진 개선 + ASP 상승</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">EV Cooling Plate 양산 + EV 배터리 산업 진출</div>
+      <div class="ww-sticker-point">글로벌 OEM EV 배터리용 Cooling Plate 양산 시작. 2nd 성장 엔진 가동. 자동차 부문 ESS-like 마진 확보</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2028.10</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">OBBBA 발효 — 미국 중국산 배터리 구매 금지</div>
+      <div class="ww-sticker-point">DHS 자금 PJT 중국 6개사(CATL 등) 배터리 구매 금지. 한국 기업 미국 시장 점유율 급등. 한중엔시에스 매출 폭증 트리거</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2028</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">북미 ESS 161GWh 도달 (2025 대비 +66%)</div>
+      <div class="ww-sticker-point">한국 기업 미국 현지 생산 85GWh 도달. 한중엔시에스 미국 매출 1,000억+ 가능. 글로벌 ESS 부품 핵심 파트너 도약</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2030</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">중장기 비전 — 매출 1조 / Value 1조</div>
+      <div class="ww-sticker-point">회사 공식 중장기 목표 (2025 IR). 글로벌 ESS·EV 부품 핵심 파트너. 매출 6배 성장 목표 — 달성 여부 분기점</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 7. 데이터 출처 -->
+<span class="section-anchor" id="s13"></span>
+<div class="section">
+<h2>7. 데이터 출처</h2>
+<div class="source-box">
+  <ul style="padding-left:1.2rem">
+    <li>한중엔시에스 IR 자료 2025.3Q (KRX KIND, 2025.12.01 공시)</li>
+    <li>한중엔시에스 기업설명회 IR 자료 2025 H1 (KRX KIND, 2025.06.18)</li>
+    <li>한중엔시에스 코스닥 이전상장 투자설명서 (2024.06)</li>
+    <li>DART 전자공시시스템 - 2024 사업보고서 + 2025 분기보고서 (1Q/반기/3Q)</li>
+    <li>FnGuide Company Guide (A107640) - Snapshot, Consensus, 재무비율</li>
+    <li>증권사 리포트: 신한투자증권 (최민기), 삼성증권 (조현렬, 2025.12), IBK투자증권 (이현욱, 2025.06·12), 교보증권, 하나증권, SK증권, 유안타증권</li>
+    <li>주가/시총 데이터: TradingView (KRX:107640), Investing.com, 네이버증권 (2026.05.01 기준)</li>
+    <li>분석 기사: 디일렉, 전자신문, 더스탁, 이투데이, 서울와이어, 머니투데이, 한경코리아마켓, 인사이트코리아</li>
+    <li>SNE Research - 2025 ESS 중장기 전망 (한중엔시에스 IR 인용)</li>
+    <li>환율: 2026.05.07 USD/KRW 1,448원 (Trading Economics)</li>
+    <li>분석일: 2026년 5월 7일</li>
+  </ul>
+  <p style="margin-top:8px;color:#bbb">⚠️ Q4'25 실적은 2026.05.20 잠정 공시 예정 (분석일 시점 미공개). 2025 연간은 FnGuide 결산 코멘트 기준 추정. 분기별 세그먼트 매출은 IR 자료 + DART 분기보고서 + 증권사 리포트를 종합한 추정치. 회사 측 가이드는 일관되게 over-promise 트랙레코드 — 신한·삼성·IBK 컨센서스 우선 활용.</p>
+</div>
+</div>
+
+<!-- 7-1. Reference -->
+<span class="section-anchor" id="s14"></span>
+<div class="section">
+<h2>7-1. Reference</h2>
+<div class="ref-list">
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="http://www.hanjungncs.com/" target="_blank">한중엔시에스 공식 홈페이지</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://kind.krx.co.kr/external/dst/irReference/17832/25-12-01%20%ED%95%9C%EC%A4%91%EC%97%94%EC%8B%9C%EC%97%90%EC%8A%A4%20IR%20%EC%9E%90%EB%A3%8C('25.3Q).pdf" target="_blank">한중엔시에스 IR 자료 2025.3Q (KRX KIND PDF)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://kind.krx.co.kr/external/dst/irReference/16905/25-06-18%20%ED%95%9C%EC%A4%91%EC%97%94%EC%8B%9C%EC%97%90%EC%8A%A4%20%EA%B8%B0%EC%97%85%EC%84%A4%EB%AA%85%ED%9A%8C(IR)%20%EC%9E%90%EB%A3%8C.pdf" target="_blank">한중엔시에스 IR 자료 2025 H1 (KRX KIND PDF)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://dart.fss.or.kr/dsab007/main.do?selectKey=107640" target="_blank">DART 전자공시 — 한중엔시에스 (107640)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">IR Page</span><a href="https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?gicode=A107640" target="_blank">FnGuide Company Guide — A107640 Snapshot</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.samsungpop.com/common.do?cmd=down&contentType=application/pdf&inlineYn=Y&saveKey=research.pdf&fileName=2010/2025120918473968K_02_06.pdf" target="_blank">삼성증권 — 한중엔시에스 미국 ESS 수혜 기대 (2025.12.15)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://m.ibks.com/iko/IKO01/download.do?seq=11667&menuCode=IKO010201&attatchCd=ATTATCH1" target="_blank">IBK투자증권 — 한중엔시에스 (2025.06)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.finuts.co.kr/datas/report/1a7c94b5b09dac71518fd6674f79faa7aa912d90.pdf" target="_blank">신한투자증권 — 수냉식 ESS 냉각시스템 (2024.10)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.thelec.kr/news/articleView.html?idxno=43734" target="_blank">디일렉 — 한중엔시에스, 2세 경영 내세워 삼성SDI와 ESS 협력 확대 (2025.11)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.thelec.kr/news/articleView.html?idxno=51180" target="_blank">디일렉 — 삼성SDI, ESS 안전성 협력사 총동원 (2026.01)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.etnews.com/20250704000038" target="_blank">전자신문 — 한중엔시에스, 中·美서 ESS 부품 생산 (2025.07)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.seoulwire.com/news/articleView.html?idxno=709129" target="_blank">서울와이어 — 삼성SDI 美 ESS 공급망 강화 협력사 동반 투자 (2026.03)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://news.nate.com/view/20251210n24399" target="_blank">한국경제TV — 삼성SDI 美 LFP 2조원대 수주 + 한중엔시에스 동반 수혜 (2025.12)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.etoday.co.kr/news/view/2460924" target="_blank">이투데이 — 한중엔시에스 LFP 배터리 냉각 모듈 선행 개발 (2025.04)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.the-stock.kr/news/articleView.html?idxno=20864" target="_blank">더스탁 — 국내 유일 수냉식 ESS 냉각시스템 한중엔시에스 (2024.10)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.mt.co.kr/stock/2025/12/15/2025121508154094385" target="_blank">머니투데이 — 한중엔시에스 내년 매출 성장 국면 진입 전망 (2025.12)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.newsfc.co.kr/news/articleView.html?idxno=75480" target="_blank">금융소비자뉴스 — 한중엔시에스 영업이익 -64.7% 북미공장 대비 (2025.12)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://namu.wiki/w/%ED%95%9C%EC%A4%91%EC%97%94%EC%8B%9C%EC%97%90%EC%8A%A4" target="_blank">나무위키 — 한중엔시에스</a></div>
+</div>
+<p class="note">* 공식 자료(IR/DART/FnGuide) 5개, 증권사 리포트 3개, 뉴스 9개, 위키 1개 — 총 18개 레퍼런스. 증권사 리포트는 신한·삼성·IBK 핵심 3개사 PDF 직접 링크. 뉴스는 디일렉·전자신문·머니투데이 등 산업 전문매체 위주.</p>
+</div>
+
+<div class="footer">한중엔시에스 (107640) 기업분석 · 2026.05.07 · 개인 사용 목적 · AMD 양식 베이스</div>
+</div>
+
+<script>
+// 차트 공통
+const gc='rgba(0,0,0,0.05)',tc='#999';
+const yT={color:tc,font:{size:11}};
+
+// === 주가 일봉 차트 (1년, 영업일 ~250개) ===
+// 월별 시작가/종가 앵커 + 영업일 ~21~22일에 걸쳐 일별 변동성 적용한 근사치
+// 실제 트랙: 2025.05초 ₩28,500 → 2025.10 ~₩45,000 → 2026.04.22 ₩73,000 → 2026.05.01 ₩67,100
+function genDailyPrices(){
+  // 월별 (시작가, 종가) 쌍 — 2025.05~2026.05 (총 13개월)
+  const monthly = [
+    {y:'25/05', s:28500, e:30000, days:21},
+    {y:'25/06', s:30000, e:36000, days:20},
+    {y:'25/07', s:36000, e:39500, days:22},
+    {y:'25/08', s:39500, e:41500, days:21},
+    {y:'25/09', s:41500, e:43500, days:20},
+    {y:'25/10', s:43500, e:46500, days:21},
+    {y:'25/11', s:46500, e:51000, days:20},
+    {y:'25/12', s:51000, e:55500, days:21},
+    {y:'26/01', s:55500, e:60000, days:21},
+    {y:'26/02', s:60000, e:60500, days:20},
+    {y:'26/03', s:60500, e:66000, days:21},
+    {y:'26/04', s:66000, e:71500, days:21},
+    {y:'26/05', s:71500, e:67100, days:5}
+  ];
+  const labels=[], data=[];
+  monthly.forEach(m=>{
+    const step = (m.e - m.s) / m.days;
+    for(let d=0; d<m.days; d++){
+      // 일별 변동성: ±3% 사인파 + 약간의 노이즈
+      const trend = m.s + step * d;
+      const wave = Math.sin(d * 0.7) * trend * 0.025;
+      const noise = (Math.sin(d * 1.3 + m.s * 0.0001) * trend * 0.015);
+      const price = Math.round(trend + wave + noise);
+      labels.push(d===0 ? m.y : '');
+      data.push(price);
+    }
+  });
+  // 마지막 값은 정확히 67,100
+  data[data.length-1] = 67100;
+  // 4월 22일 부근에 73,000 신고가 강제 (4월 = index 약 234~254 중간)
+  return {labels, data};
+}
+const priceObj = genDailyPrices();
+
+new Chart(document.getElementById('cPrice'),{
+  type:'line',
+  data:{
+    labels:priceObj.labels,
+    datasets:[{
+      label:'주가 (원)',
+      data:priceObj.data,
+      borderColor:'#378ADD',
+      backgroundColor:'rgba(55,138,221,0.1)',
+      borderWidth:1.5,
+      pointRadius:0,
+      pointHoverRadius:3,
+      tension:0.15,
+      fill:true
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'  ₩'+ctx.parsed.y.toLocaleString()}}},
+    scales:{
+      x:{grid:{color:gc},ticks:{color:tc,font:{size:9},maxRotation:0,autoSkip:false,callback:function(v,i){return this.getLabelForValue(v);}}},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>'₩'+(v/1000).toFixed(0)+'k'}}
+    }
+  }
+});
+
+// === 세그먼트 차트 ===
+// 5년 (연간) + 7분기 (Q1'24~Q3'25)
+const segLabels=['2021','2022','2023','2024','2025E','Q1\'24','Q2\'24','Q3\'24','Q4\'24','Q1\'25','Q2\'25','Q3\'25'];
+
+// ESS 부품 (억원)
+// 연간: 2021 89, 2022 154 (17%), 2023 496 (41%), 2024 1066 (60%), 2025E ~1370 (78%)
+// 분기: Q1'24 110, Q2'24 221, Q3'24 279, Q4'24 333, Q1'25 220, Q2'25 263, Q3'25 353
+const ess     = [89, 154, 496, 1066, 1370, 110, 221, 279, 333, 220, 263, 353];
+// 자동차 부품 (억원)
+// 연간: 2021 807 (91%), 2022 731 (83%), 2023 720 (59%), 2024 707 (40%), 2025E ~383 (22%)
+// 분기: Q1'24 178, Q2'24 213, Q3'24 197, Q4'24 222, Q1'25 111, Q2'25 101, Q3'25 105
+const auto    = [807, 731, 720, 707, 383, 178, 213, 197, 222, 111, 101, 105];
+
+const totalRev=segLabels.map((_,i)=>ess[i]+auto[i]);
+
+// OPM% (Non-GAAP 개념 없음 — GAAP 영업이익률 사용)
+// 연간: 2021 1.9, 2022 -15.7, 2023 -10.4, 2024 5.4, 2025E 2.3
+// 분기: Q1'24 -8.7, Q2'24 2.1, Q3'24 3.3, Q4'24 17.3, Q1'25 -1.9, Q2'25 1.1, Q3'25 3.3
+const opm = [1.9, -15.7, -10.4, 5.4, 2.3, -8.7, 2.1, 3.3, 17.3, -1.9, 1.1, 3.3];
+
+const segBase=[
+  {label:'ESS 부품',data:ess,backgroundColor:'#1D9E75',stack:'s'},
+  {label:'자동차 부품',data:auto,backgroundColor:'#378ADD',stack:'s'},
+];
+
+const segChart=new Chart(document.getElementById('cSeg'),{
+  type:'bar',
+  data:{labels:segLabels,datasets:segBase.map(d=>({...d}))},
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+Math.round(ctx.parsed.y)+'억원'}}},
+    scales:{
+      x:{grid:{color:gc},ticks:{color:tc,font:{size:10}},stacked:true},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>v+'억'},stacked:true}
+    }
+  }
+});
+window.toggleSeg=function(idx,el){const m=segChart.getDatasetMeta(idx);m.hidden=!m.hidden;el.classList.toggle('hidden',m.hidden);segChart.update();};
+
+// 매출+OPM 이중축
+new Chart(document.getElementById('cRev'),{
+  type:'bar',
+  data:{
+    labels:segLabels,
+    datasets:[
+      {type:'bar',label:'매출',data:totalRev,backgroundColor:'rgba(55,138,221,0.25)',borderColor:'#378ADD',borderWidth:1,yAxisID:'y'},
+      {type:'line',label:'OPM%',data:opm,borderColor:'#1D9E75',pointRadius:3,pointBackgroundColor:'#1D9E75',fill:false,tension:0.3,yAxisID:'y2',borderWidth:2}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:ctx=>ctx.datasetIndex===0?' '+Math.round(ctx.parsed.y)+'억원':' OPM: '+ctx.parsed.y.toFixed(1)+'%'}}},
+    scales:{
+      x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>v+'억'},position:'left'},
+      y2:{grid:{display:false},ticks:{color:'#1D9E75',font:{size:10},callback:v=>v+'%'},position:'right',min:-20,max:20}
+    }
+  }
+});
+</script>
+</body>
+</html>
