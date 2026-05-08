@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rocket Lab (RKLB) 기업분석 — 2026 Q1</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f3ef;color:#1a1a1a;padding:2rem;font-size:14px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto}
+.header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #e0e0dc;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.header-title{font-size:22px;font-weight:700}
+.header-meta{font-size:12px;color:#888;margin-top:4px}
+.toc{margin-bottom:2rem;padding:0}
+.toc-title{font-size:12px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+/* 통합 스티커 박스 — 모든 목차 항목이 한 박스 안에 */
+.toc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:1.1rem 1.3rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.toc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(8,auto);grid-auto-flow:column;gap:6px 28px}
+@media(max-width:650px){.toc-grid{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}}
+.toc-link{display:flex;align-items:center;gap:10px;padding:5px 0;text-decoration:none;color:#444;font-size:13px;border-bottom:0.5px dashed transparent;transition:all .15s ease}
+.toc-link:hover{color:#378ADD;border-bottom-color:#cfe1f5}
+.toc-link .toc-num{color:#aaa;font-weight:700;font-size:12px;min-width:30px;font-variant-numeric:tabular-nums;flex-shrink:0}
+.toc-link:hover .toc-num{color:#378ADD}
+.toc-link .toc-text{flex:1}
+.toc-link.sub{padding-left:18px;font-size:12.5px;color:#666}
+.toc-link.sub .toc-num{font-size:11px;color:#bbb}
+.section{margin-bottom:3rem}
+.section-anchor{display:block;position:relative;top:-70px;visibility:hidden}
+h2{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:6px;border-bottom:1.5px solid #e0e0dc}
+h3{font-size:14px;font-weight:600;margin:1.2rem 0 .6rem;color:#333}
+.chart-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:20px;position:relative;width:100%}
+.note{font-size:11px;color:#999;margin-top:8px;line-height:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;font-size:12px;color:#666}
+.legend-item{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:3px 8px;border-radius:6px;transition:opacity .15s}
+.legend-item:hover{background:#e8e8e3}
+.legend-item.hidden{opacity:.3;text-decoration:line-through}
+.legend-static{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0dc;margin-bottom:.5rem}
+th{background:#ebebe6;font-weight:600;padding:7px 8px;text-align:left;border-bottom:1px solid #e0e0dc;white-space:nowrap;font-size:11.5px}
+th.center{text-align:center}
+td{padding:6px 8px;border-bottom:0.5px solid #f0f0ee;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafaf6}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.center{text-align:center}
+.hl{background:#fffbe6 !important}
+.dn{color:#D85A30}
+.up2{color:#1D9E75}
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
+@media(max-width:650px){.overview-grid{grid-template-columns:1fr}}
+.overview-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.overview-box h4{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.kv{display:flex;justify-content:space-between;align-items:flex-start;padding:4px 0;border-bottom:0.5px solid #f5f4f0;font-size:12.5px;gap:10px}
+.kv:last-child{border-bottom:none}
+.kv-key{color:#666;min-width:90px;flex-shrink:0}
+.kv-val{font-weight:600;text-align:right;flex:1}
+.seg-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:1rem}
+.seg-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.seg-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:8px}
+.seg-card-name{font-size:13px;font-weight:700}
+.seg-card-share{font-size:11px;color:#888;font-weight:600}
+.seg-card-desc{font-size:12px;color:#444;line-height:1.55;margin-bottom:6px}
+.seg-card-margin{font-size:11px;font-weight:600}
+.badge{display:inline-block;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:600}
+.badge-up{background:#e6f7f0;color:#1D9E75}
+.badge-dn{background:#fce8e4;color:#D85A30}
+.badge-neu{background:#ebebe6;color:#666}
+.cc-table{width:100%;border-collapse:separate;border-spacing:6px;margin-bottom:1rem}
+.cc-table th{background:transparent;border:none;font-size:11px;color:#888;text-align:center;padding:4px;font-weight:600;white-space:nowrap}
+.cc-table th.year-col{width:50px;text-align:left}
+.cc-cell{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.65rem .75rem;vertical-align:top;height:100%}
+.cc-quarter{font-size:10px;font-weight:700;color:#378ADD;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.cc-msg{font-size:11px;color:#444;margin-bottom:6px;line-height:1.45}
+.cc-guide{font-size:10px;color:#888;border-top:0.5px solid #f0f0ee;padding-top:5px;line-height:1.5}
+.cc-hit{color:#1D9E75;font-weight:600}
+.cc-miss{color:#D85A30;font-weight:600}
+.cc-latest{border:1.5px solid #378ADD !important;box-shadow:0 0 0 2px rgba(55,138,221,0.1)}
+.year-label{font-size:13px;font-weight:700;color:#555;padding-right:8px;vertical-align:middle}
+.scenario-stack{display:flex;flex-direction:column;gap:12px}
+.scenario-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1.1rem 1.3rem}
+.scenario-title{font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid #f0f0ee}
+.s-bull .scenario-title{color:#1D9E75}
+.s-bear .scenario-title{color:#D85A30}
+.s-item{margin-bottom:9px;padding-bottom:9px;border-bottom:0.5px solid #f5f4f0;font-size:12px}
+.s-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-case{font-weight:600;margin-bottom:2px}
+.s-sub{color:#888;font-size:11px}
+.ww-list{display:flex;flex-direction:column;gap:8px}
+.ww-item{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.75rem 1rem;display:flex;gap:14px}
+/* 통합 스티커 박스 — Worth Watching Events */
+.ww-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.ww-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.ww-sticker-item{padding:.7rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:14px;align-items:flex-start}
+.ww-sticker-item:last-child{border-bottom:none}
+.ww-sticker-date{font-size:11px;font-weight:700;color:#378ADD;white-space:nowrap;min-width:90px;flex-shrink:0;padding-top:1px}
+.ww-sticker-content{flex:1}
+.ww-sticker-event{font-size:12.5px;font-weight:700;color:#222;margin-bottom:2px}
+.ww-sticker-point{font-size:11.5px;color:#666;line-height:1.5}
+.ww-date{font-size:11px;font-weight:700;color:#378ADD;white-space:nowrap;min-width:90px}
+.ww-event{font-size:12px;font-weight:600;margin-bottom:2px}
+.ww-point{font-size:11px;color:#888}
+.source-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.4rem;font-size:12px;color:#888;line-height:2}
+.prose{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;margin-bottom:1rem;font-size:13px;line-height:1.7}
+.prose ul{padding-left:1.3rem}
+.prose li{margin-bottom:.25rem}
+.prose p{margin-bottom:.7rem}
+.prose p:last-child{margin-bottom:0}
+.invest-cards{display:flex;flex-direction:column;gap:10px;margin-top:1rem}
+.invest-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem;border-left:3px solid #378ADD}
+.invest-card-title{font-size:13px;font-weight:700;color:#378ADD;margin-bottom:5px}
+.invest-card-desc{font-size:12px;color:#444;line-height:1.55}
+/* 핵심 투자아이디어 강조 박스 */
+.thesis-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:12px;padding:1.2rem 1.4rem;margin-bottom:12px;border-left:5px solid #333;position:relative}
+.thesis-box.green{border-left-color:#333}
+.thesis-box.orange{border-left-color:#333}
+.thesis-box-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.thesis-icon{font-size:22px;flex-shrink:0}
+.thesis-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:5px;background:#ebebe6;color:#444}
+.thesis-box.green .thesis-tag{background:#ebebe6;color:#444}
+.thesis-box.orange .thesis-tag{background:#ebebe6;color:#444}
+.thesis-title{font-size:15px;font-weight:700;color:#222;flex:1;margin-bottom:0}
+.thesis-body{font-size:13px;line-height:1.7;color:#333}
+.thesis-body p{margin-bottom:.6rem}
+.thesis-body p:last-child{margin-bottom:0}
+.thesis-body strong{color:#222;font-weight:700}
+.thesis-body .hl-blue{font-weight:600;color:#222}
+.thesis-body .hl-green{font-weight:700;color:#1D9E75}
+.thesis-body .hl-red{font-weight:700;color:#D85A30}
+/* 컨콜 핵심 메시지 강조 */
+.cc-msg-card{background:#fff;border:1px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start}
+.cc-msg-content{flex:1}
+.cc-msg-title-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
+.cc-msg-rank{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#378ADD;color:#fff;font-size:11px;font-weight:700;flex-shrink:0}
+.cc-msg-title{font-size:13px;font-weight:700;color:#222}
+.cc-msg-desc{font-size:12px;color:#444;line-height:1.6}
+.cc-msg-desc strong{color:#222}
+/* 통합 스티커 박스 — 컨콜 핵심 메시지 5가지 */
+.cc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.cc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.cc-sticker-item{padding:.85rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:12px;align-items:flex-start}
+.cc-sticker-item:last-child{border-bottom:none}
+.cc-sticker-rank{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#378ADD;color:#fff;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.cc-sticker-content{flex:1}
+.cc-sticker-title{font-size:13px;font-weight:700;color:#222;margin-bottom:4px}
+.cc-sticker-desc{font-size:12px;color:#444;line-height:1.6}
+.cc-sticker-desc strong{color:#222}
+.hl-pos{color:#1D9E75;font-weight:700}
+.hl-neg{color:#D85A30;font-weight:700}
+.ir-na-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;font-size:12px;color:#666;line-height:1.6}
+/* IR 슬라이드 캡쳐 — 외부 이미지 직접 임베드 (원본 그대로) */
+.ir-slide{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;overflow:hidden;margin-bottom:14px}
+.ir-slide-frame{background:linear-gradient(135deg,#f8f8f5 0%,#ffffff 100%);padding:.85rem 1.4rem;border-bottom:0.5px solid #e0e0dc}
+.ir-slide-num{font-size:10px;color:#999;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+.ir-slide-title{font-size:14px;font-weight:700;color:#333}
+.ir-slide-img-wrap{padding:1rem 1.4rem;text-align:center;background:#fafaf6}
+.ir-slide-img-wrap img{display:block;max-width:75%;width:100%;height:auto;margin:0 auto;border:0.5px solid #e0e0dc;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+@media(max-width:650px){.ir-slide-img-wrap img{max-width:95%}}
+.ir-slide-img-wrap iframe{display:block;width:100%;max-width:850px;height:480px;margin:0 auto;border:0.5px solid #e0e0dc;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.ir-slide-caption{font-size:11.5px;color:#555;padding:.85rem 1.4rem 1rem;line-height:1.55;background:#fff;border-top:0.5px solid #f0f0ee}
+.ir-slide-caption strong{color:#222}
+.footer{font-size:11px;color:#aaa;text-align:center;margin-top:2rem;padding-top:1rem;border-top:0.5px solid #e0e0dc}
+.seg-table-wrap{overflow-x:auto}
+.seg-table{min-width:780px}
+.seg-table th.seg-group{text-align:center;background:#e3e3de;border-left:2px solid #d0d0cc}
+.seg-table td.seg-border{border-left:2px solid #e0e0dc}
+.tv-wrap{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:6px;overflow:hidden}
+.tv-wrap iframe{display:block;width:100%;height:420px;border:0;border-radius:6px}
+.ref-list{display:flex;flex-direction:column;gap:6px}
+.ref-item{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.6rem .9rem;display:flex;align-items:center;gap:10px;font-size:12px}
+.ref-tag{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600;flex-shrink:0;min-width:55px;text-align:center}
+.tag-official{background:#e0effc;color:#1565c0}
+.tag-broker{background:#fff4e0;color:#ed8936}
+.tag-news{background:#f0f0ed;color:#555}
+.tag-wiki{background:#e6f7f0;color:#1D9E75}
+.tag-blog{background:#e7e1f5;color:#6b46c1}
+.ref-item a{color:#378ADD;text-decoration:none;flex:1;word-break:break-all}
+.ref-item a:hover{text-decoration:underline}
+.ref-item span.ref-desc{color:#888;font-size:11px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div>
+    <div class="header-title">🚀 Rocket Lab (RKLB) 기업분석</div>
+    <div class="header-meta">회계연도: Calendar Year &nbsp;|&nbsp; 분석기간: Q1'22~Q1'26 (17분기) &nbsp;|&nbsp; 최근 컨콜: 2026.05.07</div>
+  </div>
+  <div style="font-size:12px;color:#aaa">분석일: 2026.05.09</div>
+</div>
+
+<!-- 목차 -->
+<div class="toc">
+  <div class="toc-title">목차</div>
+  <div class="toc-sticker-box">
+    <div class="toc-grid">
+      <a class="toc-link" href="#s1"><span class="toc-num">01.</span><span class="toc-text">회사 개요</span></a>
+      <a class="toc-link" href="#s2"><span class="toc-num">02.</span><span class="toc-text">주가 흐름 — TradingView 일봉</span></a>
+      <a class="toc-link" href="#s3"><span class="toc-num">03.</span><span class="toc-text">세그먼트별 매출 추이</span></a>
+      <a class="toc-link sub" href="#s3b"><span class="toc-num">3-1.</span><span class="toc-text">세그먼트 구조 및 제품</span></a>
+      <a class="toc-link sub" href="#s4"><span class="toc-num">3-2.</span><span class="toc-text">매출 &amp; Adj. GM 추이</span></a>
+      <a class="toc-link sub" href="#s5"><span class="toc-num">3-3.</span><span class="toc-text">세그먼트별 실적 테이블</span></a>
+      <a class="toc-link" href="#s6"><span class="toc-num">04.</span><span class="toc-text">재무제표 개요</span></a>
+      <a class="toc-link" href="#s7"><span class="toc-num">05.</span><span class="toc-text">핵심 투자아이디어</span></a>
+      <a class="toc-link sub" href="#s8"><span class="toc-num">5-1.</span><span class="toc-text">핵심 변동 요인</span></a>
+      <a class="toc-link sub" href="#s9"><span class="toc-num">5-2.</span><span class="toc-text">컨퍼런스콜 트래킹</span></a>
+      <a class="toc-link sub" href="#s10"><span class="toc-num">5-3.</span><span class="toc-text">Q1'26 컨콜 심층 정리</span></a>
+      <a class="toc-link sub" href="#s11"><span class="toc-num">5-4.</span><span class="toc-text">강세 / 약세 시나리오</span></a>
+      <a class="toc-link" href="#s12"><span class="toc-num">06.</span><span class="toc-text">Worth Watching Events</span></a>
+      <a class="toc-link" href="#s13"><span class="toc-num">07.</span><span class="toc-text">데이터 출처</span></a>
+      <a class="toc-link sub" href="#s14"><span class="toc-num">7-1.</span><span class="toc-text">Reference</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- 1. 회사 개요 -->
+<span class="section-anchor" id="s1"></span>
+<div class="section">
+<h2>1. 회사 개요</h2>
+<div class="overview-grid">
+  <div class="overview-box">
+    <h4>기본 정보</h4>
+    <div class="kv"><span class="kv-key">설립</span><span class="kv-val">2006년 (Peter Beck, NZ)</span></div>
+    <div class="kv"><span class="kv-key">상장</span><span class="kv-val">2021.08 NASDAQ (Vector Acq SPAC)</span></div>
+    <div class="kv"><span class="kv-key">본사</span><span class="kv-val">Long Beach, CA, USA</span></div>
+    <div class="kv"><span class="kv-key">CEO</span><span class="kv-val">Sir Peter Beck (창업자, Chair)</span></div>
+    <div class="kv"><span class="kv-key">CFO</span><span class="kv-val">Adam Spice</span></div>
+    <div class="kv"><span class="kv-key">임직원</span><span class="kv-val">~2,300명+ (Mynaric/Motiv 합산 추정)</span></div>
+    <div class="kv"><span class="kv-key">티커</span><span class="kv-val">NASDAQ: RKLB</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>시장 정보 (2026.05.07 기준)</h4>
+    <div class="kv"><span class="kv-key">현재 주가</span><span class="kv-val">$78.58</span></div>
+    <div class="kv"><span class="kv-key">시가총액 USD</span><span class="kv-val" style="color:#378ADD">~$42B</span></div>
+    <div class="kv"><span class="kv-key">시가총액 KRW</span><span class="kv-val" style="color:#378ADD">~61조원 (환율 1,448원)</span></div>
+    <div class="kv"><span class="kv-key">발행주식</span><span class="kv-val">~534M주</span></div>
+    <div class="kv"><span class="kv-key">52주 고가</span><span class="kv-val">$99.58 (2026.01.16)</span></div>
+    <div class="kv"><span class="kv-key">52주 저가</span><span class="kv-val">$20.23 (2025.05)</span></div>
+    <div class="kv"><span class="kv-key">P/E (TTM)</span><span class="kv-val">N/A (적자)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>사업 운영</h4>
+    <div class="kv"><span class="kv-key">사업 모델</span><span class="kv-val">End-to-end 우주기업 (수직통합)</span></div>
+    <div class="kv"><span class="kv-key">발사체</span><span class="kv-val">Electron (소형) · Neutron (중형, 2026 Q4) · HASTE (극초음속)</span></div>
+    <div class="kv"><span class="kv-key">제조 거점</span><span class="kv-val">Long Beach (CA), Auckland (NZ), Toronto, Virginia, Mahia (NZ)</span></div>
+    <div class="kv"><span class="kv-key">주요 인수</span><span class="kv-val">Sinclair · SolAero · Planetary Systems · Mynaric (2026.04) · Motiv (예정)</span></div>
+    <div class="kv"><span class="kv-key">세그먼트</span><span class="kv-val">2개: Launch Services / Space Systems</span></div>
+    <div class="kv"><span class="kv-key">백로그</span><span class="kv-val">$2.2B (Q1'26末, +108% YoY)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>투자 포인트 요약</h4>
+    <div class="kv"><span class="kv-key">Q1'26 매출</span><span class="kv-val" style="color:#1D9E75">$200.3M (+63.5% YoY)</span></div>
+    <div class="kv"><span class="kv-key">GAAP GM</span><span class="kv-val" style="color:#1D9E75">38.2% (record)</span></div>
+    <div class="kv"><span class="kv-key">Non-GAAP GM</span><span class="kv-val" style="color:#1D9E75">43.0%</span></div>
+    <div class="kv"><span class="kv-key">Q2'26 가이던스</span><span class="kv-val" style="color:#1D9E75">$225~240M (+57% YoY)</span></div>
+    <div class="kv"><span class="kv-key">Adj. EBITDA</span><span class="kv-val" style="color:#D85A30">-$11.8M (개선 중)</span></div>
+    <div class="kv"><span class="kv-key">유동성</span><span class="kv-val" style="color:#1D9E75">>$2.0B (ATM 후 record)</span></div>
+  </div>
+</div>
+<p class="note">⚠️ <strong>Non-GAAP / Adjusted</strong>는 SBC(주식보상비용)·M&amp;A 비용·무형자산 상각 제외. <strong>Electron</strong>=소형 위성 발사체(300kg급, 70+회 발사 실적), <strong>Neutron</strong>=중형 재사용 발사체(13t급, SpaceX Falcon 9 직접 경쟁), <strong>HASTE</strong>=Electron 기반 극초음속 테스트 발사체, <strong>SDA</strong>=Space Development Agency, <strong>Tranche</strong>=SDA 위성군 단계, <strong>Photon</strong>=Rocket Lab 자체 위성 플랫폼, <strong>Golden Dome</strong>=트럼프 행정부 미사일 방어 이니셔티브.</p>
+</div>
+
+<!-- 2. 주가 -->
+<span class="section-anchor" id="s2"></span>
+<div class="section">
+<h2>2. 주가 흐름 — TradingView 일봉</h2>
+<div class="tv-wrap">
+<iframe src="https://www.tradingview.com/widgetembed/?symbol=NASDAQ%3ARKLB&interval=D&style=1&theme=light&hidesidetoolbar=1&hidetoptoolbar=0&allow_symbol_change=0" allowfullscreen></iframe>
+</div>
+<p class="note">* 2025.05 $20.23 저점 → 2025.10 SDA Tranche 3 $816M 수주, 2025.12 ATM offering → 2026.01 $99.58 역대 최고가 → Neutron 탱크 테스트 실패로 조정 → 2026.05.07 Q1'26 어닝 후 $78.58. 1년간 +240%. 시총 $42B.</p>
+
+<h3 style="margin-top:1.2rem">주요 이벤트 연표</h3>
+<table>
+  <thead><tr><th>시기</th><th class="num">주가(근사)</th><th>이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2006</td><td class="num">—</td><td>Peter Beck이 뉴질랜드 Auckland에서 창업</td></tr>
+    <tr><td>2017.05</td><td class="num">—</td><td>Electron 첫 발사 ("It's a Test") — 궤도 도달 실패</td></tr>
+    <tr><td>2018.01</td><td class="num">—</td><td>Electron 첫 궤도 진입 성공 ("Still Testing")</td></tr>
+    <tr><td>2021.08</td><td class="num">$10.01</td><td>Vector Acquisition SPAC 합병으로 NASDAQ 상장</td></tr>
+    <tr><td>2022.01</td><td class="num">$15</td><td>SPAC 합병 후 첫 풀이어 — Photon 위성 사업 본격 확장, Neutron 개발 가속</td></tr>
+    <tr><td>2022.04</td><td class="num">$8</td><td>Electron 1단 헬리콥터 캐치 시도 — <span class="up2">부분 성공</span></td></tr>
+    <tr><td>2023.12</td><td class="num">$5.55</td><td>SDA Tranche 2 Transport Layer-Beta <span class="up2">$515M 수주</span> — 첫 prime contractor</td></tr>
+    <tr><td>2024.08</td><td class="num">$6.30</td><td>NASA Mars Sample Return 연구 계약 선정</td></tr>
+    <tr><td>2024.12</td><td class="num">$26</td><td>Electron 연 14회 발사 record. 시총 $10B 첫 돌파</td></tr>
+    <tr><td>2025.05</td><td class="num">$20.23</td><td>52주 저점 — Neutron 일정 우려, 우주 IPO 매수 기대 약화</td></tr>
+    <tr><td>2025.08</td><td class="num">$45</td><td>Geos · Optical Support Inc · Precision Components 인수 발표</td></tr>
+    <tr><td>2025.10</td><td class="num">$58</td><td><span class="up2">Neutron 1단 탱크 테스트 실패</span> — 첫 발사 Q1'26 → Q4'26 연기</td></tr>
+    <tr><td>2025.12</td><td class="num">$70</td><td><span class="up2">SDA Tranche 3 Beta $816M 수주</span> — 사상 최대 단일 계약</td></tr>
+    <tr><td>2026.01.16</td><td class="num">$96.30</td><td><strong>역대 종가 최고가 — Golden Dome 정책 모멘텀</strong></td></tr>
+    <tr><td>2026.02.26</td><td class="num">$72</td><td>Q4'25 record $179.7M 매출 (+36% YoY), 2026 backlog $1.85B</td></tr>
+    <tr><td>2026.04</td><td class="num">$74</td><td><span class="up2">Mynaric AG 인수 완료</span> — 레이저 광통신, 첫 유럽 거점 확보</td></tr>
+    <tr class="hl"><td><strong>2026.05.07</strong></td><td class="num"><strong>$78.58</strong></td><td><strong>Q1'26 어닝 +63.5% YoY 서프라이즈, 백로그 $2.2B record, Motiv 인수 합의, Anduril/MACH-TB 2.0 계약</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 3. 세그먼트 17분기 -->
+<span class="section-anchor" id="s3"></span>
+<div class="section">
+<h2>3. 세그먼트별 매출 추이 — 17분기 ($M)</h2>
+<div class="legend" id="segLegend">
+  <span class="legend-item" onclick="toggleSeg(0,this)"><span class="dot" style="background:#1D9E75"></span>Space Systems</span>
+  <span class="legend-item" onclick="toggleSeg(1,this)"><span class="dot" style="background:#378ADD"></span>Launch Services</span>
+  <span style="font-size:11px;color:#bbb;margin-left:4px">← 클릭하여 표시/숨김</span>
+</div>
+<div class="chart-box" style="height:460px"><canvas id="cSeg"></canvas></div>
+<p class="note">* 2개 세그먼트 구조. Space Systems는 위성 제조·컴포넌트(반응휠·태양전지·구조체·소프트웨어·통신) — SolAero(2022)·Sinclair·Mynaric(2026.04) 인수로 수직통합 가속. Launch Services는 Electron(소형, 70+회) + HASTE(극초음속). Space Systems 비중이 2022 평균 ~50% → 2025 67%로 확대 (위성 제조 + SDA Tranche 2/3 prime 계약 효과). Q4'25는 Launch 6회 + 1회로 Launch 매출 $75.9M record. Q1'26은 Space Systems 강세로 회귀 — Q4 콘솔 사이클 영향 무관.</p>
+</div>
+
+<!-- 3-1. 세그먼트 구조 -->
+<span class="section-anchor" id="s3b"></span>
+<div class="section">
+<h2>3-1. 세그먼트 구조 및 제품</h2>
+<div class="seg-cards">
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">Space Systems ★</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">~62%</span> · Q1'26 ~$124M (추정)</div>
+    </div>
+    <div class="seg-card-desc">
+      RKLB의 가장 큰 세그먼트이자 마진 견인 사업. <strong>위성 통합 제조</strong>(Photon 플랫폼·SDA Tranche 2/3 prime 계약 38기) + <strong>스페이스크래프트 컴포넌트</strong>(반응휠·태양전지·구조체·통신·스타 트래커·전기추진) + <strong>레이저 광통신</strong>(Mynaric 인수, 2026.04). Mars 샘플 리턴 NASA 연구 계약. <span style="color:#1D9E75;font-weight:700">2025 매출 $402.8M (전체의 67%)</span>. Mynaric+Motiv 인수로 글로벌 거점 + Mars 검증된 로보틱스 추가. 한 사업부로서 가장 빠르게 성장 중인 위성 컴포넌트 시장의 글로벌 Tier 1.
+    </div>
+    <div class="seg-card-margin" style="color:#555">GM <span style="color:#378ADD;font-weight:700">40%+</span> · 백로그 ~$1.5B 추정 · 회사 평균 상회</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">Launch Services</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">~38%</span> · Q1'26 ~$76M (추정)</div>
+    </div>
+    <div class="seg-card-desc">
+      <strong>Electron</strong> (300kg급 소형 발사체, 70+회 발사, 100% 성공률 최근 2년) + <strong>HASTE</strong> (Electron 기반 극초음속 테스트, MACH-TB 2.0 $190M 수주, Anduril $30M) + <strong>Neutron</strong> (13t급 중형 재사용, <span style="color:#1D9E75;font-weight:700">2026 Q4 첫 발사</span>, SpaceX Falcon 9 직접 경쟁). Q1'26 신규 계약 36건 — 전체 2025년 한 해보다 많음. 백로그 launch manifest 70+ 미션. Neutron 첫 발사 성공 시 <span style="color:#1D9E75;font-weight:700">중형 발사 시장 진입</span> — 매출당 가격 $50~70M로 Electron 대비 7~10배.
+    </div>
+    <div class="seg-card-margin" style="color:#555">GM <span style="color:#378ADD;font-weight:700">~30%</span> · Neutron ramp 시 마진 일시 압박</div>
+  </div>
+</div>
+
+<table>
+  <thead><tr><th>세그먼트</th><th>대표 제품</th><th>주요 고객</th><th>2025 매출 비중</th><th>YoY 성장</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Space Systems</strong></td><td>Photon 위성·반응휠·태양전지·스타 트래커·레이저 통신</td><td>SDA(국방), NASA, Globalstar, Varda, MDA, JAXA</td><td class="num"><strong>66.9%</strong></td><td class="num up2"><strong>+30%</strong></td></tr>
+    <tr><td><strong>Launch Services</strong></td><td>Electron · HASTE · Neutron(2H'26 ramp)</td><td>NASA, NRO, USSF, KAIROS, Capella, BlackSky, JAXA, Anduril</td><td class="num">33.1%</td><td class="num up2">+58%</td></tr>
+  </tbody>
+</table>
+<p class="note">* 2025 연간 매출 $602M 기준 비중. Q1'26 분기 비중은 컨콜에서 별도 발표 없으나 sequential +11.5%·Space Systems 우위로 추정. RKLB는 발사체에서 시작했지만 위성 제조 + 컴포넌트 사업이 매출의 2/3 — 전형적 우주 인프라 종합기업으로 진화. 백로그 $2.2B 중 launch 비중 ~50%.</p>
+</div>
+
+<!-- 3-2. 매출 + GM -->
+<span class="section-anchor" id="s4"></span>
+<div class="section">
+<h2>3-2. 매출 &amp; Non-GAAP GM 추이 — 17분기</h2>
+<div class="legend">
+  <span class="legend-static"><span class="dot" style="background:rgba(55,138,221,0.5)"></span>매출 ($M, 좌축)</span>
+  <span class="legend-static"><span class="dot" style="background:#1D9E75"></span>Non-GAAP GM% (우축)</span>
+</div>
+<div class="chart-box" style="height:420px"><canvas id="cRev"></canvas></div>
+
+<h3 style="margin-top:1.2rem">연간 요약</h3>
+<table>
+  <thead><tr><th>연도</th><th class="num">매출</th><th class="num">YoY</th><th class="num">GAAP GM</th><th class="num">Non-GAAP GM</th><th class="num">Adj. EBITDA</th><th class="num">EPS (loss)</th><th>주요 이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2021</td><td class="num">$62.2M</td><td class="num up2">+78%</td><td class="num">-9%</td><td class="num">14%</td><td class="num">-$32M</td><td class="num">-$0.27</td><td>SPAC 상장, Electron 18회 누적</td></tr>
+    <tr><td>2022</td><td class="num">$211M</td><td class="num up2">+239%</td><td class="num">9%</td><td class="num">19%</td><td class="num">-$55M</td><td class="num">-$0.29</td><td>SolAero 인수, Neutron Wallops 공장</td></tr>
+    <tr><td>2023</td><td class="num">$245M</td><td class="num up2">+16%</td><td class="num">23%</td><td class="num">29%</td><td class="num">-$87M</td><td class="num">-$0.37</td><td>HASTE 첫 발사, SDA Tranche 2 $515M 수주</td></tr>
+    <tr><td>2024</td><td class="num">$436.2M</td><td class="num up2">+78%</td><td class="num">26%</td><td class="num">31%</td><td class="num">-$94M</td><td class="num">-$0.39</td><td>Electron 14회 record, Neutron 첫 발사 2025로 연기</td></tr>
+    <tr><td>2025</td><td class="num">$601.8M</td><td class="num up2">+38%</td><td class="num">34.4%</td><td class="num">42%</td><td class="num">-$78M</td><td class="num">-$0.49</td><td>Neutron 탱크 실패→Q4'26 연기, SDA Tranche 3 $816M 수주</td></tr>
+    <tr class="hl"><td><strong>2026 Q1</strong></td><td class="num"><strong>$200.3M</strong></td><td class="num up2"><strong>+63.5%</strong></td><td class="num up2"><strong>38.2%</strong></td><td class="num up2"><strong>43.0%</strong></td><td class="num"><strong>-$11.8M</strong></td><td class="num"><strong>-$0.07</strong></td><td><strong>Mynaric 인수 완료, Motiv 합의, MACH-TB 2.0 $190M</strong></td></tr>
+  </tbody>
+</table>
+
+<h3 style="margin-top:1.2rem">분기별 실적 (12분기)</h3>
+<table>
+  <thead><tr><th>분기</th><th class="num">매출</th><th class="num">YoY</th><th class="num">QoQ</th><th class="num">GAAP GM</th><th class="num">Non-GAAP GM</th><th class="num">Adj. EBITDA</th><th class="num">EPS</th></tr></thead>
+  <tbody>
+    <tr><td>Q2'23</td><td class="num">$62.0M</td><td class="num up2">+12%</td><td class="num up2">+13%</td><td class="num">23.5%</td><td class="num">29%</td><td class="num">-$22M</td><td class="num">-$0.10</td></tr>
+    <tr><td>Q3'23</td><td class="num">$67.7M</td><td class="num up2">+10%</td><td class="num up2">+9%</td><td class="num">25%</td><td class="num">31%</td><td class="num">-$20M</td><td class="num">-$0.10</td></tr>
+    <tr><td>Q4'23</td><td class="num">$60.0M</td><td class="num up2">+16%</td><td class="num dn">-11%</td><td class="num">26%</td><td class="num">31%</td><td class="num">-$24M</td><td class="num">-$0.13</td></tr>
+    <tr><td>Q1'24</td><td class="num">$93.0M</td><td class="num up2">+69%</td><td class="num up2">+55%</td><td class="num">25%</td><td class="num">29%</td><td class="num">-$22M</td><td class="num">-$0.09</td></tr>
+    <tr><td>Q2'24</td><td class="num">$106.3M</td><td class="num up2">+71%</td><td class="num up2">+14%</td><td class="num">26%</td><td class="num">32%</td><td class="num">-$22M</td><td class="num">-$0.08</td></tr>
+    <tr><td>Q3'24</td><td class="num">$104.8M</td><td class="num up2">+55%</td><td class="num dn">-1%</td><td class="num">26%</td><td class="num">32%</td><td class="num">-$22M</td><td class="num">-$0.10</td></tr>
+    <tr><td>Q4'24</td><td class="num">$132.4M</td><td class="num up2">+121%</td><td class="num up2">+26%</td><td class="num">28%</td><td class="num">34%</td><td class="num">-$28M</td><td class="num">-$0.12</td></tr>
+    <tr><td>Q1'25</td><td class="num">$122.6M</td><td class="num up2">+32%</td><td class="num dn">-7%</td><td class="num">28.8%</td><td class="num">33.4%</td><td class="num">-$30M</td><td class="num">-$0.12</td></tr>
+    <tr><td>Q2'25</td><td class="num">$144.5M</td><td class="num up2">+36%</td><td class="num up2">+18%</td><td class="num">35%</td><td class="num">39%</td><td class="num">-$22M</td><td class="num">-$0.10</td></tr>
+    <tr><td>Q3'25</td><td class="num">$155.1M</td><td class="num up2">+48%</td><td class="num up2">+7%</td><td class="num">37%</td><td class="num">41.9%</td><td class="num">-$8M</td><td class="num">-$0.21*</td></tr>
+    <tr><td>Q4'25</td><td class="num">$179.7M</td><td class="num up2">+36%</td><td class="num up2">+16%</td><td class="num">36.5%</td><td class="num">44.3%</td><td class="num">-$17.4M</td><td class="num">-$0.09</td></tr>
+    <tr class="hl"><td><strong>Q1'26</strong></td><td class="num"><strong>$200.3M</strong></td><td class="num up2"><strong>+63.5%</strong></td><td class="num up2"><strong>+11.5%</strong></td><td class="num up2"><strong>38.2%</strong></td><td class="num up2"><strong>43.0%</strong></td><td class="num up2"><strong>-$11.8M</strong></td><td class="num up2"><strong>-$0.07</strong></td></tr>
+  </tbody>
+</table>
+<p class="note">* Q3'25 EPS는 환매가능전환증권(redeemable convertible) 평가손익 등 일회성 항목으로 변동 큼. Q1'26 GAAP GM 38.2%는 사상 최대치 (Q4'25의 36.5% 갱신). Non-GAAP GM 43%는 Space Systems 믹스 우호적 + Mynaric/Motiv 인수 시너지 초기 반영. Adj. EBITDA 적자는 -$30M(Q1'25) → -$11.8M(Q1'26) 약 60% 개선 — Neutron R&amp;D 비용 지속에도 운영 레버리지 가시화.</p>
+</div>
+
+<!-- 3-3. 세그먼트별 실적 테이블 (16분기) -->
+<span class="section-anchor" id="s5"></span>
+<div class="section">
+<h2>3-3. 세그먼트별 실적 테이블 (16분기)</h2>
+<div class="seg-table-wrap">
+<table class="seg-table">
+  <thead>
+    <tr>
+      <th rowspan="2" style="vertical-align:middle">분기</th>
+      <th colspan="2" class="seg-group center">Space Systems</th>
+      <th colspan="2" class="seg-group center">Launch Services</th>
+      <th rowspan="2" class="seg-group center" style="vertical-align:middle">Total</th>
+      <th rowspan="2" class="seg-group center" style="vertical-align:middle">Backlog</th>
+      <th rowspan="2" class="seg-group center" style="vertical-align:middle">Electron 발사</th>
+    </tr>
+    <tr>
+      <th class="seg-group center">$M</th><th class="seg-group center">%</th>
+      <th class="seg-group center">$M</th><th class="seg-group center">%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Q2'23</td><td class="num seg-border">$45.7</td><td class="num">73.7%</td><td class="num seg-border">$16.3</td><td class="num">26.3%</td><td class="num seg-border"><b>$62.0</b></td><td class="num">$534M</td><td class="num">3</td></tr>
+    <tr><td>Q3'23</td><td class="num seg-border">$37.8</td><td class="num">55.8%</td><td class="num seg-border">$30.0</td><td class="num">44.2%</td><td class="num seg-border"><b>$67.7</b></td><td class="num">$719M</td><td class="num">3</td></tr>
+    <tr><td>Q4'23</td><td class="num seg-border">$45.8</td><td class="num">76.3%</td><td class="num seg-border">$14.2</td><td class="num">23.7%</td><td class="num seg-border"><b>$60.0</b></td><td class="num">$1,051M</td><td class="num">2</td></tr>
+    <tr><td>Q1'24</td><td class="num seg-border">$60.3</td><td class="num">64.8%</td><td class="num seg-border">$32.7</td><td class="num">35.2%</td><td class="num seg-border"><b>$93.0</b></td><td class="num">$1,033M</td><td class="num">4</td></tr>
+    <tr><td>Q2'24</td><td class="num seg-border">$77.6</td><td class="num">73.0%</td><td class="num seg-border">$28.7</td><td class="num">27.0%</td><td class="num seg-border"><b>$106.3</b></td><td class="num">$1,021M</td><td class="num">3</td></tr>
+    <tr><td>Q3'24</td><td class="num seg-border">$83.7</td><td class="num">79.9%</td><td class="num seg-border">$21.1</td><td class="num">20.1%</td><td class="num seg-border"><b>$104.8</b></td><td class="num">$1,053M</td><td class="num">3</td></tr>
+    <tr><td>Q4'24</td><td class="num seg-border">$91.5</td><td class="num">69.1%</td><td class="num seg-border">$40.9</td><td class="num">30.9%</td><td class="num seg-border"><b>$132.4</b></td><td class="num">$1,067M</td><td class="num">4</td></tr>
+    <tr><td>Q1'25</td><td class="num seg-border">$87.2</td><td class="num">71.1%</td><td class="num seg-border">$35.4</td><td class="num">28.9%</td><td class="num seg-border"><b>$122.6</b></td><td class="num">$1,067M</td><td class="num">5</td></tr>
+    <tr><td>Q2'25</td><td class="num seg-border">$98.0</td><td class="num">67.8%</td><td class="num seg-border">$46.5</td><td class="num">32.2%</td><td class="num seg-border"><b>$144.5</b></td><td class="num">$1,160M</td><td class="num">3</td></tr>
+    <tr><td>Q3'25</td><td class="num seg-border">$114.2</td><td class="num up2">73.6%</td><td class="num seg-border">$40.9</td><td class="num">26.4%</td><td class="num seg-border"><b>$155.1</b></td><td class="num">$1,100M</td><td class="num">3</td></tr>
+    <tr><td>Q4'25</td><td class="num seg-border">$103.8</td><td class="num">57.8%</td><td class="num seg-border">$75.9</td><td class="num up2">42.2%</td><td class="num seg-border"><b>$179.7</b></td><td class="num">$1,850M</td><td class="num">7</td></tr>
+    <tr class="hl"><td><b>Q1'26</b></td><td class="num seg-border"><b>~$124</b></td><td class="num up2"><b>~62%</b></td><td class="num seg-border">~$76</td><td class="num">~38%</td><td class="num seg-border"><b>$200.3</b></td><td class="num up2"><b>$2,200M</b></td><td class="num">6</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">* Q1'26 세그먼트별 매출 분리는 컨콜 직후 미상세 공시 → sequential +11.5% · Space Systems 우위 패턴으로 추정값. Q4'25 Launch 매출 record $75.9M는 7회 발사 + ASP 상승 효과. <b>백로그 $1.85B → $2.2B (QoQ +20.2%, YoY +108%)</b>는 Q1 신규 계약 36건(전체 2025보다 많음)과 Anduril/MACH-TB 2.0 $190M 수주 결과. Electron 누적 발사 70+회, 최근 2년 100% 성공률.</p>
+</div>
+
+<!-- 4. 재무제표 -->
+<span class="section-anchor" id="s6"></span>
+<div class="section">
+<h2>4. 재무제표 개요</h2>
+<table>
+  <thead><tr><th>항목 (USD)</th><th class="num">2022</th><th class="num">2023</th><th class="num">2024</th><th class="num">2025</th><th class="num">Q1'26</th></tr></thead>
+  <tbody>
+    <tr><td>매출</td><td class="num">$211M</td><td class="num">$245M</td><td class="num">$436M</td><td class="num">$601.8M</td><td class="num">$200.3M</td></tr>
+    <tr><td>매출총이익 (GAAP)</td><td class="num">$19M</td><td class="num">$56M</td><td class="num">$112M</td><td class="num">$207M</td><td class="num">$76.5M</td></tr>
+    <tr><td>GAAP GM%</td><td class="num">9%</td><td class="num">23%</td><td class="num">26%</td><td class="num">34.4%</td><td class="num up2">38.2%</td></tr>
+    <tr><td>Non-GAAP GM%</td><td class="num">19%</td><td class="num">29%</td><td class="num">31%</td><td class="num">42%</td><td class="num up2">43.0%</td></tr>
+    <tr><td>R&amp;D 비용</td><td class="num">$84M</td><td class="num">$118M</td><td class="num">$155M</td><td class="num">$190M</td><td class="num">~$53M</td></tr>
+    <tr><td>SG&amp;A 비용</td><td class="num">$84M</td><td class="num">$120M</td><td class="num">$143M</td><td class="num">$170M</td><td class="num">~$47M</td></tr>
+    <tr><td>GAAP 영업손실</td><td class="num">-$149M</td><td class="num">-$182M</td><td class="num">-$186M</td><td class="num">-$153M</td><td class="num">-$45M</td></tr>
+    <tr><td>Adj. EBITDA</td><td class="num">-$55M</td><td class="num">-$87M</td><td class="num">-$94M</td><td class="num">-$78M</td><td class="num">-$11.8M</td></tr>
+    <tr><td>GAAP 순손실</td><td class="num">-$135M</td><td class="num">-$182M</td><td class="num">-$190M</td><td class="num">-$203M</td><td class="num">-$45M</td></tr>
+    <tr><td>EPS (희석, loss)</td><td class="num">-$0.29</td><td class="num">-$0.37</td><td class="num">-$0.39</td><td class="num">-$0.49</td><td class="num up2">-$0.07</td></tr>
+    <tr><td>영업현금흐름</td><td class="num">-$57M</td><td class="num">-$77M</td><td class="num">-$30M</td><td class="num">-$45M</td><td class="num">~+$10M</td></tr>
+    <tr><td>Capex</td><td class="num">$32M</td><td class="num">$73M</td><td class="num">$85M</td><td class="num">$156M</td><td class="num">~$50M</td></tr>
+    <tr><td>현금+단기투자</td><td class="num">$543M</td><td class="num">$245M</td><td class="num">$272M</td><td class="num">~$1.0B</td><td class="num up2">$1.48B</td></tr>
+    <tr><td>총 유동성</td><td class="num">—</td><td class="num">~$300M</td><td class="num">~$520M</td><td class="num">~$1.5B</td><td class="num up2">>$2.0B</td></tr>
+    <tr><td>총 백로그</td><td class="num">$504M</td><td class="num">$1.05B</td><td class="num">$1.07B</td><td class="num">$1.85B</td><td class="num up2">$2.20B</td></tr>
+    <tr><td>발행주식 (M)</td><td class="num">476M</td><td class="num">485M</td><td class="num">498M</td><td class="num">~605M</td><td class="num">~534M</td></tr>
+  </tbody>
+</table>
+<p class="note">* 발행주식 차이: 2025 가이던스 605M(SBC·conv. note 가정 포함) vs Q1'26 실제 약 534M. ATM offering(2025 Q4)으로 ~$300M 이상 자본 확충 완료. <strong>유동성 $2B+</strong>는 RKLB 사상 최대치 — 추가 M&amp;A·Neutron Capex·운영자금 모두 안정. 적자는 지속되지만 <strong>Adj. EBITDA 적자가 -$30M(Q1'25)→-$11.8M(Q1'26)로 60% 개선</strong> — 매출이 R&amp;D(특히 Neutron)를 따라잡는 운영 레버리지 가시화.</p>
+<p class="note">⚠️ Q1'26에는 Mynaric 인수 완료로 자산·부채 일시 증가, Motiv 인수는 Q2'26 클로징 예정. 백로그 $2.2B 중 ~37%는 12개월 내 매출 인식 예상 (Q4'25 컨콜 발언). Neutron 첫 발사 성공 시 launch ASP $50M+ 신규 인식 시작 — 2027년 매출 가속 핵심 가정.</p>
+</div>
+
+<!-- 5. 핵심 투자아이디어 -->
+<span class="section-anchor" id="s7"></span>
+<div class="section">
+<h2>5. 핵심 투자아이디어</h2>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">🎯</span>
+    <span class="thesis-tag">Thesis #1</span>
+    <div class="thesis-title">Neutron 첫 발사 = "소형 발사체 회사" → "중형 발사체 + 종합 우주기업"으로의 단일 변곡점</div>
+  </div>
+  <div class="thesis-body">
+    <p>RKLB의 모든 valuation 가정은 <span class="hl-blue">Neutron의 2026 Q4 첫 발사 성공</span>에 수렴한다. Neutron은 13t급 재사용 중형 발사체로 <strong>SpaceX Falcon 9의 직접 경쟁자</strong> — 발사당 ASP $50~70M로 Electron($8M) 대비 7~10배 매출. 이미 confidential 고객으로부터 <span class="hl-green">5회 dedicated launch 계약 수주</span>(2026~2029).</p>
+    <p>2025.10 1단 탱크 테스트 실패로 첫 발사가 Q1'26→Q4'26으로 연기됐지만, Q1'26 컨콜에서 Peter Beck은 <strong>"first-flight hardware 통합 진행, Archimedes 엔진 자격 시험 지속, 2단·재사용 페어링 진척"</strong>을 명시 — 일정 슬립 리스크는 남아있으나 시장에서 점진 해소. <span class="hl-green">첫 발사 성공 시 multi-billion backlog 가능성</span>이 현재 valuation을 정당화한다.</p>
+  </div>
+</div>
+
+<div class="thesis-box green">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">🛡️</span>
+    <span class="thesis-tag">Thesis #2</span>
+    <div class="thesis-title">국방·정부 매출 본격화 — Golden Dome + MACH-TB 2.0이 만드는 락인</div>
+  </div>
+  <div class="thesis-body">
+    <p>2025년 시장이 RKLB를 다시 본 결정적 사건들: <span class="hl-green">SDA Tranche 3 Beta $816M 수주(2025.12)</span>, <span class="hl-green">MACH-TB 2.0 $190M (20 HASTE 발사) 수주(Q1'26)</span>, <span class="hl-green">Golden Dome Space Based Interceptor 프로그램 Raytheon 파트너 선정</span>, <span class="hl-green">Anduril $30M (3 HASTE)</span>. RKLB는 위성 제조 + 발사 + 극초음속 테스트 + 컴포넌트 + 광통신을 한 회사 안에서 제공하는 <strong>'우주 분야 새 prime contractor'</strong>로 자리잡았다.</p>
+    <p>국방 매출은 일반 상업 매출 대비 <span class="hl-blue">cycle 변동성 낮고, 백로그 가시성 ⇪</span>. 5년+ 다년 계약 비중 상승 중. Q1'26 백로그 $2.2B 중 정부·국방 비중이 절반 이상으로 추정.</p>
+  </div>
+</div>
+
+<div class="thesis-box orange">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">⚠️</span>
+    <span class="thesis-tag">Thesis #3</span>
+    <div class="thesis-title">고평가 vs 적자 지속 — Neutron 슬립 리스크가 멀티플 정당성의 시험대</div>
+  </div>
+  <div class="thesis-body">
+    <p>현재 시총 $42B / TTM 매출 $682M = <span class="hl-red">P/S ~62배</span>. 2027 컨센 매출 $1.5B 가정 시 forward P/S ~28배 — <strong>SpaceX 비공개 valuation 대비도 비싼 수준</strong>. 시장은 Neutron 성공 + 다년간 80%+ 성장을 이미 가격에 반영. 어떤 슬립이나 EBITDA 회복 지연이 있을 경우 <span class="hl-red">멀티플 압박 즉시</span>.</p>
+    <p>긍정적 신호: <span class="hl-green">Q1'26 GAAP GM 38.2% record</span>, Adj. EBITDA 적자 60% 개선, <span class="hl-green">유동성 $2B+</span>로 추가 자본 조달 우려 ❌, <span class="hl-green">Mynaric/Motiv 수직 통합</span>으로 GM 추가 확대 여지. 단, R&amp;D + Capex로 <span class="hl-red">FCF 흑자전환은 2027~2028년</span> 예상 — 그 사이 추가 ATM offering(희석)이나 부채 발행 가능성.</p>
+  </div>
+</div>
+</div>
+
+<!-- 5-1. 핵심 변동 요인 -->
+<span class="section-anchor" id="s8"></span>
+<div class="section">
+<h2>5-1. 핵심 변동 요인</h2>
+<table>
+  <thead><tr><th>구분</th><th>요인</th><th class="center">방향</th><th>설명</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>외부</strong></td><td>美 국방 우주 예산 확대</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>Golden Dome, SDA 다년 위성군, 극초음속 테스트 — 향후 5년 우주 국방 예산 +$50B 추정</td></tr>
+    <tr><td>위성 컨스텔레이션 수요</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>Starlink·Amazon Kuiper·OneWeb 외 정부 프로그램 가속. 위성 컴포넌트 시장 CAGR 18%+</td></tr>
+    <tr><td>SpaceX 경쟁 심화</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>Falcon 9·Starship 가격 압박. RKLB Neutron은 가격 대비 가용성·신속 발사로 차별화</td></tr>
+    <tr><td>SpaceX IPO 가능성</td><td class="center"><span class="badge badge-neu">중립 ●</span></td><td>2027 IPO 시 우주 섹터 capital 흡수 가능. 그러나 valuation benchmark 형성으로 RKLB도 재평가</td></tr>
+    <tr><td>중국 우주 굴기</td><td class="center"><span class="badge badge-neu">중립 ●</span></td><td>美 정부 자국 발사체 우선 정책 강화 — RKLB 美 본사 이전(2023) 효과로 정부 입찰 자격 확보</td></tr>
+    <tr><td>유럽 자국 발사체 강화</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>Mynaric 인수로 유럽 거점 확보 — Ariane 6·iSpace 등과 협업·납품 가능성 ↑</td></tr>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>내부</strong></td><td>Neutron 첫 발사 (Q4'26)</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>성공 시 multi-billion launch backlog 가능. 슬립은 즉시 멀티플 압박 — 가장 큰 단일 변수</td></tr>
+    <tr><td>SDA Tranche 3 진척</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>$816M 18기 위성 prime — 2027~2028 매출 인식 본격. Tranche 4 추가 수주 기대</td></tr>
+    <tr><td>Mynaric/Motiv 통합 시너지</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>레이저 광통신 + Mars 검증된 로보틱스 in-house화. SADA 등 supply-constrained 컴포넌트 자체 생산</td></tr>
+    <tr><td>Adj. EBITDA 흑자전환</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>Q1'26 -$11.8M, Q1'25 -$30M 대비 60% 개선. 2026 후반~2027 흑자 가능성</td></tr>
+    <tr><td>R&amp;D · Capex 부담</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>2025 Capex $156M(2024 대비 +84%). Neutron 시설·테스트 지속 — FCF 흑자 2027~2028</td></tr>
+    <tr><td>희석 (ATM offering 추가 가능)</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>2025 Q4 ATM 완료, 발행주식 ~534M. 향후 추가 자본 조달 시 희석. SBC도 분기 ~$15M 지속</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 5-2. 컨콜 트래킹 -->
+<span class="section-anchor" id="s9"></span>
+<div class="section">
+<h2>5-2. 컨퍼런스콜 트래킹 (최근 12분기)</h2>
+<table class="cc-table">
+  <colgroup>
+    <col style="width:50px"><col><col><col><col>
+  </colgroup>
+  <thead>
+    <tr><th class="year-col">년</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="year-label">2023</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'23</div><div class="cc-msg">$54.9M (+34% YoY). Electron 3회. SolAero 통합 진행. Neutron 2024 첫 발사 목표</div><div class="cc-guide">가이드 $50–54M → 실제 $54.9M <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'23</div><div class="cc-msg">$62.0M (+12%). HASTE 첫 발사 6월. 17개 RKLB 컴포넌트 위성 궤도 진입</div><div class="cc-guide">가이드 $61–65M → 실제 $62.0M <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'23</div><div class="cc-msg">$67.7M (+10%). NASA TROPICS 성공. Tranche 2 입찰 중</div><div class="cc-guide">가이드 $73–77M → 실제 $67.7M <span class="cc-miss">❌</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'23</div><div class="cc-msg">$60.0M (+16%). <strong>SDA Tranche 2 $515M 수주</strong> — 첫 prime contractor</div><div class="cc-guide">가이드 $63–69M → 실제 $60.0M <span class="cc-miss">❌</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2024</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'24</div><div class="cc-msg">$93.0M (+69%). Neutron 첫 발사 2025로 연기. Space Systems 32% 비중 → 65%</div><div class="cc-guide">가이드 $92–98M → 실제 $93.0M <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'24</div><div class="cc-msg">$106.3M (+71%). 분기 사상 최대. Mars Sample Return NASA 연구 계약 선정</div><div class="cc-guide">가이드 $105–110M → 실제 $106.3M <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'24</div><div class="cc-msg">$104.8M (+55%). Neutron Wallops 발사장 준비. Electron ASP 67% 상승</div><div class="cc-guide">가이드 $100–105M → 실제 $104.8M <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'24</div><div class="cc-msg">$132.4M (+121%). Electron 14회 record. 시총 $10B 첫 돌파</div><div class="cc-guide">가이드 $125–135M → 실제 $132.4M <span class="cc-hit">✅</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2025</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'25</div><div class="cc-msg">$122.6M (+32%). Electron 5회. Geos·OSI·PCL 인수 발표</div><div class="cc-guide">가이드 $115–125M → 실제 $122.6M <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'25</div><div class="cc-msg">$144.5M (+36%). Non-GAAP GM 39% 첫 돌파. Adj. EBITDA -$22M 개선</div><div class="cc-guide">가이드 $130–140M → 실제 $144.5M <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'25</div><div class="cc-msg">$155.1M (+48%). Space Systems $114.2M record. <strong>Neutron 탱크 실패 → Q4'26 연기</strong></div><div class="cc-guide">가이드 $145–155M → 실제 $155.1M <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'25</div><div class="cc-msg">$179.7M record (+36%). Launch 7회. <strong>SDA Tranche 3 $816M 수주</strong>. 백로그 $1.85B (+73% YoY)</div><div class="cc-guide">가이드 $170–180M → 실제 $179.7M <span class="cc-hit">✅</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2026</td>
+      <td><div class="cc-cell cc-latest"><div class="cc-quarter">Q1'26 ★ 최신</div><div class="cc-msg"><strong>$200.3M record (+63.5%)</strong>. <strong>Mynaric 인수 완료, Motiv 합의</strong>. MACH-TB 2.0 $190M, Anduril $30M. 백로그 $2.2B</div><div class="cc-guide">가이드 $185–200M → 실제 $200.3M <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'26</div><div class="cc-msg">예정: 2026.08 초</div><div class="cc-guide">가이드 $225–240M (+57% YoY 미드포인트)</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'26</div><div class="cc-msg">예정: 2026.11</div><div class="cc-guide">Neutron 첫 발사 카운트다운</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'26</div><div class="cc-msg">예정: 2027.02</div><div class="cc-guide"><strong>Neutron 첫 발사 데뷔 분기</strong></div></div></td>
+    </tr>
+  </tbody>
+</table>
+<p class="note">* 최근 12분기 중 10분기 가이던스 달성/초과. 2023 Q3·Q4 미달은 위성 컴포넌트 납품 일정 지연(고객측). Q1'26 가이드 $185–200M 상단 도달 + 컨센서스 $190M 대비 +5% 초과. 2026 Q2 가이드 $225–240M 미드포인트 $232.5M는 컨센 대비 매우 강력 — Peter Beck 보수적 가이던스 패턴 유지 시 실제 $240M+ 가능성.</p>
+</div>
+
+<!-- 5-3. Q1'26 심층 -->
+<span class="section-anchor" id="s10"></span>
+<div class="section">
+<h2>5-3. Q1'26 컨콜 심층 정리 (2026.05.07)</h2>
+<div class="prose">
+  <p><strong>발언자</strong>: Sir Peter Beck (Chair &amp; CEO) · Adam Spice (CFO) · Colin Canfield (VP IR)</p>
+  <p><strong>실적</strong>: 매출 <strong>$200.3M</strong> (+63.5% YoY, +11.5% QoQ, 컨센 $190M 대비 +5%) / GAAP GM <strong>38.2% record</strong> / Non-GAAP GM <strong>43.0%</strong> / EPS <strong>-$0.07</strong> (컨센 -$0.08 대비 개선) / Adj. EBITDA <strong>-$11.8M</strong> (-$30M YoY 대비 60% 개선) / 백로그 <strong>$2.2B</strong> (+108% YoY, +20% QoQ) / 유동성 <strong>>$2.0B</strong></p>
+  <p><strong>시장 반응</strong>: 발표 후 시간외 +5.4%, 다음 거래일 시초 +7.5%까지 상승 후 마감 ~$83. EBITDA 적자 폭이 시장 일부 기대 대비 컸고 Q2 GM 가이드 33–35%(Mynaric 통합 영향)로 일시 압박. 그러나 <strong>backlog $2.2B 폭증·Anduril/MACH-TB 메가 계약·5건 Neutron 수주</strong>가 본질적 모멘텀. 분석가 PT: Bank of America $90, Cantor Fitzgerald $85, Stifel $90.</p>
+</div>
+<h3 style="margin-top:1.2rem">컨콜 핵심 메시지 5가지</h3>
+<div class="cc-sticker-box">
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">1</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">백로그 <span class="hl-pos">$2.2B record (+108% YoY)</span> — Q1 신규 계약이 2025 한 해보다 많음</div>
+      <div class="cc-sticker-desc">31 Electron+HASTE 신규 계약 + 5 dedicated Neutron 신규 계약. <span class="hl-pos">launch manifest 70+ 미션</span>. Peter Beck: <em>"Q1 2026 launch bookings exceeded all of 2025"</em>. 백로그 단일 분기 +$370M 증가 — Anduril, MACH-TB 2.0, confidential 5-Neutron deal 등.</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">2</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">국방 메가 계약 폭격 — <span class="hl-pos">MACH-TB 2.0 $190M</span> + Golden Dome 선정</div>
+      <div class="cc-sticker-desc">Department of War <span class="hl-pos">MACH-TB 2.0 — 20 HASTE 발사 $190M</span> (HASTE 사상 최대 단일 계약) + <span class="hl-pos">Golden Dome Space Based Interceptor</span> Raytheon 파트너 선정 + Anduril <span class="hl-pos">$30M, 3 HASTE</span>(첫 직접 상업 파트너십, 2026.11~ 발사). 100% mission success 누적이 정부 반복 수주 기반.</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">3</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">Neutron <span class="hl-pos">2026 Q4 첫 발사 일정 유지</span> — first-flight hardware 통합 진행</div>
+      <div class="cc-sticker-desc">Stage 1 탱크 자동 fiber placement 머신 산출 → 조립·시험 진입. Stage separation 시험 진행 중. <span class="hl-pos">Archimedes 엔진 자격 시험 지속</span>. Beck: <em>"on track for debut launch later this year"</em>. 분석가 질문 "early Q4 vs late Q4?"에 보수적 응답 — <span class="hl-neg">슬립 가능성 여전히 잔존</span>.</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">4</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">M&amp;A 가속 — <span class="hl-pos">Mynaric 완료 + Motiv 합의</span>로 수직 통합 강화</div>
+      <div class="cc-sticker-desc"><span class="hl-pos">Mynaric AG 인수 완료</span>(레이저 광통신, Rocket Lab Europe 출범, 첫 유럽 거점). <span class="hl-pos">Motiv Space Systems 인수 합의</span>(Mars 검증된 로보틱스, SADA·정밀 메커니즘 in-house화). Beck: <em>"insourcing costly and supply-constrained spacecraft components"</em>. Geos·OSI·Precision Components 통합도 진행 중. 글로벌 거점 다변화로 관세 영향 ↓.</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">5</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">유동성 <span class="hl-pos">>$2.0B record</span> — 추가 M&amp;A 여력 확보</div>
+      <div class="cc-sticker-desc">2025 Q4 ATM offering 완료 + Q1'26 현금+단기투자 $1.48B로 마감. <span class="hl-pos">총 가용 유동성 $2B+</span>. CFO Spice: <em>"strongly positioning the Company for further organic growth and M&amp;A execution"</em>. <span class="hl-neg">희석 우려는 남지만</span>, Neutron 슬립·R&amp;D 비용 우려 해소.</div>
+    </div>
+  </div>
+</div>
+
+<h3 style="margin-top:1.2rem">Q2 2026 가이던스</h3>
+<table>
+  <thead><tr><th>지표</th><th class="num">Q1'26 실제</th><th class="num">Q2'26 가이던스</th><th class="num">컨센서스</th></tr></thead>
+  <tbody>
+    <tr><td>Revenue</td><td class="num">$200.3M</td><td class="num hl"><strong>$225–240M (+57% YoY mid)</strong></td><td class="num">~$210M</td></tr>
+    <tr><td>GAAP GM</td><td class="num">38.2%</td><td class="num"><strong>33–35%</strong></td><td class="num">~36%</td></tr>
+    <tr><td>Non-GAAP GM</td><td class="num">43.0%</td><td class="num"><strong>38–40%</strong></td><td class="num">~41%</td></tr>
+    <tr><td>GAAP Opex</td><td class="num">~$100M</td><td class="num"><strong>$138–144M</strong></td><td class="num">—</td></tr>
+    <tr><td>Adj. EBITDA</td><td class="num">-$11.8M</td><td class="num"><strong>-$20 ~ -$26M</strong></td><td class="num">~-$22M</td></tr>
+    <tr><td>SBC</td><td class="num">~$15M</td><td class="num">$19–21M</td><td class="num">—</td></tr>
+    <tr><td>Interest Income, net</td><td class="num">~$10M</td><td class="num">$12.5M</td><td class="num">—</td></tr>
+  </tbody>
+</table>
+<p class="note">* Q2 매출 가이드 $225–240M 미드포인트 $232.5M는 컨센 ~$210M 대비 +11% 초과 — 매우 강력. 단, GM 일시 하락(38–40% Non-GAAP)은 Mynaric 통합 비용 + Launch 비중 ↑ 영향. CFO Spice: 시퀀셜 GM 하락은 '믹스' 이슈로 일시적, 하반기 회복 전망. Adj. EBITDA 적자 확대 가이드($20–26M)는 Mynaric SBC/통합 + Neutron 마지막 R&amp;D 누적 영향. 시장은 매출 가속에 더 가중치.</p>
+
+<h3 style="margin-top:1.5rem">📊 IR 자료 핵심 슬라이드 (원본 캡쳐 — 재가공 없음)</h3>
+<div class="ir-slide">
+  <div class="ir-slide-frame">
+    <div class="ir-slide-num">📊 IR Slide — Q4 2025 Earnings Presentation (가장 최근 공식 PDF, 2026.02.26 발표)</div>
+    <div class="ir-slide-title">Rocket Lab 공식 Q4'25 Earnings — Strategic Overview &amp; Backlog Highlights</div>
+  </div>
+  <div class="ir-slide-img-wrap">
+    <iframe src="https://investors.rocketlabcorp.com/static-files/be9441ad-c07f-49c2-ad50-531fd77180ee" title="Rocket Lab Q4 2025 Earnings Presentation"></iframe>
+  </div>
+  <div class="ir-slide-caption">📌 <strong>Q4 2025 Earnings Slides — 공식 PDF</strong>. 2025 연간 매출 $601.8M (+38%), 백로그 $1.85B (+73% YoY), Electron 21회 100% 성공, SDA Tranche 3 $816M 수주, Neutron Q4'26 첫 발사 일정 등 Q1'26 직전 가장 최근 공식 IR 자료. (Q1'26 슬라이드 PDF는 IR 페이지 등록 직전 — 등록 후 갱신 예정.) <a href="https://investors.rocketlabcorp.com/static-files/be9441ad-c07f-49c2-ad50-531fd77180ee" target="_blank" style="color:#378ADD;text-decoration:underline">PDF 직접 다운로드</a></div>
+</div>
+</div>
+
+<!-- 5-4. 시나리오 -->
+<span class="section-anchor" id="s11"></span>
+<div class="section">
+<h2>5-4. 강세 / 약세 시나리오</h2>
+<div class="scenario-stack">
+  <div class="scenario-box s-bull">
+    <div class="scenario-title">🟢 강세 시나리오</div>
+    <div class="s-item"><div class="s-case">Neutron 2026 Q4 첫 발사 무사 성공</div><div class="s-sub">탱크 테스트 실패 트라우마 극복. 중형 발사 시장 진입 완료 → 2027~2028 multi-billion launch backlog. SpaceX 외 유일한 미국 재사용 중형 옵션</div></div>
+    <div class="s-item"><div class="s-case">SDA Tranche 4 추가 수주</div><div class="s-sub">Tranche 2 $515M + Tranche 3 $816M 누적. 2027 Tranche 4 $1B+ 수주 가능. 미국 정부의 위성 prime contractor 명단 고정화</div></div>
+    <div class="s-item"><div class="s-case">Golden Dome 본격 매출화</div><div class="s-sub">Space Based Interceptor 프로그램 2027~2030 multi-year 매출 인식 시작. Raytheon과 파트너십으로 HASTE·위성·발사 통합 제공</div></div>
+    <div class="s-item"><div class="s-case">Adj. EBITDA 흑자전환 (2027)</div><div class="s-sub">Q1'25 -$30M → Q1'26 -$11.8M, 60% 개선 속도 유지 시 2026 후반 BEP 가능. 운영 레버리지 본격 — 2028 EBITDA $200M+ 가능성</div></div>
+    <div class="s-item"><div class="s-case">Mynaric/Motiv 시너지 가시화</div><div class="s-sub">레이저 광통신 + 로보틱스 in-house화. SADA 등 supply-constrained 컴포넌트 자체 생산으로 Space Systems GM 50%+ 가능</div></div>
+    <div class="s-item"><div class="s-case">Neutron 멀티 고객 확보</div><div class="s-sub">Q1 confidential 5-Neutron 계약. AWS Kuiper·정부 안보위성·Mars 미션 등 추가 수주 시 가격력 ↑ — 발사당 ASP $70M+</div></div>
+  </div>
+  <div class="scenario-box s-bear">
+    <div class="scenario-title">🔴 약세 시나리오</div>
+    <div class="s-item"><div class="s-case">Neutron 추가 슬립 (2027)</div><div class="s-sub">탱크 시험 또 실패 또는 엔진 자격 시험 지연 → 첫 발사 2027로 추가 연기. 시장 즉시 멀티플 -30%+ 압박. 그동안 신규 수주 정체 가능</div></div>
+    <div class="s-item"><div class="s-case">SpaceX 가격 압박</div><div class="s-sub">Falcon 9 발사가격 인하 또는 Starship 양산 가시화. Neutron의 가격 경쟁력 약화. RKLB 가격력 단기 침해 — Electron rideshare도 영향</div></div>
+    <div class="s-item"><div class="s-case">정부 예산 삭감 (트럼프 후속)</div><div class="s-sub">SDA Tranche 4·Golden Dome 예산 축소. 백로그 변환 지연. Tier 1 prime들과의 경쟁에서 입찰 손실 가능성</div></div>
+    <div class="s-item"><div class="s-case">FCF 흑자 지연 → 추가 ATM</div><div class="s-sub">2027~2028 FCF 흑자전환 미달 시 추가 ATM offering. 발행주식 +50M 추가 시 EPS 희석 ~10%. PE 적용 시점 더 멀어짐</div></div>
+    <div class="s-item"><div class="s-case">고평가 멀티플 정상화</div><div class="s-sub">현재 P/S 62배. SpaceX IPO 시 valuation benchmark 형성 → RKLB도 -30~50% 조정 압박. 2027 컨센 매출 $1.5B 미달 시 즉시 반영</div></div>
+    <div class="s-item"><div class="s-case">M&amp;A 통합 차질</div><div class="s-sub">Mynaric·Motiv·Geos 등 다수 인수 동시 통합. 문화·시스템 통합 실패 시 GM 압박, 운영 효율 저하. 2026 후반~2027 노이즈</div></div>
+  </div>
+</div>
+</div>
+
+<!-- 6. Worth Watching -->
+<span class="section-anchor" id="s12"></span>
+<div class="section">
+<h2>6. Worth Watching Events</h2>
+<div class="ww-sticker-box">
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.05~07</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Motiv Space Systems 인수 클로징</div>
+      <div class="ww-sticker-point">Mars-proven 로보틱스 + SADA·정밀 메커니즘 in-house화. Q2'26 GM 영향 최소화 핵심</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.06~Q3</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Electron 100번째 발사 도전</div>
+      <div class="ww-sticker-point">Q1'26末 누적 76+회. Q2~Q3 6~8회 누적 시 commercial 100회 도달 — 우주 역사상 최단 기록</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.08초</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q2'26 실적 발표 (예상)</div>
+      <div class="ww-sticker-point">가이드 $225–240M 달성 여부. GM 38–40% 안착 여부. Mynaric 통합 진척 검증</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026 Q3</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Neutron Stage 1 탱크 자격 시험 완료</div>
+      <div class="ww-sticker-point">2025.10 실패 트라우마 해소 분기점. Archimedes 엔진 풀파워 시험. 시장 가장 주시</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.11</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Anduril 첫 HASTE 발사</div>
+      <div class="ww-sticker-point">상업 hypersonic 첫 launch — 2026.11 NET. 성공 시 추가 hypersonic 계약 확장 모멘텀</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.11</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q3'26 실적 + Neutron 카운트다운</div>
+      <div class="ww-sticker-point">Neutron static fire 시험 결과 + 첫 발사 주차 D-Day 가시화. 분기 매출 $250M+ 가시</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026 Q4</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">★ Neutron 첫 발사 시도 ★</div>
+      <div class="ww-sticker-point">RKLB 사상 최대 단일 이벤트. Wallops Flight Facility(VA) 발사. 성공 시 SpaceX 외 유일한 미국 재사용 중형 발사체. 실패 시 멀티플 -30%+ 압박</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027.02</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q4'26 실적 + 2026 연간 결산</div>
+      <div class="ww-sticker-point">2026 연간 매출 $850M+ 달성 가능성. Neutron 첫 발사 결과 반영 첫 가이던스. 2027 매출 $1.3~1.5B 가이드 시사</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027 H1</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Neutron 정상 cadence 진입</div>
+      <div class="ww-sticker-point">3+ Neutron 발사 목표. SDA Tranche 2 위성 출하 시작. Adj. EBITDA 흑자 가능성 가시</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027~2028</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">SDA Tranche 4 입찰 + Mars Sample Return</div>
+      <div class="ww-sticker-point">SDA 차세대 Tranche $1B+ 입찰 가능. NASA Mars Sample Return prime 후보 — 우주 종합기업 반열</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 7. 데이터 출처 -->
+<span class="section-anchor" id="s13"></span>
+<div class="section">
+<h2>7. 데이터 출처</h2>
+<div class="source-box">
+  <ul style="padding-left:1.2rem">
+    <li>Rocket Lab SEC 8-K (분기 실적 보도자료), 10-Q/10-K 2022~2026</li>
+    <li>Q1'26 Earnings Press Release (2026.05.07, Globe Newswire), Q1'26 Shareholder Letter</li>
+    <li>Q1'26 Earnings Conference Call Transcript (Investing.com, Motley Fool, Seeking Alpha, AInvest)</li>
+    <li>Q4'25 (2026.02.27), Q3'25 (2025.11), Q2'25, Q1'25 Earnings Conference Calls</li>
+    <li>Rocket Lab IR Site — Q4'25 Earnings Presentation PDF (2026.02), Investor Day 2024</li>
+    <li>2026.04 Mynaric AG 인수 완료 발표 (Rocket Lab Europe 출범)</li>
+    <li>2026.05 Motiv Space Systems 인수 합의 발표 (Mars-proven robotics)</li>
+    <li>2026 Q1 MACH-TB 2.0 $190M 계약 (US Army, 20 HASTE 발사)</li>
+    <li>2026 Q1 Anduril 파트너십 ($30M, 3 HASTE 발사) 및 Golden Dome SBI 선정</li>
+    <li>주가·시총·EPS 데이터: TradingView, Yahoo Finance, Investing.com, Macrotrends (2026.05.07 기준)</li>
+    <li>분석 기사: CNBC, Reuters, Bloomberg, Investing.com, Stocktitan, Globe Newswire</li>
+    <li>환율: 2026.05.07 USD/KRW 1,448원 (Trading Economics)</li>
+    <li>분석일: 2026년 5월 8일</li>
+  </ul>
+  <p style="margin-top:8px;color:#bbb">⚠️ Non-GAAP 지표는 SBC·인수 관련 비용·무형자산 상각 등 제외 수치. 투자 판단 시 GAAP 기준 병행 확인 권장. Adj. EBITDA는 회사 자체 정의로 SBC·Capex 제외. Neutron 첫 발사(2026.Q4 목표)는 회사 가이던스이며 실제 일정은 변동 가능. 백로그 $2.2B 중 12개월 내 인식 비중 약 55~60% 추정. ATM offering으로 인한 잠재 희석 효과(2026 누적 약 7,500만주)는 별도 모니터링 필요.</p>
+</div>
+</div>
+
+<!-- 7-1. Reference -->
+<span class="section-anchor" id="s14"></span>
+<div class="section">
+<h2>7-1. Reference</h2>
+<div class="ref-list">
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://investors.rocketlabcorp.com/" target="_blank">Rocket Lab IR — Investor Relations</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://investors.rocketlabcorp.com/static-files/be9441ad-c07f-49c2-ad50-531fd77180ee" target="_blank">Rocket Lab Q4'25 Earnings Presentation PDF (직전 분기 공식 슬라이드)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://investors.rocketlabcorp.com/events-presentations/presentations" target="_blank">Rocket Lab IR Presentations Index (Q1'26 PDF 게시 예정)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.globenewswire.com/news-release/2026/05/07/3076200/0/en/Rocket-Lab-Reports-First-Quarter-2026-Financial-Results-Issues-Second-Quarter-2026-Guidance.html" target="_blank">Rocket Lab Q1'26 실적 보도자료 (Globe Newswire, 2026.05.07)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001819994&type=10-Q&dateb=&owner=include&count=40" target="_blank">Rocket Lab SEC EDGAR — 10-Q/10-K Filings</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.rocketlabcorp.com/launch/electron/" target="_blank">Rocket Lab — Electron Launch Vehicle 제품 페이지</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.rocketlabcorp.com/launch/neutron/" target="_blank">Rocket Lab — Neutron Medium-Lift 제품 페이지</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.rocketlabcorp.com/space-systems/" target="_blank">Rocket Lab — Space Systems (Photon, 위성 컴포넌트)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.rocketlabcorp.com/updates/rocket-lab-completes-acquisition-of-mynaric/" target="_blank">Rocket Lab — Mynaric AG 인수 완료 발표 (Rocket Lab Europe)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.investing.com/news/transcripts/earnings-call-transcript-rocket-lab-q1-2026-beats-eps-forecast-stock-rises" target="_blank">Investing.com — Rocket Lab Q1'26 Earnings Call Transcript</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.fool.com/earnings/call-transcripts/2026/05/08/rocket-lab-rklb-q1-2026-earnings-call-transcript/" target="_blank">Motley Fool — Rocket Lab Q1'26 Conference Call Transcript</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://seekingalpha.com/symbol/RKLB" target="_blank">Seeking Alpha — Rocket Lab (RKLB) 분석 페이지</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.morningstar.com/stocks/xnas/rklb/quote" target="_blank">Morningstar — Rocket Lab 분석 보고서</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.cnbc.com/2026/05/07/rocket-lab-rklb-q1-2026-earnings.html" target="_blank">CNBC — Rocket Lab Q1'26 어닝 분석 (2026.05.07)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.reuters.com/technology/space/rocket-lab-q1-2026-revenue-2026-05-07/" target="_blank">Reuters — Rocket Lab Q1 매출 +63% YoY</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.bloomberg.com/news/articles/2026-05-07/rocket-lab-revenue-beats-neutron-progress" target="_blank">Bloomberg — Rocket Lab Neutron 진행 상황 + 실적</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://spacenews.com/rocket-lab-mach-tb-2-0-hypersonic-contract/" target="_blank">SpaceNews — MACH-TB 2.0 $190M 계약 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://payloadspace.com/rocket-lab-anduril-hypersonic-partnership/" target="_blank">Payload Space — Rocket Lab × Anduril 파트너십</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.stocktitan.net/news/RKLB/rocket-lab-reports-first-quarter-2026.html" target="_blank">Stocktitan — Q1'26 실적 분석 + 백로그 $2.2B</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://en.wikipedia.org/wiki/Rocket_Lab" target="_blank">Wikipedia — Rocket Lab</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://en.wikipedia.org/wiki/Peter_Beck" target="_blank">Wikipedia — Peter Beck (CEO)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://en.wikipedia.org/wiki/Neutron_(rocket)" target="_blank">Wikipedia — Neutron (Rocket Lab medium-lift)</a></div>
+</div>
+<p class="note">* 공식 자료(Rocket Lab IR·SEC·제품 페이지) 9개, 증권사·전문 분석 4개, 뉴스 6개, 위키 3개 — 총 22개 레퍼런스. 한국어 블로그는 Neutron·HASTE 등 키워드로 좋아요 10개 이상 충족 글 부재로 본 리포트에서는 미포함.</p>
+</div>
+
+<div class="footer">Rocket Lab Corporation (RKLB) 기업분석 · 2026.05.08 · 개인 사용 목적</div>
+</div>
+
+<script>
+// 17분기 라벨 — Q1'22 ~ Q1'26 (RKLB SPAC 상장 이후)
+const L33=["Q1'22","Q2'22","Q3'22","Q4'22","Q1'23","Q2'23","Q3'23","Q4'23","Q1'24","Q2'24","Q3'24","Q4'24","Q1'25","Q2'25","Q3'25","Q4'25","Q1'26"];
+
+// 2개 세그먼트 - 17분기 ($M)
+// 2022: SPAC 상장 첫 풀이어 ($211M), Space Systems 본격화
+// 2023~2024: Photon 위성 + 인수(SolAero, Sinclair) 효과로 Space Systems 성장
+// 2025: Space Systems 66.9% / Launch Services 33.1% 믹스
+// Q1'26: Mynaric 인수 효과 + Electron 13기 발사 페이스 가속
+// Space Systems: Photon 플랫폼, 위성 컴포넌트, 솔라셀(SolAero), 반작용휠(Sinclair), 레이저 통신(Mynaric)
+const space    = [29,30,40,38, 35,46,55,40, 60,80,75,86, 78,99,99,116, 130];
+// Launch Services: Electron + HASTE + (2H'26~) Neutron
+const launch   = [11,26,23,13, 18,16,13,20, 33,26,30,46, 45,46,56,64, 70];
+
+const totalRev=L33.map((_,i)=>space[i]+launch[i]);
+
+// Non-GAAP GM% (Adj. GM, 2022~Q1'26)
+// 2022: 초기 적자 사업, 한자릿수~10%대
+// 2023: 구조조정 + Space Systems 비중↑
+// 2024: 30% 진입
+// 2025: 30% 후반 안착
+// Q1'26: 43.0% (회사 발표 record)
+const opm=[
+  9,12,15,18,       // 2022 - SPAC 첫해, 적자 폭 큼
+  20,24,26,25,      // 2023 - Space Systems 본격화
+  26,28,29,32,      // 2024 - 30% 돌파
+  33,36,37,39,      // 2025 - Q4 39% 도달
+  43.0              // Q1'26 - record 43.0%
+];
+
+const gc='rgba(0,0,0,0.05)',tc='#999';
+const xT={color:tc,font:{size:9},maxRotation:45,autoSkip:true,maxTicksLimit:18};
+const yT={color:tc,font:{size:11}};
+const $cb={callbacks:{label:ctx=>' $'+Math.round(ctx.parsed.y)+'M'}};
+
+// 세그먼트 차트 (2 segments)
+const segBase=[
+  {label:'Space Systems',data:space,backgroundColor:'#1D9E75',stack:'s'},
+  {label:'Launch Services',data:launch,backgroundColor:'#378ADD',stack:'s'},
+];
+const segChart=new Chart(document.getElementById('cSeg'),{
+  type:'bar',
+  data:{labels:L33,datasets:segBase.map(d=>({...d}))},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:$cb},scales:{x:{grid:{color:gc},ticks:xT,stacked:true},y:{grid:{color:gc},ticks:{...yT,callback:v=>'$'+v+'M'},stacked:true}}}
+});
+window.toggleSeg=function(idx,el){const m=segChart.getDatasetMeta(idx);m.hidden=!m.hidden;el.classList.toggle('hidden',m.hidden);segChart.update();};
+
+// 매출 + Adj. GM 이중축
+new Chart(document.getElementById('cRev'),{
+  type:'bar',
+  data:{
+    labels:L33,
+    datasets:[
+      {type:'bar',label:'매출',data:totalRev,backgroundColor:'rgba(55,138,221,0.25)',borderColor:'#378ADD',borderWidth:1,yAxisID:'y'},
+      {type:'line',label:'Adj. GM%',data:opm,borderColor:'#1D9E75',pointRadius:3,pointBackgroundColor:'#1D9E75',fill:false,tension:0.3,yAxisID:'y2',borderWidth:2}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:ctx=>ctx.datasetIndex===0?' $'+Math.round(ctx.parsed.y)+'M':' Adj. GM: '+ctx.parsed.y.toFixed(1)+'%'}}},
+    scales:{
+      x:{grid:{color:gc},ticks:xT},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>'$'+v+'M'},position:'left'},
+      y2:{grid:{display:false},ticks:{color:'#1D9E75',font:{size:10},callback:v=>v+'%'},position:'right',min:0,max:50}
+    }
+  }
+});
+</script>
+</body>
+</html>
