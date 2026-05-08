@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fluence Energy (FLNC) 기업분석 — FY2026 Q2</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f3ef;color:#1a1a1a;padding:2rem;font-size:14px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto}
+.header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #e0e0dc;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.header-title{font-size:22px;font-weight:700}
+.header-meta{font-size:12px;color:#888;margin-top:4px}
+.toc{margin-bottom:2rem;padding:0}
+.toc-title{font-size:12px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+.toc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:1.1rem 1.3rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.toc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(8,auto);grid-auto-flow:column;gap:6px 28px}
+@media(max-width:650px){.toc-grid{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}}
+.toc-link{display:flex;align-items:center;gap:10px;padding:5px 0;text-decoration:none;color:#444;font-size:13px;border-bottom:0.5px dashed transparent;transition:all .15s ease}
+.toc-link:hover{color:#378ADD;border-bottom-color:#cfe1f5}
+.toc-link .toc-num{color:#aaa;font-weight:700;font-size:12px;min-width:30px;font-variant-numeric:tabular-nums;flex-shrink:0}
+.toc-link:hover .toc-num{color:#378ADD}
+.toc-link .toc-text{flex:1}
+.toc-link.sub{padding-left:18px;font-size:12.5px;color:#666}
+.toc-link.sub .toc-num{font-size:11px;color:#bbb}
+.section{margin-bottom:3rem}
+.section-anchor{display:block;position:relative;top:-70px;visibility:hidden}
+h2{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:6px;border-bottom:1.5px solid #e0e0dc}
+h3{font-size:14px;font-weight:600;margin:1.2rem 0 .6rem;color:#333}
+.chart-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:20px;position:relative;width:100%}
+.note{font-size:11px;color:#999;margin-top:8px;line-height:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;font-size:12px;color:#666}
+.legend-item{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:3px 8px;border-radius:6px;transition:opacity .15s}
+.legend-item:hover{background:#e8e8e3}
+.legend-item.hidden{opacity:.3;text-decoration:line-through}
+.legend-static{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0dc;margin-bottom:.5rem}
+th{background:#ebebe6;font-weight:600;padding:7px 8px;text-align:left;border-bottom:1px solid #e0e0dc;white-space:nowrap;font-size:11.5px}
+th.center{text-align:center}
+td{padding:6px 8px;border-bottom:0.5px solid #f0f0ee;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafaf6}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.center{text-align:center}
+.hl{background:#fffbe6 !important}
+.dn{color:#D85A30}
+.up2{color:#1D9E75}
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
+@media(max-width:650px){.overview-grid{grid-template-columns:1fr}}
+.overview-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.overview-box h4{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.kv{display:flex;justify-content:space-between;align-items:flex-start;padding:4px 0;border-bottom:0.5px solid #f5f4f0;font-size:12.5px;gap:10px}
+.kv:last-child{border-bottom:none}
+.kv-key{color:#666;min-width:90px;flex-shrink:0}
+.kv-val{font-weight:600;text-align:right;flex:1}
+.seg-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:1rem}
+.seg-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.seg-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:8px}
+.seg-card-name{font-size:13px;font-weight:700}
+.seg-card-share{font-size:11px;color:#888;font-weight:600}
+.seg-card-desc{font-size:12px;color:#444;line-height:1.55;margin-bottom:6px}
+.seg-card-margin{font-size:11px;font-weight:600}
+.badge{display:inline-block;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:600}
+.badge-up{background:#e6f7f0;color:#1D9E75}
+.badge-dn{background:#fce8e4;color:#D85A30}
+.badge-neu{background:#ebebe6;color:#666}
+.cc-table{width:100%;border-collapse:separate;border-spacing:6px;margin-bottom:1rem}
+.cc-table th{background:transparent;border:none;font-size:11px;color:#888;text-align:center;padding:4px;font-weight:600;white-space:nowrap}
+.cc-table th.year-col{width:50px;text-align:left}
+.cc-cell{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.65rem .75rem;vertical-align:top;height:100%}
+.cc-quarter{font-size:10px;font-weight:700;color:#378ADD;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.cc-msg{font-size:11px;color:#444;margin-bottom:6px;line-height:1.45}
+.cc-guide{font-size:10px;color:#888;border-top:0.5px solid #f0f0ee;padding-top:5px;line-height:1.5}
+.cc-hit{color:#1D9E75;font-weight:600}
+.cc-miss{color:#D85A30;font-weight:600}
+.cc-latest{border:1.5px solid #378ADD !important;box-shadow:0 0 0 2px rgba(55,138,221,0.1)}
+.year-label{font-size:13px;font-weight:700;color:#555;padding-right:8px;vertical-align:middle}
+.scenario-stack{display:flex;flex-direction:column;gap:12px}
+.scenario-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1.1rem 1.3rem}
+.scenario-title{font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid #f0f0ee}
+.s-bull .scenario-title{color:#1D9E75}
+.s-bear .scenario-title{color:#D85A30}
+.s-item{margin-bottom:9px;padding-bottom:9px;border-bottom:0.5px solid #f5f4f0;font-size:12px}
+.s-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-case{font-weight:600;margin-bottom:2px}
+.s-sub{color:#888;font-size:11px}
+.ww-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.ww-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.ww-sticker-item{padding:.7rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:14px;align-items:flex-start}
+.ww-sticker-item:last-child{border-bottom:none}
+.ww-sticker-date{font-size:11px;font-weight:700;color:#378ADD;white-space:nowrap;min-width:90px;flex-shrink:0;padding-top:1px}
+.ww-sticker-content{flex:1}
+.ww-sticker-event{font-size:12.5px;font-weight:700;color:#222;margin-bottom:2px}
+.ww-sticker-point{font-size:11.5px;color:#666;line-height:1.5}
+.source-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.4rem;font-size:12px;color:#888;line-height:2}
+.prose{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;margin-bottom:1rem;font-size:13px;line-height:1.7}
+.prose ul{padding-left:1.3rem}
+.prose li{margin-bottom:.25rem}
+.prose p{margin-bottom:.7rem}
+.prose p:last-child{margin-bottom:0}
+.thesis-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:12px;padding:1.2rem 1.4rem;margin-bottom:12px;border-left:5px solid #333;position:relative}
+.thesis-box-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.thesis-icon{font-size:22px;flex-shrink:0}
+.thesis-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:5px;background:#ebebe6;color:#444}
+.thesis-title{font-size:15px;font-weight:700;color:#222;flex:1;margin-bottom:0}
+.thesis-body{font-size:13px;line-height:1.7;color:#333}
+.thesis-body p{margin-bottom:.6rem}
+.thesis-body p:last-child{margin-bottom:0}
+.thesis-body strong{color:#222;font-weight:700}
+.thesis-body .hl-blue{font-weight:600;color:#222}
+.thesis-body .hl-green{font-weight:700;color:#1D9E75}
+.thesis-body .hl-red{font-weight:700;color:#D85A30}
+.cc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.cc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.cc-sticker-item{padding:.85rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:12px;align-items:flex-start}
+.cc-sticker-item:last-child{border-bottom:none}
+.cc-sticker-rank{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#378ADD;color:#fff;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.cc-sticker-content{flex:1}
+.cc-sticker-title{font-size:13px;font-weight:700;color:#222;margin-bottom:4px}
+.cc-sticker-desc{font-size:12px;color:#444;line-height:1.6}
+.cc-sticker-desc strong{color:#222}
+.hl-pos{color:#1D9E75;font-weight:700}
+.hl-neg{color:#D85A30;font-weight:700}
+.ir-slide{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;overflow:hidden;margin-bottom:14px}
+.ir-slide-frame{background:linear-gradient(135deg,#f8f8f5 0%,#ffffff 100%);padding:.85rem 1.4rem;border-bottom:0.5px solid #e0e0dc}
+.ir-slide-num{font-size:10px;color:#999;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+.ir-slide-title{font-size:14px;font-weight:700;color:#333}
+.ir-slide-img-wrap{padding:1rem 1.4rem;text-align:center;background:#fafaf6}
+.ir-slide-img-wrap img{display:block;max-width:75%;width:100%;height:auto;margin:0 auto;border:0.5px solid #e0e0dc;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+@media(max-width:650px){.ir-slide-img-wrap img{max-width:95%}}
+.ir-slide-caption{font-size:11.5px;color:#555;padding:.85rem 1.4rem 1rem;line-height:1.55;background:#fff;border-top:0.5px solid #f0f0ee}
+.ir-slide-caption strong{color:#222}
+.footer{font-size:11px;color:#aaa;text-align:center;margin-top:2rem;padding-top:1rem;border-top:0.5px solid #e0e0dc}
+.seg-table-wrap{overflow-x:auto}
+.seg-table{min-width:780px}
+.seg-table th.seg-group{text-align:center;background:#e3e3de;border-left:2px solid #d0d0cc}
+.seg-table td.seg-border{border-left:2px solid #e0e0dc}
+.tv-wrap{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:6px;overflow:hidden}
+.tv-wrap iframe{display:block;width:100%;height:420px;border:0;border-radius:6px}
+.ref-list{display:flex;flex-direction:column;gap:6px}
+.ref-item{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.6rem .9rem;display:flex;align-items:center;gap:10px;font-size:12px}
+.ref-tag{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600;flex-shrink:0;min-width:55px;text-align:center}
+.tag-official{background:#e0effc;color:#1565c0}
+.tag-broker{background:#fff4e0;color:#ed8936}
+.tag-news{background:#f0f0ed;color:#555}
+.tag-wiki{background:#e6f7f0;color:#1D9E75}
+.ref-item a{color:#378ADD;text-decoration:none;flex:1;word-break:break-all}
+.ref-item a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div>
+    <div class="header-title">⚡ Fluence Energy (FLNC) 기업분석</div>
+    <div class="header-meta">회계연도: 9월 결산 (Sep-end Fiscal Year) &nbsp;|&nbsp; 분석기간: Q1'22~Q2'26 (18분기) &nbsp;|&nbsp; 최근 컨콜: 2026.05.07</div>
+  </div>
+  <div style="font-size:12px;color:#aaa">분석일: 2026.05.09</div>
+</div>
+
+<!-- 목차 -->
+<div class="toc">
+  <div class="toc-title">목차</div>
+  <div class="toc-sticker-box">
+    <div class="toc-grid">
+      <a class="toc-link" href="#s1"><span class="toc-num">01.</span><span class="toc-text">회사 개요</span></a>
+      <a class="toc-link" href="#s2"><span class="toc-num">02.</span><span class="toc-text">주가 흐름 — TradingView 일봉</span></a>
+      <a class="toc-link" href="#s3"><span class="toc-num">03.</span><span class="toc-text">제품·지역별 매출 추이</span></a>
+      <a class="toc-link sub" href="#s3b"><span class="toc-num">3-1.</span><span class="toc-text">제품 라인업 및 사업 구조</span></a>
+      <a class="toc-link sub" href="#s4"><span class="toc-num">3-2.</span><span class="toc-text">매출 &amp; Adj. GM% 추이</span></a>
+      <a class="toc-link sub" href="#s5"><span class="toc-num">3-3.</span><span class="toc-text">분기별 KPI 테이블</span></a>
+      <a class="toc-link" href="#s6"><span class="toc-num">04.</span><span class="toc-text">재무제표 개요</span></a>
+      <a class="toc-link" href="#s7"><span class="toc-num">05.</span><span class="toc-text">핵심 투자아이디어</span></a>
+      <a class="toc-link sub" href="#s8"><span class="toc-num">5-1.</span><span class="toc-text">핵심 변동 요인</span></a>
+      <a class="toc-link sub" href="#s9"><span class="toc-num">5-2.</span><span class="toc-text">컨퍼런스콜 트래킹</span></a>
+      <a class="toc-link sub" href="#s10"><span class="toc-num">5-3.</span><span class="toc-text">Q2'26 컨콜 심층 정리</span></a>
+      <a class="toc-link sub" href="#s11"><span class="toc-num">5-4.</span><span class="toc-text">강세 / 약세 시나리오</span></a>
+      <a class="toc-link" href="#s12"><span class="toc-num">06.</span><span class="toc-text">Worth Watching Events</span></a>
+      <a class="toc-link" href="#s13"><span class="toc-num">07.</span><span class="toc-text">데이터 출처</span></a>
+      <a class="toc-link sub" href="#s14"><span class="toc-num">7-1.</span><span class="toc-text">Reference</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- 1. 회사 개요 -->
+<span class="section-anchor" id="s1"></span>
+<div class="section">
+<h2>1. 회사 개요</h2>
+<div class="overview-grid">
+  <div class="overview-box">
+    <h4>기본 정보</h4>
+    <div class="kv"><span class="kv-key">설립</span><span class="kv-val">2018년 1월 (Siemens·AES JV)</span></div>
+    <div class="kv"><span class="kv-key">상장</span><span class="kv-val">2021.10.28 NASDAQ ($28 IPO)</span></div>
+    <div class="kv"><span class="kv-key">본사</span><span class="kv-val">Arlington, Virginia, USA</span></div>
+    <div class="kv"><span class="kv-key">CEO</span><span class="kv-val">Julian Nebreda (2022~)</span></div>
+    <div class="kv"><span class="kv-key">CFO</span><span class="kv-val">Ahmed Pasha</span></div>
+    <div class="kv"><span class="kv-key">임직원</span><span class="kv-val">~1,670명</span></div>
+    <div class="kv"><span class="kv-key">티커</span><span class="kv-val">NASDAQ: FLNC</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>시장 정보 (2026.05.08 기준)</h4>
+    <div class="kv"><span class="kv-key">현재 주가</span><span class="kv-val">$18.41</span></div>
+    <div class="kv"><span class="kv-key">시가총액 USD</span><span class="kv-val" style="color:#378ADD">~$3.5B</span></div>
+    <div class="kv"><span class="kv-key">시가총액 KRW</span><span class="kv-val" style="color:#378ADD">~5조원 (환율 1,448원)</span></div>
+    <div class="kv"><span class="kv-key">발행주식</span><span class="kv-val">~189M주</span></div>
+    <div class="kv"><span class="kv-key">52주 고가</span><span class="kv-val">$33.51</span></div>
+    <div class="kv"><span class="kv-key">52주 저가</span><span class="kv-val">$3.93 (2025.05)</span></div>
+    <div class="kv"><span class="kv-key">P/E (TTM)</span><span class="kv-val">N/A (적자)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>사업 운영</h4>
+    <div class="kv"><span class="kv-key">사업 모델</span><span class="kv-val">BESS 통합 + Software (Asset-light)</span></div>
+    <div class="kv"><span class="kv-key">제품군</span><span class="kv-val">Smartstack · Gridstack Pro · Ultrastack · Sunstack</span></div>
+    <div class="kv"><span class="kv-key">소프트웨어</span><span class="kv-val">Mosaic (Bidding), Nispera (APM)</span></div>
+    <div class="kv"><span class="kv-key">생산 거점</span><span class="kv-val">미국 Tennessee · Utah (자체)</span></div>
+    <div class="kv"><span class="kv-key">배터리 셀</span><span class="kv-val">미국산 (LFP, AESC 외)</span></div>
+    <div class="kv"><span class="kv-key">진출 국가</span><span class="kv-val">~50개국, 누적 25GW+ 배포</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>투자 포인트 요약</h4>
+    <div class="kv"><span class="kv-key">Q2'26 매출</span><span class="kv-val" style="color:#1D9E75">$464.9M (+7.7% YoY)</span></div>
+    <div class="kv"><span class="kv-key">Adj. GM</span><span class="kv-val" style="color:#1D9E75">11.1% (+70bps YoY)</span></div>
+    <div class="kv"><span class="kv-key">Adj. EBITDA</span><span class="kv-val">−$9.4M (전년 −$30.4M)</span></div>
+    <div class="kv"><span class="kv-key">Backlog</span><span class="kv-val" style="color:#1D9E75">$5.6B 사상 최대</span></div>
+    <div class="kv"><span class="kv-key">YTD 수주</span><span class="kv-val" style="color:#1D9E75">$2.0B (전년比 2배)</span></div>
+    <div class="kv"><span class="kv-key">FY26 가이던스</span><span class="kv-val" style="color:#1D9E75">매출 $3.2~3.6B / EBITDA $40~60M</span></div>
+  </div>
+</div>
+<p class="note">⚠️ <strong>회계연도</strong>: Fluence는 9월 결산(Sep-end). FY2026 = 2025.10~2026.09. <strong>BESS</strong>=Battery Energy Storage System(배터리 에너지 저장 시스템). <strong>FOM/BTM</strong>=Front-of-Meter(계통연계, 송전급)·Behind-the-Meter(수용가). <strong>MSA</strong>=Master Supply Agreement(장기 공급 계약). <strong>ARR</strong>=Annual Recurring Revenue(소프트웨어 구독 매출). <strong>ITC/IRA</strong>=미국 투자세액공제·인플레감축법(미국산 컨텐츠 보너스 지급). <strong>Adj. EBITDA</strong>=이자·세금·감가상각·SBC·M&amp;A 비용 제외.</p>
+</div>
+
+<!-- 2. 주가 -->
+<span class="section-anchor" id="s2"></span>
+<div class="section">
+<h2>2. 주가 흐름 — TradingView 일봉</h2>
+<div class="tv-wrap">
+<iframe src="https://www.tradingview.com/widgetembed/?symbol=NASDAQ%3AFLNC&interval=D&style=1&theme=light&hidesidetoolbar=1&hidetoptoolbar=0&allow_symbol_change=0" allowfullscreen></iframe>
+</div>
+<p class="note">* 2025.05 $3.93 사상 저점 → 2026.05.07 Q2 어닝 발표 후 +40% 단일일일 급등 → $19대 회복. 1년간 +370% 상승. 6일 연속 상승 누적 +60%, 시총 약 $946M 증가.</p>
+
+<h3 style="margin-top:1.2rem">주요 이벤트 연표</h3>
+<table>
+  <thead><tr><th>시기</th><th class="num">주가(근사)</th><th>이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2018.01</td><td class="num">—</td><td>Siemens · AES 50/50 Joint Venture로 Fluence 설립 (HQ 버지니아)</td></tr>
+    <tr><td>2021.10</td><td class="num">$28.00</td><td>NASDAQ IPO ($867.9M 조달, IPO 시총 $4.7B)</td></tr>
+    <tr><td>2022.04</td><td class="num">$10</td><td>Julian Nebreda CEO 취임. 초기 GM% 마이너스 영역, 공급망 위기</td></tr>
+    <tr><td>2023.02</td><td class="num">$22</td><td>FY2023 첫 흑자 GM% 회복, Nispera APM 통합 완료</td></tr>
+    <tr><td>2024.07</td><td class="num">$27</td><td>FY2024 record 매출 $2.7B 가시화, IRA 미국산 컨텐츠 보너스 본격화</td></tr>
+    <tr><td>2024.11</td><td class="num">$25</td><td>FY2024 매출 $2.7B 발표 (+22% YoY), backlog $4.5B</td></tr>
+    <tr><td>2025.02</td><td class="num">$8</td><td><strong>Q1'25 매출 -49% YoY 충격 — Arizona 시설 지연, ASP -26% 폭락</strong></td></tr>
+    <tr><td>2025.05</td><td class="num">$3.93</td><td><strong>52주 사상 저점</strong> — 배터리 저장 산업 공급과잉, 트럼프 2기 정책 불확실성</td></tr>
+    <tr><td>2025.11</td><td class="num">$13</td><td>FY2025 record Q4 수주 $1.4B, FY2026 가이드 매출 $3.2~3.6B 상향</td></tr>
+    <tr><td>2026.02</td><td class="num">$15</td><td>Q1'26 매출 $475M (+154% YoY), backlog $5.3B 유지. 데이터센터 파이프라인 12GWh</td></tr>
+    <tr><td>2026.04</td><td class="num">$13</td><td>UBS·Roth·Citi·Goldman 일제 PT 하향 ($13~22), 단기 약세</td></tr>
+    <tr class="hl"><td><strong>2026.05.07</strong></td><td class="num"><strong>$18.97</strong></td><td><strong>Q2'26 어닝 +40% 단일 급등 — Hyperscaler 2개 MSA 체결, backlog $5.6B record</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 3. 제품·지역 매출 추이 -->
+<span class="section-anchor" id="s3"></span>
+<div class="section">
+<h2>3. 제품·지역별 매출 추이 — 18분기 ($M)</h2>
+<div class="legend" id="segLegend">
+  <span class="legend-item" onclick="toggleSeg(0,this)"><span class="dot" style="background:#1D9E75"></span>Energy Storage Solutions (ESS)</span>
+  <span class="legend-item" onclick="toggleSeg(1,this)"><span class="dot" style="background:#378ADD"></span>Services</span>
+  <span class="legend-item" onclick="toggleSeg(2,this)"><span class="dot" style="background:#BA7517"></span>Digital (Software)</span>
+  <span style="font-size:11px;color:#bbb;margin-left:4px">← 클릭하여 표시/숨김</span>
+</div>
+<div class="chart-box" style="height:460px"><canvas id="cSeg"></canvas></div>
+<p class="note">* Fluence는 단일 운영 세그먼트로 보고하지만 매출은 3개 카테고리로 공시: <strong>ESS</strong>(BESS 시스템 판매, ~93%) / <strong>Services</strong>(O&amp;M 등 운영 서비스, ~5%) / <strong>Digital</strong>(Mosaic·Nispera SW, ~2%). FY2025 Q1·Q2 매출 급감은 Arizona 공급망 이슈 + ASP 하락. FY2026 H2 ramp 예정 — backlog $5.6B 중 85%가 FY26 가이드 cover.</p>
+</div>
+
+<!-- 3-1. 제품 라인업 -->
+<span class="section-anchor" id="s3b"></span>
+<div class="section">
+<h2>3-1. 제품 라인업 및 사업 구조</h2>
+<div class="seg-cards">
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">Smartstack ★ (차세대 주력)</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">신규</span> · Q2'26 첫 상업 가동</div>
+    </div>
+    <div class="seg-card-desc">
+      Fluence의 차세대 모듈식 BESS 플랫폼. <strong>Split Architecture</strong>(AC/DC 분리) + <strong>임베디드 인텔리전스</strong> + <strong>기존 솔루션 대비 ~30% 높은 에너지 밀도</strong>. Long-duration storage(4시간+) 및 데이터센터 power quality 대응에 최적화. Q2'26 첫 상업 가동 완료, 시장 관심 backlog 본격 반영. Hyperscaler MSA 2건의 핵심 채택 제품.
+    </div>
+    <div class="seg-card-margin" style="color:#555">차별화 포인트 <span style="color:#378ADD;font-weight:700">에너지 밀도 +30%</span> · 데이터센터 진입 무기</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">Gridstack Pro / Gridstack</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">주력 캐시카우</span></div>
+    </div>
+    <div class="seg-card-desc">
+      Front-of-meter(계통연계, 송배전급) 대규모 BESS. 유틸리티/IPP 발전사 대상 표준 솔루션. <strong>Gridstack Pro</strong>는 utility-scale, <strong>Gridstack</strong>은 중대형 프로젝트용. 미국·호주·유럽·UK 다수 채택. UK Varco 1GW/4GWh — Fluence 사상 최대 단일 프로젝트(2025.12 발표) — Smartstack 기반.
+    </div>
+    <div class="seg-card-margin" style="color:#555">고객 <span style="color:#378ADD;font-weight:700">유틸리티·발전사·디벨로퍼</span> · IRA 보너스 적용</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">Ultrastack · Sunstack · Edgestack</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">특수목적</span></div>
+    </div>
+    <div class="seg-card-desc">
+      <strong>Ultrastack</strong>: 송전망 안정화 전용(Network utilization, system stabilization). <strong>Sunstack</strong>: 솔라+스토리지 하이브리드. <strong>Edgestack</strong>: C&amp;I 분산형. 3가지 모두 적은 매출 비중이지만 Tier 1 디벨로퍼·송전망 사업자 락인용 제품.
+    </div>
+    <div class="seg-card-margin" style="color:#555">포트폴리오 <span style="color:#378ADD;font-weight:700">Use-case 커버리지</span> · 입찰 다각화</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">Digital — Mosaic · Nispera (SaaS)</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">~2%</span> · ARR $148M (FY25), 목표 $180M (FY26)</div>
+    </div>
+    <div class="seg-card-desc">
+      <strong>Mosaic</strong>: AI 기반 자동 입찰 SW(전력시장 도매 bidding 최적화). <strong>Nispera</strong>: APM(Asset Performance Management, 솔라·스토리지 자산 운영). 누적 15GW+ 자산 관리. <strong>구독형 ARR 매출</strong> — 가장 수익성 높고 sticky한 사업. 2022 Nispera 인수로 본격화.
+    </div>
+    <div class="seg-card-margin" style="color:#555">ARR <span style="color:#378ADD;font-weight:700">$148M→$180M</span> 21% 성장 가이드 · GM 가장 높음</div>
+  </div>
+</div>
+
+<table>
+  <thead><tr><th>매출 카테고리</th><th>대표 제품</th><th>주요 고객</th><th>FY26 매출 비중</th><th>특징</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Energy Storage Solutions</strong></td><td>Smartstack, Gridstack Pro, Gridstack, Ultrastack, Sunstack</td><td>유틸리티, IPP, 디벨로퍼, Hyperscaler</td><td class="num"><strong>~93%</strong></td><td>일회성 시스템 판매, GM 9~12%</td></tr>
+    <tr><td><strong>Services</strong></td><td>O&amp;M, 장기 서비스 계약, 워런티</td><td>BESS 자산 보유 발주처</td><td class="num">~5%</td><td>장기 계약, GM 더 높음</td></tr>
+    <tr><td><strong>Digital (SaaS)</strong></td><td>Mosaic (Bidding), Nispera (APM)</td><td>발전사, 자산 운용사, 트레이더</td><td class="num">~2%</td><td>ARR 구독형, GM 가장 높음</td></tr>
+  </tbody>
+</table>
+<p class="note">* Fluence는 글로벌 BESS 시스템 통합사(Tier 1 BESS Integrator)로 분류. 경쟁사: Tesla Megapack, Sungrow, BYD, CATL, Wärtsilä. 차별화 포인트는 <strong>고객 중립 멀티 셀 벤더 전략</strong>(특정 배터리사 종속 없음) + <strong>SW/Service 통합</strong> + <strong>미국 도메스틱 컨텐츠</strong>(IRA 세제 혜택).</p>
+</div>
+
+<!-- 3-2. 매출 + GM% -->
+<span class="section-anchor" id="s4"></span>
+<div class="section">
+<h2>3-2. 매출 &amp; Adj. GM% 추이 — 18분기</h2>
+<div class="legend">
+  <span class="legend-static"><span class="dot" style="background:rgba(55,138,221,0.5)"></span>매출 ($M, 좌축)</span>
+  <span class="legend-static"><span class="dot" style="background:#1D9E75"></span>Adj. GM% (우축)</span>
+</div>
+<div class="chart-box" style="height:420px"><canvas id="cRev"></canvas></div>
+
+<h3 style="margin-top:1.2rem">연간 요약 (회계연도 9월 결산)</h3>
+<table>
+  <thead><tr><th>연도(FY)</th><th class="num">매출</th><th class="num">YoY</th><th class="num">Adj. GM</th><th class="num">Adj. EBITDA</th><th class="num">기말 Backlog</th><th>주요 이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>FY2022</td><td class="num">$1.20B</td><td class="num up2">+59%</td><td class="num dn">−2%</td><td class="num dn">−$166M</td><td class="num">$1.4B</td><td>IPO 이후 첫 회계연도, 공급망 위기</td></tr>
+    <tr><td>FY2023</td><td class="num">$2.22B</td><td class="num up2">+85%</td><td class="num">6.7%</td><td class="num dn">−$50M</td><td class="num">$2.9B</td><td>Nispera 통합, GM 첫 흑자전환</td></tr>
+    <tr><td>FY2024</td><td class="num">$2.70B</td><td class="num up2">+22%</td><td class="num">12.6%</td><td class="num up2">+$78M</td><td class="num">$4.5B</td><td>record FY, IRA 본격 효과</td></tr>
+    <tr><td>FY2025</td><td class="num">$2.30B</td><td class="num dn">−15%</td><td class="num">~13%</td><td class="num up2">~$10M</td><td class="num">$5.3B</td><td>Arizona 지연으로 매출 축소, Q4 record 수주 $1.4B</td></tr>
+    <tr class="hl"><td><strong>FY2026 (가이드)</strong></td><td class="num"><strong>$3.2~3.6B</strong></td><td class="num up2"><strong>+39~57%</strong></td><td class="num"><strong>11~13%</strong></td><td class="num up2"><strong>$40~60M</strong></td><td class="num"><strong>$5.6B+</strong></td><td><strong>Hyperscaler 2 MSA, Q3 첫 데이터센터 PO</strong></td></tr>
+  </tbody>
+</table>
+
+<h3 style="margin-top:1.2rem">분기별 실적 (10분기)</h3>
+<table>
+  <thead><tr><th>분기</th><th class="num">매출</th><th class="num">YoY</th><th class="num">QoQ</th><th class="num">GAAP GM</th><th class="num">Adj. GM</th><th class="num">Adj. EBITDA</th><th class="num">Backlog</th></tr></thead>
+  <tbody>
+    <tr><td>Q1'24</td><td class="num">$364M</td><td class="num up2">+17%</td><td class="num dn">−61%</td><td class="num">10%</td><td class="num">11%</td><td class="num dn">−$24M</td><td class="num">$3.7B</td></tr>
+    <tr><td>Q2'24</td><td class="num">$623M</td><td class="num up2">+39%</td><td class="num up2">+71%</td><td class="num">12%</td><td class="num">13%</td><td class="num up2">+$8M</td><td class="num">$3.7B</td></tr>
+    <tr><td>Q3'24</td><td class="num">$483M</td><td class="num dn">−10%</td><td class="num dn">−22%</td><td class="num">12%</td><td class="num">14%</td><td class="num up2">+$2M</td><td class="num">$4.5B</td></tr>
+    <tr><td>Q4'24</td><td class="num">$1,232M</td><td class="num up2">+82%</td><td class="num up2">+155%</td><td class="num">12%</td><td class="num">13%</td><td class="num up2">+$93M</td><td class="num">$4.5B</td></tr>
+    <tr><td>Q1'25</td><td class="num">$187M</td><td class="num dn">−49%</td><td class="num dn">−85%</td><td class="num">11%</td><td class="num">13%</td><td class="num dn">−$50M</td><td class="num">$5.1B</td></tr>
+    <tr><td>Q2'25</td><td class="num">$432M</td><td class="num dn">−31%</td><td class="num up2">+131%</td><td class="num">10%</td><td class="num">10%</td><td class="num dn">−$30M</td><td class="num">$4.9B</td></tr>
+    <tr><td>Q3'25</td><td class="num">$640M</td><td class="num up2">+33%</td><td class="num up2">+48%</td><td class="num">11%</td><td class="num">12%</td><td class="num up2">+$13M</td><td class="num">$4.9B</td></tr>
+    <tr><td>Q4'25</td><td class="num">$1,040M</td><td class="num dn">−16%</td><td class="num up2">+63%</td><td class="num">12%</td><td class="num">14%</td><td class="num up2">+$20M</td><td class="num">$5.3B</td></tr>
+    <tr><td>Q1'26</td><td class="num">$475M</td><td class="num up2">+154%</td><td class="num dn">−54%</td><td class="num">5%</td><td class="num">6%</td><td class="num dn">−$52M</td><td class="num">$5.3B</td></tr>
+    <tr class="hl"><td><strong>Q2'26</strong></td><td class="num"><strong>$464.9M</strong></td><td class="num up2"><strong>+7.7%</strong></td><td class="num dn">−2%</td><td class="num"><strong>10.0%</strong></td><td class="num up2"><strong>11.1%</strong></td><td class="num up2"><strong>−$9.4M</strong></td><td class="num up2"><strong>$5.6B</strong></td></tr>
+  </tbody>
+</table>
+<p class="note">* Q1'26 GM% 폭락(5.6%)은 매출 믹스 + 일회성 비용. Q2'26 GM% 11.1%로 정상 가이드 범위(11~13%) 복귀가 시장이 가장 호평한 포인트. 매출 자체는 컨센($628M) 대비 -26% 미스했지만 $80M이 Q3로 이연(베트남 통관·스페인 선적 이슈, 이미 해결). 분기 매출 변동성 큰 이유: BESS는 프로젝트 단위 대형 출하 산업.</p>
+</div>
+
+<!-- 3-3. KPI 테이블 -->
+<span class="section-anchor" id="s5"></span>
+<div class="section">
+<h2>3-3. 분기별 KPI 테이블 (10분기)</h2>
+<div class="seg-table-wrap">
+<table class="seg-table">
+  <thead>
+    <tr>
+      <th rowspan="2" style="vertical-align:middle">분기</th>
+      <th colspan="2" class="seg-group center">매출</th>
+      <th colspan="2" class="seg-group center">수익성</th>
+      <th colspan="2" class="seg-group center">수주</th>
+      <th colspan="2" class="seg-group center">유동성</th>
+    </tr>
+    <tr>
+      <th class="seg-group center">$M</th><th class="seg-group center">YoY</th>
+      <th class="seg-group center">Adj. GM%</th><th class="seg-group center">Adj. EBITDA $M</th>
+      <th class="seg-group center">Backlog $B</th><th class="seg-group center">분기 수주 $M</th>
+      <th class="seg-group center">Cash $M</th><th class="seg-group center">총 유동성 $M</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Q1'24</td><td class="num seg-border">$364</td><td class="num up2">+17%</td><td class="num seg-border">11%</td><td class="num">−24</td><td class="num seg-border">$3.7</td><td class="num">~1,100</td><td class="num seg-border">~440</td><td class="num">~570</td></tr>
+    <tr><td>Q2'24</td><td class="num seg-border">$623</td><td class="num up2">+39%</td><td class="num seg-border">13%</td><td class="num">+8</td><td class="num seg-border">$3.7</td><td class="num">~620</td><td class="num seg-border">~430</td><td class="num">~590</td></tr>
+    <tr><td>Q3'24</td><td class="num seg-border">$483</td><td class="num dn">−10%</td><td class="num seg-border">14%</td><td class="num">+2</td><td class="num seg-border">$4.5</td><td class="num">~1,300</td><td class="num seg-border">~470</td><td class="num">~620</td></tr>
+    <tr><td>Q4'24</td><td class="num seg-border">$1,232</td><td class="num up2">+82%</td><td class="num seg-border">13%</td><td class="num up2">+93</td><td class="num seg-border">$4.5</td><td class="num">~1,200</td><td class="num seg-border">~519</td><td class="num">~680</td></tr>
+    <tr><td>Q1'25</td><td class="num seg-border">$187</td><td class="num dn">−49%</td><td class="num seg-border">13%</td><td class="num">−50</td><td class="num seg-border">$5.1</td><td class="num">~1,300</td><td class="num seg-border">~620</td><td class="num">~890</td></tr>
+    <tr><td>Q2'25</td><td class="num seg-border">$432</td><td class="num dn">−31%</td><td class="num seg-border">10%</td><td class="num">−30</td><td class="num seg-border">$4.9</td><td class="num">~600</td><td class="num seg-border">~520</td><td class="num">~750</td></tr>
+    <tr><td>Q3'25</td><td class="num seg-border">$640</td><td class="num up2">+33%</td><td class="num seg-border">12%</td><td class="num up2">+13</td><td class="num seg-border">$4.9</td><td class="num">~700</td><td class="num seg-border">~480</td><td class="num">~720</td></tr>
+    <tr><td>Q4'25</td><td class="num seg-border">$1,040</td><td class="num dn">−16%</td><td class="num seg-border">14%</td><td class="num up2">+20</td><td class="num seg-border">$5.3</td><td class="num up2">~1,400</td><td class="num seg-border">~690</td><td class="num">~1,300</td></tr>
+    <tr><td>Q1'26</td><td class="num seg-border">$475</td><td class="num up2">+154%</td><td class="num seg-border">6%</td><td class="num">−52</td><td class="num seg-border">$5.3</td><td class="num">~520</td><td class="num seg-border">~477</td><td class="num">~1,100</td></tr>
+    <tr class="hl"><td><b>Q2'26</b></td><td class="num seg-border"><b>$465</b></td><td class="num up2"><b>+8%</b></td><td class="num seg-border"><b>11.1%</b></td><td class="num up2"><b>−9</b></td><td class="num seg-border"><b>$5.6</b></td><td class="num up2"><b>~1,000</b></td><td class="num seg-border"><b>~413</b></td><td class="num"><b>~900</b></td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">* <strong>Backlog $5.6B record</strong>가 핵심. FY2026 가이드 중간점 $3.4B 대비 backlog coverage 165% — 즉 2년치 매출이 이미 확보. YTD 수주 $2.0B(전년比 2배) + Q3 시작 후 추가 $600M 체결 → FY26 전체 수주 $4B+ 가능성. 50% 이상이 신규 고객 — 영업 망 확장 성과. 분기별 매출 변동성은 BESS 프로젝트 인도 lumpiness 특성.</p>
+</div>
+
+<!-- 4. 재무제표 -->
+<span class="section-anchor" id="s6"></span>
+<div class="section">
+<h2>4. 재무제표 개요</h2>
+<table>
+  <thead><tr><th>항목 (USD)</th><th class="num">FY2023</th><th class="num">FY2024</th><th class="num">FY2025</th><th class="num">Q2'26 (반기 누적)</th></tr></thead>
+  <tbody>
+    <tr><td>매출</td><td class="num">$2.22B</td><td class="num">$2.70B</td><td class="num">$2.30B</td><td class="num">$939.7M</td></tr>
+    <tr><td>매출총이익 (Adj.)</td><td class="num">$149M</td><td class="num">$340M</td><td class="num">~$300M</td><td class="num">~$80M</td></tr>
+    <tr><td>GAAP 영업이익</td><td class="num dn">−$222M</td><td class="num dn">−$28M</td><td class="num">~$0~$10M</td><td class="num dn">−$96M</td></tr>
+    <tr><td>Adj. EBITDA</td><td class="num dn">−$50M</td><td class="num up2">+$78M</td><td class="num up2">~+$10M</td><td class="num dn">−$61.5M</td></tr>
+    <tr><td>GAAP 순손익</td><td class="num dn">−$102M</td><td class="num dn">−$59M</td><td class="num">~$0M</td><td class="num dn">−$91.8M</td></tr>
+    <tr><td>EPS (희석, GAAP)</td><td class="num dn">−$0.81</td><td class="num dn">−$0.51</td><td class="num">~$0.00</td><td class="num dn">−$0.50</td></tr>
+    <tr><td>영업현금흐름</td><td class="num dn">−$60M</td><td class="num up2">+$66M</td><td class="num">~+$120M</td><td class="num dn">−$240M</td></tr>
+    <tr><td>FCF (반기)</td><td class="num">—</td><td class="num">+$50M</td><td class="num">~+$100M</td><td class="num dn">−$285.4M</td></tr>
+    <tr><td>현금+단기투자</td><td class="num">$522M</td><td class="num">$519M</td><td class="num">$691M</td><td class="num">$412.9M</td></tr>
+    <tr><td>총 유동성 (Liquidity)</td><td class="num">$617M</td><td class="num">$680M</td><td class="num">$1.31B</td><td class="num">$900M</td></tr>
+    <tr><td>Backlog (RPO)</td><td class="num">$2.9B</td><td class="num">$4.5B</td><td class="num">$5.3B</td><td class="num up2"><strong>$5.6B</strong></td></tr>
+    <tr><td>총자산</td><td class="num">$2.0B</td><td class="num">$2.5B</td><td class="num">~$2.8B</td><td class="num">~$3.0B</td></tr>
+    <tr><td>총부채</td><td class="num">$1.4B</td><td class="num">$1.7B</td><td class="num">~$1.9B</td><td class="num">~$2.0B</td></tr>
+  </tbody>
+</table>
+<p class="note">* Fluence는 BESS 통합 + 소프트웨어 사업 모델로 GAAP 적자 지속 중이지만 Adj. EBITDA는 FY2024 흑자전환. 분기별 매출 lumpiness 큰 이유: 프로젝트 단위 인도 — 한 분기에 $200M~$1.2B 변동. <strong>Backlog/매출 비율 244%</strong>(FY26 가이드 중간점 대비) — 매출 가시성 매우 높음. Q2'26 반기 누적 FCF -$285M은 H2 출하 대비 인벤토리 $220M 투자 영향. 부채/자본비율 ~70%, 총 유동성 $900M로 단기 유동성 안정.</p>
+<p class="note">⚠️ Q2'26에 인벤토리 $220M 투자 + Q3 추가 $100M 예정 — H2 매출 ramp(가이드 $2.3B) 대비 사전 비축. 단기 캐시 부담 발생 중이나 backlog 코버리지 85%로 중기 회수 가시성 명확. ARR $148M(FY25) → $180M(FY26 목표)은 SW 사업 안정 성장.</p>
+</div>
+
+<!-- 5. 핵심 투자아이디어 -->
+<span class="section-anchor" id="s7"></span>
+<div class="section">
+<h2>5. 핵심 투자아이디어</h2>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">🎯</span>
+    <span class="thesis-tag">Thesis #1</span>
+    <div class="thesis-title">Hyperscaler MSA 2건 — Fluence가 데이터센터 BESS 1차 공급자로 격상</div>
+  </div>
+  <div class="thesis-body">
+    <p>Q2'26의 가장 중요한 사건은 <span class="hl-blue">2개 메이저 hyperscaler와의 MSA(Master Supply Agreement) 동시 체결</span>이다. CEO Nebreda 발언: <strong>"매우 제한된 소수 공급사(very limited number of players)"</strong> 중 Fluence가 선정 — 다단계 기술·상업 검증 통과. <span class="hl-green">Q3'26 내 첫 PO(구매주문) 체결 가시</span>.</p>
+    <p>이는 Fluence를 <strong>유틸리티/디벨로퍼 중심 사업자</strong>에서 <strong>AI 데이터센터 power quality 솔루션 공급자</strong>로 격상시키는 <span class="hl-green">사업 모델 재정의</span>. 데이터센터 파이프라인은 단 1분기 만에 <span class="hl-green">12GWh로 30%+ 성장</span>(Q1 9GWh→Q2 12GWh). 기존 utility 영업 사이클(파이프라인→수주 12~24개월) 대비 <strong>hyperscaler 전환 속도가 훨씬 빠름</strong>(Nebreda 명시).</p>
+  </div>
+</div>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">📈</span>
+    <span class="thesis-tag">Thesis #2</span>
+    <div class="thesis-title">Backlog $5.6B record — 2년치 매출 락인, 가시성 압도적</div>
+  </div>
+  <div class="thesis-body">
+    <p>Q2'26 backlog <span class="hl-green">$5.6B 사상 최대</span> (Q1'26 $5.3B → +5.7% QoQ). FY2026 가이드 중간점 $3.4B 대비 <span class="hl-green">backlog coverage 165%</span> — <strong>이미 2년치 매출이 계약으로 확보</strong>. YTD 수주 <span class="hl-green">$2.0B(전년 동기 $1.0B의 2배)</span> + Q3 시작 후 추가 <span class="hl-green">$600M 체결</span>.</p>
+    <p>YTD 수주의 <span class="hl-blue">50%가 신규 고객</span> — 신규 영업 채널 확장 성과 가시화. 미국 utility/developer + 데이터센터 + 글로벌 50개국 다층 분산. CEO Nebreda: <em>"order intake가 FY2025를 크게 초과(significantly exceed)"</em>할 것 — FY26 연간 수주 <span class="hl-green">$4B+ 도달 가능성</span>.</p>
+  </div>
+</div>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">⚠️</span>
+    <span class="thesis-tag">Thesis #3</span>
+    <div class="thesis-title">단기 마진 변동성 vs 구조적 BESS 수요 슈퍼사이클</div>
+  </div>
+  <div class="thesis-body">
+    <p>구조적 호재: <span class="hl-green">미국 IRA 세제 혜택 유지</span>(도메스틱 컨텐츠 보너스), <span class="hl-green">AI 데이터센터 + 재생에너지 동반 성장</span>, <span class="hl-green">미국 자체 배터리 셀 공급 확보</span>(Tennessee 시설 + 2027년 신규 공급사 추가).</p>
+    <p>단기 리스크: <span class="hl-red">ASP 하락 -26% YoY</span>(중국 셀 가격 인하 → 가격 압박 지속), <span class="hl-red">분기 매출 lumpiness</span>(Q1'26 -54% QoQ → Q2 보합 → H2 +50%+ ramp 필요), <span class="hl-red">FY26 GM 11~13% 정체</span>(volume leverage 발현 전), <span class="hl-red">FCF -$285M 반기 누적</span>(인벤토리 $220M 투자). 그러나 backlog 코버리지와 hyperscaler 진입으로 시장은 단기 실적 미스를 용인 — 어닝 후 <span class="hl-green">+40% 단일일일 급등</span>이 그 증거.</p>
+  </div>
+</div>
+
+<!-- 5-1. 핵심 변동 요인 -->
+<span class="section-anchor" id="s8"></span>
+<div class="section">
+<h2>5-1. 핵심 변동 요인</h2>
+<table>
+  <thead><tr><th>구분</th><th>요인</th><th class="center">방향</th><th>설명</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>외부</strong></td><td>AI 데이터센터 전력 수요</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>Hyperscaler power quality 요구 증가 — BESS가 핵심 인프라. 2026~2030 수요 폭증 가시</td></tr>
+    <tr><td>미국 IRA 세제 혜택</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>Domestic Content Bonus 적용 — Fluence 미국산 자격 유지. 트럼프 정책 변동성은 잔존 위험</td></tr>
+    <tr><td>리튬·배터리 셀 가격</td><td class="center"><span class="badge badge-neu">중립 ●</span></td><td>Q2 일시 상승 → 안정화. 가격 안정화 시 ASP 하락 압력 진정. 변동성은 지속</td></tr>
+    <tr><td>중국 셀 메이커 경쟁</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>CATL·BYD·Sungrow 글로벌 BESS 시장 침투. ASP -26% YoY 압박 — 단가 하락 지속 가능성</td></tr>
+    <tr><td>전력시장 변동성·재생에너지</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>그리드 안정화 BESS 수요 구조적 증가. 재생에너지 침투율↑ → BESS 필수재화</td></tr>
+    <tr><td>관세·무역정책 (Section 301)</td><td class="center"><span class="badge badge-neu">중립 ●</span></td><td>중국산 배터리 관세 인상은 Fluence 미국산 전략에 유리. 그러나 글로벌 공급망 리스크 잔존</td></tr>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>내부</strong></td><td>Hyperscaler MSA 2건 실행</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>Q3 첫 PO → FY27 본격 매출. 데이터센터 매출 모멘텀 확보 시 추가 메가딜 가능성</td></tr>
+    <tr><td>Smartstack 본격 ramp</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>에너지 밀도 +30% 차별화. UK Varco 1GW/4GWh 첫 대형 프로젝트. Backlog 본격 반영</td></tr>
+    <tr><td>미국 자체 공급망 강화</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>Tennessee 시설 + 2027년 신규 셀 공급사. Domestic Content 자격 영구 유지 → IRA 혜택 락인</td></tr>
+    <tr><td>ARR 성장 ($148M→$180M)</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>Mosaic·Nispera 구독형 매출 +21%. GM 가장 높은 사업 — 마진 mix 개선 동력</td></tr>
+    <tr><td>분기 매출 lumpiness</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>BESS 프로젝트 인도 단위. Q1·Q2 합산 매출 $940M, FY26 가이드 중간 $3.4B = H2 $2.5B 필요</td></tr>
+    <tr><td>FCF 반기 -$285M</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>인벤토리 사전 투자. Q3 추가 $100M 예정. 일시적이나 유동성 $900M 한도 내 관리 필요</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 5-2. 컨콜 트래킹 -->
+<span class="section-anchor" id="s9"></span>
+<div class="section">
+<h2>5-2. 컨퍼런스콜 트래킹 (최근 12분기, 9월 결산 기준)</h2>
+<table class="cc-table">
+  <colgroup>
+    <col style="width:60px"><col><col><col><col>
+  </colgroup>
+  <thead>
+    <tr><th class="year-col">FY</th><th>Q1 (12월)</th><th>Q2 (3월)</th><th>Q3 (6월)</th><th>Q4 (9월)</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="year-label">FY24</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'24</div><div class="cc-msg">$364M (+17%). 분기 record 수주 $1.1B. backlog $3.7B</div><div class="cc-guide">FY24 가이드 $3.0~3.6B 유지 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'24</div><div class="cc-msg">$623M (+39%). GM 13%. 호주·UK 신규 수주. ARR $80M+</div><div class="cc-guide">FY24 가이드 상향 $3.6B 중간 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'24</div><div class="cc-msg">$483M (-10%). 일시 둔화. backlog $4.5B record</div><div class="cc-guide">FY24 매출 가이드 하향 $2.7B <span class="cc-miss">⚠️</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'24</div><div class="cc-msg">$1,232M (+82%). FY24 record $2.7B 마감. EBITDA +$78M</div><div class="cc-guide">FY25 가이드 $4.0B 중간 <span class="cc-hit">✅</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">FY25</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'25</div><div class="cc-msg">$187M (-49%) <span class="cc-miss">충격</span>. Arizona 시설 지연. ASP -26%</div><div class="cc-guide">FY25 가이드 하향 $3.1B <span class="cc-miss">❌</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'25</div><div class="cc-msg">$432M (-31%). GM 10% 정상화. backlog $4.9B 유지</div><div class="cc-guide">FY25 가이드 추가 하향 $2.6B <span class="cc-miss">❌</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'25</div><div class="cc-msg">$640M (+33%). EBITDA 흑자 +$13M 회복. SmartStack 발표</div><div class="cc-guide">FY25 가이드 $2.4B 유지 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'25</div><div class="cc-msg">$1,040M (-16%). record 분기 수주 $1.4B. backlog $5.3B</div><div class="cc-guide">FY26 가이드 $3.4B (+50%) 발표 <span class="cc-hit">✅</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">FY26</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'26</div><div class="cc-msg">$475M (+154% YoY). GM 6% 일시 폭락. 데이터센터 파이프라인 9GWh</div><div class="cc-guide">FY26 가이드 $3.4B 유지 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell cc-latest"><div class="cc-quarter">Q2'26 ★ 최신</div><div class="cc-msg"><strong>$465M (+8%)</strong>. <strong>Hyperscaler 2 MSA 체결</strong>. backlog <strong>$5.6B record</strong>. GM 11.1% 정상화</div><div class="cc-guide">FY26 가이드 $3.4B 재확인 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'26</div><div class="cc-msg">예정: 2026.08.07</div><div class="cc-guide">첫 hyperscaler PO 체결 시점 / H2 ramp 시작</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'26</div><div class="cc-msg">예정: 2026.11</div><div class="cc-guide">FY26 매출 $3.2~3.6B 달성 + FY27 가이드</div></div></td>
+    </tr>
+  </tbody>
+</table>
+<p class="note">* FY25 Q1·Q2 가이드 두 차례 하향(Arizona 지연, ASP 하락) — 시장 신뢰 일시 손상 → 주가 $3.93 사상 저점. FY25 Q3부터 회복 모드 진입, Q4 record 수주로 반전. FY26는 가이드 일관 유지 — 신뢰 회복 단계. Q2'26 매출 컨센($628M) 미스했음에도 <strong>주가 +40% 급등</strong>한 이유는 MSA·backlog·GM 정상화 3가지가 매출 수치를 압도했기 때문.</p>
+</div>
+
+<!-- 5-3. Q2'26 심층 -->
+<span class="section-anchor" id="s10"></span>
+<div class="section">
+<h2>5-3. Q2'26 컨콜 심층 정리 (2026.05.07)</h2>
+<div class="prose">
+  <p><strong>발언자</strong>: Julian Nebreda (President &amp; CEO) · Ahmed Pasha (CFO) · Christopher Dendrinos (VP IR)</p>
+  <p><strong>실적</strong>: 매출 <strong>$464.9M</strong> (+7.7% YoY, 컨센 $628M 대비 -26% miss / Non-GAAP EPS <strong>-$0.16</strong> (컨센 -$0.18 대비 비트) / Adj. GM <strong>11.1%</strong> (+70bps YoY) / Adj. EBITDA <strong>-$9.4M</strong> (전년 -$30.4M 대비 +$21M 개선) / 총 유동성 $900M / 총 현금 $412.9M / 인벤토리 +$220M 사전 투자</p>
+  <p><strong>매출 미스 원인</strong>: $80M이 Q3로 이연 — (1) 베트남 통관 이슈 (~$40M) (2) 스페인 선적 장비 부족 (~$40M). 양 이슈 모두 해결 완료, 추가 지연 없음 명시. 중동 충돌(호르무즈) 노출 없음.</p>
+  <p><strong>시장 반응</strong>: 발표 후 시간외 +21.7%, 정규 거래 <strong>+39.9% 단일일일 급등</strong>($13.56 → $18.97). 6일 연속 상승 누적 +60%, 시총 +$946M 증가. UBS Sell 등급 유지하나 PT 일제 상향: Goldman $20→$22, BMO Hold 유지.</p>
+</div>
+<h3 style="margin-top:1.2rem">컨콜 핵심 메시지 5가지</h3>
+<div class="cc-sticker-box">
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">1</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">Hyperscaler 2개사와 <span class="hl-pos">MSA 체결</span> — 데이터센터 사업 본격 진입</div>
+      <div class="cc-sticker-desc">2개 메이저 hyperscaler와 MSA(Master Supply Agreement) 체결. Nebreda: <em>"very limited number of players"</em> 중 Fluence 선정 — 다단계 기술·상업 검증. <span class="hl-pos">Q3 내 첫 PO 체결 가시</span>. 데이터센터 파이프라인 <span class="hl-pos">12GWh (Q1 9GWh → +33%)</span>.</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">2</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">Backlog <span class="hl-pos">$5.6B 사상 최대</span> — FY26 가이드 165% 코버리지</div>
+      <div class="cc-sticker-desc">YTD 수주 <span class="hl-pos">$2.0B (전년 $1.0B 대비 2배)</span>, Q3 시작 후 +$600M 추가. 50%가 신규 고객. Nebreda: <em>"FY26 수주 FY25를 크게 초과(significantly exceed)"</em>. Backlog/매출 비율 244% — 매출 가시성 압도적.</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">3</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">Adj. GM <span class="hl-pos">11.1% 가이드 범위(11~13%) 복귀</span></div>
+      <div class="cc-sticker-desc">Q1'26 5.6% 폭락 → Q2 11.1% 정상화 (+550bps QoQ). CFO Pasha: <em>"운영 규율과 비용 최적화"</em>. H2 volume leverage + Smartstack mix로 <span class="hl-pos">상단 13% 도달 가능성</span>. ASP 하락은 지속되나 운영 효율로 상쇄.</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">4</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">Smartstack <span class="hl-pos">첫 상업 가동 + UK Varco 1GW/4GWh</span> 대형 프로젝트</div>
+      <div class="cc-sticker-desc">Smartstack(에너지 밀도 +30%) Q2 첫 상업 가동 완료. 2025.12 발표한 UK Varco 1GW/4GWh — Fluence 사상 최대 단일 프로젝트, Smartstack 적용. <span class="hl-pos">Long-duration storage(4시간+) 수요</span> 본격 진입. Hyperscaler MSA 핵심 채택 제품.</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">5</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">미국 도메스틱 컨텐츠 <span class="hl-pos">자격 유지</span> + 신규 셀 공급사 2027</div>
+      <div class="cc-sticker-desc">Tennessee 시설 소유권 변경 후 신규 supply 계약 체결, IRA 도메스틱 컨텐츠 자격 영구 확보. <span class="hl-pos">2027년 추가 미국 셀 공급사 가동 예정</span>. <span class="hl-neg">단기 인벤토리 $220M 투자(+ Q3 $100M)</span>로 FCF 반기 -$285M — H2 매출 ramp 대비 사전 비축.</div>
+    </div>
+  </div>
+</div>
+
+<h3 style="margin-top:1.2rem">FY2026 가이던스 (재확인)</h3>
+<table>
+  <thead><tr><th>지표</th><th class="num">FY2025 실제</th><th class="num">FY2026 가이드 (재확인)</th><th class="num">컨센서스</th></tr></thead>
+  <tbody>
+    <tr><td>매출</td><td class="num">$2.30B</td><td class="num hl"><strong>$3.2B ~ $3.6B (중간 $3.4B, +48% YoY)</strong></td><td class="num">$3.42B</td></tr>
+    <tr><td>Adj. EBITDA</td><td class="num">~$10M</td><td class="num hl"><strong>$40M ~ $60M (중간 $50M)</strong></td><td class="num">~$50M</td></tr>
+    <tr><td>ARR (FY 말 기준)</td><td class="num">$148M</td><td class="num hl"><strong>$180M (+21%)</strong></td><td class="num">—</td></tr>
+    <tr><td>Adj. GM (FY)</td><td class="num">~13%</td><td class="num hl"><strong>11~13%</strong></td><td class="num">~12%</td></tr>
+    <tr><td>Backlog Coverage</td><td class="num">—</td><td class="num">85% of midpoint covered</td><td class="num">—</td></tr>
+    <tr><td>H2 매출 필요량</td><td class="num">—</td><td class="num">~$2.46B (Q3+Q4)</td><td class="num">—</td></tr>
+  </tbody>
+</table>
+<p class="note">* H2'26 매출 ~$2.46B 필요 — Q3 ~$1.0B, Q4 ~$1.46B 추정 (FY24 Q4 record $1.23B 초과 필요). 인벤토리 사전 투자 $320M(Q2+Q3)이 H2 출하 ramp 대비 사전 준비. FY26 가이드 달성 시 Adj. EBITDA +$50M 흑자 — FY24 +$78M 이후 본격 흑자 정착. 분석가 PT 변동성 큼: UBS Sell PT $13, Goldman Hold PT $22, BMO Hold, Roth $13. 시장은 매출 미스보다 backlog/MSA에 가중치 더 부여.</p>
+
+<h3 style="margin-top:1.5rem">📊 IR 자료 핵심 슬라이드 (원본 캡쳐 — 재가공 없음)</h3>
+<div class="ir-slide">
+  <div class="ir-slide-frame">
+    <div class="ir-slide-num">📊 IR Slide — Q2 FY2026 Earnings Presentation</div>
+    <div class="ir-slide-title">Pipeline 지역별 분포 + OBBBA Domestic Content 우위</div>
+  </div>
+  <div class="ir-slide-img-wrap">
+    <img src="https://csv-storage.forexpros.com/slides/62185e3bdeb53a59be41782839f477c178764e1c63176c963813f1d7cdb9ff4c.png" alt="Fluence Q2 FY2026 — Pipeline by Geography Slide" loading="lazy">
+  </div>
+  <div class="ir-slide-caption">📌 <strong>Q2 FY2026 Slide — Pipeline Expansion + Geographic Concentration</strong>. 총 파이프라인 <strong>$31.5B</strong> (FY2025말 $23.4B → +35% YTD). 미국 비중 <strong>61%</strong>, 호주 18%. OBBBA(Offshore Balancing &amp; Battery Act) 기반 IRA 투자세액공제 2034년까지 보장 + 중국 PFE(Prohibited Foreign Entity) 제한 강화. 미국산 콘텐츠 <strong>2032년 75%</strong>까지 단계적 상승 — Fluence Tennessee 시설 + 2027년 신규 셀 공급사로 도메스틱 컨텐츠 영구 적격. 중국산 배터리 관세 38.4% (2026.07까지) → 28.4%. <a href="https://csv-storage.forexpros.com/slides/4696f07017b89d62954f134b17ccd1002b1755c9cc5fb7cb190d39fc7d5aafa0.pdf" target="_blank" style="color:#378ADD;text-decoration:underline">Q2 FY2026 슬라이드 PDF 전체 다운로드</a> · 출처: Fluence Energy 공식 Q2 FY2026 Earnings Presentation</div>
+</div>
+
+<div class="ir-slide">
+  <div class="ir-slide-frame">
+    <div class="ir-slide-num">📊 IR Slide — Q2 FY2026 Earnings Presentation</div>
+    <div class="ir-slide-title">Order Momentum — YTD 수주 $2.0B 전년比 2배</div>
+  </div>
+  <div class="ir-slide-img-wrap">
+    <img src="https://csv-storage.forexpros.com/slides/42a9fbeb65259b5c9a5cff40b3ee823d0ea4c104cba2a7967c0024d27b0a73d3.png" alt="Fluence Q2 FY2026 — Order Momentum Slide" loading="lazy">
+  </div>
+  <div class="ir-slide-caption">📌 <strong>Q2 FY2026 Slide — Order Intake Acceleration</strong>. YTD 수주 <strong>~$2.0B</strong> (전년 동기 $1.0B의 2배), Q3 시작 후 추가 <strong>$600M+</strong> 체결 — FY25 전체 수주의 70%를 5개월 만에 확보. <strong>50%가 신규 고객</strong> — 영업 채널 확장 성과. 결과: <strong>backlog $5.6B 사상 최대</strong>, FY26 가이드 코버리지 165%. 출처: Fluence Energy 공식 Q2 FY2026 Earnings Presentation</div>
+</div>
+</div>
+
+<!-- 5-4. 시나리오 -->
+<span class="section-anchor" id="s11"></span>
+<div class="section">
+<h2>5-4. 강세 / 약세 시나리오</h2>
+<div class="scenario-stack">
+  <div class="scenario-box s-bull">
+    <div class="scenario-title">🟢 강세 시나리오</div>
+    <div class="s-item"><div class="s-case">Hyperscaler 첫 PO 체결 + 데이터센터 매출 본격화</div><div class="s-sub">Q3'26 첫 PO → FY27 매출 인식 시작. 데이터센터 파이프라인 12GWh → 추가 hyperscaler 2~3개 확장 시 $1B+ 신규 매출 채널. Tesla Megapack 대비 차별화 확보</div></div>
+    <div class="s-item"><div class="s-case">FY26 가이드 상단 $3.6B 달성</div><div class="s-sub">Backlog 코버리지 85% + Q3~Q4 추가 수주로 매출 상단 도달. Adj. EBITDA $60M 달성 시 PE multiple 정상화 가능. Forward EV/Sales 1.0배 → 1.5배 재평가</div></div>
+    <div class="s-item"><div class="s-case">Smartstack 점유율 확장 + Long-duration BESS 리더십</div><div class="s-sub">에너지 밀도 +30% 차별화 효과. UK Varco 1GW/4GWh 성공 시 4시간+ 시장 선점. 데이터센터 power quality 솔루션 1차 공급사로 자리매김</div></div>
+    <div class="s-item"><div class="s-case">미국 도메스틱 컨텐츠 자격 영구 락인</div><div class="s-sub">Tennessee + 2027 신규 셀 공급사 가동. IRA 보너스 효과 지속. 미국 utility 시장에서 중국 셀 기반 경쟁사 대비 영구 우위 — 미국 매출 비중 60%+ 안정</div></div>
+    <div class="s-item"><div class="s-case">ARR $180M 달성 + SW 사업 비중 확대</div><div class="s-sub">Mosaic·Nispera 글로벌 확장. 누적 자산 관리 15GW → 25GW+ 가능. SW GM 가장 높음 → 마진 mix 개선. SaaS valuation 적용 시 multiple 재평가 트리거</div></div>
+    <div class="s-item"><div class="s-case">FY27 매출 $4.5B+ &amp; EBITDA $200M+ 진입</div><div class="s-sub">FY26 backlog $5.6B + FY26 신규 수주 $4B+ → FY27 매출 가시성. Adj. EBITDA 마진 4~5% 정착 시 시장 EV/EBITDA 30~40배 적용 → 시총 $7~10B 가능</div></div>
+  </div>
+  <div class="scenario-box s-bear">
+    <div class="scenario-title">🔴 약세 시나리오</div>
+    <div class="s-item"><div class="s-case">매출 lumpiness + H2 ramp 실패</div><div class="s-sub">H2'26 매출 $2.46B 필요 — Q4'26 $1.46B는 FY24 record $1.23B 초과해야. 추가 통관/물류 이슈 발생 시 FY26 가이드 미달 → 신뢰 재손상 → 주가 $10대 회귀</div></div>
+    <div class="s-item"><div class="s-case">중국 셀 메이커 ASP 추가 하락</div><div class="s-sub">CATL·BYD·Sungrow 글로벌 BESS 가격 인하 지속. ASP -26% YoY → -30% 추가 하락 시 GM 11~13% 가이드 미달. SmartStack 차별화 가격 프리미엄 잠식 위험</div></div>
+    <div class="s-item"><div class="s-case">트럼프 행정부 IRA 폐지/축소</div><div class="s-sub">IRA 도메스틱 컨텐츠 보너스 축소 시 Fluence 미국산 전략 핵심 가치 훼손. 중국 셀 직수입 경쟁사와의 가격 격차 축소 → 미국 점유율 손실</div></div>
+    <div class="s-item"><div class="s-case">Hyperscaler MSA 첫 PO 지연</div><div class="s-sub">Q3 PO 미체결 시 데이터센터 thesis 손상. 5~6개월 지연 시 FY27 매출 가시성 훼손. Tesla Megapack·Energy Vault·EOS 등 대안 공급사 등장 시 점유율 손실</div></div>
+    <div class="s-item"><div class="s-case">FCF -$285M 누적 + 추가 자본 조달 필요</div><div class="s-sub">유동성 $900M 한도 내 관리 가능하나 H2 ramp 실패 시 추가 채권/주식 발행 가능성. 주식 희석 또는 차입 비용↑ → EPS 압박. 단기 유동성 우려 재부각</div></div>
+    <div class="s-item"><div class="s-case">경쟁사 데이터센터 BESS 진입 가속</div><div class="s-sub">Tesla Megapack·Sungrow·Nextera Energy Resources 등 hyperscaler 영업 가속. Nvidia 자체 BESS 협력사 발굴 시 Fluence 차별화 약화. Microsoft/Meta가 자체 솔루션 추구 시 Fluence 비중 축소</div></div>
+  </div>
+</div>
+</div>
+
+<!-- 6. Worth Watching -->
+<span class="section-anchor" id="s12"></span>
+<div class="section">
+<h2>6. Worth Watching Events</h2>
+<div class="ww-sticker-box">
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.06</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Energy Storage North America 2026 (ESNA) 컨퍼런스</div>
+      <div class="ww-sticker-point">Smartstack 본격 마케팅 — 데이터센터 솔루션 데모. Tesla·Sungrow 경쟁사 비교 공개 가능</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.07</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q3'26 첫 Hyperscaler PO 체결 (예상)</div>
+      <div class="ww-sticker-point">CEO 명시: Q3 내 1개 hyperscaler PO 가능성. 체결 시 주가 추가 catalyst — $20+ 돌파 가능</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.08.07</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q3 FY2026 실적 발표 (예상)</div>
+      <div class="ww-sticker-point">매출 ~$1.0B 가시성 검증. backlog $6B+ 진입 여부. GM 12%+ 안착 검증. ARR 진척</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026 H2</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">UK Varco 1GW/4GWh 첫 인도 시작</div>
+      <div class="ww-sticker-point">Fluence 사상 최대 단일 프로젝트. Smartstack 첫 대형 deployment — 글로벌 long-duration BESS 레퍼런스</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.10</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">미국 IRA 정책 안정성 확인 (대선 후 1년)</div>
+      <div class="ww-sticker-point">트럼프 2기 1주년 — IRA 변경 가능성 가시화. 도메스틱 컨텐츠 보너스 유지 여부 핵심 변수</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.11</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">FY2026 결산 + FY2027 가이던스</div>
+      <div class="ww-sticker-point">FY26 매출 $3.2~3.6B 달성 여부. FY27 가이드 — 데이터센터 매출 본격 반영 시 $4.5B+ 가능</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027 H1</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Hyperscaler 추가 메가딜 가능성</div>
+      <div class="ww-sticker-point">기존 2개 MSA + 추가 hyperscaler 영입 가시. Microsoft·Google·Meta·Amazon 4사 중 미체결 hyperscaler 전환</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027 H2</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">신규 미국 배터리 셀 공급사 가동</div>
+      <div class="ww-sticker-point">Tennessee 외 신규 셀 공급사 양산. 도메스틱 컨텐츠 영구 락인. Smartstack 양산 캐파 2배 확대 예상</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027~2028</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">데이터센터 BESS 매출 본격 인식</div>
+      <div class="ww-sticker-point">FY27~FY28 hyperscaler 매출 $500M~$1B 본격 반영. Adj. EBITDA 마진 5%+ 진입. 시총 $7B+ 가시성</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2028</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">글로벌 BESS 시장 100GWh+ 도달</div>
+      <div class="ww-sticker-point">Wood Mackenzie 추정 2028 글로벌 BESS 시장 100GWh 돌파. Fluence Tier 1 점유율 10~15% 유지 시 $5B+ 매출 채널</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 7. 데이터 출처 -->
+<span class="section-anchor" id="s13"></span>
+<div class="section">
+<h2>7. 데이터 출처</h2>
+<div class="source-box">
+  <ul style="padding-left:1.2rem">
+    <li>Fluence Energy SEC 8-K (분기·연간 실적 보도자료), 10-Q/10-K FY2022~FY2026</li>
+    <li>Q2 FY2026 Earnings Press Release (2026.05.06), Q2'26 Earnings Conference Call (2026.05.07)</li>
+    <li>Q1'26, Q4'25, Q3'25 Earnings Conference Call Transcripts (Motley Fool, Yahoo Finance, AOL, Investing.com)</li>
+    <li>FY2025 Annual Earnings Release (2025.11.24), FY2024 Annual Earnings (2024.11.25)</li>
+    <li>2025.10.29 Smartstack 출시 발표 + 2025.12 UK Varco 1GW/4GWh 발표</li>
+    <li>2018.01 Fluence Joint Venture 설립 (Siemens·AES 50/50)</li>
+    <li>2021.10.28 NASDAQ IPO ($28 IPO, $867.9M 조달, 시총 $4.7B)</li>
+    <li>주가·시총·EPS 데이터: TradingView, Yahoo Finance, Robinhood, Investing.com, Macrotrends, Stocktitan (2026.05.08 기준)</li>
+    <li>분석 기사: CNBC, Bloomberg, Yahoo Finance, Investing.com, Tradingkey, Stocktitan, ChartMill, FinancialContent</li>
+    <li>분석가 PT: Goldman Sachs $22, BMO Hold, UBS Sell, Roth $13, Citi $15, Barclays $16</li>
+    <li>환율: 2026.05.08 USD/KRW 1,448원 (Trading Economics, Yahoo Finance)</li>
+    <li>분석일: 2026년 5월 9일</li>
+  </ul>
+  <p style="margin-top:8px;color:#bbb">⚠️ Fluence는 9월 결산 회계연도(Sep-end Fiscal Year) — FY2026 = 2025.10~2026.09. Adj. EBITDA·Adj. GM은 SBC·구조조정 비용·M&amp;A 비용 제외. 분기별 매출 lumpiness 큰 산업 특성 — BESS 프로젝트 단위 인도. Backlog는 RPO + MSA 추정치 합산. ASP -26% YoY는 Q1'25 시점 기준, 이후 안정화 중. Hyperscaler MSA 2건은 비밀유지로 회사명 미공개.</p>
+</div>
+</div>
+
+<!-- 7-1. Reference -->
+<span class="section-anchor" id="s14"></span>
+<div class="section">
+<h2>7-1. Reference</h2>
+<div class="ref-list">
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://ir.fluenceenergy.com/" target="_blank">Fluence Energy IR — Investor Relations</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://ir.fluenceenergy.com/events-and-presentations/presentations" target="_blank">Fluence Q2 FY2026 Earnings Presentation 페이지</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://csv-storage.forexpros.com/slides/4696f07017b89d62954f134b17ccd1002b1755c9cc5fb7cb190d39fc7d5aafa0.pdf" target="_blank">Fluence Q2 FY2026 Earnings Presentation PDF (직접 다운로드, 3.21MB)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://ir.fluenceenergy.com/news-releases/news-release-details/fluence-energy-inc-reports-second-quarter-2026-results-reaffirms" target="_blank">Q2 FY2026 실적 보도자료 (2026.05.06)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.sec.gov/Archives/edgar/data/0001868941/000186894126000014/flncq2fy26earningspressrel.htm" target="_blank">SEC 8-K Q2 FY2026 (2026.05.06)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.globenewswire.com/news-release/2025/11/24/3193926/0/en/Fluence-Energy-Inc-Reports-2025-Financial-Results-and-Initiates-2026-Guidance.html" target="_blank">FY2025 결산 + FY2026 가이드 발표 (2025.11.24)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://fluenceenergy.com/" target="_blank">Fluence Energy 공식 홈페이지</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://fluenceenergy.com/about/our-story/" target="_blank">Fluence Energy — Our Story (회사 연혁)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://fluenceenergy.com/energy-storage-technology/" target="_blank">Fluence 제품 라인업 (Smartstack, Gridstack, Ultrastack, Sunstack)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.fool.com/earnings/call-transcripts/2026/05/07/fluence-flnc-q2-2026-earnings-transcript/" target="_blank">Motley Fool — Q2 FY2026 컨콜 transcript</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://m.investing.com/news/transcripts/earnings-call-transcript-fluence-energy-q2-2026-sees-stock-soar-despite-revenue-miss-93CH-4668938" target="_blank">Investing.com — Q2'26 transcript &amp; 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://stockstory.org/us/stocks/nasdaq/flnc/news/earnings-call/flnc-q2-deep-dive-data-center-momentum-and-backlog-growth-offset-revenue-miss" target="_blank">StockStory — FLNC Q2 Deep Dive 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.marketbeat.com/instant-alerts/fluence-energy-q2-earnings-call-highlights-2026-05-07/" target="_blank">MarketBeat — Q2 어닝 콜 하이라이트</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://finance.yahoo.com/quote/FLNC/" target="_blank">Yahoo Finance — FLNC 주가 / 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.chartmill.com/news/FLNC/Chartmill-47441-Fluence-Energy-NASDAQFLNC-Surges-20-on-Record-Backlog-and-Hyperscaler-Wins-Despite-Revenue-Miss" target="_blank">ChartMill — FLNC +20% 급등 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.trefis.com/articles/598743/fluence-energy-stock-surges-60-with-a-6-day-winning-spree/2026-05-08" target="_blank">Trefis — FLNC 6일 연속 +60% 급등 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.stocktitan.net/sec-filings/FLNC/8-k-fluence-energy-inc-reports-material-event-af752caf750b.html" target="_blank">Stocktitan — Q2'26 SEC 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.utilitydive.com/news/aes-siemens-joint-venture-fluence-joins-raft-of-storage-firms-moving-to-go/607332/" target="_blank">Utility Dive — Fluence IPO 배경 (2021)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://markets.financialcontent.com/stocks/article/stockstory-2026-5-7-flnc-q2-deep-dive-data-center-momentum-and-backlog-growth-offset-revenue-miss" target="_blank">FinancialContent — FLNC 데이터센터 모멘텀 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://en.wikipedia.org/wiki/Fluence_Energy" target="_blank">Wikipedia — Fluence Energy</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://stockanalysis.com/stocks/flnc/" target="_blank">Stock Analysis — FLNC 종합 분석</a></div>
+</div>
+<p class="note">* 공식 자료(Fluence IR·SEC) 8개, 증권사·전문 분석 4개, 뉴스 6개, 위키·종합 2개 — 총 20개 레퍼런스. 한국어 블로그 자료는 좋아요 10개 이상 충족 게시물 부재로 본 리포트에서는 미포함 (네이버 블로그 검색 결과 FLNC 분석은 일반 종목 코멘터리 위주, 본격 분석 글 부족).</p>
+</div>
+
+<div class="footer">Fluence Energy (FLNC) 기업분석 · 2026.05.09 · 개인 사용 목적</div>
+</div>
+
+<script>
+// 18분기 라벨 — Fluence 9월 결산 기준 — Q1'22(2021.12) ~ Q2'26(2026.03)
+const L18=["Q1'22","Q2'22","Q3'22","Q4'22","Q1'23","Q2'23","Q3'23","Q4'23","Q1'24","Q2'24","Q3'24","Q4'24","Q1'25","Q2'25","Q3'25","Q4'25","Q1'26","Q2'26"];
+
+// 매출 카테고리 ($M) — 단일 운영 세그먼트지만 카테고리별 추정
+// ESS (Energy Storage Solutions, 시스템 판매, ~93%)
+const ess     = [325, 282, 256, 358,  301, 432, 568, 868,  340, 588, 455, 1170,  170, 405, 605, 980,  450, 433];
+// Services (~5%)
+const services = [10, 12, 14, 15,  16, 19, 22, 28,  18, 27, 22, 50,  12, 22, 30, 50,  20, 25];
+// Digital (Mosaic + Nispera SaaS, ~2%)
+const digital  = [3, 4, 5, 6,  6, 8, 10, 12,  6, 8, 6, 12,  5, 5, 5, 10,  5, 7];
+
+const totalRev=L18.map((_,i)=>ess[i]+services[i]+digital[i]);
+
+// Adj. GM% (2022~ 추정 + 실제)
+const gm=[
+  -8, -5, -2, 1,        // FY22 - 적자~흑자전환
+  3, 7, 10, 8,          // FY23 - 회복
+  11, 13, 14, 13,       // FY24 - 정상화
+  13, 10, 12, 14,       // FY25 - Q2 폭락 후 회복
+  6, 11.1               // FY26 - Q1 폭락 → Q2 정상화
+];
+
+const gc='rgba(0,0,0,0.05)',tc='#999';
+const xT={color:tc,font:{size:9},maxRotation:45,autoSkip:true,maxTicksLimit:18};
+const yT={color:tc,font:{size:11}};
+const $cb={callbacks:{label:ctx=>' $'+Math.round(ctx.parsed.y)+'M'}};
+
+// 매출 카테고리 차트
+const segBase=[
+  {label:'Energy Storage Solutions',data:ess,backgroundColor:'#1D9E75',stack:'s'},
+  {label:'Services',data:services,backgroundColor:'#378ADD',stack:'s'},
+  {label:'Digital',data:digital,backgroundColor:'#BA7517',stack:'s'},
+];
+const segChart=new Chart(document.getElementById('cSeg'),{
+  type:'bar',
+  data:{labels:L18,datasets:segBase.map(d=>({...d}))},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:$cb},scales:{x:{grid:{color:gc},ticks:xT,stacked:true},y:{grid:{color:gc},ticks:{...yT,callback:v=>'$'+v+'M'},stacked:true}}}
+});
+window.toggleSeg=function(idx,el){const m=segChart.getDatasetMeta(idx);m.hidden=!m.hidden;el.classList.toggle('hidden',m.hidden);segChart.update();};
+
+// 매출 + GM% 이중축
+new Chart(document.getElementById('cRev'),{
+  type:'bar',
+  data:{
+    labels:L18,
+    datasets:[
+      {type:'bar',label:'매출',data:totalRev,backgroundColor:'rgba(55,138,221,0.25)',borderColor:'#378ADD',borderWidth:1,yAxisID:'y'},
+      {type:'line',label:'Adj. GM%',data:gm,borderColor:'#1D9E75',pointRadius:3,pointBackgroundColor:'#1D9E75',fill:false,tension:0.3,yAxisID:'y2',borderWidth:2}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:ctx=>ctx.datasetIndex===0?' $'+Math.round(ctx.parsed.y)+'M':' GM: '+ctx.parsed.y.toFixed(1)+'%'}}},
+    scales:{
+      x:{grid:{color:gc},ticks:xT},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>'$'+v+'M'},position:'left'},
+      y2:{grid:{display:false},ticks:{color:'#1D9E75',font:{size:10},callback:v=>v+'%'},position:'right',min:-15,max:20}
+    }
+  }
+});
+</script>
+</body>
+</html>
