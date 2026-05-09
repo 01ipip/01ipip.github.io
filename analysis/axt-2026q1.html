@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AXT, Inc. (AXTI) 기업분석 — 2026 Q1</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f3ef;color:#1a1a1a;padding:2rem;font-size:14px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto}
+.header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #e0e0dc;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.header-title{font-size:22px;font-weight:700}
+.header-meta{font-size:12px;color:#888;margin-top:4px}
+.toc{margin-bottom:2rem;padding:0}
+.toc-title{font-size:12px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+.toc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:1.1rem 1.3rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.toc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(8,auto);grid-auto-flow:column;gap:6px 28px}
+@media(max-width:650px){.toc-grid{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}}
+.toc-link{display:flex;align-items:center;gap:10px;padding:5px 0;text-decoration:none;color:#444;font-size:13px;border-bottom:0.5px dashed transparent;transition:all .15s ease}
+.toc-link:hover{color:#378ADD;border-bottom-color:#cfe1f5}
+.toc-link .toc-num{color:#aaa;font-weight:700;font-size:12px;min-width:30px;font-variant-numeric:tabular-nums;flex-shrink:0}
+.toc-link:hover .toc-num{color:#378ADD}
+.toc-link .toc-text{flex:1}
+.toc-link.sub{padding-left:18px;font-size:12.5px;color:#666}
+.toc-link.sub .toc-num{font-size:11px;color:#bbb}
+.section{margin-bottom:3rem}
+.section-anchor{display:block;position:relative;top:-70px;visibility:hidden}
+h2{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:6px;border-bottom:1.5px solid #e0e0dc}
+h3{font-size:14px;font-weight:600;margin:1.2rem 0 .6rem;color:#333}
+.chart-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:20px;position:relative;width:100%}
+.note{font-size:11px;color:#999;margin-top:8px;line-height:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;font-size:12px;color:#666}
+.legend-item{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:3px 8px;border-radius:6px;transition:opacity .15s}
+.legend-item:hover{background:#e8e8e3}
+.legend-item.hidden{opacity:.3;text-decoration:line-through}
+.legend-static{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0dc;margin-bottom:.5rem}
+th{background:#ebebe6;font-weight:600;padding:7px 8px;text-align:left;border-bottom:1px solid #e0e0dc;white-space:nowrap;font-size:11.5px}
+th.center{text-align:center}
+td{padding:6px 8px;border-bottom:0.5px solid #f0f0ee;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafaf6}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.center{text-align:center}
+.hl{background:#fffbe6 !important}
+.dn{color:#D85A30}
+.up2{color:#1D9E75}
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
+@media(max-width:650px){.overview-grid{grid-template-columns:1fr}}
+.overview-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.overview-box h4{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.kv{display:flex;justify-content:space-between;align-items:flex-start;padding:4px 0;border-bottom:0.5px solid #f5f4f0;font-size:12.5px;gap:10px}
+.kv:last-child{border-bottom:none}
+.kv-key{color:#666;min-width:90px;flex-shrink:0}
+.kv-val{font-weight:600;text-align:right;flex:1}
+.seg-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:1rem}
+.seg-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem;border-left:3px solid #333}
+.seg-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:8px}
+.seg-card-name{font-size:13px;font-weight:700;color:#222}
+.seg-card-share{font-size:11px;color:#888;font-weight:600}
+.seg-card-desc{font-size:12px;color:#444;line-height:1.55;margin-bottom:6px}
+.seg-card-margin{font-size:11px;font-weight:600;color:#555}
+.badge{display:inline-block;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:600}
+.badge-up{background:#e6f7f0;color:#1D9E75}
+.badge-dn{background:#fce8e4;color:#D85A30}
+.badge-neu{background:#ebebe6;color:#666}
+.cc-table{width:100%;border-collapse:separate;border-spacing:6px;margin-bottom:1rem}
+.cc-table th{background:transparent;border:none;font-size:11px;color:#888;text-align:center;padding:4px;font-weight:600;white-space:nowrap}
+.cc-table th.year-col{width:50px;text-align:left}
+.cc-cell{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.65rem .75rem;vertical-align:top;height:100%}
+.cc-quarter{font-size:10px;font-weight:700;color:#378ADD;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.cc-msg{font-size:11px;color:#444;margin-bottom:6px;line-height:1.45}
+.cc-guide{font-size:10px;color:#888;border-top:0.5px solid #f0f0ee;padding-top:5px;line-height:1.5}
+.cc-hit{color:#1D9E75;font-weight:600}
+.cc-miss{color:#D85A30;font-weight:600}
+.cc-latest{border:1.5px solid #378ADD !important;box-shadow:0 0 0 2px rgba(55,138,221,0.1)}
+.year-label{font-size:13px;font-weight:700;color:#555;padding-right:8px;vertical-align:middle}
+.scenario-stack{display:flex;flex-direction:column;gap:12px}
+.scenario-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1.1rem 1.3rem}
+.scenario-title{font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid #f0f0ee}
+.s-bull .scenario-title{color:#1D9E75}
+.s-bear .scenario-title{color:#D85A30}
+.s-item{margin-bottom:9px;padding-bottom:9px;border-bottom:0.5px solid #f5f4f0;font-size:12px}
+.s-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-case{font-weight:600;margin-bottom:2px}
+.s-sub{color:#888;font-size:11px}
+.ww-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.ww-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.ww-sticker-item{padding:.7rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:14px;align-items:flex-start}
+.ww-sticker-item:last-child{border-bottom:none}
+.ww-sticker-date{font-size:11px;font-weight:700;color:#378ADD;white-space:nowrap;min-width:90px;flex-shrink:0;padding-top:1px}
+.ww-sticker-content{flex:1}
+.ww-sticker-event{font-size:12.5px;font-weight:700;color:#222;margin-bottom:2px}
+.ww-sticker-point{font-size:11.5px;color:#666;line-height:1.5}
+.source-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.4rem;font-size:12px;color:#888;line-height:2}
+.prose{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;margin-bottom:1rem;font-size:13px;line-height:1.7}
+.prose ul{padding-left:1.3rem}
+.prose li{margin-bottom:.25rem}
+.prose p{margin-bottom:.7rem}
+.prose p:last-child{margin-bottom:0}
+.thesis-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:12px;padding:1.2rem 1.4rem;margin-bottom:12px;border-left:5px solid #333;position:relative}
+.thesis-box-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.thesis-icon{font-size:22px;flex-shrink:0}
+.thesis-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:5px;background:#ebebe6;color:#444}
+.thesis-title{font-size:15px;font-weight:700;color:#222;flex:1;margin-bottom:0}
+.thesis-body{font-size:13px;line-height:1.7;color:#333}
+.thesis-body p{margin-bottom:.6rem}
+.thesis-body p:last-child{margin-bottom:0}
+.thesis-body strong{color:#222;font-weight:700}
+.thesis-body .hl-blue{font-weight:600;color:#222}
+.thesis-body .hl-green{font-weight:700;color:#1D9E75}
+.thesis-body .hl-red{font-weight:700;color:#D85A30}
+.cc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.cc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.cc-sticker-item{padding:.85rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:12px;align-items:flex-start}
+.cc-sticker-item:last-child{border-bottom:none}
+.cc-sticker-rank{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#378ADD;color:#fff;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.cc-sticker-content{flex:1}
+.cc-sticker-title{font-size:13px;font-weight:700;color:#222;margin-bottom:4px}
+.cc-sticker-desc{font-size:12px;color:#444;line-height:1.6}
+.cc-sticker-desc strong{color:#222}
+.hl-pos{color:#1D9E75;font-weight:700}
+.hl-neg{color:#D85A30;font-weight:700}
+.ir-slide{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;overflow:hidden;margin-bottom:14px}
+.ir-slide-frame{background:linear-gradient(135deg,#f8f8f5 0%,#ffffff 100%);padding:.85rem 1.4rem;border-bottom:0.5px solid #e0e0dc}
+.ir-slide-num{font-size:10px;color:#999;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+.ir-slide-title{font-size:14px;font-weight:700;color:#333}
+.ir-slide-img-wrap{padding:1rem 1.4rem;text-align:center;background:#fafaf6}
+.ir-slide-img-wrap img{display:block;max-width:75%;width:100%;height:auto;margin:0 auto;border:0.5px solid #e0e0dc;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+@media(max-width:650px){.ir-slide-img-wrap img{max-width:95%}}
+.ir-slide-caption{font-size:11.5px;color:#555;padding:.85rem 1.4rem 1rem;line-height:1.55;background:#fff;border-top:0.5px solid #f0f0ee}
+.ir-slide-caption strong{color:#222}
+.footer{font-size:11px;color:#aaa;text-align:center;margin-top:2rem;padding-top:1rem;border-top:0.5px solid #e0e0dc}
+.seg-table-wrap{overflow-x:auto}
+.seg-table{min-width:780px}
+.seg-table th.seg-group{text-align:center;background:#e3e3de;border-left:2px solid #d0d0cc}
+.seg-table td.seg-border{border-left:2px solid #e0e0dc}
+.tv-wrap{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:6px;overflow:hidden}
+.tv-wrap iframe{display:block;width:100%;height:420px;border:0;border-radius:6px}
+.ref-list{display:flex;flex-direction:column;gap:6px}
+.ref-item{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.6rem .9rem;display:flex;align-items:center;gap:10px;font-size:12px}
+.ref-tag{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600;flex-shrink:0;min-width:55px;text-align:center}
+.tag-official{background:#e0effc;color:#1565c0}
+.tag-broker{background:#fff4e0;color:#ed8936}
+.tag-news{background:#f0f0ed;color:#555}
+.tag-wiki{background:#e6f7f0;color:#1D9E75}
+.ref-item a{color:#378ADD;text-decoration:none;flex:1;word-break:break-all}
+.ref-item a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div>
+    <div class="header-title">🔬 AXT, Inc. (AXTI) 기업분석</div>
+    <div class="header-meta">회계연도: Calendar Year &nbsp;|&nbsp; 분석기간: Q1'18~Q1'26 (33분기) &nbsp;|&nbsp; 최근 컨콜: 2026.04.30</div>
+  </div>
+  <div style="font-size:12px;color:#aaa">분석일: 2026.05.08</div>
+</div>
+
+<!-- 목차 -->
+<div class="toc">
+  <div class="toc-title">목차</div>
+  <div class="toc-sticker-box">
+    <div class="toc-grid">
+      <a class="toc-link" href="#s1"><span class="toc-num">01.</span><span class="toc-text">회사 개요</span></a>
+      <a class="toc-link" href="#s2"><span class="toc-num">02.</span><span class="toc-text">주가 흐름 — TradingView 일봉</span></a>
+      <a class="toc-link" href="#s3"><span class="toc-num">03.</span><span class="toc-text">제품별 매출 추이</span></a>
+      <a class="toc-link sub" href="#s3b"><span class="toc-num">3-1.</span><span class="toc-text">제품 구조 및 응용처</span></a>
+      <a class="toc-link sub" href="#s4"><span class="toc-num">3-2.</span><span class="toc-text">매출 &amp; Non-GAAP GM 추이</span></a>
+      <a class="toc-link sub" href="#s5"><span class="toc-num">3-3.</span><span class="toc-text">제품별 실적 테이블</span></a>
+      <a class="toc-link" href="#s6"><span class="toc-num">04.</span><span class="toc-text">재무제표 개요</span></a>
+      <a class="toc-link" href="#s7"><span class="toc-num">05.</span><span class="toc-text">핵심 투자아이디어</span></a>
+      <a class="toc-link sub" href="#s8"><span class="toc-num">5-1.</span><span class="toc-text">핵심 변동 요인</span></a>
+      <a class="toc-link sub" href="#s9"><span class="toc-num">5-2.</span><span class="toc-text">컨퍼런스콜 트래킹</span></a>
+      <a class="toc-link sub" href="#s10"><span class="toc-num">5-3.</span><span class="toc-text">Q1'26 컨콜 심층 정리</span></a>
+      <a class="toc-link sub" href="#s11"><span class="toc-num">5-4.</span><span class="toc-text">강세 / 약세 시나리오</span></a>
+      <a class="toc-link" href="#s12"><span class="toc-num">06.</span><span class="toc-text">Worth Watching Events</span></a>
+      <a class="toc-link" href="#s13"><span class="toc-num">07.</span><span class="toc-text">데이터 출처</span></a>
+      <a class="toc-link sub" href="#s14"><span class="toc-num">7-1.</span><span class="toc-text">Reference</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- 1. 회사 개요 -->
+<span class="section-anchor" id="s1"></span>
+<div class="section">
+<h2>1. 회사 개요</h2>
+<div class="overview-grid">
+  <div class="overview-box">
+    <h4>기본 정보</h4>
+    <div class="kv"><span class="kv-key">설립</span><span class="kv-val">1986년 (Morris Young)</span></div>
+    <div class="kv"><span class="kv-key">상장</span><span class="kv-val">NASDAQ Global Select</span></div>
+    <div class="kv"><span class="kv-key">본사</span><span class="kv-val">Fremont, CA, USA</span></div>
+    <div class="kv"><span class="kv-key">CEO</span><span class="kv-val">Morris Young (Co-Founder)</span></div>
+    <div class="kv"><span class="kv-key">CFO</span><span class="kv-val">Gary Fischer</span></div>
+    <div class="kv"><span class="kv-key">임직원</span><span class="kv-val">~1,541명 (대부분 中 Tongmei)</span></div>
+    <div class="kv"><span class="kv-key">티커</span><span class="kv-val">NASDAQ: AXTI</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>시장 정보 (2026.05.07 기준)</h4>
+    <div class="kv"><span class="kv-key">현재 주가</span><span class="kv-val">$104.99</span></div>
+    <div class="kv"><span class="kv-key">시가총액 USD</span><span class="kv-val" style="color:#378ADD">~$6.0B</span></div>
+    <div class="kv"><span class="kv-key">시가총액 KRW</span><span class="kv-val" style="color:#378ADD">~8.7조원 (환율 1,454원)</span></div>
+    <div class="kv"><span class="kv-key">발행주식</span><span class="kv-val">~57.4M주 (증자 후)</span></div>
+    <div class="kv"><span class="kv-key">52주 고가</span><span class="kv-val">$110.80 (2026.05.06)</span></div>
+    <div class="kv"><span class="kv-key">52주 저가</span><span class="kv-val">$1.23 (2025.05)</span></div>
+    <div class="kv"><span class="kv-key">P/S (TTM)</span><span class="kv-val">~60x · EV/Sales ~58x</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>사업 운영</h4>
+    <div class="kv"><span class="kv-key">제조 모델</span><span class="kv-val">자체 생산 (中 Beijing 3개 공장)</span></div>
+    <div class="kv"><span class="kv-key">핵심 기술</span><span class="kv-val">VGF (Vertical Gradient Freeze)</span></div>
+    <div class="kv"><span class="kv-key">중국 자회사</span><span class="kv-val">Tongmei (北京通美), STAR 상장 추진중</span></div>
+    <div class="kv"><span class="kv-key">JV / 자회사</span><span class="kv-val">JinMei(고순도 In/Ga), BoYu(pBN crucible) 등 10개</span></div>
+    <div class="kv"><span class="kv-key">제품 직경</span><span class="kv-val">InP 2/3/4인치 → 6인치 R&amp;D</span></div>
+    <div class="kv"><span class="kv-key">증설 계획</span><span class="kv-val">'26말 InP 2배, '27말 추가 2배</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>투자 포인트 요약</h4>
+    <div class="kv"><span class="kv-key">Q1'26 매출</span><span class="kv-val" style="color:#1D9E75">$26.9M (+39% YoY)</span></div>
+    <div class="kv"><span class="kv-key">Non-GAAP GM</span><span class="kv-val" style="color:#1D9E75">29.9% (vs -6.1% YoY)</span></div>
+    <div class="kv"><span class="kv-key">Non-GAAP EPS</span><span class="kv-val" style="color:#1D9E75">-$0.01 (컨센 -$0.05 +80%)</span></div>
+    <div class="kv"><span class="kv-key">Q2'26 가이던스</span><span class="kv-val" style="color:#1D9E75">~$34M, GAAP EPS $0.05~$0.07</span></div>
+    <div class="kv"><span class="kv-key">InP 매출</span><span class="kv-val" style="color:#1D9E75">$13.6M (전체 50%+ 첫 돌파)</span></div>
+    <div class="kv"><span class="kv-key">InP Backlog</span><span class="kv-val" style="color:#1D9E75">$100M+ record (Q4'25 $60M→)</span></div>
+  </div>
+</div>
+<p class="note">⚠️ <strong>InP</strong>=Indium Phosphide(인듐인화합물), <strong>GaAs</strong>=Gallium Arsenide(갈륨비소), <strong>Ge</strong>=Germanium. <strong>VGF</strong>=Vertical Gradient Freeze(수직경사동결법) — AXT 자체 결정성장 기술. <strong>EML</strong>=Electro-absorption Modulated Laser, <strong>CW Laser</strong>=Continuous Wave Laser, <strong>CPO</strong>=Co-Packaged Optics(광 집적 패키지). <strong>Tongmei</strong>=北京通美晶體技術, AXT의 중국 핵심 자회사이며 2022년부터 Shanghai STAR Market 상장 추진중. <strong>Non-GAAP</strong>은 SBC(주식보상비용) 제외.</p>
+</div>
+
+<!-- 2. 주가 -->
+<span class="section-anchor" id="s2"></span>
+<div class="section">
+<h2>2. 주가 흐름 — TradingView 일봉</h2>
+<div class="tv-wrap">
+<iframe src="https://www.tradingview.com/widgetembed/?symbol=NASDAQ%3AAXTI&interval=D&style=1&theme=light&hidesidetoolbar=1&hidetoptoolbar=0&allow_symbol_change=0" allowfullscreen></iframe>
+</div>
+<p class="note">* 2025.05 $1.23 저점 → 2026.05.06 $110.80 신고가. 1년간 <strong>+8,900%</strong> 상승, 페니스톡 → 미드캡($6B) 변신. 2025.10 中 InP 수출허가 첫 발급 → Q3'25 InP 매출 250% sequentially 폭증 → 2026.04 $632.5M 대규모 증자 + Q1 어닝 EPS 80% 비트로 본격 랠리.</p>
+
+<h3 style="margin-top:1.2rem">주요 이벤트 연표</h3>
+<table>
+  <thead><tr><th>시기</th><th class="num">주가(근사)</th><th>이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>1986</td><td class="num">—</td><td>Morris Young 박사 캘리포니아 Fremont에서 AXT 공동창업 (Bell Labs/Lawrence Livermore 출신)</td></tr>
+    <tr><td>1998</td><td class="num">—</td><td>중국 Beijing Tongmei Xtal Technology 자회사 설립 — 본격 중국 제조 거점 구축</td></tr>
+    <tr><td>2009.07</td><td class="num">$2</td><td>Morris Young CEO 재취임 (2007 은퇴 후)</td></tr>
+    <tr><td>2018</td><td class="num">$8</td><td>매출 $102M 정점 — 5G 모바일/LED 사이클</td></tr>
+    <tr><td>2022.01</td><td class="num">$8</td><td>Tongmei 자회사 Shanghai STAR Market IPO 신청 접수</td></tr>
+    <tr><td>2023.08</td><td class="num">$2.5</td><td>중국, GaAs <span class="dn">수출규제 도입</span> — 매 주문마다 수출허가 필요</td></tr>
+    <tr><td>2025.02.04</td><td class="num">$2</td><td>중국, InP까지 <span class="dn">수출규제 확대</span> — 1H'25 거의 0건 허가 발급</td></tr>
+    <tr><td>2025.05.07</td><td class="num">$1.23</td><td><span class="dn">52주 저점 — 페니스톡 진입, 시총 ~$50M 수준</span></td></tr>
+    <tr><td>2025.06</td><td class="num">$2</td><td>중국 첫 InP 수출허가 <span class="up2">발급 시작</span> (6월 말)</td></tr>
+    <tr><td>2025.10.30</td><td class="num">$10</td><td>Q3'25 매출 $28M 가이던스($19~21M) <span class="up2">대폭 초과</span>, InP +250% sequentially</td></tr>
+    <tr><td>2025.12.30</td><td class="num">$13</td><td>1차 증자 $100M ($12.25/주, 8.16M주)</td></tr>
+    <tr><td>2026.01.14</td><td class="num">$22</td><td>Needham Growth Conf — InP scale-out 2026/2027 각 2배 가이드</td></tr>
+    <tr><td>2026.02.19</td><td class="num">$28</td><td>Q4'25 매출 $23M (가이던스 $22.5~$23.5 충족), 2026 InP capa 2배 발표</td></tr>
+    <tr><td>2026.04.20</td><td class="num">$58</td><td>2차 대규모 증자 발표 — 8.56M주 $64.25/주 = $550M (이후 $632.5M로 확대)</td></tr>
+    <tr><td>2026.04.30</td><td class="num">$78</td><td>Q1'26 어닝 EPS -$0.01 (컨센 -$0.05 <span class="up2">+80% 비트</span>), Q2 EPS $0.06~$0.08 가이드</td></tr>
+    <tr class="hl"><td><strong>2026.05.06</strong></td><td class="num"><strong>$110.80</strong></td><td><strong>52주 신고가, 시총 $6.0B 도달. T-REX 2X Long AXTU ETF 출시</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 3. 제품별 매출 33분기 -->
+<span class="section-anchor" id="s3"></span>
+<div class="section">
+<h2>3. 제품별 매출 추이 — 33분기 ($M)</h2>
+<div class="legend" id="segLegend">
+  <span class="legend-item" onclick="toggleSeg(0,this)"><span class="dot" style="background:#1D9E75"></span>Indium Phosphide (InP)</span>
+  <span class="legend-item" onclick="toggleSeg(1,this)"><span class="dot" style="background:#378ADD"></span>Gallium Arsenide (GaAs)</span>
+  <span class="legend-item" onclick="toggleSeg(2,this)"><span class="dot" style="background:#D85A30"></span>Germanium (Ge)</span>
+  <span class="legend-item" onclick="toggleSeg(3,this)"><span class="dot" style="background:#BA7517"></span>Raw Material JVs</span>
+  <span style="font-size:11px;color:#bbb;margin-left:4px">← 클릭하여 표시/숨김</span>
+</div>
+<div class="chart-box" style="height:460px"><canvas id="cSeg"></canvas></div>
+<p class="note">* 2018~2022 분기별 제품믹스는 연간 공시 + 컨콜 코멘터리 기반 추정. 2023 Q1~ 분기별 컨콜 명시 수치 사용. <strong>InP 매출이 2025 Q3부터 폭증 → Q1'26 $13.6M (전체의 50%+ 첫 돌파)</strong>. 2025 1H 中 수출규제 직격으로 InP $3.6M까지 급락 → 6월 허가 재개 후 Q3 $13.1M, Q4 $8.0M(허가 부족), Q1'26 $13.6M로 재가속. GaAs는 中 수출규제 영향 일부 잔존하나 안정적. Ge는 위성태양전지용 소량 비중. Raw Material JV(JinMei·BoYu)는 자회사 매출로 연결 — 분기 $6~9M 수준.</p>
+</div>
+
+<!-- 3-1. 제품 구조 -->
+<span class="section-anchor" id="s3b"></span>
+<div class="section">
+<h2>3-1. 제품 구조 및 응용처</h2>
+<div class="seg-cards">
+  <div class="seg-card">
+    <div class="seg-card-head">
+      <div class="seg-card-name">Indium Phosphide (InP) ★</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">50.6%</span> · Q1'26 $13.6M</div>
+    </div>
+    <div class="seg-card-desc">
+      <strong>AXT의 핵심 성장 엔진</strong>. AI 데이터센터 광 인터커넥트의 필수 소재. 100G→1.6T 광 트랜시버 EML 칩, 실리콘 포토닉스용 CW 레이저 광원, CPO(Co-Packaged Optics) 게인칩의 기본 substrate. 회사 측: <em>"AI 데이터센터 가치사슬에서 가장 첫 단계 소재"</em>. 경쟁사: 일본 Sumitomo Electric, JX Nippon Mining(Japan Energy ~10%), 독일 Freiberger 등. <strong>Top 5 공급사 중 70% 점유율 차지</strong>. AXT는 2/3/4인치 양산, <strong>6인치 R&amp;D 진행</strong>(2026 capital raise 자금 활용). 2026말 capa 2배(분기 $35M run-rate), 2027말 추가 2배(분기 $65~70M run-rate) 목표.
+    </div>
+    <div class="seg-card-margin">YoY <span style="color:#378ADD;font-weight:700">+44%</span> · 데이터센터/AI 비중 ↑ · Tier-1 hyperscaler 다수 채택</div>
+  </div>
+  <div class="seg-card">
+    <div class="seg-card-head">
+      <div class="seg-card-name">Gallium Arsenide (GaAs)</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">20.1%</span> · Q1'26 $5.4M</div>
+    </div>
+    <div class="seg-card-desc">
+      Semi-insulating GaAs(무선 RF), Semi-conducting GaAs(LED·레이저). 1~6인치 다양한 직경. 모바일 PA(Power Amplifier), 위성 솔라셀, 산업용 레이저, 데이터센터 레이저용. 2023.08 中 수출규제 시행 후 회복 중. 2024 인벤토리 조정 종료 → 2025 안정. AXT는 6인치 GaAs 세계 점유율 1위. 가장 오래된 매출 기반이며 안정적 캐시 발전소.
+    </div>
+    <div class="seg-card-margin">YoY 안정 · 中 수출허가 잔존 영향 · LED 사이클 주의</div>
+  </div>
+  <div class="seg-card">
+    <div class="seg-card-head">
+      <div class="seg-card-name">Germanium (Ge)</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">0.7%</span> · Q1'26 $0.2M</div>
+    </div>
+    <div class="seg-card-desc">
+      VGF 기술로 Ge 양산하는 <strong>전 세계 유일 업체</strong>. 주된 용도는 위성용 태양전지 substrate(우주산업), 일부 적외선 광학소자. 매출 절대값 작지만 수익성 양호. 2025 한 해 분기당 $0.2~$1.6M 변동. 핵심 사업은 아니지만 다각화 측면에서 유지.
+    </div>
+    <div class="seg-card-margin">소규모 · 위성·항공우주 비즈니스 · 전 세계 유일 VGF Ge</div>
+  </div>
+  <div class="seg-card">
+    <div class="seg-card-head">
+      <div class="seg-card-name">Raw Material JVs (JinMei·BoYu)</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">28.3%</span> · Q1'26 $7.6M</div>
+    </div>
+    <div class="seg-card-desc">
+      AXT/Tongmei가 부분 소유한 <strong>중국 10개 자회사 중 2개를 연결 결산에 포함</strong>. <strong>JinMei (錦美)</strong>: 고순도 갈륨(Ga 4N/6N/7N) + InP 폴리머 정제, 2026.04 고순도 인듐(In) 정제 본격 가동 — InP 핵심 원료 자체 공급망 완성. <strong>BoYu (博鈺)</strong>: pBN(Pyrolytic Boron Nitride) crucible — 결정성장 도가니, OLED MOCVD/MBE용. AXT 자체 사용 + 외부 판매 양립. CEO 표현: <em>"우리가 가속하면 뒤차들이 같이 따라온다"</em>. 수직 통합으로 마진 방어 + 공급 보장.
+    </div>
+    <div class="seg-card-margin">YoY 회복 · 매출 다각화 · 수직통합 핵심 · 글로벌 희소금속 인식 ↑</div>
+  </div>
+</div>
+
+<table>
+  <thead><tr><th>제품</th><th>주요 응용</th><th>주요 고객 / 시장</th><th>Q1'26 매출 비중</th><th>2025말 동향</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Indium Phosphide</strong></td><td>광 트랜시버 EML, CW 레이저, CPO 게인칩, PON, LiDAR</td><td>美 hyperscaler(Top 1社 &gt;10%), Tier-1 옵틱스 OEM, 中 데이터센터</td><td class="num"><strong>50.6%</strong></td><td class="num up2"><strong>Backlog $100M+</strong></td></tr>
+    <tr><td><strong>Gallium Arsenide</strong></td><td>RF PA, LED, 위성 솔라셀, 산업/데이터센터 레이저</td><td>모바일 부품 OEM, 위성 사업자, LED 메이커</td><td class="num">20.1%</td><td class="num">中 수출허가 잔존</td></tr>
+    <tr><td><strong>Germanium</strong></td><td>위성 솔라셀, 적외선 광학</td><td>우주/항공우주 OEM</td><td class="num">0.7%</td><td class="num">분기 변동성 큼</td></tr>
+    <tr><td><strong>Raw Material JVs</strong></td><td>고순도 Ga/In, pBN crucible, OLED 도가니</td><td>외부 III-V 제조사 + AXT 자가 사용</td><td class="num">28.3%</td><td class="num up2">JinMei 高순도 In 시작</td></tr>
+  </tbody>
+</table>
+<p class="note">* Q1'26 지역별 매출: <strong>아태 78% / 유럽 21% / 북미 1%</strong>. Top 5 고객 32% (10% 이상 단일 고객 0社). Q1 평균 ASP는 <em>"가격 인상 일부 반영"</em>이라고 CFO 명시 — 2026 H2 추가 가격 인상 예정. 6인치 InP는 차세대 EML 디바이스 기술 요구사항 충족 위해 R&amp;D 진행 중.</p>
+</div>
+
+<!-- 3-2. 매출 + GM% -->
+<span class="section-anchor" id="s4"></span>
+<div class="section">
+<h2>3-2. 매출 &amp; Non-GAAP GM 추이 — 33분기</h2>
+<div class="legend">
+  <span class="legend-static"><span class="dot" style="background:rgba(55,138,221,0.5)"></span>매출 ($M, 좌축)</span>
+  <span class="legend-static"><span class="dot" style="background:#1D9E75"></span>Non-GAAP GM% (우축)</span>
+</div>
+<div class="chart-box" style="height:420px"><canvas id="cRev"></canvas></div>
+
+<h3 style="margin-top:1.2rem">연간 요약</h3>
+<table>
+  <thead><tr><th>연도</th><th class="num">매출</th><th class="num">YoY</th><th class="num">Non-GAAP GM</th><th class="num">Non-GAAP EPS</th><th>주요 이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2018</td><td class="num">$102.4M</td><td class="num up2">+4%</td><td class="num">~28%</td><td class="num">$0.16</td><td>5G 사이클, LED 호황</td></tr>
+    <tr><td>2019</td><td class="num">$83.3M</td><td class="num dn">-19%</td><td class="num">~25%</td><td class="num">$0.02</td><td>중국 LED 침체</td></tr>
+    <tr><td>2020</td><td class="num">$95.4M</td><td class="num up2">+15%</td><td class="num">~30%</td><td class="num">$0.27</td><td>InP 데이터센터 첫 진입</td></tr>
+    <tr><td>2021</td><td class="num">$137.4M</td><td class="num up2">+44%</td><td class="num">~36%</td><td class="num">$0.79</td><td>역대 최고 매출, 5G/EV 사이클 정점</td></tr>
+    <tr><td>2022</td><td class="num">$141.1M</td><td class="num up2">+3%</td><td class="num">~33%</td><td class="num">$0.21</td><td>매출 정점, Tongmei IPO 신청</td></tr>
+    <tr><td>2023</td><td class="num">$75.8M</td><td class="num dn">-46%</td><td class="num">~13%</td><td class="num">-$0.61</td><td>PC/모바일/LED 동시 침체, GaAs 수출규제 시작</td></tr>
+    <tr><td>2024</td><td class="num">$99.4M</td><td class="num up2">+31%</td><td class="num">~24%</td><td class="num">-$0.27</td><td>회복 사이클, AI InP 첫 언급</td></tr>
+    <tr><td>2025</td><td class="num">$88.3M</td><td class="num dn">-11%</td><td class="num">~13%</td><td class="num">-$0.49</td><td>InP 中 수출규제 직격, 1H 0건 → 2H 회복</td></tr>
+    <tr class="hl"><td><strong>2026 Q1</strong></td><td class="num"><strong>$26.9M</strong></td><td class="num up2"><strong>+39%</strong></td><td class="num up2"><strong>29.9%</strong></td><td class="num"><strong>-$0.01</strong></td><td><strong>InP 50%+, $632.5M 증자, Q2 흑전 가이드</strong></td></tr>
+  </tbody>
+</table>
+
+<h3 style="margin-top:1.2rem">분기별 실적 (12분기)</h3>
+<table>
+  <thead><tr><th>분기</th><th class="num">매출</th><th class="num">YoY</th><th class="num">QoQ</th><th class="num">GAAP GM</th><th class="num">Non-GAAP GM</th><th class="num">GAAP EPS</th><th class="num">Non-GAAP EPS</th></tr></thead>
+  <tbody>
+    <tr><td>Q2'23</td><td class="num">$18.6M</td><td class="num dn">-50%</td><td class="num">-2%</td><td class="num">9.2%</td><td class="num">9.8%</td><td class="num">-$0.16</td><td class="num">-$0.13</td></tr>
+    <tr><td>Q3'23</td><td class="num">$17.4M</td><td class="num dn">-50%</td><td class="num dn">-7%</td><td class="num">10.7%</td><td class="num">11.4%</td><td class="num">-$0.16</td><td class="num">-$0.14</td></tr>
+    <tr><td>Q4'23</td><td class="num">$20.4M</td><td class="num dn">-24%</td><td class="num up2">+18%</td><td class="num">22.6%</td><td class="num">23.0%</td><td class="num">-$0.10</td><td class="num">-$0.08</td></tr>
+    <tr><td>Q1'24</td><td class="num">$22.7M</td><td class="num up2">+17%</td><td class="num up2">+12%</td><td class="num">26.9%</td><td class="num">27.3%</td><td class="num">-$0.07</td><td class="num">-$0.05</td></tr>
+    <tr><td>Q2'24</td><td class="num">$27.9M</td><td class="num up2">+50%</td><td class="num up2">+23%</td><td class="num">27.4%</td><td class="num">27.6%</td><td class="num">-$0.04</td><td class="num">-$0.02</td></tr>
+    <tr><td>Q3'24</td><td class="num">$23.6M</td><td class="num up2">+36%</td><td class="num dn">-15%</td><td class="num">22.0%</td><td class="num">22.4%</td><td class="num">-$0.08</td><td class="num">-$0.06</td></tr>
+    <tr><td>Q4'24</td><td class="num">$25.1M</td><td class="num up2">+23%</td><td class="num up2">+6%</td><td class="num">19.4%</td><td class="num">19.7%</td><td class="num">-$0.09</td><td class="num">-$0.07</td></tr>
+    <tr><td>Q1'25</td><td class="num">$19.4M</td><td class="num dn">-15%</td><td class="num dn">-23%</td><td class="num">-6.4%</td><td class="num">-6.1%</td><td class="num">-$0.20</td><td class="num">-$0.19</td></tr>
+    <tr><td>Q2'25</td><td class="num">$18.0M</td><td class="num dn">-35%</td><td class="num dn">-7%</td><td class="num">8.0%</td><td class="num">8.4%</td><td class="num">-$0.16</td><td class="num">-$0.14</td></tr>
+    <tr><td>Q3'25</td><td class="num">$28.0M</td><td class="num up2">+19%</td><td class="num up2">+56%</td><td class="num">22.4%</td><td class="num">22.7%</td><td class="num">-$0.06</td><td class="num">-$0.05</td></tr>
+    <tr><td>Q4'25</td><td class="num">$23.0M</td><td class="num dn">-8%</td><td class="num dn">-18%</td><td class="num">20.9%</td><td class="num">21.5%</td><td class="num">-$0.08</td><td class="num">-$0.05</td></tr>
+    <tr class="hl"><td><strong>Q1'26</strong></td><td class="num"><strong>$26.9M</strong></td><td class="num up2"><strong>+38.7%</strong></td><td class="num up2"><strong>+17%</strong></td><td class="num up2"><strong>29.6%</strong></td><td class="num up2"><strong>29.9%</strong></td><td class="num"><strong>-$0.03</strong></td><td class="num up2"><strong>-$0.01</strong></td></tr>
+  </tbody>
+</table>
+<p class="note">* Q1'25 GM <strong>-6.4%</strong>는 中 수출허가 0건 + GaAs 수율 이슈 + 인벤토리 충전 1회성. Q3'25부터 InP 수출허가 발급 본격화로 빠른 회복. <strong>Q1'26 GM 29.9%(+170bps QoQ, +3,600bps YoY) 폭발 — InP 믹스 50%+ 첫 돌파 + 가격 인상 일부 반영</strong>. CFO: Q2 GM 추가 확장 + 흑전 (GAAP EPS $0.05~$0.07).</p>
+</div>
+
+<!-- 3-3. 제품별 실적 테이블 (16분기) -->
+<span class="section-anchor" id="s5"></span>
+<div class="section">
+<h2>3-3. 제품별 실적 테이블 (16분기)</h2>
+<div class="seg-table-wrap">
+<table class="seg-table">
+  <thead>
+    <tr>
+      <th rowspan="2" style="vertical-align:middle">분기</th>
+      <th colspan="2" class="seg-group center">InP</th>
+      <th colspan="2" class="seg-group center">GaAs</th>
+      <th colspan="2" class="seg-group center">Ge</th>
+      <th colspan="2" class="seg-group center">Raw Material JVs</th>
+      <th rowspan="2" class="seg-group center" style="vertical-align:middle">Total</th>
+    </tr>
+    <tr>
+      <th class="seg-group center">$M</th><th class="seg-group center">%</th>
+      <th class="seg-group center">$M</th><th class="seg-group center">%</th>
+      <th class="seg-group center">$M</th><th class="seg-group center">%</th>
+      <th class="seg-group center">$M</th><th class="seg-group center">%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Q2'23</td><td class="num seg-border">$5.5</td><td class="num">29.6%</td><td class="num seg-border">$5.0</td><td class="num">26.9%</td><td class="num seg-border">$1.0</td><td class="num">5.4%</td><td class="num seg-border">$7.1</td><td class="num">38.2%</td><td class="num seg-border"><b>$18.6</b></td></tr>
+    <tr><td>Q3'23</td><td class="num seg-border">$5.2</td><td class="num">29.9%</td><td class="num seg-border">$4.5</td><td class="num">25.9%</td><td class="num seg-border">$1.2</td><td class="num">6.9%</td><td class="num seg-border">$6.5</td><td class="num">37.4%</td><td class="num seg-border"><b>$17.4</b></td></tr>
+    <tr><td>Q4'23</td><td class="num seg-border">$6.5</td><td class="num">31.9%</td><td class="num seg-border">$5.5</td><td class="num">27.0%</td><td class="num seg-border">$1.4</td><td class="num">6.9%</td><td class="num seg-border">$7.0</td><td class="num">34.3%</td><td class="num seg-border"><b>$20.4</b></td></tr>
+    <tr><td>Q1'24</td><td class="num seg-border">$8.5</td><td class="num">37.4%</td><td class="num seg-border">$5.8</td><td class="num">25.6%</td><td class="num seg-border">$1.5</td><td class="num">6.6%</td><td class="num seg-border">$6.9</td><td class="num">30.4%</td><td class="num seg-border"><b>$22.7</b></td></tr>
+    <tr><td>Q2'24</td><td class="num seg-border">$10.5</td><td class="num">37.6%</td><td class="num seg-border">$6.8</td><td class="num">24.4%</td><td class="num seg-border">$1.6</td><td class="num">5.7%</td><td class="num seg-border">$9.0</td><td class="num">32.3%</td><td class="num seg-border"><b>$27.9</b></td></tr>
+    <tr><td>Q3'24</td><td class="num seg-border">$8.0</td><td class="num">33.9%</td><td class="num seg-border">$5.4</td><td class="num">22.9%</td><td class="num seg-border">$1.4</td><td class="num">5.9%</td><td class="num seg-border">$8.8</td><td class="num">37.3%</td><td class="num seg-border"><b>$23.6</b></td></tr>
+    <tr><td>Q4'24</td><td class="num seg-border">$9.1</td><td class="num">36.3%</td><td class="num seg-border">$5.4</td><td class="num">21.5%</td><td class="num seg-border">$1.6</td><td class="num">6.4%</td><td class="num seg-border">$9.0</td><td class="num">35.9%</td><td class="num seg-border"><b>$25.1</b></td></tr>
+    <tr><td>Q1'25</td><td class="num seg-border">$5.0</td><td class="num">25.8%</td><td class="num seg-border">$5.5</td><td class="num">28.4%</td><td class="num seg-border">$1.0</td><td class="num">5.2%</td><td class="num seg-border">$7.9</td><td class="num">40.7%</td><td class="num seg-border"><b>$19.4</b></td></tr>
+    <tr><td>Q2'25</td><td class="num seg-border">$3.6</td><td class="num">20.0%</td><td class="num seg-border">$5.5</td><td class="num">30.6%</td><td class="num seg-border">$0.8</td><td class="num">4.4%</td><td class="num seg-border">$8.1</td><td class="num">45.0%</td><td class="num seg-border"><b>$18.0</b></td></tr>
+    <tr><td>Q3'25</td><td class="num seg-border">$13.1</td><td class="num up2">46.8%</td><td class="num seg-border">$7.5</td><td class="num">26.8%</td><td class="num seg-border">$0.6</td><td class="num">2.3%</td><td class="num seg-border">$6.7</td><td class="num">24.1%</td><td class="num seg-border"><b>$28.0</b></td></tr>
+    <tr><td>Q4'25</td><td class="num seg-border">$8.0</td><td class="num">34.8%</td><td class="num seg-border">$7.0</td><td class="num">30.4%</td><td class="num seg-border">$0.2</td><td class="num">1.0%</td><td class="num seg-border">$7.6</td><td class="num">33.0%</td><td class="num seg-border"><b>$23.0</b></td></tr>
+    <tr class="hl"><td><b>Q1'26</b></td><td class="num seg-border"><b>$13.6</b></td><td class="num up2"><b>50.6%</b></td><td class="num seg-border">$5.4</td><td class="num">20.1%</td><td class="num seg-border">$0.2</td><td class="num">0.7%</td><td class="num seg-border">$7.6</td><td class="num">28.3%</td><td class="num seg-border"><b>$26.9</b></td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">* <strong>InP 비중 추이</strong>: Q2'23 29.6% → Q4'24 36.3% → Q2'25 20.0%(수출규제 직격) → Q3'25 46.8% → Q1'26 <strong>50.6% (사상 첫 50% 돌파)</strong>. AXT는 더 이상 GaAs 회사가 아닌 InP·AI 광 인터커넥트 플레이어. Q3'25 InP $13.1M은 컨콜에서 "<em>3년 만에 최고치, sequentially 250% 폭증</em>"로 표현. Q1'26 추가 갱신($13.6M). Q2'26 컨콜 가이드: <strong>InP 매출 $17M+ 사상 신기록</strong> (이전 기록 2022 Q2 $17.7M).</p>
+</div>
+
+<!-- 4. 재무제표 -->
+<span class="section-anchor" id="s6"></span>
+<div class="section">
+<h2>4. 재무제표 개요</h2>
+<table>
+  <thead><tr><th>항목 (USD)</th><th class="num">2023</th><th class="num">2024</th><th class="num">2025</th><th class="num">Q1'26</th></tr></thead>
+  <tbody>
+    <tr><td>매출</td><td class="num">$75.8M</td><td class="num">$99.4M</td><td class="num">$88.3M</td><td class="num">$26.9M</td></tr>
+    <tr><td>매출총이익 (Non-GAAP)</td><td class="num">$10.0M</td><td class="num">$23.5M</td><td class="num">$11.5M</td><td class="num">$8.0M</td></tr>
+    <tr><td>GAAP 매출총이익률</td><td class="num">12.4%</td><td class="num">23.4%</td><td class="num">12.7%</td><td class="num">29.6%</td></tr>
+    <tr><td>GAAP 영업이익(손실)</td><td class="num">-$26.0M</td><td class="num">-$15.2M</td><td class="num">-$23.5M</td><td class="num">-$1.6M</td></tr>
+    <tr><td>GAAP 순이익(손실)</td><td class="num">-$26.6M</td><td class="num">-$11.8M</td><td class="num">-$21.4M</td><td class="num">-$1.6M</td></tr>
+    <tr><td>Non-GAAP EPS (희석)</td><td class="num">-$0.61</td><td class="num">-$0.27</td><td class="num">-$0.49</td><td class="num">-$0.01</td></tr>
+    <tr><td>영업현금흐름</td><td class="num">-$3.5M</td><td class="num">$0.5M</td><td class="num">-$8M</td><td class="num">$4.3M</td></tr>
+    <tr><td>CapEx</td><td class="num">$10M</td><td class="num">$5M</td><td class="num">$5.8M</td><td class="num">$3.0M</td></tr>
+    <tr><td>현금+단기투자</td><td class="num">$36M</td><td class="num">$33M</td><td class="num">~$31M</td><td class="num">$107.1M</td></tr>
+    <tr><td>총자산</td><td class="num">$331M</td><td class="num">$344M</td><td class="num">~$370M</td><td class="num">$444.6M</td></tr>
+    <tr><td>총부채</td><td class="num">$70M</td><td class="num">$78M</td><td class="num">$87.3M</td><td class="num">$99.1M</td></tr>
+    <tr><td>자본총계</td><td class="num">$261M</td><td class="num">$266M</td><td class="num">~$283M</td><td class="num">~$345M</td></tr>
+  </tbody>
+</table>
+<p class="note">⚠️ <strong>2026.04 대규모 증자</strong>: 2026.04.21 8.56M주 $64.25/주 + 추가 1.28M주 over-allotment 행사 = 9.84M주, 총 $632.5M 조달. 발행주식 ~47.5M → ~57.4M주(+약 21%). 자금 용도: <strong>(1) Tongmei InP capa 2배 증설</strong> (2026말 분기 $35M run-rate), <strong>(2) 6인치 InP R&amp;D</strong>, <strong>(3) 운영자금</strong>. CapEx 가이드: 2026 $30~40M, 2027 $100M(인접 시설), 2028+ $220~250M(그린필드).</p>
+<p class="note">⚠️ <strong>밸류에이션 주의</strong>: 시총 $6B / TTM 매출 $90M = <strong>P/S ~67x</strong>, EV/Sales ~58x. Simply Wall St 자체 추정: 2029E 매출 $238.5M, 순이익 $62.6M 기준 적정주가 $30.75 (현재가 -68% downside). 그러나 일부 낙관 분석가는 2029E 매출 $300M+ / 순이익 $100M+ 모델링 — <strong>밸류에이션 갭 매우 큼</strong>. 분석가 평균 12개월 PT $87.75 (현재가 -16%). T-REX 2X Long AXTU ETF 출시는 투기성 자본 유입 신호.</p>
+</div>
+
+<!-- 5. 핵심 투자아이디어 -->
+<span class="section-anchor" id="s7"></span>
+<div class="section">
+<h2>5. 핵심 투자아이디어</h2>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">🎯</span>
+    <span class="thesis-tag">Thesis #1</span>
+    <div class="thesis-title">AXT는 AI 데이터센터 광 인터커넥트의 "첫 단계 소재" 독점적 공급자</div>
+  </div>
+  <div class="thesis-body">
+    <p>AI 데이터센터가 100G→<strong>1.6T 광 트랜시버</strong>로 전환되며, copper(구리) 인터커넥트는 <strong>Indium Phosphide(InP) 기반 광 인터커넥트</strong>로 대체되고 있다. InP는 <span class="hl-blue">EML 칩, CW 레이저(실리콘 포토닉스 광원), CPO 게인칩</span> 모두에 필수인 substrate — 실리콘으로 대체 불가능한 "irreplaceable" 소재.</p>
+    <p>AXT는 <strong>전 세계 InP substrate Top 5 중 70% 점유 그룹</strong>(Sumitomo, Japan Energy, Freiberger 등과 함께). 회사 측 설명: <em>"AI 데이터센터 가치사슬에서 가장 첫 단계 소재"</em>. 데이터센터 매출은 InP TAM의 <span class="hl-green">30~35%</span> 차지, 그 중 AI 비중은 single-digit→10% 수준이지만 빠르게 확장. <strong>"Scale-out" 광 주문은 2026·2027 각 2배씩 증가 예상</strong>, CPO ramp 시작 시 2028~2029 본격 인플렉션.</p>
+  </div>
+</div>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">⚡</span>
+    <span class="thesis-tag">Thesis #2</span>
+    <div class="thesis-title">$100M+ Backlog × 2배·2배 capa 증설 — 매출 multi-year 가시성 확보</div>
+  </div>
+  <div class="thesis-body">
+    <p>InP backlog: Q2'25 ~$25M → Q3 $49M → Q4 <span class="hl-blue">$60M+</span> → Q1'26 <span class="hl-green">$100M+</span> (Q1 분기 매출의 4배). 고객들이 <strong>"longer-lead time orders"</strong>로 multi-year 락인하는 패턴 — 단순 일회성 spike가 아닌 구조적 수요.</p>
+    <p>AXT의 capa roadmap: <span class="hl-blue">2025말 capa</span> → 2026말 <strong>2배</strong>(분기 $35M run-rate) → 2027말 <strong>추가 2배</strong>(분기 $65~70M run-rate). 차별화 포인트: <strong>brownfield(기존 GaAs 라인 전용)</strong> 활용 — 경쟁사 Sumitomo가 동일 capa 2배에 2.5~3년 걸리는 동안 AXT는 1년 만에 가능. <span class="hl-green">$632.5M 증자로 자금 조달 완료</span> — 실행 리스크 제거.</p>
+  </div>
+</div>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">⚠️</span>
+    <span class="thesis-tag">Thesis #3</span>
+    <div class="thesis-title">中 수출규제 = 양날의 검 + 밸류에이션 P/S 67x 부담</div>
+  </div>
+  <div class="thesis-body">
+    <p>리스크 1 — <span class="hl-red">中 InP 수출규제(2025.02.04~)</span>: 매 주문마다 중국 상무부 허가 필요, 1H'25 0건 → 6월 첫 발급 → 분기당 60일 처리 시간. 美 고객 일부 여전히 pending. 中 정부 통제 영역으로 가시성 제로. 그러나 <strong>역설적으로 中 데이터센터 수요</strong>는 "수출허가 불필요" 영역으로 폭증 — Q1'26 中 비중 30%, Q4 40% 가이드.</p>
+    <p>리스크 2 — <span class="hl-red">밸류에이션 거품 가능성</span>: 시총 $6B / TTM 매출 $90M = <strong>P/S 67x</strong>. 1년간 +8,900% 상승은 페니스톡 → AI 테마 베팅 자금 유입의 결과. T-REX 2X Long AXTU 레버리지 ETF 출시는 단기 변동성 폭증 신호. Simply Wall St 자체 추정 적정주가 $30.75 (현재가 -68%). <strong>실적이 backlog($100M+)대로 분기당 $35M+로 빠르게 변환되어야만 정당화 가능</strong>한 밸류에이션. 분석가 평균 PT $87.75는 이미 -16% downside.</p>
+  </div>
+</div>
+
+<!-- 5-1. 핵심 변동 요인 -->
+<span class="section-anchor" id="s8"></span>
+<div class="section">
+<h2>5-1. 핵심 변동 요인</h2>
+<table>
+  <thead><tr><th>구분</th><th>요인</th><th class="center">방향</th><th>설명</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>외부</strong></td><td>AI 광 인터커넥트 전환</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>800G→1.6T→3.2T → CPO. copper 한계 도달, InP 의존도↑. Coherent도 InP 출하 3배</td></tr>
+    <tr><td>Hyperscaler Capex</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>美 hyperscaler EML/실리콘 포토닉스 transceiver 발주 폭증. AXT 美 비중 1%지만 글로벌 OEM 통한 간접 채널</td></tr>
+    <tr><td>中 InP 수출규제</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>2025.02.04 시행, 매 주문 허가 필요. 처리시간 60일+. 美 일부 고객 여전히 pending. 가시성 zero</td></tr>
+    <tr><td>경쟁사 capa 확장</td><td class="center"><span class="badge badge-neu">중립 ●</span></td><td>Sumitomo(점유율 1위) 2배 증설 2.5~3년 vs AXT 1년. JX/Japan Energy(~10%) 추가 증설. 점유율 게임 = capa 속도</td></tr>
+    <tr><td>CPO 채택 시점</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>2028~2029 메인 CPO ramp 예상. InP 게인칩이 시스템당 substrate 소비량 dramatic 증가 — 장기 inflection</td></tr>
+    <tr><td>InP TAM 성장</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>전 세계 InP wafer 시장 $198M(2025) → $385M(2031), CAGR 11.7%. 일부 추정 $211M→$627M(2035)</td></tr>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>내부</strong></td><td>Capa 2배·2배 실행</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>2026말 InP 분기 $35M run-rate, 2027말 $65~70M. brownfield 활용으로 빠른 ramp</td></tr>
+    <tr><td>Q2'26 흑전 가시화</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>가이던스: 매출 $34M, GAAP EPS $0.05~$0.07 (컨센 -$0.01). 11분기 만에 첫 GAAP 흑전</td></tr>
+    <tr><td>Tongmei STAR 상장</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>2022년 신청 후 진행 중. 中 자본시장 접근, 추가 자금 조달 + 中 고객 신뢰도 ↑. CSRC 검토 단계</td></tr>
+    <tr><td>JinMei 高순도 In 정제</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>2026.04 본격 가동. InP 핵심 원료 자체 공급망 완성 — 마진 방어 + 공급 보장. "decades ahead of curve"</td></tr>
+    <tr><td>발행주식 21% 희석</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>2026.04 9.84M주 추가 발행. 발행주식 47.5M→57.4M. 향후 추가 증자 가능성 ($100M·$220~250M CapEx)</td></tr>
+    <tr><td>밸류에이션 P/S 67x</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>2029E 매출 $238M·순이익 $62M 시 적정주가 $30.75. 실적 가속 미달 시 -50%+ 조정 위험</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 5-2. 컨콜 트래킹 -->
+<span class="section-anchor" id="s9"></span>
+<div class="section">
+<h2>5-2. 컨퍼런스콜 트래킹 (최근 12분기)</h2>
+<table class="cc-table">
+  <colgroup>
+    <col style="width:50px"><col><col><col><col>
+  </colgroup>
+  <thead>
+    <tr><th class="year-col">년</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="year-label">2023</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'23</div><div class="cc-msg">$19.4M (-29% YoY). PC/모바일 침체 본격. 인벤토리 조정 진행중</div><div class="cc-guide">가이드 $20M → 실제 $19.4M <span class="cc-miss">⚠️</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'23</div><div class="cc-msg">$18.6M (-50%). GaAs 中 수출규제(8월) 직전. 모든 시장 약세</div><div class="cc-guide">가이드 $20M → 실제 $18.6M <span class="cc-miss">⚠️</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'23</div><div class="cc-msg">$17.4M. GaAs 수출규제 시행. 2H'23 인벤토리 사이클 바닥</div><div class="cc-guide">가이드 $19M → 실제 $17.4M <span class="cc-miss">⚠️</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'23</div><div class="cc-msg">$20.4M (+18% QoQ). InP for AI 첫 언급. GaAs 인벤토리 정상화</div><div class="cc-guide">가이드 $21M → 실제 $20.4M <span class="cc-miss">⚠️</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2024</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'24</div><div class="cc-msg">$22.7M (+11% QoQ). InP +48% QoQ. AI 모멘텀 본격 시작</div><div class="cc-guide">가이드 $22M → 실제 $22.7M <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'24</div><div class="cc-msg">$27.9M (+50% YoY). InP $10.5M. 24년 사이클 정점</div><div class="cc-guide">가이드 $25M → 실제 $27.9M <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'24</div><div class="cc-msg">$23.6M (+36% YoY). 일시 둔화. AI InP 수요 지속</div><div class="cc-guide">가이드 $26M → 실제 $23.6M <span class="cc-miss">⚠️</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'24</div><div class="cc-msg">$25.1M. 2025 中 InP 수출규제 도래 우려 첫 언급</div><div class="cc-guide">가이드 $24M → 실제 $25.1M <span class="cc-hit">✅</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2025</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'25</div><div class="cc-msg">$19.4M (-23% QoQ). <strong>2.04 InP 수출규제 직격</strong>. GM -6.4% 폭락. GaAs 수율 이슈 추가</div><div class="cc-guide">가이드 $22M → 실제 $19.4M <span class="cc-miss">⚠️</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'25</div><div class="cc-msg">$18.0M. 1H 수출허가 0건. 6월 말 첫 InP 허가 발급. 페니스톡 진입($1.23)</div><div class="cc-guide">가이드 $22.5~$23.5M → $18M <span class="cc-miss">❌</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'25</div><div class="cc-msg"><strong>$28.0M</strong>. InP +250% sequentially. backlog $49M record. 가이드 대폭 초과</div><div class="cc-guide">가이드 $19~21M → $28M <span class="cc-hit">✅✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'25</div><div class="cc-msg">$23.0M. 12월 허가 부족으로 가이드 미달. backlog $60M+. 1차 증자 $100M</div><div class="cc-guide">가이드 $27~30M → $23M <span class="cc-miss">⚠️</span> (수정 $22.5~23.5M에 부합)</div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2026</td>
+      <td><div class="cc-cell cc-latest"><div class="cc-quarter">Q1'26 ★ 최신</div><div class="cc-msg"><strong>$26.9M (+39%)</strong>. InP $13.6M (50%+ 첫 돌파). GM 29.9%. <strong>backlog $100M+</strong>. 2차 증자 $632.5M</div><div class="cc-guide">가이드 $26~28M → $26.9M <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'26</div><div class="cc-msg">예정: 2026.07.30</div><div class="cc-guide">가이드 ~$34M (+89% YoY), GAAP EPS $0.05~$0.07 (첫 흑전)</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'26</div><div class="cc-msg">예정: 2026.10</div><div class="cc-guide">capa 2배 진행, InP 분기 $20M+ 가능</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'26</div><div class="cc-msg">예정: 2027.02</div><div class="cc-guide">capa 2배 완료, InP 분기 $35M run-rate 도달</div></div></td>
+    </tr>
+  </tbody>
+</table>
+<p class="note">* 2023~2025 1H는 가이드 미달 빈번 — PC/모바일 침체 + 中 수출규제 직격. <strong>2025 Q3부터 가이드 대폭 초과 패턴</strong>으로 전환 — InP 수출허가 정상화 + AI 데이터센터 수요 폭증 결합. Q1'26 가이드 $26~28M 정확히 충족, 컨센 $26.7M도 fractional 비트. <strong>Q2'26 가이드 $34M은 컨센 $26~28M 대비 압도적 — 12개 분기 만에 가장 강력한 시그널</strong>.</p>
+</div>
+
+<!-- 5-3. Q1'26 심층 -->
+<span class="section-anchor" id="s10"></span>
+<div class="section">
+<h2>5-3. Q1'26 컨콜 심층 정리 (2026.04.30)</h2>
+<div class="prose">
+  <p><strong>발언자</strong>: Morris Young (CEO·Co-Founder) · Gary Fischer (CFO) · Tim Bettles (VP, Marketing &amp; Strategic Planning) · Leslie Green (IR)</p>
+  <p><strong>실적</strong>: 매출 <strong>$26.9M</strong> (+38.7% YoY, +17% QoQ, 컨센 $26.7M 부합) / Non-GAAP EPS <strong>-$0.01</strong> (컨센 -$0.05 +80% 비트) / Non-GAAP GM <strong>29.9%</strong> (vs Q4 21.5%, vs 전년 -6.1%) / GAAP 순손실 -$1.6M / 영업현금흐름 $4.3M / 현금+단기투자 $107.1M (증자 후 추가로 $632.5M 유입)</p>
+  <p><strong>InP 매출 $13.6M</strong>: 데이터센터용 50%+ 첫 돌파. CFO: <em>"두 가지 동력 — (1) 볼륨 확대 (2) InP 비중 확대. 가격 인상 일부 반영하나 H2에 더 가시화"</em></p>
+  <p><strong>시장 반응</strong>: 어닝 발표 후 시간외 +5%, 다음 거래일 변동성 큼(early -4% → 익일 +6.79%). 5/6 신고가 $110.80 도달. 시총 $5.9B → $6.0B. KeyBanc/Wedbush PT $80→$93, B. Riley $72→$73, Northland Outperform 유지.</p>
+</div>
+<h3 style="margin-top:1.2rem">컨콜 핵심 메시지 5가지</h3>
+<div class="cc-sticker-box">
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">1</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">InP <span class="hl-pos">매출 50%+ 첫 돌파</span> — AXT는 InP·AI 광 인터커넥트 회사</div>
+      <div class="cc-sticker-desc">Q1'26 InP <span class="hl-pos">$13.6M (전체의 50%+)</span>, GaAs 20%, JV 28%, Ge 1%. CEO Young: <em>"인듐인화합물 substrates는 AI 데이터센터에서 high-speed 광 데이터 전송의 핵심 원료"</em>. CFO: 가격 인상 일부 반영, H2에 본격 가시화 예정. <strong>Q2 가이드 InP 매출 $17M+ (사상 신기록)</strong>.</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">2</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">Backlog <span class="hl-pos">$100M+ record</span> — Q4 $60M에서 60%+ 추가 확대</div>
+      <div class="cc-sticker-desc">InP 단일 backlog만 <span class="hl-pos">$100M+</span> = Q1 분기 매출의 <strong>4배</strong>. 고객들이 longer-lead time orders로 multi-year 락인. CEO: <em>"capacity가 제약 요소가 되는 시점, 장기 capacity planning이 가장 중요한 고객 논의"</em>. Tier-1 옵틱스 OEM, 美 hyperscaler 다수 — 일부는 long-term supply agreement 협의 중.</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">3</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">$632.5M 증자 → InP capa <span class="hl-pos">2배·2배 로드맵 자금 확보</span></div>
+      <div class="cc-sticker-desc">2026.04 9.84M주 $64.25/주 = $632.5M 조달. 자금 용도: <strong>(1) Tongmei InP 2배 증설 ('26말 분기 $35M run-rate)</strong>, <strong>(2) 6인치 InP R&amp;D</strong>, <strong>(3) 운영자금</strong>. CapEx 가이드: 2026 $30~40M, 2027 $100M(인접지), 2028+ $220~250M(그린필드, 분기 $65~70M run-rate 목표). Sumitomo는 동일 capa 2배에 2.5~3년 — AXT는 <strong>brownfield 활용 1년 만에 가능</strong> = 점유율 게임의 핵심 무기.</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">4</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">Q2'26 첫 GAAP <span class="hl-pos">흑자 전환</span> 가이드</div>
+      <div class="cc-sticker-desc">Q2 매출 가이드 <span class="hl-pos">~$34M (+26% QoQ, +89% YoY)</span>. <strong>GAAP EPS $0.05~$0.07, Non-GAAP $0.06~$0.08</strong> — 컨센서스 -$0.01 대비 대폭 상회. 11분기 만에 첫 GAAP 흑전. CFO Fischer: <em>"InP 믹스 확대 + 볼륨 + 가격 인상 + GM 추가 확장"</em>. 단, 美 InP 수출허가 일부 여전히 pending — 추가 업사이드 가능.</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">5</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">JinMei 高순도 In 정제 시작 — <span class="hl-pos">수직 통합 완성</span></div>
+      <div class="cc-sticker-desc">자회사 JinMei가 <strong>고순도 인듐(In) 정제 본격 가동</strong>. CEO: <em>"InP substrate 또 다른 핵심 원료의 직접 공급권 확보"</em>. 기존 BoYu(pBN crucible), JinMei(Ga 정제) + InP 폴리머에 더해 <strong>In까지 자체 공급</strong> — 글로벌 희소금속 통제 트렌드 속 <em>"decades ahead of curve"</em>. CEO: <em>"우리가 가속하면 뒷차들이 같이 따라옴"</em>. <span class="hl-neg">단, 美 InP 수출허가 여전히 일부 pending</span> — 가시성 zero가 잔존 리스크.</div>
+    </div>
+  </div>
+</div>
+
+<h3 style="margin-top:1.5rem">Q2 2026 가이던스</h3>
+<table>
+  <thead><tr><th>지표</th><th class="num">Q1'26 실제</th><th class="num">Q2'26 가이던스</th><th class="num">컨센서스</th></tr></thead>
+  <tbody>
+    <tr><td>Revenue</td><td class="num">$26.9M</td><td class="num hl"><strong>~$34M (+89% YoY, +26% QoQ)</strong></td><td class="num">~$28M</td></tr>
+    <tr><td>InP 매출</td><td class="num">$13.6M</td><td class="num hl"><strong>$17M+ (사상 신기록)</strong></td><td class="num">—</td></tr>
+    <tr><td>Non-GAAP GM</td><td class="num">29.9%</td><td class="num hl"><strong>30%+ (지속 확장)</strong></td><td class="num">~28%</td></tr>
+    <tr><td>GAAP EPS</td><td class="num">-$0.03</td><td class="num hl"><strong>$0.05~$0.07 (첫 GAAP 흑전)</strong></td><td class="num">-$0.01</td></tr>
+    <tr><td>Non-GAAP EPS</td><td class="num">-$0.01</td><td class="num hl"><strong>$0.06~$0.08</strong></td><td class="num">-$0.01</td></tr>
+    <tr><td>InP backlog</td><td class="num">$100M+</td><td class="num">계속 확대 가시</td><td class="num">—</td></tr>
+  </tbody>
+</table>
+<p class="note">* Q2'26 가이드는 11분기 만에 가장 강력 — 매출 +89% YoY, EPS 흑전. 분석가 PT 일제 상향: KeyBanc PT $80→$93 (Outperform), Wedbush $80→$93, B. Riley $72→$73, Northland Outperform. 동시에 Stocktitan 등은 "P/S 67x 거품" 우려 제시 — 분석가 평균 PT $87.75은 이미 -16% downside.</p>
+
+<h3 style="margin-top:1.5rem">📊 IR 자료 핵심 — 인듐인화합물 InP 웨이퍼 (제품 이미지)</h3>
+<div class="ir-slide">
+  <div class="ir-slide-frame">
+    <div class="ir-slide-num">📌 AXT Product Reference — Indium Phosphide (InP) Wafer</div>
+    <div class="ir-slide-title">AXT의 핵심 제품: 2/3/4인치 InP Substrate Wafer (6인치 R&amp;D 진행 중)</div>
+  </div>
+  <div class="ir-slide-img-wrap">
+    <img src="https://www.semiconductor-today.com/news_items/2025/Pictures/news_pictures-2025/AXT_290925.jpg" alt="AXT InP wafer products" onerror="this.onerror=null; this.src='https://www.axt.com/sites/default/files/styles/large/public/products/InP-3in-blue.png';">
+  </div>
+  <div class="ir-slide-caption">📌 <strong>AXT의 InP wafer substrate</strong>. VGF(Vertical Gradient Freeze) 결정성장 기술로 ultra-low EPD(Etch Pit Density) 달성, AI 데이터센터 광 트랜시버용 EML 칩의 substrate로 사용. AXT는 InP 4인치까지 양산, <strong>6인치 R&amp;D 진행 중</strong>(2026 capital raise 자금 일부 활용). CEO Young 발언(2026.01 Needham): <em>"AXT has the best product in the market for indium phosphide"</em>. Q1'26 InP 매출 $13.6M (전체의 50%+) — 회사 사상 처음. <a href="https://www.semiconductor-today.com/news_items/2026/mar/axt-090326.shtml" target="_blank" style="color:#378ADD;text-decoration:underline">Semiconductor Today 분석</a> 참조.</div>
+</div>
+</div>
+
+<!-- 5-4. 시나리오 -->
+<span class="section-anchor" id="s11"></span>
+<div class="section">
+<h2>5-4. 강세 / 약세 시나리오</h2>
+<div class="scenario-stack">
+  <div class="scenario-box s-bull">
+    <div class="scenario-title">🟢 강세 시나리오</div>
+    <div class="s-item"><div class="s-case">InP capa 2026말 2배 정상 ramp</div><div class="s-sub">분기 $35M run-rate 달성 → 연간 InP 매출 $140M 가시. 회사 전체 매출 $200M+ (2027), $300M+ (2028)</div></div>
+    <div class="s-item"><div class="s-case">2027말 추가 2배 — 분기 $65~70M run-rate</div><div class="s-sub">연간 InP $260~280M, 회사 매출 $400M+. CPO ramp 시작 시점과 일치 — 시스템당 InP 소비량 폭증</div></div>
+    <div class="s-item"><div class="s-case">CPO 본격 채택 (2028~2029)</div><div class="s-sub">co-packaged optics는 InP 게인칩 system당 dramatic 증가. AXT는 1순위 supplier로 multi-year 락인. 점유율 30%+ 가능</div></div>
+    <div class="s-item"><div class="s-case">Tongmei STAR Market 상장 성공</div><div class="s-sub">中 자본시장 추가 자금 조달 + 中 hyperscaler 신뢰도 ↑. 中 데이터센터 비중 30%→40%(Q4 가이드)→50%+ 가능</div></div>
+    <div class="s-item"><div class="s-case">Long-term supply agreement 체결</div><div class="s-sub">CEO: 다수 고객과 LTA 협의 중. 체결 시 backlog의 multi-year 락인 + 가시성 폭발. 멀티플 70x → 100x 정당화 가능</div></div>
+    <div class="s-item"><div class="s-case">분석가 일부 낙관 모델 실현</div><div class="s-sub">2029E 매출 $300M+, 순이익 $100M+ 시나리오. 시총 $10B+ 가능. 메모리 등 동종 AI 인프라 종목과 동등 multiplerating</div></div>
+  </div>
+  <div class="scenario-box s-bear">
+    <div class="scenario-title">🔴 약세 시나리오</div>
+    <div class="s-item"><div class="s-case">中 InP 수출규제 강화</div><div class="s-sub">中 정부 추가 규제 도입 시 美 고객 공급 차단. 분기 0건 허가 발급 가능 — 2025 1H 재현. 매출 -50%+ 충격</div></div>
+    <div class="s-item"><div class="s-case">밸류에이션 거품 조정</div><div class="s-sub">P/S 67x → 30x 정상화 시 주가 -50%. Simply Wall St 적정주가 $30.75 (현재 -68%). T-REX 2X ETF 청산 시 단기 -20%+ 가능</div></div>
+    <div class="s-item"><div class="s-case">경쟁사 capa 추격</div><div class="s-sub">Sumitomo 2.5~3년 ramp 완료 시 점유율 게임 격화. JX Nippon Mining 추가 증설. 가격 압박 + GM 압박 동시 발생</div></div>
+    <div class="s-item"><div class="s-case">AI Capex 사이클 조정</div><div class="s-sub">2027~2028 hyperscaler Capex 둔화 시 backlog cancellation 또는 push-out. capa 2배 직후 가동률 50% 미만 가능</div></div>
+    <div class="s-item"><div class="s-case">발행주식 추가 희석</div><div class="s-sub">2027 CapEx $100M, 2028+ $220~250M. 자체 현금 부족 시 추가 증자 → 발행주식 60M → 70M+ 가능. EPS 희석</div></div>
+    <div class="s-item"><div class="s-case">Tongmei STAR 상장 무산</div><div class="s-sub">2022년 신청 후 4년 진행 — CSRC 검토 지연 또는 거부 시 中 자금 조달 채널 차단. 中 자회사 복잡성 리스크 부각</div></div>
+  </div>
+</div>
+</div>
+
+<!-- 6. Worth Watching -->
+<span class="section-anchor" id="s12"></span>
+<div class="section">
+<h2>6. Worth Watching Events</h2>
+<div class="ww-sticker-box">
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.05~06</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">증자 자금 집행 시작 — Tongmei InP capa 2배 증설</div>
+      <div class="ww-sticker-point">$632.5M 중 InP capa 증설 본격 시작. brownfield(기존 GaAs 라인) 활용 1년 ramp 목표</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.07.30</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q2'26 실적 발표 (예상)</div>
+      <div class="ww-sticker-point">매출 $34M, GAAP EPS $0.05~$0.07 (첫 흑전) 가이드 달성 여부. InP $17M+ 사상 신기록 검증</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026 Q3</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">美 InP 수출허가 진척 + Long-term supply agreement</div>
+      <div class="ww-sticker-point">현재 일부 美 hyperscaler 향 허가 pending. 발급 시 추가 매출 +$5~10M/분기 업사이드. LTA 체결 시 multi-year 락인</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.10</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q3'26 실적 + 2027 가이던스 시사</div>
+      <div class="ww-sticker-point">capa 2배 진행 ramp 검증. InP 분기 $20M+ 가능성. 2027 InP 추가 2배 capa 자금 집행 계획</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026 Q4</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">InP capa 2배 완료 — 분기 $35M run-rate 도달</div>
+      <div class="ww-sticker-point">2026말 capa 2배 목표 달성 여부. 가동률 + 백로그 소진 속도 검증</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027.02</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q4'26 + 2026 연간 결산</div>
+      <div class="ww-sticker-point">2026 연간 매출 $135M+ 달성 여부. 첫 연간 흑자 가능성. 2027 capa 추가 2배 본격화</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027 H1</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">6인치 InP 양산 시작 가능성</div>
+      <div class="ww-sticker-point">차세대 EML/CPO 디바이스 기술 요구사항 충족. 4인치 대비 substrate당 chip 수 2배 — 사실상 capa 추가 2배 효과</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027 H2</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Tongmei STAR Market 상장 진척</div>
+      <div class="ww-sticker-point">2022년 신청 후 5년차 — CSRC 최종 검토 단계. 中 자본시장 접근으로 추가 자금 조달 채널 확보</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027말~2028</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">InP capa 추가 2배 — 분기 $65~70M run-rate</div>
+      <div class="ww-sticker-point">2028년 InP 연간 매출 $260~280M 가시화. 회사 매출 $400M+. greenfield CapEx $220~250M 자금 조달 필요</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2028~2029</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">CPO (Co-Packaged Optics) 본격 ramp</div>
+      <div class="ww-sticker-point">CEO: <em>"real growth beyond what we're seeing today"</em>. 시스템당 InP substrate 소비량 dramatic 증가. AXT 점유율 30%+ 가능</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 7. 데이터 출처 -->
+<span class="section-anchor" id="s13"></span>
+<div class="section">
+<h2>7. 데이터 출처</h2>
+<div class="source-box">
+  <ul style="padding-left:1.2rem">
+    <li>AXT SEC 8-K (분기·연간 실적 보도자료), 10-Q/10-K 2018~2026</li>
+    <li>Q1'26 Earnings Press Release (2026.04.30), Q1'26 Earnings Conference Call Transcript</li>
+    <li>Q4'25 (2026.02.19), Q3'25 (2025.10.30), Q2'25, Q1'25 Earnings Conference Calls</li>
+    <li>2026.01.14 28th Annual Needham Growth Conference Presentation Transcript</li>
+    <li>2025.12.30 Capital Raise ($100M, 8.16M주 @$12.25)</li>
+    <li>2026.04.21 Capital Raise ($632.5M, 9.84M주 @$64.25 incl. over-allotment)</li>
+    <li>주가·시총·EPS 데이터: TradingView, Yahoo Finance, Robinhood, Investing.com, Macrotrends, Stockanalysis (2026.05.07 기준)</li>
+    <li>분기별 매출 시계열: Macrotrends, Wallstreetzen, Stockanalysis</li>
+    <li>분석 기사: Semiconductor Today, Yahoo Finance, Seeking Alpha, Stocktitan, TipRanks, Simply Wall St</li>
+    <li>InP 시장 분석: Mordor Intelligence (Indium Phosphide Wafer Market Report 2026)</li>
+    <li>환율: 2026.05.07 USD/KRW 1,454원 (Investing.com / Xe / FRED)</li>
+    <li>분석일: 2026년 5월 8일</li>
+  </ul>
+  <p style="margin-top:8px;color:#bbb">⚠️ Non-GAAP 지표는 SBC(주식보상비용) 제외 수치. 투자 판단 시 GAAP 기준 병행 확인 권장. 2018~2022 분기별 제품믹스(InP/GaAs/Ge/JV)는 컨콜 코멘터리 + 연간 공시 기반 추정치, 2023 Q1~ 분기별 컨콜 명시 수치 사용. 발행주식 수는 2026.04 증자 후 ~57.4M주 기준. JinMei·BoYu 외 8개 JV는 비연결, 매출에 포함되지 않음. 2027~2028 capa 증설 자금은 추가 증자 가능성 있음.</p>
+</div>
+</div>
+
+<!-- 7-1. Reference -->
+<span class="section-anchor" id="s14"></span>
+<div class="section">
+<h2>7-1. Reference</h2>
+<div class="ref-list">
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://investors.axt.com/Investors/Overview/default.aspx" target="_blank">AXT IR — Investor Relations</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.businesswire.com/news/home/20260430987825/en/AXT-Inc.-Announces-First-Quarter-2026-Financial-Results" target="_blank">AXT Q1'26 실적 보도자료 (2026.04.30)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.sec.gov/Archives/edgar/data/0001051627/000143774926014204/ex_906119.htm" target="_blank">AXT SEC 8-K Q1'26 (2026.04.30)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://investors.axt.com/Investors/news/news-details/2025/AXT-Inc--Announces-Third-Quarter-2025-Financial-Results/default.aspx" target="_blank">AXT Q3'25 실적 — InP 250% 폭증 분기</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.businesswire.com/news/home/20260108862046/en/AXT-Updates-Revenue-Expectations-for-Fourth-Quarter-2025-and-Announces-Earnings-Date-for-Feb.-19-2026" target="_blank">AXT Q4'25 가이던스 업데이트 (2026.01.08)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://investors.axt.com/Investors/governance/executive-management/default.aspx" target="_blank">AXT Executive Management — Morris Young CEO 프로필</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.sec.gov/Archives/edgar/data/1051627/000155837025003004/axti-20241231x10k.htm" target="_blank">AXT 10-K FY2024 (사업 모델·Tongmei·JV 구조)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.fool.com/earnings/call-transcripts/2026/04/30/axt-axti-q1-2026-earnings-call-transcript/" target="_blank">Motley Fool — AXT Q1'26 컨콜 transcript</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.investing.com/news/transcripts/earnings-call-transcript-axt-inc-beats-q1-2026-eps-expectations-by-80-93CH-4651537" target="_blank">Investing.com — AXT Q1'26 transcript &amp; EPS 80% 비트 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://seekingalpha.com/news/4583540-axt-outlines-plans-to-double-indium-phosphide-capacity-again-in-2027-while-guiding-q2-gaap" target="_blank">Seeking Alpha — AXT 2027 capa 2배 추가 가이드 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://stockanalysis.com/stocks/axti/" target="_blank">Stock Analysis — AXTI 종합 분석 페이지</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.semiconductor-today.com/news_items/2026/mar/axt-090326.shtml" target="_blank">Semiconductor Today — Q4'25 결과 + 2026 capa 로드맵</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.semiconductor-today.com/news_items/2025/nov/axt-101125.shtml" target="_blank">Semiconductor Today — Q3'25 가이드 대폭 초과 + InP 수출허가</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://finance.yahoo.com/news/axt-touts-surging-indium-phosphide-100250562.html" target="_blank">Yahoo Finance — Needham Conference InP 수요 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://finance.yahoo.com/markets/stocks/articles/axt-doubles-indium-phosphide-capacity-140718065.html" target="_blank">Yahoo Finance — AXT InP capa 2배 + AI 데이터센터</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://globalsemiresearch.substack.com/p/axt-the-indium-phosphide-play-for" target="_blank">Global Semi Research — AXT InP play 심층 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://stockstotrade.com/news/axt-inc-axti-news-2026_05_04/" target="_blank">StocksToTrade — AXTI 5월 모멘텀 분석 + 밸류에이션 우려</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://simplywall.st/stocks/us/semiconductors/nasdaq-axti/axt/news/axt-axti-is-up-261-after-550m-equity-raise-to-expand-ai-focu" target="_blank">Simply Wall St — $550M 증자 + 적정주가 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://deltasheets.substack.com/p/axti-fy2026-q1" target="_blank">InfoArb Sheets — AXTI FY2026 Q1 상세 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.mordorintelligence.com/industry-reports/indium-phosphide-wafer-market" target="_blank">Mordor Intelligence — InP Wafer Market Report 2026</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://en.wikipedia.org/wiki/AXT_(company)" target="_blank">Wikipedia — AXT (company)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://en.wikipedia.org/wiki/Indium_phosphide" target="_blank">Wikipedia — Indium Phosphide</a></div>
+</div>
+<p class="note">* 공식 자료(AXT IR·SEC) 7개, 증권사·전문 분석 4개, 뉴스 9개, 위키 2개 — 총 22개 레퍼런스. 한국어 블로그 자료는 AXT 관련 본격 분석 글 부재로 본 리포트에서는 미포함 (네이버 블로그 검색 결과 단편적 종목 코멘터리 위주).</p>
+</div>
+
+<div class="footer">AXT, Inc. (AXTI) 기업분석 · 2026.05.08 · 개인 사용 목적</div>
+</div>
+
+<script>
+// 33분기 라벨 — Q1'18 ~ Q1'26
+const L33=["Q1'18","Q2'18","Q3'18","Q4'18","Q1'19","Q2'19","Q3'19","Q4'19","Q1'20","Q2'20","Q3'20","Q4'20","Q1'21","Q2'21","Q3'21","Q4'21","Q1'22","Q2'22","Q3'22","Q4'22","Q1'23","Q2'23","Q3'23","Q4'23","Q1'24","Q2'24","Q3'24","Q4'24","Q1'25","Q2'25","Q3'25","Q4'25","Q1'26"];
+
+// 4개 제품 - 33분기 ($M)
+// 2018~2022 분기별 제품믹스: 연간 공시 + 컨콜 코멘터리 기반 추정
+// 2023 Q1~ 컨콜 명시 수치 (Q1'23은 backup 추정)
+
+// Indium Phosphide
+const inp = [
+  4,5,5,5, 5,6,6,6, 7,7,8,8, 11,12,13,14, 14.5,17.7,12,9, 6.5,5.5,5.2,6.5, 8.5,10.5,8.0,9.1, 5.0,3.6,13.1,8.0, 13.6
+];
+// Gallium Arsenide
+const gaas = [
+  10,11,12,11, 9,9,10,9, 9,10,11,11, 13,13,13,15, 16,17,17,12, 8,5,4.5,5.5, 5.8,6.8,5.4,5.4, 5.5,5.5,7.5,7.0, 5.4
+];
+// Germanium
+const ge = [
+  1.5,2,2,2, 1.5,2,2,2, 2,2,2,2.5, 3,3,3,3, 3,3,2.5,2.5, 2,1.0,1.2,1.4, 1.5,1.6,1.4,1.6, 1.0,0.8,0.6,0.2, 0.2
+];
+// Raw Material JVs (consolidated)
+const jv = [
+  9,9,10,4, 7,8,7,1, 3,3,4,5.5, 4,5,6,5, 6.5,11,15,3.5, 2.9,7.1,6.5,7.0, 6.9,9.0,8.8,9.0, 7.9,8.1,6.7,7.6, 7.6
+];
+
+const totalRev=L33.map((_,i)=>inp[i]+gaas[i]+ge[i]+jv[i]);
+
+// Non-GAAP GM% (2018~2022 추정, 2023 Q2~2026 Q1 실제)
+const gm=[
+  28,28,29,30,    // 2018
+  26,25,25,24,    // 2019
+  28,29,30,32,    // 2020
+  35,36,37,37,    // 2021
+  35,33,33,28,    // 2022
+  20,9.8,11.4,23.0,    // 2023 - Q2~Q4 실제
+  27.3,27.6,22.4,19.7, // 2024 실제
+  -6.1,8.4,22.7,21.5,  // 2025 실제
+  29.9            // Q1'26 실제
+];
+
+const gc='rgba(0,0,0,0.05)',tc='#999';
+const xT={color:tc,font:{size:9},maxRotation:45,autoSkip:true,maxTicksLimit:18};
+const yT={color:tc,font:{size:11}};
+const $cb={callbacks:{label:ctx=>' $'+ctx.parsed.y.toFixed(1)+'M'}};
+
+// 제품 차트
+const segBase=[
+  {label:'InP',data:inp,backgroundColor:'#1D9E75',stack:'s'},
+  {label:'GaAs',data:gaas,backgroundColor:'#378ADD',stack:'s'},
+  {label:'Ge',data:ge,backgroundColor:'#D85A30',stack:'s'},
+  {label:'Raw Material JVs',data:jv,backgroundColor:'#BA7517',stack:'s'},
+];
+const segChart=new Chart(document.getElementById('cSeg'),{
+  type:'bar',
+  data:{labels:L33,datasets:segBase.map(d=>({...d}))},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:$cb},scales:{x:{grid:{color:gc},ticks:xT,stacked:true},y:{grid:{color:gc},ticks:{...yT,callback:v=>'$'+v+'M'},stacked:true}}}
+});
+window.toggleSeg=function(idx,el){const m=segChart.getDatasetMeta(idx);m.hidden=!m.hidden;el.classList.toggle('hidden',m.hidden);segChart.update();};
+
+// 매출+GM 이중축
+new Chart(document.getElementById('cRev'),{
+  type:'bar',
+  data:{
+    labels:L33,
+    datasets:[
+      {type:'bar',label:'매출',data:totalRev,backgroundColor:'rgba(55,138,221,0.25)',borderColor:'#378ADD',borderWidth:1,yAxisID:'y'},
+      {type:'line',label:'Non-GAAP GM%',data:gm,borderColor:'#1D9E75',pointRadius:3,pointBackgroundColor:'#1D9E75',fill:false,tension:0.3,yAxisID:'y2',borderWidth:2}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:ctx=>ctx.datasetIndex===0?' $'+ctx.parsed.y.toFixed(1)+'M':' GM: '+ctx.parsed.y.toFixed(1)+'%'}}},
+    scales:{
+      x:{grid:{color:gc},ticks:xT},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>'$'+v+'M'},position:'left'},
+      y2:{grid:{display:false},ticks:{color:'#1D9E75',font:{size:10},callback:v=>v+'%'},position:'right',min:-10,max:40}
+    }
+  }
+});
+</script>
+</body>
+</html>
