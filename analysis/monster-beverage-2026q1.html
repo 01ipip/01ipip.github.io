@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monster Beverage (MNST) 기업분석 — 2026 Q1</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f3ef;color:#1a1a1a;padding:2rem;font-size:14px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto}
+.header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #e0e0dc;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.header-title{font-size:22px;font-weight:700}
+.header-meta{font-size:12px;color:#888;margin-top:4px}
+.toc{margin-bottom:2rem;padding:0}
+.toc-title{font-size:12px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+.toc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:1.1rem 1.3rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.toc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(8,auto);grid-auto-flow:column;gap:6px 28px}
+@media(max-width:650px){.toc-grid{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row}}
+.toc-link{display:flex;align-items:center;gap:10px;padding:5px 0;text-decoration:none;color:#444;font-size:13px;border-bottom:0.5px dashed transparent;transition:all .15s ease}
+.toc-link:hover{color:#378ADD;border-bottom-color:#cfe1f5}
+.toc-link .toc-num{color:#aaa;font-weight:700;font-size:12px;min-width:30px;font-variant-numeric:tabular-nums;flex-shrink:0}
+.toc-link:hover .toc-num{color:#378ADD}
+.toc-link .toc-text{flex:1}
+.toc-link.sub{padding-left:18px;font-size:12.5px;color:#666}
+.toc-link.sub .toc-num{font-size:11px;color:#bbb}
+.section{margin-bottom:3rem}
+.section-anchor{display:block;position:relative;top:-70px;visibility:hidden}
+h2{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:6px;border-bottom:1.5px solid #e0e0dc}
+h3{font-size:14px;font-weight:600;margin:1.2rem 0 .6rem;color:#333}
+.chart-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:20px;position:relative;width:100%}
+.note{font-size:11px;color:#999;margin-top:8px;line-height:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;font-size:12px;color:#666}
+.legend-item{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:3px 8px;border-radius:6px;transition:opacity .15s}
+.legend-item:hover{background:#e8e8e3}
+.legend-item.hidden{opacity:.3;text-decoration:line-through}
+.legend-static{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0dc;margin-bottom:.5rem}
+th{background:#ebebe6;font-weight:600;padding:7px 8px;text-align:left;border-bottom:1px solid #e0e0dc;white-space:nowrap;font-size:11.5px}
+th.center{text-align:center}
+td{padding:6px 8px;border-bottom:0.5px solid #f0f0ee;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafaf6}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.center{text-align:center}
+.hl{background:#fffbe6 !important}
+.dn{color:#D85A30}
+.up2{color:#1D9E75}
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
+@media(max-width:650px){.overview-grid{grid-template-columns:1fr}}
+.overview-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.overview-box h4{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.kv{display:flex;justify-content:space-between;align-items:flex-start;padding:4px 0;border-bottom:0.5px solid #f5f4f0;font-size:12.5px;gap:10px}
+.kv:last-child{border-bottom:none}
+.kv-key{color:#666;min-width:90px;flex-shrink:0}
+.kv-val{font-weight:600;text-align:right;flex:1}
+.seg-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:1rem}
+.seg-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.2rem}
+.seg-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:8px}
+.seg-card-name{font-size:13px;font-weight:700}
+.seg-card-share{font-size:11px;color:#888;font-weight:600}
+.seg-card-desc{font-size:12px;color:#444;line-height:1.55;margin-bottom:6px}
+.seg-card-margin{font-size:11px;font-weight:600}
+.badge{display:inline-block;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:600}
+.badge-up{background:#e6f7f0;color:#1D9E75}
+.badge-dn{background:#fce8e4;color:#D85A30}
+.badge-neu{background:#ebebe6;color:#666}
+.cc-table{width:100%;border-collapse:separate;border-spacing:6px;margin-bottom:1rem}
+.cc-table th{background:transparent;border:none;font-size:11px;color:#888;text-align:center;padding:4px;font-weight:600;white-space:nowrap}
+.cc-table th.year-col{width:50px;text-align:left}
+.cc-cell{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.65rem .75rem;vertical-align:top;height:100%}
+.cc-quarter{font-size:10px;font-weight:700;color:#378ADD;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.cc-msg{font-size:11px;color:#444;margin-bottom:6px;line-height:1.45}
+.cc-guide{font-size:10px;color:#888;border-top:0.5px solid #f0f0ee;padding-top:5px;line-height:1.5}
+.cc-hit{color:#1D9E75;font-weight:600}
+.cc-miss{color:#D85A30;font-weight:600}
+.cc-latest{border:1.5px solid #378ADD !important;box-shadow:0 0 0 2px rgba(55,138,221,0.1)}
+.year-label{font-size:13px;font-weight:700;color:#555;padding-right:8px;vertical-align:middle}
+.scenario-stack{display:flex;flex-direction:column;gap:12px}
+.scenario-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1.1rem 1.3rem}
+.scenario-title{font-size:13px;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid #f0f0ee}
+.s-bull .scenario-title{color:#1D9E75}
+.s-bear .scenario-title{color:#D85A30}
+.s-item{margin-bottom:9px;padding-bottom:9px;border-bottom:0.5px solid #f5f4f0;font-size:12px}
+.s-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.s-case{font-weight:600;margin-bottom:2px}
+.s-sub{color:#888;font-size:11px}
+.ww-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.ww-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.ww-sticker-item{padding:.7rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:14px;align-items:flex-start}
+.ww-sticker-item:last-child{border-bottom:none}
+.ww-sticker-date{font-size:11px;font-weight:700;color:#378ADD;white-space:nowrap;min-width:90px;flex-shrink:0;padding-top:1px}
+.ww-sticker-content{flex:1}
+.ww-sticker-event{font-size:12.5px;font-weight:700;color:#222;margin-bottom:2px}
+.ww-sticker-point{font-size:11.5px;color:#666;line-height:1.5}
+.source-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.4rem;font-size:12px;color:#888;line-height:2}
+.prose{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:1rem 1.3rem;margin-bottom:1rem;font-size:13px;line-height:1.7}
+.prose ul{padding-left:1.3rem}
+.prose li{margin-bottom:.25rem}
+.prose p{margin-bottom:.7rem}
+.prose p:last-child{margin-bottom:0}
+.thesis-box{background:#fff;border:0.5px solid #e0e0dc;border-radius:12px;padding:1.2rem 1.4rem;margin-bottom:12px;border-left:5px solid #333;position:relative}
+.thesis-box-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.thesis-icon{font-size:22px;flex-shrink:0}
+.thesis-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;border-radius:5px;background:#ebebe6;color:#444}
+.thesis-title{font-size:15px;font-weight:700;color:#222;flex:1;margin-bottom:0}
+.thesis-body{font-size:13px;line-height:1.7;color:#333}
+.thesis-body p{margin-bottom:.6rem}
+.thesis-body p:last-child{margin-bottom:0}
+.thesis-body strong{color:#222;font-weight:700}
+.thesis-body .hl-blue{font-weight:600;color:#222}
+.thesis-body .hl-green{font-weight:700;color:#1D9E75}
+.thesis-body .hl-red{font-weight:700;color:#D85A30}
+.cc-sticker-box{background:#fff;border:1px solid #e0e0dc;border-radius:14px;padding:.8rem 1.4rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);position:relative;overflow:hidden}
+.cc-sticker-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#378ADD 0%,#1D9E75 100%)}
+.cc-sticker-item{padding:.85rem 0;border-bottom:0.5px dashed #ececec;display:flex;gap:12px;align-items:flex-start}
+.cc-sticker-item:last-child{border-bottom:none}
+.cc-sticker-rank{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#378ADD;color:#fff;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.cc-sticker-content{flex:1}
+.cc-sticker-title{font-size:13px;font-weight:700;color:#222;margin-bottom:4px}
+.cc-sticker-desc{font-size:12px;color:#444;line-height:1.6}
+.cc-sticker-desc strong{color:#222}
+.hl-pos{color:#1D9E75;font-weight:700}
+.hl-neg{color:#D85A30;font-weight:700}
+.ir-slide{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;overflow:hidden;margin-bottom:14px}
+.ir-slide-frame{background:linear-gradient(135deg,#f8f8f5 0%,#ffffff 100%);padding:.85rem 1.4rem;border-bottom:0.5px solid #e0e0dc}
+.ir-slide-num{font-size:10px;color:#999;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+.ir-slide-title{font-size:14px;font-weight:700;color:#333}
+.ir-slide-img-wrap{padding:1rem 1.4rem;text-align:center;background:#fafaf6}
+.ir-slide-img-wrap img{display:block;max-width:75%;width:100%;height:auto;margin:0 auto;border:0.5px solid #e0e0dc;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+@media(max-width:650px){.ir-slide-img-wrap img{max-width:95%}}
+.ir-slide-img-wrap iframe{display:block;width:100%;max-width:850px;height:480px;margin:0 auto;border:0.5px solid #e0e0dc;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.ir-slide-caption{font-size:11.5px;color:#555;padding:.85rem 1.4rem 1rem;line-height:1.55;background:#fff;border-top:0.5px solid #f0f0ee}
+.ir-slide-caption strong{color:#222}
+.footer{font-size:11px;color:#aaa;text-align:center;margin-top:2rem;padding-top:1rem;border-top:0.5px solid #e0e0dc}
+.seg-table-wrap{overflow-x:auto}
+.seg-table{min-width:780px}
+.seg-table th.seg-group{text-align:center;background:#e3e3de;border-left:2px solid #d0d0cc}
+.seg-table td.seg-border{border-left:2px solid #e0e0dc}
+.tv-wrap{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:6px;overflow:hidden}
+.tv-wrap iframe{display:block;width:100%;height:420px;border:0;border-radius:6px}
+.ref-list{display:flex;flex-direction:column;gap:6px}
+.ref-item{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:.6rem .9rem;display:flex;align-items:center;gap:10px;font-size:12px}
+.ref-tag{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600;flex-shrink:0;min-width:55px;text-align:center}
+.tag-official{background:#e0effc;color:#1565c0}
+.tag-broker{background:#fff4e0;color:#ed8936}
+.tag-news{background:#f0f0ed;color:#555}
+.tag-wiki{background:#e6f7f0;color:#1D9E75}
+.ref-item a{color:#378ADD;text-decoration:none;flex:1;word-break:break-all}
+.ref-item a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div>
+    <div class="header-title">⚡ Monster Beverage (MNST) 기업분석</div>
+    <div class="header-meta">회계연도: Calendar Year &nbsp;|&nbsp; 분석기간: Q1'18~Q1'26 (33분기) &nbsp;|&nbsp; 최근 컨콜: 2026.05.07</div>
+  </div>
+  <div style="font-size:12px;color:#aaa">분석일: 2026.05.09</div>
+</div>
+
+<!-- 목차 -->
+<div class="toc">
+  <div class="toc-title">목차</div>
+  <div class="toc-sticker-box">
+    <div class="toc-grid">
+      <a class="toc-link" href="#s1"><span class="toc-num">01.</span><span class="toc-text">회사 개요</span></a>
+      <a class="toc-link" href="#s2"><span class="toc-num">02.</span><span class="toc-text">주가 흐름 — TradingView 일봉</span></a>
+      <a class="toc-link" href="#s3"><span class="toc-num">03.</span><span class="toc-text">세그먼트별 매출 추이</span></a>
+      <a class="toc-link sub" href="#s3b"><span class="toc-num">3-1.</span><span class="toc-text">세그먼트 구조 및 제품</span></a>
+      <a class="toc-link sub" href="#s4"><span class="toc-num">3-2.</span><span class="toc-text">매출 &amp; GM% 추이</span></a>
+      <a class="toc-link sub" href="#s5"><span class="toc-num">3-3.</span><span class="toc-text">세그먼트별 실적 테이블</span></a>
+      <a class="toc-link" href="#s6"><span class="toc-num">04.</span><span class="toc-text">재무제표 개요</span></a>
+      <a class="toc-link" href="#s7"><span class="toc-num">05.</span><span class="toc-text">핵심 투자아이디어</span></a>
+      <a class="toc-link sub" href="#s8"><span class="toc-num">5-1.</span><span class="toc-text">핵심 변동 요인</span></a>
+      <a class="toc-link sub" href="#s9"><span class="toc-num">5-2.</span><span class="toc-text">컨퍼런스콜 트래킹</span></a>
+      <a class="toc-link sub" href="#s10"><span class="toc-num">5-3.</span><span class="toc-text">Q1'26 컨콜 심층 정리</span></a>
+      <a class="toc-link sub" href="#s11"><span class="toc-num">5-4.</span><span class="toc-text">강세 / 약세 시나리오</span></a>
+      <a class="toc-link" href="#s12"><span class="toc-num">06.</span><span class="toc-text">Worth Watching Events</span></a>
+      <a class="toc-link" href="#s13"><span class="toc-num">07.</span><span class="toc-text">데이터 출처</span></a>
+      <a class="toc-link sub" href="#s14"><span class="toc-num">7-1.</span><span class="toc-text">Reference</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- 1. 회사 개요 -->
+<span class="section-anchor" id="s1"></span>
+<div class="section">
+<h2>1. 회사 개요</h2>
+<div class="overview-grid">
+  <div class="overview-box">
+    <h4>기본 정보</h4>
+    <div class="kv"><span class="kv-key">설립</span><span class="kv-val">1985년 (Hansen Beverage)</span></div>
+    <div class="kv"><span class="kv-key">상장</span><span class="kv-val">1990 NASDAQ (1992 사명변경 Hansen → 2012 Monster)</span></div>
+    <div class="kv"><span class="kv-key">본사</span><span class="kv-val">Corona, CA, USA (1 Monster Way)</span></div>
+    <div class="kv"><span class="kv-key">CEO</span><span class="kv-val">Hilton Schlosberg (Vice Chair, CEO)</span></div>
+    <div class="kv"><span class="kv-key">Co-Founders</span><span class="kv-val">Rodney Sacks (Chairman), Hilton Schlosberg</span></div>
+    <div class="kv"><span class="kv-key">사업 모델</span><span class="kv-val">Brand-led, Coca-Cola 글로벌 유통망 활용</span></div>
+    <div class="kv"><span class="kv-key">티커</span><span class="kv-val">NASDAQ: MNST</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>시장 정보 (2026.05.06 기준)</h4>
+    <div class="kv"><span class="kv-key">현재 주가</span><span class="kv-val">$77.20</span></div>
+    <div class="kv"><span class="kv-key">시가총액 USD</span><span class="kv-val" style="color:#378ADD">~$74.3B</span></div>
+    <div class="kv"><span class="kv-key">시가총액 KRW</span><span class="kv-val" style="color:#378ADD">~107.5조원 (환율 1,448원)</span></div>
+    <div class="kv"><span class="kv-key">발행주식</span><span class="kv-val">~977.9M주</span></div>
+    <div class="kv"><span class="kv-key">52주 고가</span><span class="kv-val">$87.38 (2026.02.26)</span></div>
+    <div class="kv"><span class="kv-key">52주 저가</span><span class="kv-val">$58.09 (2025.05.07)</span></div>
+    <div class="kv"><span class="kv-key">P/E (TTM)</span><span class="kv-val">~39 (Fwd ~33)</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>사업 운영</h4>
+    <div class="kv"><span class="kv-key">유통 모델</span><span class="kv-val">TCCC(코카콜라) 글로벌 보틀러망 ~80%</span></div>
+    <div class="kv"><span class="kv-key">핵심 IP</span><span class="kv-val">Monster Energy 브랜드, Reign, Bang, Predator</span></div>
+    <div class="kv"><span class="kv-key">주요 인수</span><span class="kv-val">CANarchy ($330M, 2022), Bang Energy ($362M, 2023)</span></div>
+    <div class="kv"><span class="kv-key">신제품 (2026)</span><span class="kv-val">FLRT (3월), Storm 시리즈, Reign Storm 일본 진출</span></div>
+    <div class="kv"><span class="kv-key">세그먼트</span><span class="kv-val">4개: Monster Energy / Strategic Brands / Alcohol / Other</span></div>
+    <div class="kv"><span class="kv-key">유통 지역</span><span class="kv-val">전세계 130+개국, 미국 외 매출 비중 45%</span></div>
+  </div>
+  <div class="overview-box">
+    <h4>투자 포인트 요약</h4>
+    <div class="kv"><span class="kv-key">Q1'26 매출</span><span class="kv-val" style="color:#1D9E75">$2.35B (+26.9% YoY)</span></div>
+    <div class="kv"><span class="kv-key">GM</span><span class="kv-val" style="color:#D85A30">55.0% (-150bps YoY)</span></div>
+    <div class="kv"><span class="kv-key">EPS (희석)</span><span class="kv-val" style="color:#1D9E75">$0.58 (+27.6% YoY)</span></div>
+    <div class="kv"><span class="kv-key">국제 매출</span><span class="kv-val" style="color:#1D9E75">$1.06B (+44.9% YoY, 45% 비중)</span></div>
+    <div class="kv"><span class="kv-key">Monster Energy</span><span class="kv-val" style="color:#1D9E75">$2.19B (+27.6% YoY)</span></div>
+    <div class="kv"><span class="kv-key">FY 분기 사상 첫</span><span class="kv-val" style="color:#1D9E75">Q1 매출 $2B 돌파</span></div>
+  </div>
+</div>
+<p class="note">⚠️ <strong>Non-GAAP / Adjusted</strong>는 SBC(주식보상비용)·Alcohol 손상차손·일회성 비용 제외. <strong>FX adjusted</strong>는 환율 변동 영향 제거. <strong>TCCC</strong>=The Coca-Cola Company, Monster의 최대주주 (지분 약 19.5%) 겸 글로벌 보틀러 파트너. <strong>FSOP</strong>=Food Service / On-Premise. <strong>Midwest Premium</strong>=미국 알루미늄 LME 가격에 더해지는 지역 프리미엄(관세 영향). <strong>Section 232</strong>=알루미늄 수입 관세 50%.</p>
+</div>
+
+<!-- 2. 주가 -->
+<span class="section-anchor" id="s2"></span>
+<div class="section">
+<h2>2. 주가 흐름 — TradingView 일봉</h2>
+<div class="tv-wrap">
+<iframe src="https://www.tradingview.com/widgetembed/?symbol=NASDAQ%3AMNST&interval=D&style=1&theme=light&hidesidetoolbar=1&hidetoptoolbar=0&allow_symbol_change=0" allowfullscreen></iframe>
+</div>
+<p class="note">* 2025.05 $58.09 저점 → 2026.02 Q4'25 record 실적 발표 후 $87.38 역대 최고가 → 5월 5일 트럼프 관세 우려로 $75 부근 조정 → Q1'26 어닝 후 +9.5% 반등. 1년간 +30%.</p>
+
+<h3 style="margin-top:1.2rem">주요 이벤트 연표</h3>
+<table>
+  <thead><tr><th>시기</th><th class="num">주가(근사)</th><th>이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2012.01</td><td class="num">$15</td><td>Hansen Natural → Monster Beverage 사명 변경</td></tr>
+    <tr><td>2014.08</td><td class="num">$22</td><td><span class="up2">Coca-Cola가 16.7% 지분 인수 ($2.15B), 글로벌 보틀러 계약</span></td></tr>
+    <tr><td>2017.09</td><td class="num">$28</td><td>Bang Energy 등 신생 경쟁자 등장, Reign 출시 준비</td></tr>
+    <tr><td>2020.06</td><td class="num">$38</td><td><span class="up2">코로나 후 에너지드링크 수요 폭증, 국제 확장 본격</span></td></tr>
+    <tr><td>2022.02</td><td class="num">$45</td><td>CANarchy $330M 인수, Alcohol Brands 세그먼트 신설</td></tr>
+    <tr><td>2023.07</td><td class="num">$57</td><td><span class="up2">Bang Energy $362M 인수 (파산 자산), 미국 점유율 보강</span></td></tr>
+    <tr><td>2024.10</td><td class="num">$53</td><td>인플레이션 둔화 우려, 11월 5% 가격 인상 단행</td></tr>
+    <tr><td>2025.05</td><td class="num">$58.09</td><td><span class="dn">52주 저점 — Q1'25 매출 컨센 미스 ($1.85B), Argentina 페소 충격</span></td></tr>
+    <tr><td>2025.08</td><td class="num">$70</td><td><span class="up2">Q2'25 매출 $2.11B 첫 분기 $2B 돌파, GM 55.7% 회복</span></td></tr>
+    <tr><td>2025.11</td><td class="num">$75</td><td>Q3'25 매출 $2.20B record, 11월 1일자 가격 인상 공지</td></tr>
+    <tr><td>2026.02.26</td><td class="num">$87.38</td><td><strong>Q4'25 매출 $2.13B (+17.6%), 52주 고가 갱신, 경영진 개편</strong></td></tr>
+    <tr><td>2026.04.30</td><td class="num">$76</td><td><span class="dn">Wall Street PT 일제 하향 (JPM, Stifel, BofA, Deutsche)</span></td></tr>
+    <tr class="hl"><td><strong>2026.05.06</strong></td><td class="num"><strong>$77.20</strong></td><td><strong>Q1'26 어닝 +26.9% YoY 서프라이즈, AH +9.5% 급등 (인사이더 매도 우려)</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 3. 세그먼트 33분기 -->
+<span class="section-anchor" id="s3"></span>
+<div class="section">
+<h2>3. 세그먼트별 매출 추이 — 33분기 ($M)</h2>
+<div class="legend" id="segLegend">
+  <span class="legend-item" onclick="toggleSeg(0,this)"><span class="dot" style="background:#1D9E75"></span>Monster Energy Drinks</span>
+  <span class="legend-item" onclick="toggleSeg(1,this)"><span class="dot" style="background:#378ADD"></span>Strategic Brands</span>
+  <span class="legend-item" onclick="toggleSeg(2,this)"><span class="dot" style="background:#D85A30"></span>Alcohol Brands</span>
+  <span class="legend-item" onclick="toggleSeg(3,this)"><span class="dot" style="background:#BA7517"></span>Other</span>
+  <span style="font-size:11px;color:#bbb;margin-left:4px">← 클릭하여 표시/숨김</span>
+</div>
+<div class="chart-box" style="height:460px"><canvas id="cSeg"></canvas></div>
+<p class="note">* Alcohol Brands 세그먼트는 2022 Q1 CANarchy 인수로 신설. 2023 Q1 The Beast Unleashed 출시 후 일시 성장했으나 2024부터 감소세. Strategic Brands(Predator/Fury)가 신흥시장 성장 견인. Monster Energy Drinks 비중 93%로 절대적, Q1'26 +27.6% YoY 가속 — 국제(미국 외) +44.9% 영향. 2018~2021 Q4까지는 구 회계체계(Strategic만 분리, Alcohol 미존재)에서 신규 4세그먼트 역산 추정치.</p>
+</div>
+
+<!-- 3-1. 세그먼트 구조 -->
+<span class="section-anchor" id="s3b"></span>
+<div class="section">
+<h2>3-1. 세그먼트 구조 및 제품</h2>
+<div class="seg-cards">
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">Monster Energy Drinks ★</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">93.1%</span> · Q1'26 $2,189M</div>
+    </div>
+    <div class="seg-card-desc">
+      회사의 핵심 사업. <strong>Monster Energy® / Ultra / Java / Rehab</strong> 코어 브랜드 + <strong>Reign Total Body Fuel</strong> 고성능 라인 + <strong>Reign Storm / FLRT</strong> 토탈 웰니스 라인 + <strong>Bang Energy</strong> (2023 인수). 미국 에너지드링크 카테고리 #1, 글로벌 #2. Q1'26 +27.6% YoY 성장 — 국제 보틀러망 폭발(+44.9%) + 신제품 ramp + 11월 가격 인상 효과 합산.
+    </div>
+    <div class="seg-card-margin" style="color:#555">GM <span style="color:#378ADD;font-weight:700">55%대</span> · 전 세그먼트 마진 견인</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">Strategic Brands</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">5.4%</span> · Q1'26 $126.7M</div>
+    </div>
+    <div class="seg-card-desc">
+      2014 Coca-Cola 거래로 인수한 <strong>NOS, Full Throttle, Burn, Mother, Relentless, Nalu, Samurai, Live+</strong> 등 + 자체 affordable 브랜드 <strong>Predator® (이집트/케냐/나이지리아/인도)</strong>와 <strong>Fury®</strong>. 2022 인플레이션 시기 신흥시장 성장 견인. Q1'26 +28.9% YoY — Predator 인도/MENA 가속, Fury 아프리카 확장. <span style="color:#1D9E75">컨센트레이트 모델</span>로 GM 가장 높음.
+    </div>
+    <div class="seg-card-margin" style="color:#555">GM <span style="color:#378ADD;font-weight:700">~70%</span> · 컨센트레이트 모델, 가장 수익성 높음</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">Alcohol Brands</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">1.4%</span> · Q1'26 $32.7M</div>
+    </div>
+    <div class="seg-card-desc">
+      2022 CANarchy 인수($330M)로 신설. <strong>The Beast Unleashed</strong> (FMB, 2023 Q1 런칭), <strong>Nasty Beast Hard Tea</strong> (2024 Q1) + 크래프트 맥주(Cigar City, Oskar Blues 등). <span style="color:#D85A30">지속 부진</span> — Q1'26 -5.9%, 2025 Q4 -16.8%. 손상차손 누적 발생, 회사가 <em>"국제 유통 기회 탐색 중"</em> 언급. <strong>전략적 출구 가능성 거론</strong>.
+    </div>
+    <div class="seg-card-margin" style="color:#555">GM <span style="color:#D85A30;font-weight:700">변동성↑</span> · 손상차손 누적, 비핵심 사업</div>
+  </div>
+  <div class="seg-card" style="border-left:3px solid #333">
+    <div class="seg-card-head">
+      <div class="seg-card-name" style="color:#222">Other (AFF Third-Party)</div>
+      <div class="seg-card-share">매출 비중 <span style="color:#378ADD;font-weight:700">~0.1%</span> · Q1'26 ~$3M</div>
+    </div>
+    <div class="seg-card-desc">
+      자회사 American Fruits and Flavors LLC가 외부 고객에게 판매하는 향료·컨센트레이트. 회사 본질에는 미미한 비중이지만, AFF 자체는 Monster 모든 음료의 향 공급 핵심 인프라. <strong>2026년 후반 브라질 신공장 가동 예정</strong> — 라틴아메리카 지역 자급화로 운송비/관세 절감 목표.
+    </div>
+    <div class="seg-card-margin" style="color:#555">전략적 인프라 · 브라질 공장으로 코스트 다변화</div>
+  </div>
+</div>
+
+<table>
+  <thead><tr><th>세그먼트</th><th>대표 제품</th><th>주요 시장/유통</th><th>Q1'26 매출 비중</th><th>YoY 성장</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Monster Energy Drinks</strong></td><td>Monster, Ultra, Java, Rehab, Reign, Reign Storm, Bang, FLRT</td><td>전세계 130+개국, TCCC 보틀러망</td><td class="num"><strong>93.1%</strong></td><td class="num up2"><strong>+27.6%</strong></td></tr>
+    <tr><td><strong>Strategic Brands</strong></td><td>NOS, Full Throttle, Mother, Relentless, Predator, Fury</td><td>인도/MENA/아프리카/유럽 affordable</td><td class="num">5.4%</td><td class="num up2">+28.9%</td></tr>
+    <tr><td><strong>Alcohol Brands</strong></td><td>The Beast Unleashed, Nasty Beast Hard Tea, Cigar City</td><td>미국 위주, 국제 진출 검토 중</td><td class="num">1.4%</td><td class="num dn">-5.9%</td></tr>
+    <tr><td><strong>Other (AFF)</strong></td><td>향료·컨센트레이트 (외부 판매)</td><td>외부 식품/음료 제조사</td><td class="num">~0.1%</td><td class="num">N/A</td></tr>
+  </tbody>
+</table>
+<p class="note">* Monster Energy Drinks가 매출 93%로 절대적 — MNST는 사실상 단일 카테고리(에너지드링크) 회사. Strategic Brands는 컨센트레이트 모델로 GM 70%+ 추정 — 신흥시장 affordable 카테고리 견인. Alcohol은 비핵심으로 정리 가능성 시사.</p>
+</div>
+
+<!-- 3-2. 매출 + GM -->
+<span class="section-anchor" id="s4"></span>
+<div class="section">
+<h2>3-2. 매출 &amp; GM% 추이 — 33분기</h2>
+<div class="legend">
+  <span class="legend-static"><span class="dot" style="background:rgba(55,138,221,0.5)"></span>매출 ($M, 좌축)</span>
+  <span class="legend-static"><span class="dot" style="background:#1D9E75"></span>GM% (우축)</span>
+</div>
+<div class="chart-box" style="height:420px"><canvas id="cRev"></canvas></div>
+
+<h3 style="margin-top:1.2rem">연간 요약</h3>
+<table>
+  <thead><tr><th>연도</th><th class="num">매출</th><th class="num">YoY</th><th class="num">GM%</th><th class="num">영업이익</th><th class="num">OPM%</th><th class="num">EPS (희석)</th><th>주요 이벤트</th></tr></thead>
+  <tbody>
+    <tr><td>2018</td><td class="num">$3.81B</td><td class="num up2">+13%</td><td class="num">59.7%</td><td class="num">$1.30B</td><td class="num">34%</td><td class="num">$1.69</td><td>국제 확장 가속</td></tr>
+    <tr><td>2019</td><td class="num">$4.20B</td><td class="num up2">+10%</td><td class="num">59.7%</td><td class="num">$1.41B</td><td class="num">34%</td><td class="num">$1.85</td><td>유럽 점유율 확대</td></tr>
+    <tr><td>2020</td><td class="num">$4.60B</td><td class="num up2">+10%</td><td class="num">58.7%</td><td class="num">$1.55B</td><td class="num">34%</td><td class="num">$2.06</td><td>코로나 락다운 회복</td></tr>
+    <tr><td>2021</td><td class="num">$5.54B</td><td class="num up2">+20%</td><td class="num">55.6%</td><td class="num">$1.63B</td><td class="num">29%</td><td class="num">$2.10</td><td>알루미늄 가격 급등 시작</td></tr>
+    <tr><td>2022</td><td class="num">$6.31B</td><td class="num up2">+14%</td><td class="num">50.3%</td><td class="num">$1.58B</td><td class="num">25%</td><td class="num">$2.20</td><td>CANarchy 인수, 인플레이션 압박</td></tr>
+    <tr><td>2023</td><td class="num">$7.14B</td><td class="num up2">+13%</td><td class="num">53.1%</td><td class="num">$1.95B</td><td class="num">27%</td><td class="num">$1.54*</td><td>Bang 인수, 가격 인상 효과</td></tr>
+    <tr><td>2024</td><td class="num">$7.49B</td><td class="num up2">+5%</td><td class="num">54.0%</td><td class="num">$2.05B</td><td class="num">27%</td><td class="num">$1.59</td><td>$3B Tender Offer, 알코올 손상</td></tr>
+    <tr><td>2025</td><td class="num">$8.29B</td><td class="num up2">+11%</td><td class="num">55.8%</td><td class="num">$2.30B</td><td class="num">28%</td><td class="num">$1.85</td><td>Q4 record, 경영진 개편</td></tr>
+    <tr class="hl"><td><strong>2026 Q1</strong></td><td class="num"><strong>$2.35B</strong></td><td class="num up2"><strong>+26.9%</strong></td><td class="num dn"><strong>55.0%</strong></td><td class="num up2"><strong>$730M</strong></td><td class="num up2"><strong>31.1%</strong></td><td class="num up2"><strong>$0.58</strong></td><td><strong>분기 사상 첫 Q1 $2B 돌파, 국제 +44.9%</strong></td></tr>
+  </tbody>
+</table>
+
+<h3 style="margin-top:1.2rem">분기별 실적 (12분기)</h3>
+<table>
+  <thead><tr><th>분기</th><th class="num">매출</th><th class="num">YoY</th><th class="num">QoQ</th><th class="num">GM%</th><th class="num">영업이익</th><th class="num">OPM%</th><th class="num">EPS (희석)</th></tr></thead>
+  <tbody>
+    <tr><td>Q2'23</td><td class="num">$1,855M</td><td class="num up2">+12%</td><td class="num up2">+9%</td><td class="num">52.5%</td><td class="num">$554M</td><td class="num">29.9%</td><td class="num">$0.45</td></tr>
+    <tr><td>Q3'23</td><td class="num">$1,856M</td><td class="num up2">+14%</td><td class="num">+0%</td><td class="num">53.0%</td><td class="num">$523M</td><td class="num">28.2%</td><td class="num">$0.43</td></tr>
+    <tr><td>Q4'23</td><td class="num">$1,729M</td><td class="num up2">+14%</td><td class="num dn">-7%</td><td class="num">54.2%</td><td class="num">$483M</td><td class="num">27.9%</td><td class="num">$0.38</td></tr>
+    <tr><td>Q1'24</td><td class="num">$1,902M</td><td class="num up2">+12%</td><td class="num up2">+10%</td><td class="num">54.1%</td><td class="num">$549M</td><td class="num">28.9%</td><td class="num">$0.42</td></tr>
+    <tr><td>Q2'24</td><td class="num">$1,902M</td><td class="num up2">+3%</td><td class="num">+0%</td><td class="num">53.6%</td><td class="num">$527M</td><td class="num">27.7%</td><td class="num">$0.41</td></tr>
+    <tr><td>Q3'24</td><td class="num">$1,881M</td><td class="num up2">+1%</td><td class="num dn">-1%</td><td class="num">53.2%</td><td class="num">$453M</td><td class="num">24.1%</td><td class="num">$0.38</td></tr>
+    <tr><td>Q4'24</td><td class="num">$1,810M</td><td class="num up2">+5%</td><td class="num dn">-4%</td><td class="num">55.5%</td><td class="num">$543M</td><td class="num">30.0%</td><td class="num">$0.38</td></tr>
+    <tr><td>Q1'25</td><td class="num">$1,852M</td><td class="num dn">-3%</td><td class="num up2">+2%</td><td class="num up2">56.5%</td><td class="num">$570M</td><td class="num">30.8%</td><td class="num">$0.47</td></tr>
+    <tr><td>Q2'25</td><td class="num">$2,113M</td><td class="num up2">+11%</td><td class="num up2">+14%</td><td class="num up2">55.7%</td><td class="num">$632M</td><td class="num">29.9%</td><td class="num">$0.50</td></tr>
+    <tr><td>Q3'25</td><td class="num">$2,200M</td><td class="num up2">+17%</td><td class="num up2">+4%</td><td class="num">55.7%</td><td class="num">$627M</td><td class="num">28.5%</td><td class="num">$0.49</td></tr>
+    <tr><td>Q4'25</td><td class="num">$2,128M</td><td class="num up2">+18%</td><td class="num dn">-3%</td><td class="num">55.5%</td><td class="num">$543M</td><td class="num">25.5%</td><td class="num">$0.51</td></tr>
+    <tr class="hl"><td><strong>Q1'26</strong></td><td class="num"><strong>$2,353M</strong></td><td class="num up2"><strong>+26.9%</strong></td><td class="num up2"><strong>+11%</strong></td><td class="num dn"><strong>55.0%</strong></td><td class="num up2"><strong>$730M</strong></td><td class="num up2"><strong>31.1%</strong></td><td class="num up2"><strong>$0.58</strong></td></tr>
+  </tbody>
+</table>
+<p class="note">* 2023 EPS는 10:1 주식분할(2023.03) 반영. 2024 Q3는 일회성 Hansen 비용($17.9M) 영향. Q1'26 GM 55.0% 하락은 알루미늄 캔 비용↑(Section 232 관세 영향) + 국제 매출 비중 확대(저GM) + freight-in 비용↑ 영향. 단, 가격 인상으로 일부 상쇄 — OPM은 31.1%로 4년래 최고. 11분기 연속 두 자릿수 매출 성장 (Q1'25 제외).</p>
+</div>
+
+<!-- 3-3. 세그먼트별 실적 테이블 (16분기) -->
+<span class="section-anchor" id="s5"></span>
+<div class="section">
+<h2>3-3. 세그먼트별 실적 테이블 (16분기)</h2>
+<div class="seg-table-wrap">
+<table class="seg-table">
+  <thead>
+    <tr>
+      <th rowspan="2" style="vertical-align:middle">분기</th>
+      <th colspan="2" class="seg-group center">Monster Energy</th>
+      <th colspan="2" class="seg-group center">Strategic Brands</th>
+      <th colspan="2" class="seg-group center">Alcohol Brands</th>
+      <th colspan="2" class="seg-group center">Other</th>
+      <th rowspan="2" class="seg-group center" style="vertical-align:middle">Total</th>
+    </tr>
+    <tr>
+      <th class="seg-group center">$M</th><th class="seg-group center">%</th>
+      <th class="seg-group center">$M</th><th class="seg-group center">%</th>
+      <th class="seg-group center">$M</th><th class="seg-group center">%</th>
+      <th class="seg-group center">$M</th><th class="seg-group center">%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Q2'23</td><td class="num seg-border">$1,706</td><td class="num">92.0%</td><td class="num seg-border">$103.5</td><td class="num">5.6%</td><td class="num seg-border">$41.5</td><td class="num">2.2%</td><td class="num seg-border">$4.0</td><td class="num">0.2%</td><td class="num seg-border"><b>$1,855</b></td></tr>
+    <tr><td>Q3'23</td><td class="num seg-border">$1,716</td><td class="num">92.5%</td><td class="num seg-border">$98.8</td><td class="num">5.3%</td><td class="num seg-border">$38.0</td><td class="num">2.0%</td><td class="num seg-border">$3.5</td><td class="num">0.2%</td><td class="num seg-border"><b>$1,856</b></td></tr>
+    <tr><td>Q4'23</td><td class="num seg-border">$1,599</td><td class="num">92.5%</td><td class="num seg-border">$91.8</td><td class="num">5.3%</td><td class="num seg-border">$35.2</td><td class="num">2.0%</td><td class="num seg-border">$3.0</td><td class="num">0.2%</td><td class="num seg-border"><b>$1,729</b></td></tr>
+    <tr><td>Q1'24</td><td class="num seg-border">$1,728</td><td class="num">90.9%</td><td class="num seg-border">$108.4</td><td class="num">5.7%</td><td class="num seg-border">$56.1</td><td class="num">2.9%</td><td class="num seg-border">$9.5</td><td class="num">0.5%</td><td class="num seg-border"><b>$1,902</b></td></tr>
+    <tr><td>Q2'24</td><td class="num seg-border">$1,743</td><td class="num">91.6%</td><td class="num seg-border">$109.3</td><td class="num">5.7%</td><td class="num seg-border">$41.5</td><td class="num">2.2%</td><td class="num seg-border">$8.2</td><td class="num">0.4%</td><td class="num seg-border"><b>$1,902</b></td></tr>
+    <tr><td>Q3'24</td><td class="num seg-border">$1,724</td><td class="num">91.7%</td><td class="num seg-border">$112.6</td><td class="num">6.0%</td><td class="num seg-border">$41.0</td><td class="num">2.2%</td><td class="num seg-border">$3.6</td><td class="num">0.2%</td><td class="num seg-border"><b>$1,881</b></td></tr>
+    <tr><td>Q4'24</td><td class="num seg-border">$1,673</td><td class="num">92.4%</td><td class="num seg-border">$102.0</td><td class="num">5.6%</td><td class="num seg-border">$34.9</td><td class="num">1.9%</td><td class="num seg-border">$0.5</td><td class="num">0.0%</td><td class="num seg-border"><b>$1,810</b></td></tr>
+    <tr><td>Q1'25</td><td class="num seg-border">$1,716</td><td class="num">92.6%</td><td class="num seg-border">$98.3</td><td class="num">5.3%</td><td class="num seg-border">$34.7</td><td class="num">1.9%</td><td class="num seg-border">$3.4</td><td class="num">0.2%</td><td class="num seg-border"><b>$1,852</b></td></tr>
+    <tr><td>Q2'25</td><td class="num seg-border">$1,940</td><td class="num">91.8%</td><td class="num seg-border">$129.9</td><td class="num">6.1%</td><td class="num seg-border">$38.0</td><td class="num">1.8%</td><td class="num seg-border">$4.7</td><td class="num">0.2%</td><td class="num seg-border"><b>$2,113</b></td></tr>
+    <tr><td>Q3'25</td><td class="num seg-border">$2,030</td><td class="num">92.3%</td><td class="num seg-border">$130.7</td><td class="num">5.9%</td><td class="num seg-border">$34.0</td><td class="num">1.5%</td><td class="num seg-border">$5.3</td><td class="num">0.2%</td><td class="num seg-border"><b>$2,200</b></td></tr>
+    <tr><td>Q4'25</td><td class="num seg-border">$1,989</td><td class="num">93.5%</td><td class="num seg-border">$110.0</td><td class="num">5.2%</td><td class="num seg-border">$29.0</td><td class="num">1.4%</td><td class="num seg-border">$0.0</td><td class="num">0.0%</td><td class="num seg-border"><b>$2,128</b></td></tr>
+    <tr class="hl"><td><b>Q1'26</b></td><td class="num seg-border"><b>$2,189</b></td><td class="num up2"><b>93.0%</b></td><td class="num seg-border">$126.7</td><td class="num">5.4%</td><td class="num seg-border">$32.7</td><td class="num">1.4%</td><td class="num seg-border">$4.7</td><td class="num">0.2%</td><td class="num seg-border"><b>$2,353</b></td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note">* Monster Energy Drinks 비중 92~93% 안정 — 사실상 단일 사업 회사. Strategic Brands는 5~6% 안정 비중이지만 Q2'25부터 매출 절대값 폭증($129.9M, +18.9%) — 신흥시장 Predator/Fury 가속의 결과. Alcohol Brands는 매출/비중 모두 지속 감소 → Q1'26 1.4%까지 축소, <strong>전략적 출구 가능성</strong>. Other(AFF Third-Party)는 0.2% 미만으로 사실상 무의미.</p>
+</div>
+
+<!-- 4. 재무제표 -->
+<span class="section-anchor" id="s6"></span>
+<div class="section">
+<h2>4. 재무제표 개요</h2>
+<table>
+  <thead><tr><th>항목 (USD)</th><th class="num">2023</th><th class="num">2024</th><th class="num">2025</th><th class="num">Q1'26</th></tr></thead>
+  <tbody>
+    <tr><td>매출</td><td class="num">$7.14B</td><td class="num">$7.49B</td><td class="num">$8.29B</td><td class="num">$2.35B</td></tr>
+    <tr><td>매출총이익</td><td class="num">$3.79B</td><td class="num">$4.05B</td><td class="num">$4.63B</td><td class="num">$1.29B</td></tr>
+    <tr><td>매출총이익률</td><td class="num">53.1%</td><td class="num">54.0%</td><td class="num">55.8%</td><td class="num">55.0%</td></tr>
+    <tr><td>영업이익</td><td class="num">$1.95B</td><td class="num">$2.05B</td><td class="num">$2.30B</td><td class="num">$730M</td></tr>
+    <tr><td>영업이익률</td><td class="num">27.3%</td><td class="num">27.4%</td><td class="num">27.7%</td><td class="num">31.1%</td></tr>
+    <tr><td>순이익</td><td class="num">$1.63B</td><td class="num">$1.55B</td><td class="num">$1.86B</td><td class="num">$570M</td></tr>
+    <tr><td>EPS (희석)</td><td class="num">$1.54</td><td class="num">$1.59</td><td class="num">$1.85</td><td class="num">$0.58</td></tr>
+    <tr><td>영업현금흐름</td><td class="num">$2.10B</td><td class="num">$1.93B</td><td class="num">$2.30B</td><td class="num">~$650M</td></tr>
+    <tr><td>현금+단기투자</td><td class="num">$3.45B</td><td class="num">$1.53B</td><td class="num">$2.30B</td><td class="num">~$2.5B</td></tr>
+    <tr><td>총자산</td><td class="num">$9.55B</td><td class="num">$9.21B</td><td class="num">$10.0B</td><td class="num">~$10.5B</td></tr>
+    <tr><td>총부채</td><td class="num">$1.85B</td><td class="num">$2.18B</td><td class="num">$2.30B</td><td class="num">~$2.4B</td></tr>
+    <tr><td>자본총계</td><td class="num">$7.70B</td><td class="num">$7.03B</td><td class="num">$7.70B</td><td class="num">~$8.1B</td></tr>
+  </tbody>
+</table>
+<p class="note">* MNST는 부채가 거의 없는 회사. 2024년 자본 감소는 $3.0B Tender Offer (자사주 매입)로 인한 것. <strong>Q1'26 자사주 매입 0주, 권한 잔여 $400M</strong>. 11월 1일자 미국 가격 인상 효과 + 환율 우호적 ($89.3M favorable) + 신제품 ramp 합산 = Q1'26 매출 +26.9%. GM은 알루미늄 관세로 -150bps 압박이지만 OPM은 +280bps 개선 — 운영 레버리지 작동.</p>
+<p class="note">⚠️ 주식 보상 자체는 미미 (회사가 매년 SBC ~$60~80M 수준). 인사이더 매도 패턴은 주의 필요 — 최근 6개월간 Sacks 회장이 ~20.7만주($15.2M) 매도, 매수 0건. 다만 회사는 11분기 연속 두 자릿수 매출 성장 + EPS 성장 유지.</p>
+</div>
+
+<!-- 5. 핵심 투자아이디어 -->
+<span class="section-anchor" id="s7"></span>
+<div class="section">
+<h2>5. 핵심 투자아이디어</h2>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">🌍</span>
+    <span class="thesis-tag">Thesis #1</span>
+    <div class="thesis-title">국제 매출 폭발 — 미국 의존도 탈피의 변곡점 (Q1'26 +44.9%)</div>
+  </div>
+  <div class="thesis-body">
+    <p>Q1'26 미국 외 매출 <span class="hl-blue">$1.06B (+44.9% YoY)</span>, 비중 <span class="hl-green">45%</span>로 회사 사상 최고. 1년 만에 미국 외 비중 40% → 45% 점프. <strong>FX 조정 후에도 +32.7%</strong>. 단순한 환율 효과가 아닌 실질 침투 가속.</p>
+    <p>핵심 동력: <span class="hl-blue">EMEA</span>(서유럽 노르웨이 #1, FMCG 7위 등극), <span class="hl-blue">APAC</span>(한국 +28.9%, 중국 +20.2%, 인도 +16% 통화중립 기준), <span class="hl-blue">신흥시장 affordable</span>(Predator 인도/MENA, Fury 아프리카). <span class="hl-green">코카콜라 글로벌 보틀러망</span>(TCCC가 MNST 19.5% 지분 보유)이라는 깊은 구조적 해자가 작동 — 후발주자(Celsius, Bang)는 모방 불가능.</p>
+  </div>
+</div>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">💰</span>
+    <span class="thesis-tag">Thesis #2</span>
+    <div class="thesis-title">11월 가격 인상 + 운영 레버리지 = OPM 31% 4년래 최고</div>
+  </div>
+  <div class="thesis-body">
+    <p>2025.11.01자 미국 가격 인상 단행 (관세 직접 대응이 아닌 <em>"revenue growth, brand momentum"</em> 목적). Q1'26 첫 분기 풀 반영 — <span class="hl-green">매출 +26.9%, 영업이익 +28.1%, EPS +27.6%</span> 세 자릿수 모두 매출 성장률 초과 = 명확한 운영 레버리지.</p>
+    <p>OPM <span class="hl-green">31.1%</span>는 직전 4년 평균(27%) 대비 +400bps 점프, 분기 사상 최고. GM은 알루미늄 관세(<span class="hl-red">Section 232 50% 관세</span> + Midwest Premium +50%↑)로 -150bps 압박이지만 가격 + 효율 + 헤징으로 충분히 상쇄. <strong>경영진 "2026 H1 modest impact, H2부터 2025 고비용 베이스 오버랩 → 정상화"</strong> 가이드.</p>
+  </div>
+</div>
+
+<div class="thesis-box">
+  <div class="thesis-box-header">
+    <span class="thesis-icon">⚠️</span>
+    <span class="thesis-tag">Thesis #3</span>
+    <div class="thesis-title">Celsius 침투 + 인사이더 매도 + 알코올 부진 — 3가지 약화 요인</div>
+  </div>
+  <div class="thesis-body">
+    <p>장기 견고한 비즈니스지만 단기 리스크 존재: ① <span class="hl-red">Celsius Holdings (CELH)</span>의 미국 점유율 침투 — 2024 미국 점유율 12%까지 상승, 건강 컨셉으로 젊은 소비자 흡수. MNST는 Reign Storm/FLRT로 대응 중이지만 <span class="hl-red">Z세대 점유율은 정체</span>. ② <span class="hl-red">최근 6개월 인사이더 매도</span> — Sacks 회장 ~20.7만주($15.2M) 매도, 매수 0건. ③ Alcohol Brands <span class="hl-red">5분기 연속 감소</span>, 손상차손 누적 — 비핵심 정리 가능성.</p>
+    <p>다만 시장 PT 컨센서스는 분석가 14명 매수, 1명 매도로 <span class="hl-blue">Buy 컨센 유지</span>, 평균 PT $85.03 (현재가 대비 +10%). Q1'26 어닝 후 PT 일제 상향(KeyBanc, Stifel, Goldman, BofA). 실적 기반 투자라면 단기 노이즈보다 펀더멘털을 봐야 한다는 시각.</p>
+  </div>
+</div>
+
+<!-- 5-1. 핵심 변동 요인 -->
+<span class="section-anchor" id="s8"></span>
+<div class="section">
+<h2>5-1. 핵심 변동 요인</h2>
+<table>
+  <thead><tr><th>구분</th><th>요인</th><th class="center">방향</th><th>설명</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>외부</strong></td><td>글로벌 에너지드링크 카테고리 성장</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>전세계 카테고리 +10~13% 매년 성장 지속. Z세대 침투율 확대, RTD 음료 중 가장 빠른 성장</td></tr>
+    <tr><td>알루미늄 관세 (Section 232)</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>50% 수입 관세 + Midwest Premium 폭증 (Q4'25 대비 +50%↑). 2026 H1 modest 압박, H2 정상화</td></tr>
+    <tr><td>Celsius (CELH) 경쟁</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>건강 컨셉 에너지드링크로 미국 점유율 12% 침투. 젊은 소비자 흡수 — Reign Storm/FLRT로 대응</td></tr>
+    <tr><td>USD 약세 (FX 우호)</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>Q1'26 FX 영향 +$89.3M 우호적. EMEA/APAC 비중 확대 시 추가 환율 레버리지</td></tr>
+    <tr><td>신흥시장 affordable 확장</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>Predator (인도/이집트/케냐/나이지리아) + Fury (아프리카). 인구 30억 시장 침투 초기</td></tr>
+    <tr><td>한국/일본 보틀러 disruption</td><td class="center"><span class="badge badge-neu">중립 ●</span></td><td>2025 일부 APAC 유통 disruption 경험. Q1'26 한국 +28.9% 회복, 일본 Reign Storm 런칭 정상화</td></tr>
+    <tr><td rowspan="6" style="vertical-align:middle"><strong>내부</strong></td><td>11월 가격 인상 풀 반영</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>2025.11.01 단행. Q4'25 일부, Q1'26~ 풀 반영. OPM 31% 가시성</td></tr>
+    <tr><td>신제품 라인업 (FLRT, Storm)</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>FLRT 토탈 웰니스 (3월 런칭), Storm 시리즈 (5월 초). 신규 소비층 확장 + occasion 다변화</td></tr>
+    <tr><td>국제 매출 비중 45% 돌파</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>회사 사상 최고. EMEA 노르웨이 #1, 서유럽 FMCG 7위. 보틀러망 시너지 본격</td></tr>
+    <tr><td>Alcohol Brands 부진/손상</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>5분기 연속 감소, 누적 손상차손. 비핵심 정리/스핀오프 가능성 — 단기 노이즈</td></tr>
+    <tr><td>인사이더 매도</td><td class="center"><span class="badge badge-dn">약세 ▼</span></td><td>최근 6개월 5건 매도 (~$15M), 매수 0건. Sacks 회장 주도. 시장 신뢰 영향</td></tr>
+    <tr><td>AFF 브라질 공장 (2H'26 가동)</td><td class="center"><span class="badge badge-up">강세 ▲</span></td><td>향료/컨센트레이트 자급화. 라틴아메리카 비용/관세 절감, 마진 개선 기여</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- 5-2. 컨콜 트래킹 -->
+<span class="section-anchor" id="s9"></span>
+<div class="section">
+<h2>5-2. 컨퍼런스콜 트래킹 (최근 12분기)</h2>
+<table class="cc-table">
+  <colgroup>
+    <col style="width:50px"><col><col><col><col>
+  </colgroup>
+  <thead>
+    <tr><th class="year-col">년</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="year-label">2023</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'23</div><div class="cc-msg">$1.70B (+12% YoY). The Beast Unleashed (Alcohol) 런칭. 인플레이션 환경 가격 인상</div><div class="cc-guide">실제 EPS $0.41 vs 컨센 $0.39 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'23</div><div class="cc-msg">$1.85B (+12%). Bang Energy 인수 통합 시작. GM 회복</div><div class="cc-guide">EPS $0.45 vs 컨센 $0.40 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'23</div><div class="cc-msg">$1.86B (+14%). Bang 정상화. Reign Storm 출시 발표</div><div class="cc-guide">EPS $0.43 vs 컨센 $0.40 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'23</div><div class="cc-msg">$1.73B (+14%). 연간 매출 $7.14B record. 2024 가격 인상 시사</div><div class="cc-guide">EPS $0.38 vs 컨센 $0.35 <span class="cc-hit">✅</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2024</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'24</div><div class="cc-msg">$1.90B (+12%). $3.0B Tender Offer 발표. GM 54.1% 회복</div><div class="cc-guide">EPS $0.42 vs 컨센 $0.43 <span class="cc-miss">❌</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'24</div><div class="cc-msg">$1.90B (+3%). Argentina 페소 충격 시작. 미국 카테고리 둔화 우려</div><div class="cc-guide">EPS $0.41 vs 컨센 $0.45 <span class="cc-miss">❌</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'24</div><div class="cc-msg">$1.88B (+1%). Argentina FX -$26.5M. 11월 5% 가격 인상 발표. Hansen 비용 $17.9M</div><div class="cc-guide">EPS $0.40 vs 컨센 $0.43 <span class="cc-miss">❌</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'24</div><div class="cc-msg">$1.81B (+5%). Alcohol 손상 추가, 카테고리 회복 시그널. GM 55.5% 점프</div><div class="cc-guide">EPS $0.38 vs 컨센 $0.40 <span class="cc-miss">❌</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2025</td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q1'25</div><div class="cc-msg">$1.85B (-3%). Argentina FX -$50.4M. GM 56.5%. AFF 브라질 공장 발표</div><div class="cc-guide">EPS $0.47 vs 컨센 $0.46 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'25</div><div class="cc-msg"><strong>$2.11B record</strong> (+11%). 분기 사상 첫 $2B 돌파. EMEA +26.8%, APAC +11.6%</div><div class="cc-guide">EPS $0.50 vs 컨센 $0.48 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'25</div><div class="cc-msg">$2.20B record (+17%). 11.01 가격 인상. 국제 43% 비중 사상 최고. 알루미늄 관세 우려</div><div class="cc-guide">EPS $0.49 vs 컨센 $0.48 <span class="cc-hit">✅</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'25</div><div class="cc-msg">$2.13B (+17.6%). 경영진 개편 (Gehring/Carling/Tirre 신임). 연간 $8.29B record</div><div class="cc-guide">EPS $0.51 vs 컨센 $0.40 <span class="cc-hit">✅</span></div></div></td>
+    </tr>
+    <tr>
+      <td class="year-label">2026</td>
+      <td><div class="cc-cell cc-latest"><div class="cc-quarter">Q1'26 ★ 최신</div><div class="cc-msg"><strong>$2.35B (+27%)</strong>. <strong>국제 +44.9%, 비중 45% 사상 최고</strong>. FLRT/Storm 신제품 런칭. AH +9.5%</div><div class="cc-guide">EPS $0.58 vs 컨센 $0.53 <span class="cc-hit">✅ (+9.4%)</span></div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q2'26</div><div class="cc-msg">예정: 2026.08.06</div><div class="cc-guide">컨센 EPS ~$0.58 (자체 가이드 시사)</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q3'26</div><div class="cc-msg">예정: 2026.11</div><div class="cc-guide">컨센 EPS ~$0.60 (자체 시사). 알루미늄 정상화 시점</div></div></td>
+      <td><div class="cc-cell"><div class="cc-quarter">Q4'26</div><div class="cc-msg">예정: 2027.02</div><div class="cc-guide">2026 연간 매출 $9.5B+ 가능성 거론</div></div></td>
+    </tr>
+  </tbody>
+</table>
+<p class="note">* MNST는 공식 가이던스를 제공하지 않는다는 정책. CFO/CEO가 컨콜에서 시사하는 EPS 수준만 참고. 2024년 4분기 연속 컨센 미스 → Argentina/카테고리 둔화 영향. 2025년 회복 후 Q4'25 $0.51 vs 컨센 $0.40으로 +27.5% 큰 비트. Q1'26 $0.58 vs 컨센 $0.53도 +9.4% 비트. <strong>4분기 연속 컨센 비트</strong> — 시장 기대치가 보수적으로 조정된 결과.</p>
+</div>
+
+<!-- 5-3. Q1'26 심층 -->
+<span class="section-anchor" id="s10"></span>
+<div class="section">
+<h2>5-3. Q1'26 컨콜 심층 정리 (2026.05.07)</h2>
+<div class="prose">
+  <p><strong>발언자</strong>: Hilton Schlosberg (Vice Chair, CEO) · Tom Kelly (CFO) · Rob Gehring (CEO Americas) · Guy Carling (CEO EMEA &amp; OSP) · Emelie Tirre (CSO) · Mark Astrachan (SVP IR)</p>
+  <p><strong>실적</strong>: 매출 <strong>$2.35B</strong> (+26.9% YoY, 컨센 $2.15B 대비 +9.3%) / EPS <strong>$0.58</strong> (+27.6% YoY, 컨센 $0.53 대비 +9.4%) / GM <strong>55.0%</strong> (-150bps YoY) / 영업이익 <strong>$730M</strong> (+28.1% YoY) / OPM <strong>31.1%</strong> (4년래 최고) / FX 우호 영향 +$89.3M / FX 조정 매출 +22.1%</p>
+  <p><strong>시장 반응</strong>: 발표 후 시간외 +9.5% (Investing.com 일부 데이터는 -0.54%로 혼선). 다음 거래일 시점 보합권. JPMorgan PT $78 → 그대로 유지(직전 컨콜 전 하향 후 변경 없음). 분석가 14명 매수 / 1명 매도 / 평균 PT $85.03. Evercore ISI Buy 유지, BofA $96→ 조정 후 Buy.</p>
+</div>
+<h3 style="margin-top:1.2rem">컨콜 핵심 메시지 5가지</h3>
+<div class="cc-sticker-box">
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">1</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">국제 매출 <span class="hl-pos">+44.9%</span> — 비중 45% 사상 최고</div>
+      <div class="cc-sticker-desc">미국 외 매출 <strong>$1.06B</strong> (+44.9% YoY, FX 조정 +32.7%). <strong>전 지역 두 자릿수 성장</strong> — EMEA 특히 강세, APAC 한국 +28.9%/중국 +20.2%/인도 +16% (통화중립). Schlosberg: <em>"Monster Energy is now the seventh largest FMCG brand by value in Western Europe"</em>. 노르웨이 카테고리 #1.</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">2</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">11월 가격 인상 풀 반영 — 매출 +27%, OPM <span class="hl-pos">31.1%</span></div>
+      <div class="cc-sticker-desc">2025.11.01자 미국 가격 인상 첫 풀 분기. 매출 +26.9% > 영업이익 +28.1% > EPS +27.6% — 명확한 <span class="hl-pos">운영 레버리지</span>. OPM 31.1%는 4년래 최고. CFO Kelly: <em>"가격은 관세 직접 대응이 아닌 brand momentum 목적"</em>.</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">3</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">신제품 <span class="hl-pos">FLRT (3월) + Storm (5월)</span> 풀 라인업 런칭</div>
+      <div class="cc-sticker-desc">FLRT는 토탈 웰니스 카테고리 진입 — <strong>Celsius 직접 대응</strong>. Storm은 Reign 라인 확장. Schlosberg: <em>"these brands are key to appealing to new consumers and expanding usage occasions"</em>. <strong>Z세대 + 여성 소비자</strong> 타겟. 일본 Reign Storm 런칭 정상화.</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">4</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">알루미늄 관세 — <span class="hl-neg">2026 H1 modest 압박</span>, H2 정상화</div>
+      <div class="cc-sticker-desc">Section 232 50% 관세 + Midwest Premium 폭증. CFO: <em>"continued modest sequential increase in costs through at least the end of 2026"</em>. <strong>그러나 H2부터 2025 고비용 베이스 오버랩 → 정상화</strong>. 헤징 + 가격 + AAF 브라질 공장(2H'26)으로 mitigation. GM 영향 -150bps 흡수 가능 수준.</div>
+    </div>
+  </div>
+  <div class="cc-sticker-item">
+    <span class="cc-sticker-rank">5</span>
+    <div class="cc-sticker-content">
+      <div class="cc-sticker-title">자사주 매입 0주 — 권한 잔여 <span class="hl-neg">$400M</span></div>
+      <div class="cc-sticker-desc">Q1'26 자사주 매입 0주 (Q4'25에 이어 2분기 연속 0). 권한 잔여 $400M (Q4'25 $500M에서 줄지 않음). <strong>2024년 $3.0B Tender Offer</strong> 후 보수적 자본 환원 기조. <span class="hl-neg">인사이더 매도 누적</span> 시그널과 함께 시장 우려 요인. 다만 현금 $2.5B 충분.</div>
+    </div>
+  </div>
+</div>
+
+<h3 style="margin-top:1.2rem">Q2 2026 / 2026 연간 가이던스 시사</h3>
+<table>
+  <thead><tr><th>지표</th><th class="num">Q1'26 실제</th><th class="num">Q2'26 시사 (자체 컨콜)</th><th class="num">Q3'26 시사</th></tr></thead>
+  <tbody>
+    <tr><td>EPS (희석)</td><td class="num">$0.58</td><td class="num hl"><strong>~$0.58 (CFO 언급)</strong></td><td class="num hl"><strong>~$0.60 (CFO 언급)</strong></td></tr>
+    <tr><td>매출 성장</td><td class="num">+26.9% YoY</td><td class="num">QoQ 계절적 강세 (Q2가 통상 피크)</td><td class="num">국제 모멘텀 지속</td></tr>
+    <tr><td>GM%</td><td class="num">55.0%</td><td class="num">유사 또는 약간 하락 (알루미늄 압박)</td><td class="num">55%대 유지</td></tr>
+    <tr><td>알루미늄 영향</td><td class="num">modest</td><td class="num">"Q1보다 약간 높을 것"</td><td class="num">"Q2보다 약간 높을 것"</td></tr>
+    <tr><td>국제 비중</td><td class="num">45% (사상 최고)</td><td class="num">45%+ 유지</td><td class="num">45%+ 유지</td></tr>
+  </tbody>
+</table>
+<p class="note">* MNST는 공식 가이던스를 제공하지 않음. 위 수치는 컨콜에서 CFO/CEO가 언급한 방향성 시사. 분석가 컨센서스: Q2 EPS $0.55, Q3 $0.58 → MNST 시사 수준이 더 높음. <strong>4분기 연속 컨센 비트 패턴</strong> 유지 시 실제 실적은 시사치 추가 초과 가능성. 분석가 PT 분포: Buy $85~$100 (Goldman, BofA, RBC, Wells Fargo, Stifel, Deutsche, KeyBanc, Evercore, Jefferies), Neutral $78~$80 (JPM, UBS, TD Cowen). 평균 PT $85.03.</p>
+
+<h3 style="margin-top:1.5rem">📊 IR 자료 핵심 슬라이드 (회사 공식 8-K Exhibit 99.2)</h3>
+<div class="ir-slide">
+  <div class="ir-slide-frame">
+    <div class="ir-slide-num">📊 IR 8-K Filing — Q1 2026 Exhibit 99.2 (Investor Presentation with Scanner Data)</div>
+    <div class="ir-slide-title">Monster Beverage Q1 2026 — Net Sales by Segment &amp; Geographic Mix</div>
+  </div>
+  <div class="ir-slide-img-wrap">
+    <iframe src="https://www.sec.gov/Archives/edgar/data/0000865752/000110465926057188/tm2613885d1_ex99-1.htm" title="Monster Beverage Q1 2026 8-K Press Release"></iframe>
+  </div>
+  <div class="ir-slide-caption">📌 <strong>Q1'26 8-K Press Release (Exhibit 99.1)</strong> — SEC EDGAR 직접 임베드. 원본 8-K Filing(2026.05.07)에는 (1) 분기 매출 $2.35B (+26.9%), (2) 세그먼트별 매출(Monster Energy +27.6%, Strategic Brands +28.9%, Alcohol -5.9%), (3) 국제 매출 $1.06B (+44.9%, 비중 45%), (4) GM 55.0% / OPM 31.1%, (5) FX 영향 +$89.3M 우호 등이 모두 표 형태로 정리됨. <strong>Exhibit 99.2 Investor Presentation</strong>은 Nielsen/Circana/NielsenIQ 스캐너 데이터(미국·캐나다·EMEA·APAC·LATAM 지역별 점유율)를 추가 포함. <a href="https://investors.monsterbevcorp.com/financial-information/sec-filings" target="_blank" style="color:#378ADD;text-decoration:underline">MNST IR SEC Filings 페이지에서 직접 다운로드</a></div>
+</div>
+</div>
+
+<!-- 5-4. 시나리오 -->
+<span class="section-anchor" id="s11"></span>
+<div class="section">
+<h2>5-4. 강세 / 약세 시나리오</h2>
+<div class="scenario-stack">
+  <div class="scenario-box s-bull">
+    <div class="scenario-title">🟢 강세 시나리오</div>
+    <div class="s-item"><div class="s-case">국제 매출 비중 50%+ 돌파 (2026 연간)</div><div class="s-sub">현재 45%에서 50%+ 가속 가능 — TCCC 보틀러망 시너지 본격, EMEA 영국/독일/스페인 침투 가속, APAC 한국/일본/인도 폭발. 2027 연간 매출 $11B+ 가시성</div></div>
+    <div class="s-item"><div class="s-case">11월 가격 인상 풀 반영 효과 H2 본격화</div><div class="s-sub">2026 연간 OPM 30%+ 안착. EPS $2.40+ 가능 (현재 컨센 $2.30). 알루미늄 정상화 + AAF 브라질 공장 가동 효과 결합</div></div>
+    <div class="s-item"><div class="s-case">FLRT/Storm 신제품 카테고리 확장 성공</div><div class="s-sub">Celsius 대응 라인 안착 시 미국 점유율 회복. 토탈 웰니스 카테고리 점유율 5%+ 확보 시 매출 $500M+ 추가 가능</div></div>
+    <div class="s-item"><div class="s-case">Predator/Fury 신흥시장 폭증</div><div class="s-sub">인도 +16% (현재) → +30% 가속 시 affordable 카테고리 단독 매출 $500M+ 가능. 인구 30억 시장 침투 초기 단계</div></div>
+    <div class="s-item"><div class="s-case">Alcohol Brands 정리 / 스핀오프</div><div class="s-sub">비핵심 사업 매각 시 핵심 사업 마진 ~50bps 추가 개선. 손상차손 노이즈 제거. 시장 멀티플 재평가 가능</div></div>
+    <div class="s-item"><div class="s-case">자사주 매입 재개 + Tender Offer 가능성</div><div class="s-sub">현금 $2.5B + FCF 연간 $2B+ 보유. 2024 $3B Tender Offer 패턴 재현 가능. EPS 5%+ 부스트 가능</div></div>
+  </div>
+  <div class="scenario-box s-bear">
+    <div class="scenario-title">🔴 약세 시나리오</div>
+    <div class="s-item"><div class="s-case">Celsius (CELH) 미국 점유율 추가 침투</div><div class="s-sub">건강 컨셉으로 Z세대 흡수 가속. 미국 카테고리 점유율 12% → 18%+ 시 MNST 미국 매출 -5%+ 압박. FLRT/Storm 대응 부족 시 단기 디레이팅</div></div>
+    <div class="s-item"><div class="s-case">알루미늄 관세 H2 정상화 실패</div><div class="s-sub">Section 232 관세 추가 강화 시 GM -200bps+ 압박. 가격 추가 인상 시 소비자 저항 우려 — 카테고리 둔화 트리거</div></div>
+    <div class="s-item"><div class="s-case">Argentina / 기타 신흥시장 FX 충격</div><div class="s-sub">2024 Q3 Argentina 페소 -$26.5M FX 영향 재현 가능. USD 강세 전환 시 국제 매출 환산 -10%+ 가능</div></div>
+    <div class="s-item"><div class="s-case">인사이더 매도 지속 + 자사주 매입 미재개</div><div class="s-sub">Sacks 회장 매도 추가 + 권한 $400M 잔여 미사용 시 시장 신뢰 저하. 멀티플 압박 — PE 39 → 30 디레이팅 가능</div></div>
+    <div class="s-item"><div class="s-case">Alcohol Brands 손상차손 추가</div><div class="s-sub">5분기 연속 감소 지속 시 추가 손상 가능. 일회성 비용 누적으로 GAAP EPS 압박. 정리/매각 시 손실 가능</div></div>
+    <div class="s-item"><div class="s-case">한국/일본 보틀러 disruption 재발</div><div class="s-sub">2025 일부 APAC 유통 disruption 경험. 국제 +44.9% 가속 모멘텀 단절 가능. 2026 H2 가이드 미달 시 큰 디레이팅</div></div>
+  </div>
+</div>
+</div>
+
+<!-- 6. Worth Watching -->
+<span class="section-anchor" id="s12"></span>
+<div class="section">
+<h2>6. Worth Watching Events</h2>
+<div class="ww-sticker-box">
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.06</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">연례 주주총회 (Annual Shareholders Meeting)</div>
+      <div class="ww-sticker-point">신임 경영진(Gehring/Carling/Tirre) 첫 공식 발언. 2026 전략 방향성. Schlosberg/Sacks 후계 구도 시그널</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.07</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">FLRT/Storm 신제품 미국 전국 ramp 확인</div>
+      <div class="ww-sticker-point">Nielsen 스캐너 데이터로 4-12주 점유율 가시성. Celsius 대응 효과 검증 분기점</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.08.06</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q2'26 실적 발표 (예상)</div>
+      <div class="ww-sticker-point">Q2는 통상 계절적 피크. 매출 $2.5B+ 가능성. EPS 시사 $0.58 달성 여부. 국제 비중 50% 첫 시도</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026 H2</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">AFF 브라질 공장 가동</div>
+      <div class="ww-sticker-point">향료/컨센트레이트 자급화. 라틴아메리카 비용 절감 + 관세 회피. 2027 GM 50bps 개선 기여 가능</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026 H2</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">알루미늄 관세 영향 정상화 확인</div>
+      <div class="ww-sticker-point">CFO 가이드: 2025 고비용 베이스 오버랩 → H2부터 정상화. GM 56%+ 회복 가시성. 실패 시 큰 디레이팅</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.11</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q3'26 실적 + 2027 가이드 시사</div>
+      <div class="ww-sticker-point">EPS 시사 $0.60 달성 여부. 자사주 매입 재개 시그널. 2027 매출 $10B+ 가시성 확보</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2026.12</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Morgan Stanley Global Consumer &amp; Retail Conference</div>
+      <div class="ww-sticker-point">매년 12월 정기 IR 이벤트. 2027 전략 시사. 글로벌 멀티년 plan 공개 가능성</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027.02</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Q4'26 + 2026 연간 결산</div>
+      <div class="ww-sticker-point">2026 연간 매출 $9.5B+ / EPS $2.30+ 달성 여부. 11월 가격 인상 1주년 회고. 2027 가이드 공식 시사</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027 H1</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Alcohol Brands 전략 방향 확정</div>
+      <div class="ww-sticker-point">5분기+ 부진 지속 시 매각/스핀오프 가능성. 비핵심 정리 시 핵심 마진 50bps 부스트</div>
+    </div>
+  </div>
+  <div class="ww-sticker-item">
+    <div class="ww-sticker-date">2027</div>
+    <div class="ww-sticker-content">
+      <div class="ww-sticker-event">Predator/Fury 신흥시장 ramp 본격</div>
+      <div class="ww-sticker-point">인도/MENA/아프리카 affordable 카테고리. 2027 단독 매출 $500M+ 가시성. Strategic Brands 비중 7%+ 가능</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 7. 데이터 출처 -->
+<span class="section-anchor" id="s13"></span>
+<div class="section">
+<h2>7. 데이터 출처</h2>
+<div class="source-box">
+  <ul style="padding-left:1.2rem">
+    <li>Monster Beverage SEC 8-K Filings (분기·연간 실적 보도자료) 2018~2026</li>
+    <li>Q1'26 Earnings Press Release (2026.05.07), 8-K Exhibit 99.1 / Exhibit 99.2 (Investor Presentation w/ Scanner Data)</li>
+    <li>Q1'26 Earnings Conference Call Transcript (Investing.com, Motley Fool, Yahoo Finance)</li>
+    <li>Q4'25 (2026.02.26), Q3'25 (2025.11.06), Q2'25 (2025.08.07), Q1'25 (2025.05.08) Earnings Conference Calls</li>
+    <li>Monster Beverage 10-K (2025 Annual Report, 2026.02.27 filed)</li>
+    <li>주가·시총·EPS 데이터: TradingView, Yahoo Finance, Macrotrends, Robinhood (2026.05.06 기준)</li>
+    <li>분석 기사: ChartMill, Yahoo Finance, Investing.com, TipRanks, StockTitan, Supply Chain Dive</li>
+    <li>분석가 PT 컨센서스: TipRanks, CNN Markets, Investing.com (14 analysts)</li>
+    <li>환율: 2026.05.07 USD/KRW 1,448원</li>
+    <li>분석일: 2026년 5월 9일</li>
+  </ul>
+  <p style="margin-top:8px;color:#bbb">⚠️ MNST는 GAAP 기준만 보고하며 별도의 Non-GAAP / Adjusted 지표를 광범위하게 사용하지 않음 (일부 일회성 항목만 제외한 adjusted 지표 제공). 2018~2021년 일부 분기 세그먼트 데이터는 구 회계체계(Strategic만 분리, Alcohol 미존재)에서 신규 4세그먼트 역산 추정치. 회사는 공식 가이던스를 제공하지 않으며, 위 시사 수치는 컨콜에서 CFO/CEO가 언급한 방향성에 기반함. 인사이더 매도 데이터는 Quiver Quantitative 출처.</p>
+</div>
+</div>
+
+<!-- 7-1. Reference -->
+<span class="section-anchor" id="s14"></span>
+<div class="section">
+<h2>7-1. Reference</h2>
+<div class="ref-list">
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://investors.monsterbevcorp.com/" target="_blank">Monster Beverage IR — Investor Relations 메인</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.globenewswire.com/news-release/2026/05/07/3290614/10193/en/Monster-Beverage-Reports-2026-First-Quarter-Financial-Results.html" target="_blank">Monster Beverage Q1'26 실적 보도자료 (2026.05.07)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.sec.gov/Archives/edgar/data/0000865752/000110465926057188/tm2613885d1_ex99-1.htm" target="_blank">SEC 8-K Q1'26 Press Release (Exhibit 99.1, 2026.05.07)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.sec.gov/Archives/edgar/data/0000865752/000110465926057188/tm2613885d1_8k.htm" target="_blank">SEC 8-K Q1'26 메인 Filing (2026.05.07)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://investors.monsterbevcorp.com/news-releases/news-release-details/monster-beverage-reports-2025-fourth-quarter-and-full-year" target="_blank">Q4'25 + 2025 연간 실적 (2026.02.26)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://investors.monsterbevcorp.com/financial-information/sec-filings" target="_blank">Monster Beverage SEC Filings 페이지 (10-K, 10-Q, 8-K 모음)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-official">공식</span><a href="https://www.monsterenergy.com/us/en/products/" target="_blank">Monster Energy 제품 카탈로그 (Monster, Ultra, Reign, Java)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.fool.com/earnings/call-transcripts/2026/02/26/monster-mnst-q4-2025-earnings-call-transcript/" target="_blank">Motley Fool — Monster Q4'25 컨퍼런스콜 transcript</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://www.investing.com/news/transcripts/earnings-call-transcript-monster-beverage-q4-2025-beats-expectations-stock-rises-93CH-4530197" target="_blank">Investing.com — Monster Q4'25 transcript &amp; 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-broker">증권사</span><a href="https://ng.investing.com/news/stock-market-news/earnings-call-transcript-monster-beverage-q1-2026-beats-forecasts-stock-dips-93CH-2492939" target="_blank">Investing.com — Monster Q1'26 컨콜 transcript (2026.05.07)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.chartmill.com/news/MNST/Chartmill-47793-Monster-Beverage-Corp-NASDAQMNST-Crushes-Q1-Estimates-Shares-Rally-After-Hours" target="_blank">ChartMill — MNST Q1 실적 분석 (+9.5% AH)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://finance.yahoo.com/markets/stocks/articles/monster-beverage-mnst-surpasses-q1-212503489.html" target="_blank">Yahoo Finance — MNST Q1'26 컨센 비트 (+8.92%)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.tipranks.com/news/company-announcements/monster-beverage-delivers-strong-first-quarter-2026-results" target="_blank">TipRanks — MNST Q1'26 강력한 실적 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.supplychaindive.com/news/monster-faces-modest-tariff-impact-from-aluminum-costs/806002/" target="_blank">Supply Chain Dive — Monster 알루미늄 관세 영향 분석</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://uk.investing.com/news/earnings/monster-beverage-jumps-4-as-strong-international-sales-drive-q1-beat-93CH-4660680" target="_blank">Investing.com — 국제 매출이 Q1 비트 견인 (+44.9%)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.macrotrends.net/stocks/charts/MNST/monster-beverage/revenue" target="_blank">Macrotrends — MNST 연간/분기 매출 시계열 데이터</a></div>
+  <div class="ref-item"><span class="ref-tag tag-news">뉴스</span><a href="https://www.cnn.com/markets/stocks/MNST" target="_blank">CNN Markets — MNST 분석가 PT 시계열 (Apr~May 2026)</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://en.wikipedia.org/wiki/Monster_Beverage" target="_blank">Wikipedia — Monster Beverage Corporation</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://namu.wiki/w/%EB%AA%AC%EC%8A%A4%ED%84%B0%20%EC%97%90%EB%84%88%EC%A7%80" target="_blank">나무위키 — 몬스터 에너지</a></div>
+  <div class="ref-item"><span class="ref-tag tag-wiki">위키</span><a href="https://en.wikipedia.org/wiki/Hilton_Schlosberg" target="_blank">Wikipedia — Hilton Schlosberg (CEO)</a></div>
+</div>
+<p class="note">* 공식 자료(MNST IR·SEC) 7개, 증권사·전문 분석 3개, 뉴스 7개, 위키 3개 — 총 20개 레퍼런스. 한국어 분석 자료는 본격 분석 게시물 부족으로 나무위키만 포함.</p>
+</div>
+
+<div class="footer">Monster Beverage (MNST) 기업분석 · 2026.05.09 · 개인 사용 목적</div>
+</div>
+
+<script>
+// 33분기 라벨 — Q1'18 ~ Q1'26
+const L33=["Q1'18","Q2'18","Q3'18","Q4'18","Q1'19","Q2'19","Q3'19","Q4'19","Q1'20","Q2'20","Q3'20","Q4'20","Q1'21","Q2'21","Q3'21","Q4'21","Q1'22","Q2'22","Q3'22","Q4'22","Q1'23","Q2'23","Q3'23","Q4'23","Q1'24","Q2'24","Q3'24","Q4'24","Q1'25","Q2'25","Q3'25","Q4'25","Q1'26"];
+
+// 4개 세그먼트 - 33분기 ($M)
+// 2018~2021 Q4: 구 회계체계 (Monster Energy + Strategic Brands만, Alcohol/Other 거의 0)
+// 2022 Q1~: CANarchy 인수로 Alcohol 신설, 2023 Q1 The Beast Unleashed 본격
+// Monster Energy Drinks
+const me        = [810,920,950,890, 880,990,1020,940, 950,1090,1180,1110, 1200,1300,1300,1280, 1380,1492,1500,1390, 1556,1706,1716,1599, 1728,1743,1724,1673, 1716,1940,2030,1989, 2189];
+// Strategic Brands
+const sb        = [60,65,68,62, 68,75,80,78, 80,90,95,92, 95,100,105,108, 95,105,108,93, 91,103.5,98.8,91.8, 108.4,109.3,112.6,102.0, 98.3,129.9,130.7,110.0, 126.7];
+// Alcohol Brands (CANarchy 인수 2022 Q1, Beast Unleashed 2023 Q1)
+const ab        = [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 30,40,42,27, 25,41.5,38.0,35.2, 56.1,41.5,41.0,34.9, 34.7,38.0,34.0,29.0, 32.7];
+// Other (AFF Third-Party) — 미미한 비중
+const oth       = [3,4,5,4, 4,5,5,5, 4,5,5,5, 5,5,5,5, 4,5,5,4, 3,4,3.5,3.0, 9.5,8.2,3.6,0.5, 3.4,4.7,5.3,0.0, 4.7];
+
+const totalRev=L33.map((_,i)=>me[i]+sb[i]+ab[i]+oth[i]);
+
+// GM% (2018~2022 추정, 2023~2026 실제)
+const gm=[
+  60,60,60,59,        // 2018 - 60% peak
+  60,60,59,59,        // 2019
+  59,59,58,58,        // 2020
+  57,55,55,55,        // 2021 - 알루미늄 가격 급등 시작
+  52,50,49,49,        // 2022 - 인플레이션 정점
+  52,52.5,53.0,54.2,  // 2023 - 실제 (회복 시작)
+  54.1,53.6,53.2,55.5,// 2024 - 실제 (Argentina FX 압박, Q4 회복)
+  56.5,55.7,55.7,55.5,// 2025 - 실제 (가격 인상, 효율 개선)
+  55.0                // Q1'26 - 실제 (알루미늄 관세 -150bps)
+];
+
+const gc='rgba(0,0,0,0.05)',tc='#999';
+const xT={color:tc,font:{size:9},maxRotation:45,autoSkip:true,maxTicksLimit:18};
+const yT={color:tc,font:{size:11}};
+const $cb={callbacks:{label:ctx=>' $'+Math.round(ctx.parsed.y)+'M'}};
+
+// 세그먼트 차트
+const segBase=[
+  {label:'Monster Energy',data:me,backgroundColor:'#1D9E75',stack:'s'},
+  {label:'Strategic Brands',data:sb,backgroundColor:'#378ADD',stack:'s'},
+  {label:'Alcohol Brands',data:ab,backgroundColor:'#D85A30',stack:'s'},
+  {label:'Other',data:oth,backgroundColor:'#BA7517',stack:'s'},
+];
+const segChart=new Chart(document.getElementById('cSeg'),{
+  type:'bar',
+  data:{labels:L33,datasets:segBase.map(d=>({...d}))},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:$cb},scales:{x:{grid:{color:gc},ticks:xT,stacked:true},y:{grid:{color:gc},ticks:{...yT,callback:v=>'$'+v+'M'},stacked:true}}}
+});
+window.toggleSeg=function(idx,el){const m=segChart.getDatasetMeta(idx);m.hidden=!m.hidden;el.classList.toggle('hidden',m.hidden);segChart.update();};
+
+// 매출+GM 이중축
+new Chart(document.getElementById('cRev'),{
+  type:'bar',
+  data:{
+    labels:L33,
+    datasets:[
+      {type:'bar',label:'매출',data:totalRev,backgroundColor:'rgba(55,138,221,0.25)',borderColor:'#378ADD',borderWidth:1,yAxisID:'y'},
+      {type:'line',label:'GM%',data:gm,borderColor:'#1D9E75',pointRadius:3,pointBackgroundColor:'#1D9E75',fill:false,tension:0.3,yAxisID:'y2',borderWidth:2}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:ctx=>ctx.datasetIndex===0?' $'+Math.round(ctx.parsed.y)+'M':' GM: '+ctx.parsed.y.toFixed(1)+'%'}}},
+    scales:{
+      x:{grid:{color:gc},ticks:xT},
+      y:{grid:{color:gc},ticks:{...yT,callback:v=>'$'+v+'M'},position:'left'},
+      y2:{grid:{display:false},ticks:{color:'#1D9E75',font:{size:10},callback:v=>v+'%'},position:'right',min:45,max:65}
+    }
+  }
+});
+</script>
+</body>
+</html>
